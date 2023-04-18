@@ -4,32 +4,54 @@
 package Integracion.Material;
 
 import Negocio.Material.TMaterial;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Set;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
+import Integracion.Connection.ConnectorBD;
+
 public class DAOMaterialImp implements DAOMaterial {
-	/** 
-	* (non-Javadoc)
-	* @see DAOMaterial#crearMaterial(TMaterial tMaterial)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer crearMaterial(TMaterial tMaterial) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	
+	@Override
+	public TMaterial crearMaterial(TMaterial tMaterial) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement(
+					"INSERT INTO Actividad (idActividad, Nombre, Lugar, NumPlazas, Precio, IdPersonal, Activo) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE activo = ?",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			// ON DUPLICATE KEY UPDATE activo = ? lo que hace es que si ya
+			// existe el ID pone el empleado activo. (ya se ha comprobado en
+			// negocio q este inactivo)
+
+			ps.setInt(1, tMaterial.getId());
+			ps.setString(2, tMaterial.getNombre());
+			ps.setInt(3, tMaterial.getNAlmacen());
+			ps.setInt(4, tMaterial.getExistencias());
+			ps.setBoolean(7, tMaterial.getActivo());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+
+			if (rs.next())
+				tMaterial.setId(rs.getInt(1));
+
+			rs.close();
+			ps.close();
+			conexion.close();
+			// cerrar conexion y tratar excepciones
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return tMaterial;
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOMaterial#eliminarMaterial(Integer id)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public Integer eliminarMaterial(Integer id) {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -37,11 +59,6 @@ public class DAOMaterialImp implements DAOMaterial {
 		// end-user-code
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOMaterial#modificarMaterial(TMaterial tMaterial)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public Integer modificarMaterial(TMaterial tMaterial) {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -49,11 +66,6 @@ public class DAOMaterialImp implements DAOMaterial {
 		// end-user-code
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOMaterial#mostrarMaterial(Integer idMaterial)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public TMaterial mostrarMaterial(Integer idMaterial) {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -61,11 +73,6 @@ public class DAOMaterialImp implements DAOMaterial {
 		// end-user-code
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOMaterial#mostrarTodosMateriales()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public Set<TMaterial> mostrarTodosMateriales() {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -73,11 +80,6 @@ public class DAOMaterialImp implements DAOMaterial {
 		// end-user-code
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOMaterial#listarMaterialPorActividad(Integer idActividad)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public Set<TMaterial> listarMaterialPorActividad(Integer idActividad) {
 		// begin-user-code
 		// TODO Auto-generated method stub
