@@ -20,7 +20,7 @@ public interface DAOMaterial {
 	* @return
 	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public TMaterial crearMaterial(TMaterial tMaterial);
+	public Integer crearMaterial(TMaterial tMaterial);
 
 	/** 
 	* <!-- begin-UML-doc -->

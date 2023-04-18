@@ -18,7 +18,7 @@ public class ControladorImp extends Controlador {
 
 	@Override
 	public void run(Object Obj, Evento Evento) {
-		//TActividad auxActividad = null;
+		TActividad auxActividad = null;
 		
 		switch(Evento){
 		
@@ -50,32 +50,6 @@ public class ControladorImp extends Controlador {
 		case EMostrarTodosLosActividad:
 			//Set<TActividad> listaMarca = Factoria_SA.get_SA_Factoria().get_SA_Marca().mostrar_TodasMarcas();
 			//gui.getVistaActividad().getVista_MostrarTodosActividad(listaMarca);
-			break;
-			
-		//Material
-		case EVistaMaterialGeneral:
-			gui.getVistaMaterial().getVista_VistaMaterialGeneral();
-			break;
-		
-		case EAltaMaterial:
-			gui.getVistaMaterial().getVista_AltaActividad();
-			break;
-		
-		case EBajaMaterial:
-			gui.getVistaMaterial().getVista_BajaActividad();
-			break;	
-			
-		case EModificarMaterial:
-			gui.getVistaMaterial().getVista_ModificarActividad();
-			break;
-		
-		case EMostrarUnMaterial:
-			gui.getVistaMaterial().getVista_MostrarActividad();
-			break;
-			
-		case EMostrarTodosLosMateriales:
-			//Set<TMaterial> listaMarca = Factoria_SA.get_SA_Factoria().get_SA_Marca().mostrar_TodasMarcas();
-			//gui.getVistaMaterial().getVista_MostrarTodosMateriales(listaMarca);
 			break;
 		
 		default:
