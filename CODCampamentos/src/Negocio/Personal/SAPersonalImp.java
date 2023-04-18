@@ -18,7 +18,7 @@ public class SAPersonalImp implements SAPersonal {
 	* @see SAPersonal#CrearPersonal(TPersonal tPersonal)
 	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public Class CrearPersonal(TPersonal tPersonal) {
+	public Integer CrearPersonal(TPersonal tPersonal) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;

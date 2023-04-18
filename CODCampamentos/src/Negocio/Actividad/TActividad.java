@@ -55,6 +55,30 @@ public class TActividad {
 	public void setIdActividad(Integer idActividad) {
 		this.idActividad = idActividad;
 	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setNumplazas(Integer numplazas) {
+		this.numplazas = numplazas;
+	}
+
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
+	}
+
+	public void setPrecio(Float precio) {
+		this.precio = precio;
+	}
+
+	public void setIdPersonal(Integer idPersonal) {
+		this.idPersonal = idPersonal;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
+	}
 	
 
 	

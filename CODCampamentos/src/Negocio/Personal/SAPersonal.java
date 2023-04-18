@@ -20,7 +20,7 @@ public interface SAPersonal {
 	* @return
 	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public Class CrearPersonal(TPersonal tPersonal);
+	public Integer CrearPersonal(TPersonal tPersonal);
 
 	/** 
 	* <!-- begin-UML-doc -->

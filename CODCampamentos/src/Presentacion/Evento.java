@@ -8,6 +8,7 @@ public enum Evento {
 	//Actividad
 	EVistaActividadGeneral,
 	EAltaActividad,
+	EAltaActividadOK,
 	EBajaActividad,
 	EModificarActividad,
 	EMostrarUnActividad,
@@ -23,6 +24,6 @@ public enum Evento {
 	EVistaMaterialGeneral,
 	
 	//Turno
-	EVistaTurnoGeneral,
+	EVistaTurnoGeneral, 
 	
 }

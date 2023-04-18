@@ -26,4 +26,6 @@ public interface DAOActividad {
 	public TActividad desvincularActividadMaterial(TActividadMaterial tActividadMaterial);
 
 	public Set<TActividad> mostrarActividadporMaterial(TActividad tActividad);
+
+	public TActividad buscarActividadID(TActividad tActividad);
 }

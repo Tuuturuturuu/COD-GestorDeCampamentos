@@ -1,77 +1,37 @@
-/**
- * 
- */
 package Negocio.FactoriaNegocio;
 
 import Negocio.Turno.SATurno;
+import Negocio.Turno.SATurnoImp;
 import Negocio.Material.SAMaterial;
+import Negocio.Material.SAMaterialImp;
+import Negocio.Personal.SAPersonal;
+import Negocio.Personal.SAPersonalImp;
 import Negocio.Actividad.SAActividad;
+import Negocio.Actividad.SAActividadImp;
 import Negocio.Factura.SAFactura;
+import Negocio.Factura.SAFacturaImp;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
 public class FactoriaSAImp extends FactoriaSA {
-	/** 
-	* (non-Javadoc)
-	* @see FactoriaSA#generarSATurno()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+	
 	public SATurno generarSATurno() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return new SATurnoImp ();
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see FactoriaSA#generarSAPersonal()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void generarSAPersonal() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public SAPersonal generarSAPersonal() {
+		return new SAPersonalImp();
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see FactoriaSA#generarSAMaterial()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public SAMaterial generarSAMaterial() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return new SAMaterialImp();
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see FactoriaSA#generarSAActividad()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+	
 	public SAActividad generarSAActividad() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return new SAActividadImp();
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see FactoriaSA#generarSAFactura()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+	
 	public SAFactura generarSAFactura() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return new SAFacturaImp();
 	}
 }
