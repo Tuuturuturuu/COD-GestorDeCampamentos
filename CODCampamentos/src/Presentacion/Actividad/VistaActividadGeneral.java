@@ -43,10 +43,7 @@ public class VistaActividadGeneral extends JFrame{
 	}
 
 	public void update(Object object, Evento event) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+		
 	}
 
 	public void initGUI() {
