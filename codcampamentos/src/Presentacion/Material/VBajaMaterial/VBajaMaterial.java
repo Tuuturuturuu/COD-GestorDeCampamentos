@@ -25,6 +25,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Negocio.Material.TMaterial;
+
 public class VBajaMaterial extends JFrame implements IGUI {
 	
 	private JButton jButton;
@@ -76,10 +78,12 @@ public class VBajaMaterial extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//VAltaMaterial.this.setVisible(false);
+				VBajaMaterial.this.setVisible(false);
 
 //				Controlador.obtenerInstancia().run(
-//						new TActividad(0, nombre.getText(), dni.getText(), tfno.getText(), true), Evento.EAltaActividadOK);
+//						(Integer idMaterial, String nombre, Integer nAlmacen,  Integer existencias,
+//								Integer idActividad, Boolean activo)
+//						new TMaterial(0, nombre.getText(), dni.getText(), tfno.getText(), true), Evento.EBajaMaterialOK);
 
 			}
 		});
@@ -90,8 +94,8 @@ public class VBajaMaterial extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//VAltaMaterial.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(null, Evento.EVistaMaterialGeneral);
+				VBajaMaterial.this.setVisible(false);
+				Controlador.obtenerInstancia().run(null, Evento.EVistaMaterialGeneral);
 
 			}
 		});

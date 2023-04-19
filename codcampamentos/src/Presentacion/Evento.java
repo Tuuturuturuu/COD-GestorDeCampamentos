@@ -25,12 +25,15 @@ public enum Evento {
 	EAltaMaterial,
 	EAltaMaterialOK,
 	EBajaMaterial,
+	EBajaMaterialOK, 
 	EModificarMaterial,
 	EMostrarUnMaterial,
+	EMostrarUnMaterialOK,
 	EMostrarTodosLosMateriales,
 	EMostrarMaterialPorActividad,
+	EMostrarUnMaterialPorActividadOK, 
 	
 	//Turno
-	EVistaTurnoGeneral,  
+	EVistaTurnoGeneral, 
 	
 }

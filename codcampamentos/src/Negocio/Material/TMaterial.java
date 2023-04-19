@@ -9,6 +9,21 @@ public class TMaterial {
 	private Integer _existencias;
 	private Integer _nAlmacen;
 	private Integer _idActividad;
+	
+	public TMaterial(Integer idMaterial, String nombre, Integer nAlmacen,  Integer existencias,
+			Integer idActividad, Boolean activo){
+		
+		this._activo =activo;
+		this._existencias =existencias;
+		this._idActividad = idMaterial;
+		this._idMaterial =idMaterial;
+		this._nombre =nombre;
+		this._nAlmacen =nAlmacen;
+	}
+	
+	public TMaterial(){
+		
+	}
 
 	public String getNombre() {
 		return _nombre;
