@@ -1,5 +1,7 @@
 package Presentacion.FactoriaPresentacion;
 
-public interface FactoriaVistaMaterial {
+import Presentacion.Material.VistaMaterialGeneral;
 
+public interface FactoriaVistaMaterial {
+	public VistaMaterialGeneral getVista_VistaMaterialGeneral();
 }
