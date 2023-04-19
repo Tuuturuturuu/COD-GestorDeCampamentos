@@ -56,7 +56,29 @@ public class ControladorImp extends Controlador {
 		case EVistaMaterialGeneral:
 			gui.getVistaMaterial().getVista_VistaMaterialGeneral();
 			break;
+		case EAltaMaterial:
+			gui.getVistaMaterial().getVista_AltaMaterial();
+			break;
 		
+		case EBajaMaterial:
+			gui.getVistaMaterial().getVista_BajaMaterial();
+			break;	
+			
+		case EModificarMaterial:
+			gui.getVistaMaterial().getVista_ModificarMaterial();
+			break;
+		
+		case EMostrarUnMaterial:
+			gui.getVistaMaterial().getVista_MostrarMaterial();
+			break;
+			
+		case EMostrarTodosLosMateriales:
+			gui.getVistaMaterial().getVista_MostrarTodosMateriales();
+			break;
+			
+		case EMostrarMaterialPorActividad:
+			gui.getVistaMaterial().getVista_MostrarMaterialPorActividad();
+			break;
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();
 			break;

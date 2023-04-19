@@ -22,6 +22,13 @@ public enum Evento {
 	
 	//Material
 	EVistaMaterialGeneral,
+	EAltaMaterial,
+	EAltaMaterialOK,
+	EBajaMaterial,
+	EModificarMaterial,
+	EMostrarUnMaterial,
+	EMostrarTodosLosMateriales,
+	EMostrarMaterialPorActividad,
 	
 	//Turno
 	EVistaTurnoGeneral, 
