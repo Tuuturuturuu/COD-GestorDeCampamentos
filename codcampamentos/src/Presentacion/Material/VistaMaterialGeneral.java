@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Negocio.Actividad.TActividad;
 //import Negocio.Material.TMaterial;
 import Presentacion.Evento;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
@@ -25,7 +26,7 @@ public class VistaMaterialGeneral extends JFrame{
 	private JButton backButton;
 
 	private JPanel j;
-	//private TActividad tActividad;
+	private TActividad tActividad;
 
 	public VistaMaterialGeneral() {
 		super("Gestor de Campamentos");
@@ -46,7 +47,7 @@ public class VistaMaterialGeneral extends JFrame{
 	}
 
 	public void initGUI() {
-		//tActividad = new TActividad();
+		tActividad = new TActividad();
 		JLabel label = ComponentsBuilder.createLabel("Material", 250, 30, 500, 50, Color.BLACK);
 		this.add(label);
 
@@ -57,7 +58,7 @@ public class VistaMaterialGeneral extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaMaterialGeneral.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(tActividad, Evento.EAltaActividad);
+				//Controlador.obtenerInstancia().run(tActividad, Evento.EAltaMaterial);
 			}
 
 		});
@@ -84,14 +85,18 @@ public class VistaMaterialGeneral extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaMaterialGeneral.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(tActividad, Evento.EModificarActividad);
-
+				Controlador.obtenerInstancia().run(tActividad, Evento.EBajaMaterial);
 			}
 		});
+		
 		modificarMaterial_Button.setVisible(true);
 		this.add(modificarMaterial_Button);
 
+<<<<<<< Updated upstream
 		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar una Material", 100, 290, 185, 100);
+=======
+		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar un Material", 213, 290, 185, 100);
+>>>>>>> Stashed changes
 		mostrarMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override

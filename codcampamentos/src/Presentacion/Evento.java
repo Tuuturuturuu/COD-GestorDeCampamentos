@@ -22,6 +22,7 @@ public enum Evento {
 	
 	//Material
 	EVistaMaterialGeneral,
+<<<<<<< Updated upstream
 	EAltaMaterial,
 	EAltaMaterialOK,
 	EBajaMaterial,
@@ -29,8 +30,11 @@ public enum Evento {
 	EMostrarUnMaterial,
 	EMostrarTodosLosMateriales,
 	EMostrarMaterialPorActividad,
+=======
+	EBajaMaterial,
+>>>>>>> Stashed changes
 	
 	//Turno
-	EVistaTurnoGeneral, 
+	EVistaTurnoGeneral,  
 	
 }

@@ -4,6 +4,7 @@ package Presentacion.Controlador;
 import java.util.Set;
 
 import Negocio.Actividad.TActividad;
+import Negocio.Material.TMaterial;
 import Presentacion.Evento;
 import Presentacion.FactoriaPresentacion.FactoriaVistas;
 
@@ -19,6 +20,7 @@ public class ControladorImp extends Controlador {
 	@Override
 	public void run(Object Obj, Evento Evento) {
 		TActividad auxActividad = null;
+		TMaterial auxMaterial = null;
 		
 		switch(Evento){
 		
@@ -56,8 +58,13 @@ public class ControladorImp extends Controlador {
 		case EVistaMaterialGeneral:
 			gui.getVistaMaterial().getVista_VistaMaterialGeneral();
 			break;
+<<<<<<< Updated upstream
 		case EAltaMaterial:
 			gui.getVistaMaterial().getVista_AltaMaterial();
+=======
+		case EBajaMaterial:
+			gui.getVistaMaterial().getVista_BajaMaterial();
+>>>>>>> Stashed changes
 			break;
 		
 		case EBajaMaterial:
