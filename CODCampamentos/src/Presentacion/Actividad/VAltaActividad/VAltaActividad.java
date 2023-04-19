@@ -25,7 +25,7 @@ import Presentacion.Controlador.Controlador;
 public class VAltaActividad extends JFrame implements IGUI {
 	public VAltaActividad(){
 		super("Crear Actividad");
-		this.setBounds(100, 100, 430, 330);
+		this.setBounds(100, 100, 650, 430);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,69 +46,70 @@ public class VAltaActividad extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 
-		//JPanel panelNombre = new JPanel();
-		//mainPanel.add(panelNombre);
+		JPanel panelNombre = new JPanel();
+		mainPanel.add(panelNombre);
 
-		JLabel labelNombre = ComponentsBuilder.createLabel("Nombre Actividad: ", 10, 100, 80, 20, Color.BLACK);
-		mainPanel.add(labelNombre);
+		JLabel labelNombre = ComponentsBuilder.createLabel("Nombre: ", 10, 100, 80, 20, Color.BLACK);
+		panelNombre.add(labelNombre);
 
 		JTextField nombre = new JTextField();
 		nombre.setPreferredSize(new Dimension(250, 30));
 		nombre.setEditable(true);
-		mainPanel.add(nombre);
+		panelNombre.add(nombre);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		
+		JPanel panelLugar = new JPanel();
+		mainPanel.add(panelLugar);
 
-		JLabel labelLugar = ComponentsBuilder.createLabel("          Lugar Actividad: ", 10, 100, 80, 20, Color.BLACK);
-		mainPanel.add(labelLugar);
+		JLabel labelLugar = ComponentsBuilder.createLabel("    Lugar: ", 10, 100, 80, 20, Color.BLACK);
+		panelLugar.add(labelLugar);
 
 		JTextField lugar = new JTextField();
 		lugar.setPreferredSize(new Dimension(250, 30));
 		lugar.setEditable(true);
-		mainPanel.add(lugar);
+		panelLugar.add(lugar);
 
-		
-		
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		
 
-		JLabel labelprecio = ComponentsBuilder.createLabel("Precio: ", 10, 100, 80, 20, Color.BLACK);
-		mainPanel.add(labelprecio);
+		JPanel panelNPlazas = new JPanel();
+		mainPanel.add(panelNPlazas);
+
+		JLabel labelNPlazas = ComponentsBuilder.createLabel("                Plazas: ", 10, 100, 80, 20,
+				Color.BLACK);
+		panelNPlazas.add(labelNPlazas);
+
+		JTextField plazas = new JTextField();
+		plazas.setPreferredSize(new Dimension(250, 30));
+		plazas.setEditable(true);
+		panelNPlazas.add(plazas);
+
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+		JPanel panelPrecio = new JPanel();
+		mainPanel.add(panelPrecio);
+
+		JLabel labelPrecio = ComponentsBuilder.createLabel("                     Precio: ", 10, 100, 80, 20,
+				Color.BLACK);
+		panelPrecio.add(labelPrecio);
 
 		JTextField precio = new JTextField();
 		precio.setPreferredSize(new Dimension(250, 30));
 		precio.setEditable(true);
-		mainPanel.add(precio);
-		
+		panelPrecio.add(precio);
+
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
+		JPanel panelIdPersonal = new JPanel();
+		mainPanel.add(panelIdPersonal);
 
-
-		JLabel labelnPlazas = ComponentsBuilder.createLabel("Numero de Plazas: ", 10, 100, 80, 20, Color.BLACK);
-		mainPanel.add(labelnPlazas);
-
-		
-		JTextField nPlazas = new JTextField();
-		nPlazas.setPreferredSize(new Dimension(30, 30));
-		nPlazas.setEditable(true);
-		mainPanel.add(nPlazas);
-		
-		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		
-		JPanel idPersonalpanel = new JPanel();
-		mainPanel.add(idPersonalpanel);
-
-		JLabel labelidPersonal= ComponentsBuilder.createLabel("Id Personal: ", 10, 100, 80, 20, Color.BLACK);
-		idPersonalpanel.add(labelidPersonal);
+		JLabel labelIdPersonal = ComponentsBuilder.createLabel("           Id Personal: ", 10, 100, 80, 20, Color.BLACK);
+		panelIdPersonal.add(labelIdPersonal);
 
 		JTextField idPersonal = new JTextField();
 		idPersonal.setPreferredSize(new Dimension(250, 30));
 		idPersonal.setEditable(true);
-		idPersonalpanel.add(idPersonal);
+		panelIdPersonal.add(idPersonal);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 
@@ -122,9 +123,10 @@ public class VAltaActividad extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaActividad.this.setVisible(false);
-				int numPlazas = Integer.parseInt(nPlazas.getText());
 				Controlador.obtenerInstancia().run(
-						new TActividad(0, nombre.getText(), lugar.getText(), Integer.parseInt(nPlazas.getText()),Float.parseFloat(precio.getText()), Integer.parseInt(idPersonal.getText()),  true), Evento.EAltaActividadOK);
+						new TActividad(0, nombre.getText(), lugar.getText(), Integer.parseInt(plazas.getText()), Float.parseFloat(precio.getText()),
+								Integer.parseInt(idPersonal.getText()),  true), Evento.EAltaActividadOK);
+				
 
 			}
 		});

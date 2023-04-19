@@ -27,17 +27,14 @@ public class DAOActividadImp implements DAOActividad {
 			ps = conexion.prepareStatement(
 					"INSERT INTO Actividad (idActividad, Nombre, Lugar, NumPlazas, Precio, IdPersonal, Activo) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE activo = ?",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-			// ON DUPLICATE KEY UPDATE activo = ? lo que hace es que si ya
-			// existe el ID pone el empleado activo. (ya se ha comprobado en
-			// negocio q este inactivo)
+			
 
-			ps.setInt(1, tActividad.getIdActividad());
-			ps.setString(2, tActividad.getNombre());
-			ps.setInt(3, tActividad.getNumplazas());
-			ps.setString(4, tActividad.getLugar());
-			ps.setFloat(5, tActividad.getPrecio());
-			ps.setInt(6, tActividad.getIdPersonal());
-			ps.setBoolean(7, tActividad.getActivo());
+			ps.setString(1, tActividad.getNombre());
+			ps.setInt(2, tActividad.getNumplazas());
+			ps.setString(3, tActividad.getLugar());
+			ps.setFloat(4, tActividad.getPrecio());
+			ps.setInt(5, tActividad.getIdPersonal());
+			ps.setBoolean(6, tActividad.getActivo());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 
