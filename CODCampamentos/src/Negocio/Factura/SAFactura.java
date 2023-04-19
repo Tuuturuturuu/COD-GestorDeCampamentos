@@ -81,7 +81,7 @@ public interface SAFactura {
 	* @return
 	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public Float devoluciónVenta(Integer idFactura);
+	public Float devolucionVenta(Integer idFactura);
 
 	/** 
 	* <!-- begin-UML-doc -->

@@ -98,10 +98,10 @@ public class SAFacturaImp implements SAFactura {
 
 	/** 
 	* (non-Javadoc)
-	* @see SAFactura#devoluciónVenta(Integer idFactura)
+	* @see SAFactura#devoluciï¿½nVenta(Integer idFactura)
 	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
-	public Float devoluciónVenta(Integer idFactura) {
+	public Float devolucionVenta(Integer idFactura) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;

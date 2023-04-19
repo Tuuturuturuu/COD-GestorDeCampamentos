@@ -51,6 +51,7 @@ public class ControladorImp extends Controlador {
 			//Set<TActividad> listaMarca = Factoria_SA.get_SA_Factoria().get_SA_Marca().mostrar_TodasMarcas();
 			//gui.getVistaActividad().getVista_MostrarTodosActividad(listaMarca);
 			break;
+			
 		//Material
 		case EVistaMaterialGeneral:
 			gui.getVistaMaterial().getVista_VistaMaterialGeneral();
