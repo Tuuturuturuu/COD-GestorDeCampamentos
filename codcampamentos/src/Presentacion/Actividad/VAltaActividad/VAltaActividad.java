@@ -40,7 +40,7 @@ public class VAltaActividad extends JFrame implements IGUI {
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
-				"Introduzca el nombre, DNI y telefono del cliente que quiere dar de alta ", 1, 10, 80, 20, Color.BLACK);
+				"Introduzca el nombre, lugar, numero de plazas, precio y idPersonal de la actividad que quieres dar de alta ", 1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -49,7 +49,7 @@ public class VAltaActividad extends JFrame implements IGUI {
 		JPanel panelNombre = new JPanel();
 		mainPanel.add(panelNombre);
 
-		JLabel labelNombre = ComponentsBuilder.createLabel("Nombre Cliente: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelNombre = ComponentsBuilder.createLabel("Nombre Actividad: ", 10, 100, 80, 20, Color.BLACK);
 		panelNombre.add(labelNombre);
 
 		JTextField nombre = new JTextField();
@@ -62,7 +62,7 @@ public class VAltaActividad extends JFrame implements IGUI {
 		JPanel panelDNI = new JPanel();
 		mainPanel.add(panelDNI);
 
-		JLabel labelDNI = ComponentsBuilder.createLabel("          DNI Cliente: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelDNI = ComponentsBuilder.createLabel("          Lugar Actividad: ", 10, 100, 80, 20, Color.BLACK);
 		panelDNI.add(labelDNI);
 
 		JTextField dni = new JTextField();
@@ -75,7 +75,7 @@ public class VAltaActividad extends JFrame implements IGUI {
 		JPanel panelTfno = new JPanel();
 		mainPanel.add(panelTfno);
 
-		JLabel labelTfno = ComponentsBuilder.createLabel("Telefono Cliente: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelTfno = ComponentsBuilder.createLabel("Numero de Plazas: ", 10, 100, 80, 20, Color.BLACK);
 		panelTfno.add(labelTfno);
 
 		JTextField tfno = new JTextField();
