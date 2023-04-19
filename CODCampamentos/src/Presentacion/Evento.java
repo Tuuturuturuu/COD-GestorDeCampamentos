@@ -25,5 +25,11 @@ public enum Evento {
 	
 	//Turno
 	EVistaTurnoGeneral, 
+	EAltaTurno,
+	EAltaTurnoOK,
+	EBajaTurno,
+	EModifTurno,
+	EMostrarTodosLosTurnos,
+	EMostrarUnTurno,
 	
 }
