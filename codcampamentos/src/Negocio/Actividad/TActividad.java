@@ -8,13 +8,13 @@ public class TActividad {
 
 	private Integer idActividad;
 	private String nombre;
-	private Integer numplazas;
 	private String lugar;
+	private Integer numplazas;
 	private Float precio;
 	private Integer idPersonal;
 	private Boolean activo;
 	
-	public TActividad(int idActividad, String nombre, Integer numplazas, String lugar, Float precio,
+	public TActividad(int idActividad, String nombre, String lugar, Integer numplazas, Float precio,
 			Integer idPersonal, Boolean activo ){
 		this.idActividad = idActividad;
 		this.nombre = nombre;

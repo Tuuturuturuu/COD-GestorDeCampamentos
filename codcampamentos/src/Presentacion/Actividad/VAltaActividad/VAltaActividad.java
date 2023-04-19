@@ -59,29 +59,55 @@ public class VAltaActividad extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JPanel panelDNI = new JPanel();
-		mainPanel.add(panelDNI);
+		JPanel panelLugar = new JPanel();
+		mainPanel.add(panelLugar);
 
-		JLabel labelDNI = ComponentsBuilder.createLabel("          Lugar Actividad: ", 10, 100, 80, 20, Color.BLACK);
-		panelDNI.add(labelDNI);
+		JLabel labelLugar = ComponentsBuilder.createLabel("          Lugar Actividad: ", 10, 100, 80, 20, Color.BLACK);
+		panelLugar.add(labelLugar);
 
-		JTextField dni = new JTextField();
-		dni.setPreferredSize(new Dimension(250, 30));
-		dni.setEditable(true);
-		panelDNI.add(dni);
+		JTextField lugar = new JTextField();
+		lugar.setPreferredSize(new Dimension(250, 30));
+		lugar.setEditable(true);
+		panelLugar.add(lugar);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JPanel panelTfno = new JPanel();
-		mainPanel.add(panelTfno);
+		JPanel numPlazaspanel = new JPanel();
+		mainPanel.add(numPlazaspanel);
 
-		JLabel labelTfno = ComponentsBuilder.createLabel("Numero de Plazas: ", 10, 100, 80, 20, Color.BLACK);
-		panelTfno.add(labelTfno);
+		JLabel labelnPlazas = ComponentsBuilder.createLabel("Numero de Plazas: ", 10, 100, 80, 20, Color.BLACK);
+		numPlazaspanel.add(labelnPlazas);
 
-		JTextField tfno = new JTextField();
-		tfno.setPreferredSize(new Dimension(250, 30));
-		tfno.setEditable(true);
-		panelTfno.add(tfno);
+		JTextField nPlazas = new JTextField();
+		nPlazas.setPreferredSize(new Dimension(250, 30));
+		nPlazas.setEditable(true);
+		numPlazaspanel.add(nPlazas);
+		
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		
+		JPanel preciopanel = new JPanel();
+		mainPanel.add(preciopanel);
+
+		JLabel labelprecio = ComponentsBuilder.createLabel("Precio: ", 10, 100, 80, 20, Color.BLACK);
+		preciopanel.add(labelprecio);
+
+		JTextField precio = new JTextField();
+		precio.setPreferredSize(new Dimension(250, 30));
+		precio.setEditable(true);
+		preciopanel.add(nPlazas);
+		
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		
+		JPanel idPersonalpanel = new JPanel();
+		mainPanel.add(idPersonalpanel);
+
+		JLabel labelidPersonal= ComponentsBuilder.createLabel("Id Personal: ", 10, 100, 80, 20, Color.BLACK);
+		idPersonalpanel.add(labelidPersonal);
+
+		JTextField idPersonal = new JTextField();
+		idPersonal.setPreferredSize(new Dimension(250, 30));
+		idPersonal.setEditable(true);
+		idPersonalpanel.add(idPersonal);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 
@@ -95,9 +121,9 @@ public class VAltaActividad extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaActividad.this.setVisible(false);
-
-//				Controlador.obtenerInstancia().run(
-//						new TActividad(0, nombre.getText(), dni.getText(), tfno.getText(), true), Evento.EAltaActividadOK);
+				int numPlazas = Integer.parseInt(nPlazas.getText());
+				Controlador.obtenerInstancia().run(
+						new TActividad(0, nombre.getText(), lugar.getText(), Integer.parseInt(nPlazas.getText()),Float.parseFloat(precio.getText()), Integer.parseInt(idPersonal.getText()),  true), Evento.EAltaActividadOK);
 
 			}
 		});
