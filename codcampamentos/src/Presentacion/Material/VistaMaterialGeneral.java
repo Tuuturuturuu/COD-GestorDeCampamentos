@@ -92,11 +92,10 @@ public class VistaMaterialGeneral extends JFrame{
 		modificarMaterial_Button.setVisible(true);
 		this.add(modificarMaterial_Button);
 
-<<<<<<< Updated upstream
 		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar una Material", 100, 290, 185, 100);
-=======
+		
 		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar un Material", 213, 290, 185, 100);
->>>>>>> Stashed changes
+
 		mostrarMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override

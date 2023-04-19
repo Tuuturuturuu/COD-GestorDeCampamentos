@@ -58,15 +58,9 @@ public class ControladorImp extends Controlador {
 		case EVistaMaterialGeneral:
 			gui.getVistaMaterial().getVista_VistaMaterialGeneral();
 			break;
-<<<<<<< Updated upstream
 		case EAltaMaterial:
 			gui.getVistaMaterial().getVista_AltaMaterial();
-=======
-		case EBajaMaterial:
-			gui.getVistaMaterial().getVista_BajaMaterial();
->>>>>>> Stashed changes
 			break;
-		
 		case EBajaMaterial:
 			gui.getVistaMaterial().getVista_BajaMaterial();
 			break;	
@@ -89,8 +83,6 @@ public class ControladorImp extends Controlador {
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();
 			break;
-			
-		
 		
 		}
 	}

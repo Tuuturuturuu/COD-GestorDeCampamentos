@@ -2,16 +2,13 @@ package Presentacion.FactoriaPresentacion;
 
 
 import Presentacion.Material.VistaMaterialGeneral;
-<<<<<<< Updated upstream
 import Presentacion.Material.VAltaMaterial.VAltaMaterial;
 import Presentacion.Material.VBajaMaterial.VBajaMaterial;
 import Presentacion.Material.VModificarMaterial.VModificarMaterial;
 import Presentacion.Material.VMostrarMaterial.VMostrarMaterial;
 import Presentacion.Material.VMostrarMaterialPorActividad.VMostrarMaterialPorActividad;
 import Presentacion.Material.VMostrarTodosMateriales.VMostrarTodosMateriales;
-=======
-import Presentacion.Material.VBajaMaterial.VBajaMaterial;
->>>>>>> Stashed changes
+
 
 public class FactoriaVistaMaterialImp implements FactoriaVistaMaterial {
 
@@ -22,7 +19,6 @@ public class FactoriaVistaMaterialImp implements FactoriaVistaMaterial {
 	}
 
 	@Override
-<<<<<<< Updated upstream
 	public VAltaMaterial getVista_AltaMaterial() {
 		return new VAltaMaterial();
 	}
@@ -51,12 +47,4 @@ public class FactoriaVistaMaterialImp implements FactoriaVistaMaterial {
 	public VMostrarMaterialPorActividad getVista_MostrarMaterialPorActividad() {
 		return new VMostrarMaterialPorActividad();
 	}
-
-=======
-	public VBajaMaterial getVista_BajaMaterial() {
-		
-		return new VBajaMaterial();
-	}
-
->>>>>>> Stashed changes
 }
