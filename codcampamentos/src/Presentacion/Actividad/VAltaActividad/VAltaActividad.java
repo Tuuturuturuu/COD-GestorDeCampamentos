@@ -46,57 +46,58 @@ public class VAltaActividad extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 
-		JPanel panelNombre = new JPanel();
-		mainPanel.add(panelNombre);
+		//JPanel panelNombre = new JPanel();
+		//mainPanel.add(panelNombre);
 
 		JLabel labelNombre = ComponentsBuilder.createLabel("Nombre Actividad: ", 10, 100, 80, 20, Color.BLACK);
-		panelNombre.add(labelNombre);
+		mainPanel.add(labelNombre);
 
 		JTextField nombre = new JTextField();
 		nombre.setPreferredSize(new Dimension(250, 30));
 		nombre.setEditable(true);
-		panelNombre.add(nombre);
+		mainPanel.add(nombre);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JPanel panelLugar = new JPanel();
-		mainPanel.add(panelLugar);
+		
 
 		JLabel labelLugar = ComponentsBuilder.createLabel("          Lugar Actividad: ", 10, 100, 80, 20, Color.BLACK);
-		panelLugar.add(labelLugar);
+		mainPanel.add(labelLugar);
 
 		JTextField lugar = new JTextField();
 		lugar.setPreferredSize(new Dimension(250, 30));
 		lugar.setEditable(true);
-		panelLugar.add(lugar);
+		mainPanel.add(lugar);
 
-		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-
-		JPanel numPlazaspanel = new JPanel();
-		mainPanel.add(numPlazaspanel);
-
-		JLabel labelnPlazas = ComponentsBuilder.createLabel("Numero de Plazas: ", 10, 100, 80, 20, Color.BLACK);
-		numPlazaspanel.add(labelnPlazas);
-
-		JTextField nPlazas = new JTextField();
-		nPlazas.setPreferredSize(new Dimension(250, 30));
-		nPlazas.setEditable(true);
-		numPlazaspanel.add(nPlazas);
+		
 		
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		
-		JPanel preciopanel = new JPanel();
-		mainPanel.add(preciopanel);
+		
 
 		JLabel labelprecio = ComponentsBuilder.createLabel("Precio: ", 10, 100, 80, 20, Color.BLACK);
-		preciopanel.add(labelprecio);
+		mainPanel.add(labelprecio);
 
 		JTextField precio = new JTextField();
 		precio.setPreferredSize(new Dimension(250, 30));
 		precio.setEditable(true);
-		preciopanel.add(nPlazas);
+		mainPanel.add(precio);
 		
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+
+
+		JLabel labelnPlazas = ComponentsBuilder.createLabel("Numero de Plazas: ", 10, 100, 80, 20, Color.BLACK);
+		mainPanel.add(labelnPlazas);
+
+		
+		JTextField nPlazas = new JTextField();
+		nPlazas.setPreferredSize(new Dimension(30, 30));
+		nPlazas.setEditable(true);
+		mainPanel.add(nPlazas);
+		
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		
 		
 		JPanel idPersonalpanel = new JPanel();
 		mainPanel.add(idPersonalpanel);
