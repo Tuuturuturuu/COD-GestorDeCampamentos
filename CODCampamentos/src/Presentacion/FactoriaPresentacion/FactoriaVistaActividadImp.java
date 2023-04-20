@@ -37,9 +37,9 @@ public class FactoriaVistaActividadImp implements FactoriaVistaActividad {
 	}
 
 	@Override
-	public VMostrarTodasActividades getVista_MostrarTodosActividad(Set<TActividad> listaActividad) {
+	public VMostrarTodasActividades getVista_MostrarTodosActividad(Set<TActividad> listaActividades) {
 
-		return new VMostrarTodasActividades();
+		return new VMostrarTodasActividades(listaActividades);
 	}
 
 	@Override

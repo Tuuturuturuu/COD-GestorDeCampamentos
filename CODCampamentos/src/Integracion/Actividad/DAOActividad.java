@@ -28,4 +28,5 @@ public interface DAOActividad {
 	public Set<TActividad> mostrarActividadporMaterial(TActividad tActividad);
 
 	public TActividad buscarActividadID(TActividad tActividad);
+
 }

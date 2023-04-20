@@ -24,7 +24,7 @@ public class TActividad {
 	}
 	
 	public TActividad() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Integer getIdActividad() {
@@ -75,6 +75,23 @@ public class TActividad {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
+	}
+
+	@Override
+	public String toString() {
+		return "idActividad =" + idActividad + " , nombre = " + nombre + " , lugar = " + lugar + " , numplazas = "
+				+ numplazas + " , precio = " + precio + " , idPersonal = " + idPersonal + " , activo = " + activo + "]";
+	}
+	
+	public String toStringModificar() {
+		String sol = null;
+		sol = "ID: " + this.getIdActividad()+ "   ";
+		sol += "Nombre: " + this.getNombre() + "    ";
+		sol += "Lugar: " + this.getLugar()+ "    ";
+		sol += "NumPlazas:  " + this.getNumplazas() + "   ";
+		sol += "Precio:  " + this.getPrecio() + "   ";
+		sol += "IdPersonal: " + this.getIdPersonal();
+		return sol;
 	}
 	
 

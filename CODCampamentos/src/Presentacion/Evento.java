@@ -10,8 +10,11 @@ public enum Evento {
 	EAltaActividad,
 	EAltaActividadOK,
 	EBajaActividad,
+	EBajaActividadOK,
 	EModificarActividad,
+	EModificarActividadOK,
 	EMostrarUnActividad,
+	EMostrarUnActividadOK,
 	EMostrarTodosLosActividad,
 	
 	//Personal

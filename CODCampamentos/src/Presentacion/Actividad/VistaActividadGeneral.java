@@ -79,7 +79,7 @@ public class VistaActividadGeneral extends JFrame{
 		bajaActividad_Button.setVisible(true);
 		this.add(bajaActividad_Button);
 
-		modificarActividad_Button = ComponentsBuilder.createButton("Modificar Cliente", 715, 120, 185, 100);
+		modificarActividad_Button = ComponentsBuilder.createButton("Modificar Actividad", 715, 120, 185, 100);
 		modificarActividad_Button.addActionListener(new ActionListener() {
 
 			@Override
