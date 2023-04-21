@@ -9,9 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Negocio.Actividad.TActividad;
 import Negocio.Material.TMaterial;
-//import Negocio.Material.TMaterial;
 import Presentacion.Evento;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
@@ -51,22 +49,22 @@ public class VistaMaterialGeneral extends JFrame{
 		tMaterial = new TMaterial();
 		JLabel label = ComponentsBuilder.createLabel("Material", 250, 30, 500, 50, Color.BLACK);
 		this.add(label);
-
-		//ALTA MATERIAL
+		
+		//ALTA 
 		altaMaterial_Button = ComponentsBuilder.createButton("Alta Material", 100, 120, 185, 100);
 		altaMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaMaterialGeneral.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(tActividad, Evento.EAltaMaterial);
+				Controlador.obtenerInstancia().run(tMaterial, Evento.EAltaMaterial);
 			}
 
 		});
 		altaMaterial_Button.setVisible(true);
 		this.add(altaMaterial_Button);
 		
-		//BAJA MATERIAL
+		//BAJA
 		bajaMaterial_Button = ComponentsBuilder.createButton("Baja Material", 407, 120, 185, 100);
 		bajaMaterial_Button.addActionListener(new ActionListener() {
 
@@ -81,23 +79,22 @@ public class VistaMaterialGeneral extends JFrame{
 		bajaMaterial_Button.setVisible(true);
 		this.add(bajaMaterial_Button);
 		
-		//MODIFICAR MATERIAL
+		//MODIFICAR
 		modificarMaterial_Button = ComponentsBuilder.createButton("Modificar Material", 715, 120, 185, 100);
 		modificarMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaMaterialGeneral.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(tActividad, Evento.EBajaMaterial);
+				Controlador.obtenerInstancia().run(tMaterial, Evento.EModificarMaterial);
 			}
 		});
 		
 		modificarMaterial_Button.setVisible(true);
 		this.add(modificarMaterial_Button);
 
-		
-		//MOSTRAR MATERIAL
-		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar un Material", 213, 290, 185, 100);
+		//MOSTRAR UNO
+		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar una Material", 100, 290, 185, 100);
 		mostrarMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -109,22 +106,22 @@ public class VistaMaterialGeneral extends JFrame{
 		});
 		mostrarMaterial_Button.setVisible(true);
 		this.add(mostrarMaterial_Button);
-
-		//MOSTRAR TODOS LOS MATERIALES
+		
+		//MOSTRAR TODOS
 		mostrarTodosMaterial_Button = ComponentsBuilder.createButton("Mostrar todos los Materiales", 710, 290, 200, 100);
 		mostrarTodosMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaMaterialGeneral.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(tActividad, Evento.EMostrarTodosLosActividad);
+				Controlador.obtenerInstancia().run(tMaterial, Evento.EMostrarTodosLosMateriales);
 
 			}
 		});
 		mostrarTodosMaterial_Button.setVisible(true);
 		this.add(mostrarTodosMaterial_Button);
 		
-		//MOSTRAR MATERIAL POR ACTIVIDAD
+		// MATERIAL POR ACTIVIDAD
 		mostrarMaterialPorActividad = ComponentsBuilder.createButton("Mostrar Material por Actividad", 397, 290, 210, 100);
 		mostrarMaterialPorActividad.addActionListener(new ActionListener() {
 
@@ -137,8 +134,7 @@ public class VistaMaterialGeneral extends JFrame{
 		});
 		mostrarMaterialPorActividad.setVisible(true);
 		this.add(mostrarMaterialPorActividad);
-		
-		//BACK BUTTON
+
 		backButton = ComponentsBuilder.createBackButton();
 		backButton.addActionListener(new ActionListener() {
 
@@ -157,4 +153,3 @@ public class VistaMaterialGeneral extends JFrame{
 
 	}
 }
-

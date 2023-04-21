@@ -1,5 +1,8 @@
 package Presentacion.FactoriaPresentacion;
 
+import java.util.Set;
+
+import Negocio.Material.TMaterial;
 import Presentacion.Material.VistaMaterialGeneral;
 import Presentacion.Material.VAltaMaterial.VAltaMaterial;
 import Presentacion.Material.VBajaMaterial.VBajaMaterial;
@@ -21,9 +24,8 @@ public interface FactoriaVistaMaterial {
 
 	public VMostrarMaterial getVista_MostrarMaterial();
 
-	public VMostrarTodosMateriales getVista_MostrarTodosMateriales();
+	public VMostrarTodosMateriales getVista_MostrarTodosMateriales(Set<TMaterial> listaMateriales);
 
 	public VMostrarMaterialPorActividad getVista_MostrarMaterialPorActividad();
-	
 
 }

@@ -1,4 +1,3 @@
-
 package Presentacion.Controlador;
 
 import java.util.Set;
@@ -74,7 +73,7 @@ public class ControladorImp extends Controlador {
 			break;
 			
 		case EMostrarTodosLosMateriales:
-			gui.getVistaMaterial().getVista_MostrarTodosMateriales();
+			//gui.getVistaMaterial().getVista_MostrarTodosMateriales();
 			break;
 			
 		case EMostrarMaterialPorActividad:

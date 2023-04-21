@@ -30,6 +30,7 @@ public enum Evento {
 	EBajaMaterial,
 	EBajaMaterialOK, 
 	EModificarMaterial,
+	EModificarMaterialOK,
 	EMostrarUnMaterial,
 	EMostrarUnMaterialOK,
 	EMostrarTodosLosMateriales,

@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-//import Negocio.Actividad.TActividad;
 import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
@@ -120,7 +119,7 @@ public class VAltaMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaMaterial.this.setVisible(false);
-				Controlador.obtenerInstancia().run(null, Evento.EVistaActividadGeneral);
+				Controlador.obtenerInstancia().run(null, Evento.EVistaMaterialGeneral);
 
 			}
 		});
@@ -140,4 +139,5 @@ public class VAltaMaterial extends JFrame implements IGUI {
 	public void actualizar(Object object, Evento event) {
 	
 		
-	}}
+	}
+	}
