@@ -3,6 +3,7 @@ package Presentacion.Actividad.VAltaActividad;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,7 +26,14 @@ import Presentacion.Controlador.Controlador;
 public class VAltaActividad extends JFrame implements IGUI {
 	public VAltaActividad(){
 		super("Crear Actividad");
-		this.setBounds(100, 100, 650, 430);
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 1000;
+		int alto = 525;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
+	//this.setBounds(100, 100, 1000, 525);
+		//this.setBounds(100, 100, 650, 430);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -10,6 +10,11 @@ package Negocio.Personal;
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class TPersonalMonitor extends TPersonal {
+	public TPersonalMonitor(Integer idPersonal, String dNI, String nombre, String tipoPersonal, Integer idTurno,
+			boolean activo) {
+		super(idPersonal, dNI, nombre, tipoPersonal, idTurno, activo);
+		// TODO Auto-generated constructor stub
+	}
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->

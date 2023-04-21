@@ -170,23 +170,6 @@ public class DAOActividadImp implements DAOActividad {
 		return null;
 	}
 
-	@Override
-	public TActividad activar(TActividad tActividad) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TActividad vincularActividadMaterial(TActividadMaterial tActividadMaterial) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TActividad desvincularActividadMaterial(TActividadMaterial tActividadMaterial) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Set<TActividad> mostrarActividadporMaterial(TActividad tActividad) {
@@ -207,7 +190,7 @@ public class DAOActividadImp implements DAOActividad {
 			if (rs.next()) {
 
 				tActividad.setIdActividad(rs.getInt(1));
-				tActividad.setNombre(rs.getString(1));
+				tActividad.setNombre(rs.getString(2));
 				tActividad.setLugar(rs.getString(3));
 				tActividad.setNumplazas(rs.getInt(4));
 				tActividad.setPrecio(rs.getFloat(5));

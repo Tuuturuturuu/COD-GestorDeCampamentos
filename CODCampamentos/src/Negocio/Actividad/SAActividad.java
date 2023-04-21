@@ -15,10 +15,6 @@ import java.util.Set;
 	public Set<TActividad> mostrarActividades();
 	
 	public Set<TActividad> mostrarActividadesporPersonal(TActividadMaterial tActividadMaterial);
-
-	public TActividad vincularActividadMaterial(TActividadMaterial tActividadMaterial);
-
-	public TActividad desvincularActividadMaterial(TActividadMaterial tActividadMaterial);
 	
 	public Set<TActividad> mostarActividadporMaterial(TActividad tActividad);
 }

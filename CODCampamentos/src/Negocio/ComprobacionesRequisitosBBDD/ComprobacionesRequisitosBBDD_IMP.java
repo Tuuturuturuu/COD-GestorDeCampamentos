@@ -2,7 +2,7 @@ package Negocio.ComprobacionesRequisitosBBDD;
 
 public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBBDD {
 	public boolean nombreValido(String nombre) {
-		if (nombre.trim().length() > 45 || nombre.trim().length() < 1)
+		if (nombre.trim().length() > 100 || nombre.trim().length() < 1)
 			return false;
 		else
 			return true;
@@ -15,15 +15,16 @@ public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBB
 			return true;
 	}
 	
+	//Metodo para Actividad
 	public boolean numPlazas(int plazas) {
-		if (plazas > 1000)
+		if (plazas > 500)
 			return false;
 		else
 			return true;
 	}
 	
 	public boolean precio(float precio) {
-		if (precio > 100)
+		if (precio > 1000)
 			return false;
 		else
 			return true;

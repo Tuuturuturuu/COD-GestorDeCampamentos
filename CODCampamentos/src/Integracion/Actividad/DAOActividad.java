@@ -19,12 +19,6 @@ public interface DAOActividad {
 
 	public Set<TActividad> mostrarActividadesporPersonal(TActividadMaterial tActividadMaterial);
 
-	public TActividad activar(TActividad tActividad);
-	
-	public TActividad vincularActividadMaterial(TActividadMaterial tActividadMaterial);
-
-	public TActividad desvincularActividadMaterial(TActividadMaterial tActividadMaterial);
-
 	public Set<TActividad> mostrarActividadporMaterial(TActividad tActividad);
 
 	public TActividad buscarActividadID(TActividad tActividad);
