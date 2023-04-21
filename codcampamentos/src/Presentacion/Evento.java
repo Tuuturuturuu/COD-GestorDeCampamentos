@@ -29,6 +29,7 @@ public enum Evento {
 	EMostrarUnMaterial,
 	EMostrarTodosLosMateriales,
 	EMostrarMaterialPorActividad,
+	EModificarMaterialOK,
 	
 	//Turno
 	EVistaTurnoGeneral,  

@@ -10,6 +10,19 @@ public class TMaterial {
 	private Integer _nAlmacen;
 	private Integer _idActividad;
 
+	public TMaterial(int id, String nombre, int existencias, int nAlmacen, int idActividad, boolean activo) {
+		_nombre=nombre;
+		_idMaterial=id;
+		_activo=activo;
+		_existencias=existencias;
+		_nAlmacen=nAlmacen;
+		_idActividad=idActividad;
+	}
+
+	public TMaterial() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getNombre() {
 		return _nombre;
 	}

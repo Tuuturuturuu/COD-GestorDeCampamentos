@@ -140,4 +140,5 @@ public class VAltaMaterial extends JFrame implements IGUI {
 	public void actualizar(Object object, Evento event) {
 	
 		
-	}}
+	}
+	}

@@ -9,8 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Negocio.Actividad.TActividad;
-//import Negocio.Material.TMaterial;
+import Negocio.Material.TMaterial;
 import Presentacion.Evento;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
@@ -26,7 +25,7 @@ public class VistaMaterialGeneral extends JFrame{
 	private JButton backButton;
 
 	private JPanel j;
-	private TActividad tActividad;
+	private TMaterial tMaterial;
 
 	public VistaMaterialGeneral() {
 		super("Gestor de Campamentos");
@@ -47,7 +46,7 @@ public class VistaMaterialGeneral extends JFrame{
 	}
 
 	public void initGUI() {
-		tActividad = new TActividad();
+		tMaterial = new TMaterial();
 		JLabel label = ComponentsBuilder.createLabel("Material", 250, 30, 500, 50, Color.BLACK);
 		this.add(label);
 
@@ -58,7 +57,7 @@ public class VistaMaterialGeneral extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaMaterialGeneral.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(tActividad, Evento.EAltaMaterial);
+				Controlador.obtenerInstancia().run(tMaterial, Evento.EAltaMaterial);
 			}
 
 		});
@@ -85,7 +84,7 @@ public class VistaMaterialGeneral extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaMaterialGeneral.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tActividad, Evento.EBajaMaterial);
+				Controlador.obtenerInstancia().run(tMaterial, Evento.EModificarMaterial);
 			}
 		});
 		
@@ -93,8 +92,6 @@ public class VistaMaterialGeneral extends JFrame{
 		this.add(modificarMaterial_Button);
 
 		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar una Material", 100, 290, 185, 100);
-		
-		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar un Material", 213, 290, 185, 100);
 
 		mostrarMaterial_Button.addActionListener(new ActionListener() {
 
@@ -114,7 +111,7 @@ public class VistaMaterialGeneral extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaMaterialGeneral.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(tActividad, Evento.EMostrarTodosLosActividad);
+				Controlador.obtenerInstancia().run(tMaterial, Evento.EMostrarTodosLosMateriales);
 
 			}
 		});

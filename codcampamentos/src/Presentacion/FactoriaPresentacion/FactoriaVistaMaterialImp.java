@@ -1,6 +1,8 @@
 package Presentacion.FactoriaPresentacion;
 
+import java.util.Set;
 
+import Negocio.Material.TMaterial;
 import Presentacion.Material.VistaMaterialGeneral;
 import Presentacion.Material.VAltaMaterial.VAltaMaterial;
 import Presentacion.Material.VBajaMaterial.VBajaMaterial;
@@ -39,8 +41,8 @@ public class FactoriaVistaMaterialImp implements FactoriaVistaMaterial {
 	}
 
 	@Override
-	public VMostrarTodosMateriales getVista_MostrarTodosMateriales() {
-		return new VMostrarTodosMateriales();
+	public VMostrarTodosMateriales getVista_MostrarTodosMateriales(Set<TMaterial> listaMateriales) {
+		return new VMostrarTodosMateriales(listaMateriales);
 	}
 
 	@Override
