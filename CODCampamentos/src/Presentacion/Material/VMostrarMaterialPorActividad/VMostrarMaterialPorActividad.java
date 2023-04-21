@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
+
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -18,14 +18,8 @@ import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
-import Presentacion.Material.VMostrarMaterial.VMostrarMaterial;
 
 public class VMostrarMaterialPorActividad extends JFrame implements IGUI{
-	private Set<JPanel> jPanel;
-	private Set<JButton> jButton;
-	private Set<JTextField> jTextField;
-	private JFrame jFrame;
-	private JLabel jLabel;
 	
 	public VMostrarMaterialPorActividad(){
 		super("Mostrar Material Por Actividad");

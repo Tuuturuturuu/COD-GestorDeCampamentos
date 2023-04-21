@@ -1,6 +1,5 @@
 package Integracion.Material;
 
-import Negocio.Actividad.TActividad;
 import Negocio.Material.TMaterial;
 import java.util.Set;
 

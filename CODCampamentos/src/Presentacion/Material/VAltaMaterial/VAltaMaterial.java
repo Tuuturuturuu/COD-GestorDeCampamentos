@@ -106,7 +106,8 @@ public class VAltaMaterial extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VAltaMaterial.this.setVisible(false);
 
-				//Controlador.obtenerInstancia().run(new TMaterial(0, nombre.getText(), Integer.parseInt(almacen.getText()), Integer.parseInt(numExistencias.getText()), true), Evento.EAltaMaterialOK);
+				Controlador.obtenerInstancia().run(
+						new TMaterial(0, nombre.getText(),  Integer.parseInt(almacen.getText()),  Integer.parseInt(numExistencias.getText()),  Integer.parseInt(idActividad.getText()), true), Evento.EAltaMaterialOK);
 
 			}
 		});

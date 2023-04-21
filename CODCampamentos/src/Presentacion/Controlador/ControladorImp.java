@@ -21,6 +21,7 @@ public class ControladorImp extends Controlador {
 	@Override
 	public void run(Object Obj, Evento Evento) {
 		TActividad auxActividad = null;
+		TMaterial auxMaterial=null;
 		
 		switch(Evento){
 		
@@ -99,25 +100,67 @@ public class ControladorImp extends Controlador {
 		case EAltaMaterial:
 			gui.getVistaMaterial().getVista_AltaMaterial();
 			break;
+		case EAltaMaterialOK:
+			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial().crearMaterial((TMaterial)Obj);
+			if(auxMaterial.getId() <= 0){
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxMaterial.getId(), null);
+			}
+			else{
+				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxMaterial.getId(), null);
+			}
+			break;
 		case EBajaMaterial:
 			gui.getVistaMaterial().getVista_BajaMaterial();
 			break;	
-			
+		case EBajaMaterialOK:
+			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial().eliminarMaterial((TMaterial)Obj);
+			if(auxMaterial.getId() <= 0){
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxMaterial.getId(), null);
+			}
+			else{
+				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxMaterial.getId(), null);
+			}
+			break;
 		case EModificarMaterial:
 			gui.getVistaMaterial().getVista_ModificarMaterial();
 			break;
-		
+		case EModificarMaterialOK:
+			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial().modificarMaterial((TMaterial)Obj);
+			if(auxMaterial.getId() <= 0){
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxMaterial.getId(), null);
+			}
+			else{
+				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxMaterial.getId(), null);
+			}
+			break;
 		case EMostrarUnMaterial:
 			gui.getVistaMaterial().getVista_MostrarMaterial();
 			break;
-			
+		case EMostrarUnMaterialOK:
+			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial().mostrarMaterial((TMaterial)Obj);
+			if(auxMaterial.getId() <= 0){
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxMaterial.getId(), null);
+			}
+			else{
+				gui.getVistaGeneralAux().getConfirmDialogMostrarUna().actualizar(auxMaterial.toString(), null);
+			}
+			break;
 		case EMostrarTodosLosMateriales:
-			//Set<TMaterial> listaMateriales = FactoriaSAImp.obtenerInstancia().generarSAActividad().mostrarActividades();
-			//gui.getVistaActividad().getVista_MostrarTodosActividad(listaMateriales);
+			Set<TMaterial> listaMateriales = FactoriaSAImp.obtenerInstancia().generarSAMaterial().mostrarTodosMateriales();
+			gui.getVistaMaterial().getVista_MostrarTodosMateriales(listaMateriales);
 			break;
 			
 		case EMostrarMaterialPorActividad:
 			gui.getVistaMaterial().getVista_MostrarMaterialPorActividad();
+			break;
+		case EMostrarUnMaterialPorActividadOK:
+			Set<TMaterial> listaMateriales2=FactoriaSAImp.obtenerInstancia().generarSAMaterial().listarMaterialPorActividad((int)Obj);
+			if(listaMateriales2==null){
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(-13, null);
+			}
+			else{
+				gui.getVistaMaterial().getVista_MostrarTodosMateriales(listaMateriales2);
+			}
 			break;
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();

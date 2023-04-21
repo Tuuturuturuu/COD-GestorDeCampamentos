@@ -38,7 +38,7 @@ public class SAMaterialImp implements SAMaterial {
 		TMaterial tMaterialBBDD = new TMaterial();
 
 		// existe el Material en bbdd
-		tMaterialBBDD.setId(tMaterial.getId());
+		tMaterialBBDD.setId(tMaterial.getIdActividad());
 		tMaterialBBDD = daoMaterial.mostrarMaterial(tMaterialBBDD);
 
 		// si no ha encontrado el Material a modificar no se le puede cambiar el
@@ -74,12 +74,12 @@ public class SAMaterialImp implements SAMaterial {
 				} else if (tMaterial.getId() > 0)
 					tMaterial.setExistencias(tMaterialBBDD.getExistencias());
 		
-//		// se quiere cambiar idActividad Y DEBERIAMOS COMPROBAR QUE ID DE EMPLEADO EXISTA EN LA BASE DE DATOS
-//		if (tMaterial.getIdActividad() != null && tMaterial.getId() > 0 ) {
-//			if (!compr.numPlazas(tMaterial.getIdActividad()))
-//				tMaterial.setId(-7);
-//		} else if (tMaterial.getId() > 0)
-//					tMaterial.setIdActividad(tMaterialBBDD.getIdActividad());
+		// se quiere cambiar idActividad Y DEBERIAMOS COMPROBAR QUE ID DE EMPLEADO EXISTA EN LA BASE DE DATOS
+		if (tMaterial.getIdActividad() != null && tMaterial.getId() > 0 ) {
+			if (!compr.numPlazas(tMaterial.getIdActividad()))
+				tMaterial.setId(-1);
+		} else if (tMaterial.getId() > 0)
+					tMaterial.setIdActividad(tMaterialBBDD.getIdActividad());
 
 		// si no ha habido ningun codigo de error puede modificarse.
 		if (tMaterial.getId() > 0) {
