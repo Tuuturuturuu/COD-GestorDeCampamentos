@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 import Presentacion.Evento;
 import Presentacion.IGUI;
+import Presentacion.Actividad.VMostrarActividad.VMostrarActividad;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 import Presentacion.Material.VBajaMaterial.VBajaMaterial;
@@ -19,6 +20,10 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import Negocio.Actividad.TActividad;
+import Negocio.Material.TMaterial;
+
 import javax.swing.JLabel;
 
 public class VMostrarMaterial extends JFrame implements IGUI {
@@ -72,7 +77,9 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarMaterial.this.setVisible(false);
-				Controlador.obtenerInstancia().run(Integer.parseInt(id.getText()), Evento.EMostrarUnMaterialOK);
+				Controlador.obtenerInstancia().run(
+						new TMaterial(Integer.parseInt(id.getText()),null, null, null, null, true),
+						Evento.EMostrarUnMaterialOK);
 			}
 		});
 

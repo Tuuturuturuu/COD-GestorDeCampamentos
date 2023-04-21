@@ -13,6 +13,7 @@ import Presentacion.IGUI;
 import Presentacion.Actividad.VAltaActividad.VAltaActividad;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
+import Presentacion.Material.VAltaMaterial.VAltaMaterial;
 
 import javax.swing.JDialog;
 
@@ -80,10 +81,10 @@ public class VBajaMaterial extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VBajaMaterial.this.setVisible(false);
 
-//				Controlador.obtenerInstancia().run(
-//						(Integer idMaterial, String nombre, Integer nAlmacen,  Integer existencias,
-//								Integer idActividad, Boolean activo)
-//						new TMaterial(0, nombre.getText(), dni.getText(), tfno.getText(), true), Evento.EBajaMaterialOK);
+				Controlador.obtenerInstancia().run(
+						new TMaterial(Integer.parseInt(id.getText()),null, null, null, null,false), Evento.EBajaMaterialOK);
+
+			
 
 			}
 		});

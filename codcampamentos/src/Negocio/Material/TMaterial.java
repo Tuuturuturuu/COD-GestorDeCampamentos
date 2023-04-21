@@ -25,6 +25,13 @@ public class TMaterial {
 		
 	}
 
+	@Override
+	public String toString() {
+		return "TMaterial [_nombre=" + _nombre + ", _idMaterial=" + _idMaterial + ", _activo=" + _activo
+				+ ", _existencias=" + _existencias + ", _nAlmacen=" + _nAlmacen + ", _idActividad=" + _idActividad
+				+ "]";
+	}
+
 	public String getNombre() {
 		return _nombre;
 	}

@@ -32,6 +32,7 @@ public class FailureDialog extends JFrame implements IGUI {
 	//Errores Personal
 	private static final String error9 = "Error: El personal con dicho ID, no existe";
 	
+	
 	private int id;
 
 	public FailureDialog() {

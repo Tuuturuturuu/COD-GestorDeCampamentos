@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Integracion.Material;
 
 import Negocio.Material.TMaterial;
@@ -33,6 +30,7 @@ public class DAOMaterialImp implements DAOMaterial {
 			ps.setString(2, tMaterial.getNombre());
 			ps.setInt(3, tMaterial.getExistencias());
 			ps.setBoolean(4, tMaterial.getActivo());
+			ps.setBoolean(5, tMaterial.getActivo());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 
@@ -102,22 +100,29 @@ public class DAOMaterialImp implements DAOMaterial {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
 					ConnectorBD.password);
-
 			PreparedStatement ps;
-			ps = conexion.prepareStatement("UPDATE Material SET Almacen = ?, Nombre = ?, NumExistencias = ? WHERE idMaterial = ? ",
-					Statement.RETURN_GENERATED_KEYS);
+			ps = conexion.prepareStatement("SELECT * FROM Material WHERE IdMaterial = ?");
+			ps.setInt(1, tMaterial.getId());
+			ResultSet rs = ps.executeQuery();
 
-			ps.setInt(1, tMaterial.getNAlmacen());
-			ps.setString(2, tMaterial.getNombre());
-			ps.setInt(3, tMaterial.getExistencias());
-			ps.setFloat(4, tMaterial.getId());
-			ps.executeUpdate();
+			if (rs.next()) {
 
+				tMaterial.setId(rs.getInt(1));
+				tMaterial.setNAlmacen(rs.getInt(2));
+				tMaterial.setNombre(rs.getString(3));
+				tMaterial.setExistencias(rs.getInt(4));
+				tMaterial.setActivo(rs.getBoolean(5));
+				
+			} else {
+				tMaterial.setId(-1);
+			}
+			rs.close();
 			ps.close();
 			conexion.close();
 		} catch (SQLException | ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
+
 		return tMaterial;
 	}
 
