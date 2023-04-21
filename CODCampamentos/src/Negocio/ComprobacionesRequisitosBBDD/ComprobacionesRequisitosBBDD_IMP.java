@@ -16,14 +16,14 @@ public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBB
 	}
 	//METODOS PARA MATERIAL
 	public boolean almacenValido(int nAlmacen) {
-		if (nAlmacen > 100)
+		if (nAlmacen > 100 && nAlmacen > 0)
 			return false;
 		else
 			return true;
 	}
 	
 	public boolean nExistenciasValido(Integer existencias) {
-		if (existencias > 10000)
+		if (existencias > 10000 && existencias > 0)
 			return false;
 		else
 			return true;

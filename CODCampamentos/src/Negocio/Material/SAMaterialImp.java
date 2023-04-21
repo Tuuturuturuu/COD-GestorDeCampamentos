@@ -18,9 +18,9 @@ public class SAMaterialImp implements SAMaterial {
 		if (!compr.nombreValido(tMaterial.getNombre()))
 			tMaterial.setId(-2);
 		else if (!compr.almacenValido(tMaterial.getNAlmacen()))
-			tMaterial.setId(-3);
+			tMaterial.setId(-10);
 		else if (!compr.nExistenciasValido(tMaterial.getExistencias()))
-			tMaterial.setId(-7);
+			tMaterial.setId(-11);
 		else {
 			materialBBDD.setId(tMaterial.getId());
 			materialBBDD = daoMaterial.buscarMaterialID(materialBBDD);
@@ -38,7 +38,7 @@ public class SAMaterialImp implements SAMaterial {
 		TMaterial tMaterialBBDD = new TMaterial();
 
 		// existe el Material en bbdd
-		tMaterialBBDD.setId(tMaterial.getIdActividad());
+		tMaterialBBDD.setId(tMaterial.getId());
 		tMaterialBBDD = daoMaterial.mostrarMaterial(tMaterialBBDD);
 
 		// si no ha encontrado el Material a modificar no se le puede cambiar el
@@ -48,7 +48,7 @@ public class SAMaterialImp implements SAMaterial {
 
 		// no esta activo
 		if (tMaterialBBDD.getActivo() == false)
-			tMaterial.setId(-8);
+			tMaterial.setId(-12);
 
 		// se quiere cambiar el nombre
 		if (tMaterial.getNombre() != null && tMaterial.getId() > 0) {
@@ -63,23 +63,23 @@ public class SAMaterialImp implements SAMaterial {
 		// se quiere cambiar el numero del almacen
 		if (tMaterial.getNAlmacen() != null && tMaterial.getId() > 0) {
 			if (!compr.almacenValido(tMaterial.getNAlmacen()))
-				tMaterial.setId(-3);
+				tMaterial.setId(-10);
 		} else if (tMaterial.getId() > 0)
 			tMaterial.setNAlmacen(tMaterialBBDD.getNAlmacen());
 		
 		// se quiere cambiar el numero de existencias
 				if (tMaterial.getExistencias() != null && tMaterial.getId() > 0) {
 					if (!compr.nExistenciasValido(tMaterial.getExistencias()))
-						tMaterial.setId(-7);
+						tMaterial.setId(-11);
 				} else if (tMaterial.getId() > 0)
 					tMaterial.setExistencias(tMaterialBBDD.getExistencias());
 		
-		// se quiere cambiar idActividad Y DEBERIAMOS COMPROBAR QUE ID DE EMPLEADO EXISTA EN LA BASE DE DATOS
-		if (tMaterial.getIdActividad() != null && tMaterial.getId() > 0 ) {
-			if (!compr.numPlazas(tMaterial.getIdActividad()))
-				tMaterial.setId(-7);
-		} else if (tMaterial.getId() > 0)
-					tMaterial.setIdActividad(tMaterialBBDD.getIdActividad());
+//		// se quiere cambiar idActividad Y DEBERIAMOS COMPROBAR QUE ID DE EMPLEADO EXISTA EN LA BASE DE DATOS
+//		if (tMaterial.getIdActividad() != null && tMaterial.getId() > 0 ) {
+//			if (!compr.numPlazas(tMaterial.getIdActividad()))
+//				tMaterial.setId(-7);
+//		} else if (tMaterial.getId() > 0)
+//					tMaterial.setIdActividad(tMaterialBBDD.getIdActividad());
 
 		// si no ha habido ningun codigo de error puede modificarse.
 		if (tMaterial.getId() > 0) {

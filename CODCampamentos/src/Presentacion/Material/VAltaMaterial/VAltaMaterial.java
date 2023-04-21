@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Negocio.Material.TMaterial;
 import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
@@ -105,8 +106,7 @@ public class VAltaMaterial extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VAltaMaterial.this.setVisible(false);
 
-//				Controlador.obtenerInstancia().run(
-//						new TActividad(0, nombre.getText(), dni.getText(), tfno.getText(), true), Evento.EAltaActividadOK);
+				//Controlador.obtenerInstancia().run(new TMaterial(0, nombre.getText(), Integer.parseInt(almacen.getText()), Integer.parseInt(numExistencias.getText()), true), Evento.EAltaMaterialOK);
 
 			}
 		});

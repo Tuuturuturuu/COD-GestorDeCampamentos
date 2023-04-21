@@ -19,7 +19,7 @@ public class FailureDialog extends JFrame implements IGUI {
 	//Errores Genericos
 	private static final String error1 = "Error: ID no encontrado en la BD";
 	private static final String error2 = "Error: Nombre con longitud incorrecta";
-
+	
 	private static final String error5 = "Error: Ya estaba desactivada";
 	private static final String error6 = "Error: Campo unico ya en uso";
 
@@ -31,6 +31,12 @@ public class FailureDialog extends JFrame implements IGUI {
 
 	//Errores Personal
 	private static final String error9 = "Error: El personal con dicho ID, no existe";
+	
+	//Errores Material
+	private static final String error10 = "Error: El almacen introducido con longitud incorrecta";
+	private static final String error11 = "Error: Numero de existencias introducido con longitud incorrecta";
+	private static final String error12 = "Error: El material esta dado de baja";
+	private static final String error13 = "Error: No hay ningun material para ese id de Actividad";
 	
 	private int id;
 
@@ -85,6 +91,19 @@ public class FailureDialog extends JFrame implements IGUI {
 		case -9:
 			info = new JLabel(error9);
 			break;
+		case -10:
+			info = new JLabel(error10);
+			break;
+		case -11:
+			info = new JLabel(error11);
+			break;
+		case -12:
+			info = new JLabel(error12);
+			break;
+		case -13:
+			info = new JLabel(error13);
+			break;
+			
 		default:
 			info = new JLabel("Error en la operacion");
 		}
