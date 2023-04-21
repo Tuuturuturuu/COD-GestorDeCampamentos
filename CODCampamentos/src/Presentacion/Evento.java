@@ -24,7 +24,18 @@ public enum Evento {
 	EVistaFacturaGeneral,
 	
 	//Material
-	EVistaMaterialGeneral,
+		EVistaMaterialGeneral,
+		EAltaMaterial,
+		EAltaMaterialOK,
+		EBajaMaterial,
+		EBajaMaterialOK, 
+		EModificarMaterial,
+		EModificarMaterialOK,
+		EMostrarUnMaterial,
+		EMostrarUnMaterialOK,
+		EMostrarTodosLosMateriales,
+		EMostrarMaterialPorActividad,
+		EMostrarUnMaterialPorActividadOK, 
 	
 	//Turno
 	EVistaTurnoGeneral, 

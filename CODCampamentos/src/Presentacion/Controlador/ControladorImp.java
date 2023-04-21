@@ -5,6 +5,7 @@ import java.util.Set;
 
 import Negocio.Actividad.TActividad;
 import Negocio.FactoriaNegocio.FactoriaSAImp;
+import Negocio.Material.TMaterial;
 import Presentacion.Evento;
 import Presentacion.FactoriaPresentacion.FactoriaVistas;
 
@@ -91,7 +92,33 @@ public class ControladorImp extends Controlador {
 			Set<TActividad> listaActividades = FactoriaSAImp.obtenerInstancia().generarSAActividad().mostrarActividades();
 			gui.getVistaActividad().getVista_MostrarTodosActividad(listaActividades);
 			break;
+			//Material
+		case EVistaMaterialGeneral:
+			gui.getVistaMaterial().getVista_VistaMaterialGeneral();
+			break;
+		case EAltaMaterial:
+			gui.getVistaMaterial().getVista_AltaMaterial();
+			break;
+		case EBajaMaterial:
+			gui.getVistaMaterial().getVista_BajaMaterial();
+			break;	
+			
+		case EModificarMaterial:
+			gui.getVistaMaterial().getVista_ModificarMaterial();
+			break;
 		
+		case EMostrarUnMaterial:
+			gui.getVistaMaterial().getVista_MostrarMaterial();
+			break;
+			
+		case EMostrarTodosLosMateriales:
+			//Set<TMaterial> listaMateriales = FactoriaSAImp.obtenerInstancia().generarSAActividad().mostrarActividades();
+			//gui.getVistaActividad().getVista_MostrarTodosActividad(listaMateriales);
+			break;
+			
+		case EMostrarMaterialPorActividad:
+			gui.getVistaMaterial().getVista_MostrarMaterialPorActividad();
+			break;
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();
 			break;

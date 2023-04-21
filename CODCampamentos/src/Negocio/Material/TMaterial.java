@@ -1,109 +1,75 @@
-/**
- * 
- */
+
 package Negocio.Material;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author airam
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class TMaterial {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private String Nombre;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Integer idMaterIal;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Boolean Activo;
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer getId() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	private String _nombre;
+	private Integer _idMaterial;
+	private Boolean _activo;
+	private Integer _existencias;
+	private Integer _nAlmacen;
+	private Integer _idActividad;
+	
+	public TMaterial(Integer idMaterial, String nombre, Integer nAlmacen,  Integer existencias,
+			Integer idActividad, Boolean activo){
+		
+		this._activo =activo;
+		this._existencias =existencias;
+		this._idActividad = idMaterial;
+		this._idMaterial =idMaterial;
+		this._nombre =nombre;
+		this._nAlmacen =nAlmacen;
+	}
+	
+	public TMaterial(){
+		
 	}
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public String getNombre() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return _nombre;
 	}
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+	public void setNombre(String _nombre) {
+		this._nombre = _nombre;
+	}
+
+	public Integer getId() {
+		return _idMaterial;
+	}
+
+	public void setId(Integer _idMaterial) {
+		this._idMaterial = _idMaterial;
+	}
+
 	public Boolean getActivo() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return _activo;
 	}
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param nombre
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void setNombre(String nombre) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public void setActivo(Boolean _activo) {
+		this._activo = _activo;
 	}
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param activo
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void setActivo(Boolean activo) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public Integer getExistencias() {
+		return _existencias;
 	}
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param id
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void setId(Integer id) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	public void setExistencias(Integer _existencias) {
+		this._existencias = _existencias;
+	}
 
-		// end-user-code
+	public Integer getNAlmacen() {
+		return _nAlmacen;
+	}
+
+	public void setNAlmacen(Integer _nAlmacen) {
+		this._nAlmacen = _nAlmacen;
+	}
+
+	public Integer getIdActividad() {
+		return _idActividad;
+	}
+
+	public void setIdActividad(Integer _idActividad) {
+		this._idActividad = _idActividad;
 	}
 }

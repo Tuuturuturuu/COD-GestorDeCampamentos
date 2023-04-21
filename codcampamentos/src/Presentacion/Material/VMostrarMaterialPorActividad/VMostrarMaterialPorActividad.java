@@ -1,36 +1,34 @@
-
-package Presentacion.Material.VMostrarMaterial;
-
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-import Presentacion.Material.VBajaMaterial.VBajaMaterial;
+package Presentacion.Material.VMostrarMaterialPorActividad;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
-import javax.swing.JPanel;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class VMostrarMaterial extends JFrame implements IGUI {
-	
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
+import Presentacion.Material.VMostrarMaterial.VMostrarMaterial;
+
+public class VMostrarMaterialPorActividad extends JFrame implements IGUI{
 	private Set<JPanel> jPanel;
 	private Set<JButton> jButton;
 	private Set<JTextField> jTextField;
 	private JFrame jFrame;
 	private JLabel jLabel;
 	
-	public VMostrarMaterial(){
-		super("Mostrar Material");
+	public VMostrarMaterialPorActividad(){
+		super("Mostrar Material Por Actividad");
 		this.setBounds(100, 100, 430, 330);
 		this.setLayout(null);
 		this.setResizable(false);
@@ -46,7 +44,7 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
-				"Introduzca el id del material que quiera mostrar", 1, 10, 80, 20, Color.BLACK);
+				"Introduzca el id de la actividad de la cual quiera mostrar un material ", 1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -55,7 +53,7 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 		JPanel panelId = new JPanel();
 		mainPanel.add(panelId);
 
-		JLabel labelId = ComponentsBuilder.createLabel("ID Material: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelId = ComponentsBuilder.createLabel("ID Actividad: ", 10, 100, 80, 20, Color.BLACK);
 		panelId.add(labelId);
 
 		JTextField id = new JTextField();
@@ -71,8 +69,8 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 			//En este ActionListener tiene que aparecer una  ventana que muestre la informacion del material seleccionado??
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VMostrarMaterial.this.setVisible(false);
-				Controlador.obtenerInstancia().run(Integer.parseInt(id.getText()), Evento.EMostrarUnMaterialOK);
+				VMostrarMaterialPorActividad.this.setVisible(false);
+				Controlador.obtenerInstancia().run(Integer.parseInt(id.getText()), Evento.EMostrarUnMaterialPorActividadOK);
 			}
 		});
 
@@ -82,7 +80,7 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VMostrarMaterial.this.setVisible(false);
+				VMostrarMaterialPorActividad.this.setVisible(false);
 				Controlador.obtenerInstancia().run(null, Evento.EVistaMaterialGeneral);
 
 			}
@@ -109,4 +107,5 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

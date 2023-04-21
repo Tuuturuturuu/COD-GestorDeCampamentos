@@ -3,65 +3,111 @@
  */
 package Presentacion.Material.VBajaMaterial;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import Presentacion.Evento;
 import Presentacion.IGUI;
+import Presentacion.Actividad.VAltaActividad.VAltaActividad;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
+
 import javax.swing.JDialog;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Set;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
+import Negocio.Material.TMaterial;
+
 public class VBajaMaterial extends JFrame implements IGUI {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+	
 	private JButton jButton;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	private JDialog jDialog;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	private JDialog jDialog2;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	private JFrame jFrame;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	private Set<JLabel> jLabel;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	private Set<JPanel> jPanel;
+	
+	public VBajaMaterial(){
+		super("Eliminar Material");
+		this.setBounds(100, 100, 430, 330);
+		this.setLayout(null);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		initGUI();
+	}
+	
+	private void initGUI() {
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		this.setContentPane(mainPanel);
 
-	/** 
-	* (non-Javadoc)
-	* @see IGUI#actualizar()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
+				"Introduzca el id del material que quieres dar de baja", 1, 10, 80, 20, Color.BLACK);
+		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
+		mainPanel.add(msgIntroIDCabecera);
+
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
+
+		JPanel panelId = new JPanel();
+		mainPanel.add(panelId);
+
+		JLabel labelId = ComponentsBuilder.createLabel("ID Material: ", 10, 100, 80, 20, Color.BLACK);
+		panelId.add(labelId);
+
+		JTextField id = new JTextField();
+		id.setPreferredSize(new Dimension(250, 30));
+		id.setEditable(true);
+		panelId.add(id);
+
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+		JButton botonAceptar = new JButton("Aceptar");
+		botonAceptar.setBounds(75, 50, 100, 100);
+		botonAceptar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VBajaMaterial.this.setVisible(false);
+
+//				Controlador.obtenerInstancia().run(
+//						(Integer idMaterial, String nombre, Integer nAlmacen,  Integer existencias,
+//								Integer idActividad, Boolean activo)
+//						new TMaterial(0, nombre.getText(), dni.getText(), tfno.getText(), true), Evento.EBajaMaterialOK);
+
+			}
+		});
+
+		JButton botonCancelar = new JButton("Cancelar");
+		botonCancelar.setBounds(200, 50, 100, 100);
+		botonCancelar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VBajaMaterial.this.setVisible(false);
+				Controlador.obtenerInstancia().run(null, Evento.EVistaMaterialGeneral);
+
+			}
+		});
+		
+		JPanel panelBotones = new JPanel();
+		panelBotones.add(botonAceptar);
+		panelBotones.add(botonCancelar);
+		mainPanel.add(panelBotones);
+
+		this.setVisible(true);
+		
+	}
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
