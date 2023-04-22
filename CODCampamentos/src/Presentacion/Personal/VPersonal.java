@@ -1,64 +1,141 @@
-/**
- * 
- */
 package Presentacion.Personal;
 
-import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import java.util.Set;
-import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
-public class VPersonal extends JFrame implements IGUI {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JPanel> jPanel;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JButton> jButton;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JFrame> jFrame;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JLabel> jLabel;
+import Negocio.Personal.TPersonal;
+import Presentacion.Evento;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
-	/** 
-	* (non-Javadoc)
-	* @see IGUI#actualizar()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void actualizar() {
-		// begin-user-code
-		// TODO Auto-generated method stub
+public class VPersonal extends JFrame{
+	
+	private JButton altaPersonal_Button;
+	private JButton bajaPersonal_Button;
+	private JButton modificarPersonal_Button;
+	private JButton mostrarUnPersonal_Button;
+	private JButton mostrarTodosPersonal_Button;
+	private JButton backButton;
 
-		// end-user-code
+	private JPanel j;
+	private TPersonal tPersonal;
+
+	public VPersonal() {
+		super("Gestor de Campamentos");
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 1000;
+		int alto = 525;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
+	//this.setBounds(100, 100, 1000, 525);
+		this.setLayout(null);
+		j = new JPanel();
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		initGUI();
+		this.setVisible(true);
 	}
 
-	@Override
-	public void actualizar(Object object, Evento event) {
-		// TODO Auto-generated method stub
+	public void update(Object object, Evento event) {
 		
+	}
+
+	public void initGUI() {
+		tPersonal = new TPersonal();
+		JLabel label = ComponentsBuilder.createLabel("Personal", 250, 30, 500, 50, Color.BLACK);
+		this.add(label);
+
+		altaPersonal_Button = ComponentsBuilder.createButton("Alta Personal", 100, 120, 185, 100);
+
+		altaPersonal_Button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VPersonal.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tPersonal, Evento.EAltaPersonal);
+			}
+
+		});
+		altaPersonal_Button.setVisible(true);
+		this.add(altaPersonal_Button);
+
+		bajaPersonal_Button = ComponentsBuilder.createButton("Baja Personal", 407, 120, 185, 100);
+		bajaPersonal_Button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VPersonal.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tPersonal, Evento.EBajaPersonal);
+
+			}
+		});
+
+		bajaPersonal_Button.setVisible(true);
+		this.add(bajaPersonal_Button);
+
+		modificarPersonal_Button = ComponentsBuilder.createButton("Modificar Personal", 715, 120, 185, 100);
+		modificarPersonal_Button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VPersonal.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tPersonal, Evento.EModificarPersonal);
+
+			}
+		});
+		modificarPersonal_Button.setVisible(true);
+		this.add(modificarPersonal_Button);
+
+		mostrarUnPersonal_Button = ComponentsBuilder.createButton("Mostrar un Personal", 213, 290, 185, 100);
+		mostrarUnPersonal_Button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VPersonal.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tPersonal, Evento.EMostrarUnPersonal);
+
+			}
+		});
+		mostrarUnPersonal_Button.setVisible(true);
+		this.add(mostrarUnPersonal_Button);
+
+		mostrarTodosPersonal_Button = ComponentsBuilder.createButton("Mostrar todos Personal", 602, 290, 200, 100);
+		mostrarTodosPersonal_Button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VPersonal.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tPersonal, Evento.EMostrarTodosPersonal);
+
+			}
+		});
+		mostrarTodosPersonal_Button.setVisible(true);
+		this.add(mostrarTodosPersonal_Button);
+
+		backButton = ComponentsBuilder.createBackButton();
+		backButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VPersonal.this.setVisible(false);
+				Controlador.obtenerInstancia().run(null, Evento.EVistaGeneral);
+
+			}
+		});
+		backButton.setVisible(true);
+		this.add(backButton);
+
+		getContentPane().add(j);
+		//pack();
+
 	}
 }

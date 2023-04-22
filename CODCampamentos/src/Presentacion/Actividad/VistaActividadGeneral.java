@@ -5,17 +5,12 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Integracion.Connection.ConnectorBD;
 import Negocio.Actividad.TActividad;
 import Presentacion.Evento;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;

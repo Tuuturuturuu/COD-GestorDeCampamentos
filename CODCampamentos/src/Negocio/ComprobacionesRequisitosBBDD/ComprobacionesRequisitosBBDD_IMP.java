@@ -14,6 +14,13 @@ public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBB
 		else
 			return true;
 	}
+	
+	public boolean idValido(Integer idActividad) {
+		if (idActividad > 10000)
+			return false;
+		else
+			return true;
+	}
 	//METODOS PARA MATERIAL
 	public boolean almacenValido(int nAlmacen) {
 		if (nAlmacen > 100 && nAlmacen > 0)
@@ -73,6 +80,8 @@ public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBB
 		else
 			return true;
 	}
+
+	
 
 	
 	

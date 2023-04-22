@@ -19,25 +19,34 @@ public enum Evento {
 	
 	//Personal
 	EVistaPersonalGeneral,
+	EAltaPersonal,
+	EAltaPersonalOK,
+	EBajaPersonal,    
+	EBajaPersonalOK,
+	EModificarPersonal,
+	EModificarPersonalOK,
+	EMostrarUnPersonal,
+	EMostrarUnPersonalOK,
+	EMostrarTodosPersonal,
 	
 	//Factura
 	EVistaFacturaGeneral,
 	
 	//Material
-		EVistaMaterialGeneral,
-		EAltaMaterial,
-		EAltaMaterialOK,
-		EBajaMaterial,
-		EBajaMaterialOK, 
-		EModificarMaterial,
-		EModificarMaterialOK,
-		EMostrarUnMaterial,
-		EMostrarUnMaterialOK,
-		EMostrarTodosLosMateriales,
-		EMostrarMaterialPorActividad,
-		EMostrarUnMaterialPorActividadOK, 
+	EVistaMaterialGeneral,
+	EAltaMaterial,
+	EAltaMaterialOK,
+	EBajaMaterial,
+	EBajaMaterialOK, 
+	EModificarMaterial,
+	EModificarMaterialOK,
+	EMostrarUnMaterial,
+	EMostrarUnMaterialOK,
+	EMostrarTodosLosMateriales,
+	EMostrarMaterialPorActividad,
+	EMostrarUnMaterialPorActividadOK, 
 	
 	//Turno
-	EVistaTurnoGeneral, 
+	EVistaTurnoGeneral,      
 	
 }

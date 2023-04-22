@@ -84,4 +84,40 @@ public class SAPersonalImp implements SAPersonal {
 		return null;
 		// end-user-code
 	}
+
+	@Override
+	public TPersonal crearPersonal(TPersonal tPersonal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TPersonal eliminarPersonal(TPersonal IdPersonal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TPersonal modificarPersonal(TPersonal tPersonal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TPersonal mostrarUno(TPersonal IdPersonal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<TPersonal> mostrarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<TPersonal> mostrarPersonalPorTurno(TTurno idTurno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

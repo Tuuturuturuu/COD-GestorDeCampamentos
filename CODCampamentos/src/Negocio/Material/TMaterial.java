@@ -15,7 +15,7 @@ public class TMaterial {
 		
 		this._activo =activo;
 		this._existencias =existencias;
-		this._idActividad = idMaterial;
+		this._idActividad = idActividad;
 		this._idMaterial =idMaterial;
 		this._nombre =nombre;
 		this._nAlmacen =nAlmacen;
@@ -27,9 +27,8 @@ public class TMaterial {
 
 	@Override
 	public String toString() {
-		return "TMaterial [_nombre=" + _nombre + ", _idMaterial=" + _idMaterial + ", _activo=" + _activo
-				+ ", _existencias=" + _existencias + ", _nAlmacen=" + _nAlmacen + ", _idActividad=" + _idActividad
-				+ "]";
+		return "Nombre: " + _nombre + ", ID Material: " + _idMaterial + ", Activo: " + _activo
+				+ ", Existencias: " + _existencias + ", Almacen: " + _nAlmacen + ", ID Actividad: " + _idActividad;
 	}
 
 	public String getNombre() {

@@ -6,6 +6,7 @@ import java.util.Set;
 import Negocio.Actividad.TActividad;
 import Negocio.FactoriaNegocio.FactoriaSAImp;
 import Negocio.Material.TMaterial;
+import Negocio.Personal.TPersonal;
 import Presentacion.Evento;
 import Presentacion.FactoriaPresentacion.FactoriaVistas;
 
@@ -22,6 +23,7 @@ public class ControladorImp extends Controlador {
 	public void run(Object Obj, Evento Evento) {
 		TActividad auxActividad = null;
 		TMaterial auxMaterial=null;
+		TPersonal auxPersonal=null;
 		
 		switch(Evento){
 		
@@ -29,7 +31,7 @@ public class ControladorImp extends Controlador {
 			gui.getVistaGeneralAux().getVistaGeneral();
 			break;
 			
-		//Actividad
+		//ACTIVIDAD
 		case EVistaActividadGeneral:
 			gui.getVistaActividad().getVista_VistaActividadGeneral();
 			break;
@@ -93,7 +95,8 @@ public class ControladorImp extends Controlador {
 			Set<TActividad> listaActividades = FactoriaSAImp.obtenerInstancia().generarSAActividad().mostrarActividades();
 			gui.getVistaActividad().getVista_MostrarTodosActividad(listaActividades);
 			break;
-			//Material
+			
+			//MATERIAL
 		case EVistaMaterialGeneral:
 			gui.getVistaMaterial().getVista_VistaMaterialGeneral();
 			break;
@@ -155,13 +158,78 @@ public class ControladorImp extends Controlador {
 			break;
 		case EMostrarUnMaterialPorActividadOK:
 			Set<TMaterial> listaMateriales2=FactoriaSAImp.obtenerInstancia().generarSAMaterial().listarMaterialPorActividad((int)Obj);
-			if(listaMateriales2==null){
+			if(listaMateriales2 == null){
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(-13, null);
 			}
 			else{
 				gui.getVistaMaterial().getVista_MostrarTodosMateriales(listaMateriales2);
 			}
 			break;
+			
+			//PERSONAL
+			case EVistaPersonalGeneral:
+				gui.getVistaPersonal().getVista_VistaPersonalGeneral();
+				break;
+			
+			case EAltaPersonal:
+				gui.getVistaPersonal().getVista_AltaPersonal();
+				break;
+				
+			case EAltaPersonalOK:
+				auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().crearPersonal((TPersonal)Obj);
+				if(auxPersonal.getIdPersonal() <= 0){
+					gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
+				}
+				else{
+					gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxPersonal.getIdPersonal(), null);
+				}
+				break;
+			
+			case EBajaPersonal:
+				gui.getVistaPersonal().getVista_BajaPersonal();
+				break;
+				
+			case EBajaPersonalOK:
+				auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().eliminarPersonal((TPersonal)Obj);
+				if(auxPersonal.getIdPersonal() <= 0){
+					gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
+				}
+				else{
+					gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxPersonal.getIdPersonal(), null);
+				}
+				break;
+				
+			case EModificarPersonal:
+				gui.getVistaPersonal().getVista_ModificarPersonal();
+				break;
+			case EModificarPersonalOK:
+				auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().modificarPersonal((TPersonal)Obj);
+				if(auxPersonal.getIdPersonal() <= 0){
+					gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
+				}
+				else{
+					gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxPersonal.getIdPersonal(), null);
+				}
+				break;
+			
+			case EMostrarUnPersonal:
+				gui.getVistaPersonal().getVista_MostrarPersonal();
+				break;
+			
+			case EMostrarUnPersonalOK:
+				auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().mostrarUno((TPersonal)Obj);
+				if(auxPersonal.getIdPersonal() <= 0){
+					gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
+				}
+				else{
+					gui.getVistaGeneralAux().getConfirmDialogMostrarUna().actualizar(auxPersonal.toString(), null);
+				}
+				break;
+				
+			case EMostrarTodosPersonal:
+				Set<TPersonal> listaPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().mostrarTodos();
+				gui.getVistaPersonal().getVista_MostrarTodosPersonal(listaPersonal);
+				break;
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();
 			break;

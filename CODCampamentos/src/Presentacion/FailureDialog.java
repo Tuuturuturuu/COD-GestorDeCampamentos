@@ -19,6 +19,8 @@ public class FailureDialog extends JFrame implements IGUI {
 	//Errores Genericos
 	private static final String error1 = "Error: ID no encontrado en la BD";
 	private static final String error2 = "Error: Nombre con longitud incorrecta";
+	private static final String error14 = "Error: Id no valido";
+
 	
 	private static final String error5 = "Error: Ya estaba desactivada";
 	private static final String error6 = "Error: Campo unico ya en uso";
@@ -102,6 +104,9 @@ public class FailureDialog extends JFrame implements IGUI {
 			break;
 		case -13:
 			info = new JLabel(error13);
+			break;
+		case -14:
+			info = new JLabel(error14);
 			break;
 			
 		default:

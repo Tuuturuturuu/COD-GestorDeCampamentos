@@ -145,6 +145,7 @@ public class VistaMaterialGeneral extends JFrame{
 
 			}
 		});
+
 		backButton.setVisible(true);
 		this.add(backButton);
 

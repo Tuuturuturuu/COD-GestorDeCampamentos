@@ -21,6 +21,8 @@ public class SAMaterialImp implements SAMaterial {
 			tMaterial.setId(-10);
 		else if (!compr.nExistenciasValido(tMaterial.getExistencias()))
 			tMaterial.setId(-11);
+		else if (!compr.idValido(tMaterial.getIdActividad()))
+			tMaterial.setId(-14);
 		else {
 			materialBBDD.setId(tMaterial.getId());
 			materialBBDD = daoMaterial.buscarMaterialID(materialBBDD);
@@ -38,7 +40,7 @@ public class SAMaterialImp implements SAMaterial {
 		TMaterial tMaterialBBDD = new TMaterial();
 
 		// existe el Material en bbdd
-		tMaterialBBDD.setId(tMaterial.getIdActividad());
+		tMaterialBBDD.setId(tMaterial.getId());
 		tMaterialBBDD = daoMaterial.mostrarMaterial(tMaterialBBDD);
 
 		// si no ha encontrado el Material a modificar no se le puede cambiar el
@@ -49,6 +51,7 @@ public class SAMaterialImp implements SAMaterial {
 		// no esta activo
 		if (tMaterialBBDD.getActivo() == false)
 			tMaterial.setId(-12);
+		
 
 		// se quiere cambiar el nombre
 		if (tMaterial.getNombre() != null && tMaterial.getId() > 0) {
@@ -107,11 +110,9 @@ public class SAMaterialImp implements SAMaterial {
 	public Set<TMaterial> mostrarTodosMateriales() {
 		return daoMaterial.mostrarTodosMateriales();
 	}
-	//TODO ESTO?
-	public Set<TMaterial> listarMaterialPorActividad(Integer idActividad) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public Set<TMaterial> listarMaterialPorActividad(int idActividad) {
+		return daoMaterial.listarMaterialPorActividad(idActividad);
 	}
+
+	
 }

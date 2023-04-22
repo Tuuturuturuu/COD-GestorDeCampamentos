@@ -22,15 +22,16 @@ public class DAOMaterialImp implements DAOMaterial {
 
 			PreparedStatement ps;
 			ps = conexion.prepareStatement(
-					"INSERT INTO Material (Almacen, Nombre, NumExistencias, Activo) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE Activo = ?",
+					"INSERT INTO Material (Almacen, Nombre, NumExistencias, idActividad, Activo) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE Activo = ?",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			
 
 			ps.setInt(1, tMaterial.getNAlmacen());
 			ps.setString(2, tMaterial.getNombre());
 			ps.setInt(3, tMaterial.getExistencias());
-			ps.setBoolean(4, tMaterial.getActivo());
+			ps.setInt(4, tMaterial.getIdActividad());
 			ps.setBoolean(5, tMaterial.getActivo());
+			ps.setBoolean(6, tMaterial.getActivo());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 
@@ -96,6 +97,7 @@ public class DAOMaterialImp implements DAOMaterial {
 	}
 
 	public TMaterial mostrarMaterial(TMaterial tMaterial) {
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
@@ -112,6 +114,7 @@ public class DAOMaterialImp implements DAOMaterial {
 				tMaterial.setNombre(rs.getString(3));
 				tMaterial.setExistencias(rs.getInt(4));
 				tMaterial.setActivo(rs.getBoolean(5));
+				tMaterial.setIdActividad(rs.getInt(6));
 				
 			} else {
 				tMaterial.setId(-1);
@@ -138,7 +141,7 @@ public class DAOMaterialImp implements DAOMaterial {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				e = new TMaterial(rs.getInt("IdMaterial"), rs.getString("Nombre"), rs.getInt("Almacen"), 
-						rs.getInt("NumExistencias"),0, rs.getBoolean("Activo"));
+						rs.getInt("NumExistencias"), rs.getInt("IdActividad"), rs.getBoolean("Activo"));
 				Materiales.add(e);
 			}
 			rs.close();
@@ -179,5 +182,31 @@ public class DAOMaterialImp implements DAOMaterial {
 			ex.printStackTrace();
 		}
 		return tMaterial;
+	}
+	
+	@Override
+	public Set<TMaterial> listarMaterialPorActividad(int id) {
+		Set<TMaterial> materiales = new HashSet<TMaterial>();
+		TMaterial m;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+			PreparedStatement psl;
+			psl = conexion.prepareStatement("SELECT * FROM Material WHERE idActividad = ?");
+			psl.setInt(1, id);
+			ResultSet rs = psl.executeQuery();
+			while (rs.next()) {
+				m  = new TMaterial(rs.getInt("IdMaterial"), rs.getString("Nombre"), rs.getInt("Almacen"), 
+						rs.getInt("NumExistencias"), rs.getInt("IdActividad"), rs.getBoolean("Activo"));
+
+				materiales.add(m);
+			}
+			psl.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return materiales;
 	}
 }
