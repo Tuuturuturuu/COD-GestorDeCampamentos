@@ -19,9 +19,9 @@ public class FailureDialog extends JFrame implements IGUI {
 	//Errores Genericos
 	private static final String error1 = "Error: ID no encontrado en la BD";
 	private static final String error2 = "Error: Nombre con longitud incorrecta";
-
-	private static final String error5 = "Error: Ya estaba desactivada";
+	private static final String error5 = "Error: Dicho objeto se encuentra inactivo";
 	private static final String error6 = "Error: Campo unico ya en uso";
+	private static final String error10 = "Error: Fallo a la hora de borrar en la BD";
 
 	//Errores Actividad
 	private static final String error4 = "Error: Actividad ya presente en la BD";
@@ -38,13 +38,11 @@ public class FailureDialog extends JFrame implements IGUI {
 		super("Mensaje de fracaso");
 		initGUI();
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-		int ancho = 1000;
-		int alto = 525;
+		int ancho = 400;
+		int alto = 200;
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);
-	//this.setBounds(100, 100, 1000, 525);
-		//this.setBounds(100, 100, 300, 200);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
@@ -84,6 +82,9 @@ public class FailureDialog extends JFrame implements IGUI {
 			break;
 		case -9:
 			info = new JLabel(error9);
+			break;
+		case -10:
+			info = new JLabel(error10);
 			break;
 		default:
 			info = new JLabel("Error en la operacion");

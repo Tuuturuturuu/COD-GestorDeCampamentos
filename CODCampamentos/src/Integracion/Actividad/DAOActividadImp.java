@@ -62,7 +62,7 @@ public class DAOActividadImp implements DAOActividad {
 					ConnectorBD.password);
 
 			PreparedStatement ps;
-			ps = conexion.prepareStatement("UPDATE Actividad SET nombre = ?, lugar = ?, NumPlazas = ?, Precio = ?, IdPersonal = ? WHERE idActividad = ? ",
+			ps = conexion.prepareStatement("UPDATE Actividad SET Nombre = ?, Lugar = ?, NumPlazas = ?, Precio = ?, IdPersonal = ? WHERE idActividad = ? ",
 					Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, tActividad.getNombre());
@@ -72,7 +72,6 @@ public class DAOActividadImp implements DAOActividad {
 			ps.setInt(5, tActividad.getIdPersonal());
 			ps.setInt(6, tActividad.getIdActividad());
 			ps.executeUpdate();
-
 			ps.close();
 			conexion.close();
 		} catch (SQLException | ClassNotFoundException ex) {
@@ -97,7 +96,7 @@ public class DAOActividadImp implements DAOActividad {
 			ps.setInt(2, tActividad.getIdActividad());
 			int result = ps.executeUpdate();
 			if (result < 1)
-				tActividad.setIdActividad(-1);
+				tActividad.setIdActividad(-10);
 			ps.close();
 			conexion.close();
 		} catch (SQLException | ClassNotFoundException ex) {
@@ -188,7 +187,6 @@ public class DAOActividadImp implements DAOActividad {
 			ps.setInt(1, tActividad.getIdActividad());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-
 				tActividad.setIdActividad(rs.getInt(1));
 				tActividad.setNombre(rs.getString(2));
 				tActividad.setLugar(rs.getString(3));
@@ -200,6 +198,36 @@ public class DAOActividadImp implements DAOActividad {
 				tActividad.setIdActividad(-1);
 
 
+			rs.close();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return tActividad;
+	}
+
+	@Override
+	public TActividad buscarActividadNombreLugar(TActividad tActividad) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("SELECT * FROM Actividad WHERE Nombre = ? AND Lugar = ?");
+			ps.setString(1, tActividad.getNombre());
+			ps.setString(2, tActividad.getLugar());
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				tActividad.setIdActividad(rs.getInt(1));
+				tActividad.setNombre(rs.getString(2));
+				tActividad.setLugar(rs.getString(3));
+				tActividad.setNumplazas(rs.getInt(4));
+				tActividad.setPrecio(rs.getFloat(5));
+				tActividad.setIdPersonal(rs.getInt(6));
+				tActividad.setActivo(rs.getBoolean(7));
+			} else
+				tActividad.setIdActividad(-1);
 			rs.close();
 			ps.close();
 			conexion.close();
