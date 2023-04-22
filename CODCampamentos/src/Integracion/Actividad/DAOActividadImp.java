@@ -62,7 +62,7 @@ public class DAOActividadImp implements DAOActividad {
 					ConnectorBD.password);
 
 			PreparedStatement ps;
-			ps = conexion.prepareStatement("UPDATE Actividad SET nombre = ?, lugar = ?, NumPlazas = ?, Precio = ?, IdPersonal = ? WHERE idActividad = ? ",
+			ps = conexion.prepareStatement("UPDATE Actividad SET Nombre = ?, Lugar = ?, NumPlazas = ?, Precio = ?, IdPersonal = ? WHERE idActividad = ? ",
 					Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, tActividad.getNombre());
@@ -72,7 +72,6 @@ public class DAOActividadImp implements DAOActividad {
 			ps.setInt(5, tActividad.getIdPersonal());
 			ps.setInt(6, tActividad.getIdActividad());
 			ps.executeUpdate();
-
 			ps.close();
 			conexion.close();
 		} catch (SQLException | ClassNotFoundException ex) {
@@ -97,7 +96,7 @@ public class DAOActividadImp implements DAOActividad {
 			ps.setInt(2, tActividad.getIdActividad());
 			int result = ps.executeUpdate();
 			if (result < 1)
-				tActividad.setIdActividad(-1);
+				tActividad.setIdActividad(-10);
 			ps.close();
 			conexion.close();
 		} catch (SQLException | ClassNotFoundException ex) {
@@ -179,6 +178,7 @@ public class DAOActividadImp implements DAOActividad {
 
 	@Override
 	public TActividad buscarActividadID(TActividad tActividad) {
+		TActividad tActividadBBDD = new TActividad();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
@@ -188,7 +188,38 @@ public class DAOActividadImp implements DAOActividad {
 			ps.setInt(1, tActividad.getIdActividad());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
+				tActividadBBDD.setIdActividad(rs.getInt(1));
+				tActividadBBDD.setNombre(rs.getString(2));
+				tActividadBBDD.setLugar(rs.getString(3));
+				tActividadBBDD.setNumplazas(rs.getInt(4));
+				tActividadBBDD.setPrecio(rs.getFloat(5));
+				tActividadBBDD.setIdPersonal(rs.getInt(6));
+				tActividadBBDD.setActivo(rs.getBoolean(7));
+			} else
+				tActividad.setIdActividad(-1);
 
+
+			rs.close();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return tActividadBBDD;
+	}
+
+	@Override
+	public TActividad buscarActividadNombreLugar(TActividad tActividad) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("SELECT * FROM Actividad WHERE Nombre = ? AND Lugar = ?");
+			ps.setString(1, tActividad.getNombre());
+			ps.setString(2, tActividad.getLugar());
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
 				tActividad.setIdActividad(rs.getInt(1));
 				tActividad.setNombre(rs.getString(2));
 				tActividad.setLugar(rs.getString(3));
@@ -198,8 +229,6 @@ public class DAOActividadImp implements DAOActividad {
 				tActividad.setActivo(rs.getBoolean(7));
 			} else
 				tActividad.setIdActividad(-1);
-
-
 			rs.close();
 			ps.close();
 			conexion.close();

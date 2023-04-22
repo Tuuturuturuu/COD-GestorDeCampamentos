@@ -9,6 +9,7 @@ import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
@@ -24,7 +25,12 @@ import Negocio.Actividad.TActividad;
 public class VMostrarTodasActividades extends JFrame implements IGUI {
 	public VMostrarTodasActividades(Set<TActividad> listaActividades){
 		super("Mostrar todas las Actividades");
-		this.setBounds(100, 100, 630, 330);
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 630;
+		int alto = 330;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
