@@ -2,6 +2,7 @@ package Presentacion;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,7 +24,12 @@ public class ConfirmDialogMostrarUna extends JFrame implements IGUI {
 
 	public ConfirmDialogMostrarUna() {
 		super("Mensaje de confirmacion");
-		this.setBounds(100, 100, 150, 150);
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 150;
+		int alto = 150;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}

@@ -45,7 +45,6 @@ public class SAActividadImp implements SAActividad{
 	@Override
 	public TActividad modificarActividad(TActividad tActividad) {
 		TActividad tActividadBBDD = new TActividad();
-		TActividad tActividadAux = tActividad;
 		//Buscar que existe la actividad con dicho id en la BBDD
 		tActividadBBDD = daoActividad.buscarActividadID(tActividad);
 
@@ -109,7 +108,7 @@ public class SAActividadImp implements SAActividad{
 		tActividadbbdd = daoActividad.buscarActividadID(tActividad);
 		// si no ha encontrado la Cliente el id sera -1
 		if (tActividadbbdd.getIdActividad() != -1){
-			if (tActividad.getActivo() == true)
+			if (tActividadbbdd.getActivo() == true)
 				tActividad = daoActividad.borrarActividad(tActividad);
 			else
 				tActividad.setIdActividad(-5); // ya estaba desactivada

@@ -178,6 +178,7 @@ public class DAOActividadImp implements DAOActividad {
 
 	@Override
 	public TActividad buscarActividadID(TActividad tActividad) {
+		TActividad tActividadBBDD = new TActividad();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
@@ -187,13 +188,13 @@ public class DAOActividadImp implements DAOActividad {
 			ps.setInt(1, tActividad.getIdActividad());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				tActividad.setIdActividad(rs.getInt(1));
-				tActividad.setNombre(rs.getString(2));
-				tActividad.setLugar(rs.getString(3));
-				tActividad.setNumplazas(rs.getInt(4));
-				tActividad.setPrecio(rs.getFloat(5));
-				tActividad.setIdPersonal(rs.getInt(6));
-				tActividad.setActivo(rs.getBoolean(7));
+				tActividadBBDD.setIdActividad(rs.getInt(1));
+				tActividadBBDD.setNombre(rs.getString(2));
+				tActividadBBDD.setLugar(rs.getString(3));
+				tActividadBBDD.setNumplazas(rs.getInt(4));
+				tActividadBBDD.setPrecio(rs.getFloat(5));
+				tActividadBBDD.setIdPersonal(rs.getInt(6));
+				tActividadBBDD.setActivo(rs.getBoolean(7));
 			} else
 				tActividad.setIdActividad(-1);
 
@@ -204,7 +205,7 @@ public class DAOActividadImp implements DAOActividad {
 		} catch (SQLException | ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
-		return tActividad;
+		return tActividadBBDD;
 	}
 
 	@Override
