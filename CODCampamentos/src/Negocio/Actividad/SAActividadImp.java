@@ -4,6 +4,7 @@ import java.util.Set;
 
 import Integracion.Actividad.DAOActividad;
 import Integracion.FactoriaIntegracion.FactoriaIntegracionImp;
+import Integracion.Personal.DAOPersonal;
 import Negocio.ComprobacionesRequisitosBBDD.ComprobacionesRequisitosBBDD_IMP;
 
 
@@ -11,6 +12,7 @@ public class SAActividadImp implements SAActividad{
 	private ComprobacionesRequisitosBBDD_IMP compr = (ComprobacionesRequisitosBBDD_IMP) ComprobacionesRequisitosBBDD_IMP
 			.getComprobacionesRequisitosBBDD();
 	private DAOActividad daoActividad = FactoriaIntegracionImp.obtenerInstancia().generaDAOActividad();
+	private DAOPersonal daoPersonal = FactoriaIntegracionImp.obtenerInstancia().generaDAOPersonal();
 	
 
 	@Override
@@ -24,16 +26,19 @@ public class SAActividadImp implements SAActividad{
 			tActividad.setIdActividad(-7);
 		else if (!compr.precio(tActividad.getPrecio()))
 			tActividad.setIdActividad(-8);
+		else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1) //Comprobar que el id de Personal existe
+			tActividad.setIdActividad(-9);
 		else {
 			actividadBBDD.setIdActividad(tActividad.getIdActividad());
 			actividadBBDD = daoActividad.buscarActividadID(actividadBBDD);
-			if (actividadBBDD.getIdActividad() != -1) // encontrado en bbdd
+			if (actividadBBDD.getIdActividad() != -1) {// encontrado en bbdd
 				if (tActividad.getIdActividad() == (actividadBBDD.getIdActividad())
 						&& actividadBBDD.getActivo() == true)
-					tActividad.setIdActividad(-4); // ya esta activo
+					tActividad.setIdActividad(-4); // ERROR: ya esta activo
+			}else if(tActividad.getIdActividad() == 0){
+				tActividad = daoActividad.crearActividad(tActividad);	
+			}
 		}
-		if (tActividad.getIdActividad() == 0)
-			tActividad = daoActividad.crearActividad(tActividad);
 		return tActividad;
 	}
 
@@ -125,18 +130,6 @@ public class SAActividadImp implements SAActividad{
 
 	@Override
 	public Set<TActividad> mostrarActividadesporPersonal(TActividadMaterial tActividadMaterial) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TActividad vincularActividadMaterial(TActividadMaterial tActividadMaterial) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public TActividad desvincularActividadMaterial(TActividadMaterial tActividadMaterial) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -4,96 +4,78 @@
 package Integracion.Personal;
 
 import Negocio.Personal.TPersonal;
+import Negocio.Turno.TTurno;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Set;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
+import Integracion.Connection.ConnectorBD;
+
 public class DAOPersonalImp implements DAOPersonal {
-	/** 
-	* (non-Javadoc)
-	* @see DAOPersonal#CrearPersonal(TPersonal tPersonal)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer CrearPersonal(TPersonal tPersonal) {
-		// begin-user-code
+
+	@Override
+	public TPersonal CrearPersonal(TPersonal tPersonal) {
 		// TODO Auto-generated method stub
 		return null;
-		// end-user-code
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOPersonal#EliminarPersonal(Integer IdPersonal)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer EliminarPersonal(Integer IdPersonal) {
-		// begin-user-code
+	@Override
+	public TPersonal EliminarPersonal(TPersonal IdPersonal) {
 		// TODO Auto-generated method stub
 		return null;
-		// end-user-code
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOPersonal#MostrarUno(Integer IdPersonal)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public TPersonal MostrarUno(Integer IdPersonal) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	@Override
+	public TPersonal MostrarUno(Integer idPersonal) {
+		TPersonal tPersonal = new TPersonal();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("SELECT * FROM Personal WHERE IdPersonal = ?");
+			ps.setInt(1, idPersonal);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				tPersonal.setDNI(rs.getString(1));
+				tPersonal.setIdPersonal(rs.getInt(2));
+				tPersonal.setNombre(rs.getString(3));
+				tPersonal.setTipoPersonal(rs.getString(4));
+				tPersonal.setIdTurno(rs.getInt(5));
+				tPersonal.setActivo(rs.getBoolean(6));
+			} else {
+				tPersonal.setIdPersonal(-1);
+			}
+			rs.close();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return tPersonal;
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOPersonal#MostrarTodos()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+	@Override
 	public Set<TPersonal> MostrarTodos() {
-		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
-		// end-user-code
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOPersonal#MostrarPersonalPorTurno(Integer IdTurno)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Set<TPersonal> MostrarPersonalPorTurno(Integer IdTurno) {
-		// begin-user-code
+	@Override
+	public Set<TPersonal> MostrarPersonalPorTurno(TTurno tTurno) {
 		// TODO Auto-generated method stub
 		return null;
-		// end-user-code
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOPersonal#ModificarPersonal(TPersonal tPersonal)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer ModificarPersonal(TPersonal tPersonal) {
-		// begin-user-code
+	@Override
+	public TPersonal ModificarPersonal(TPersonal tPersonal) {
 		// TODO Auto-generated method stub
 		return null;
-		// end-user-code
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see DAOPersonal#activar(Integer idPersonal)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer activar(Integer idPersonal) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
 }

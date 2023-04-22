@@ -1,6 +1,8 @@
 package Presentacion.Actividad;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -33,7 +35,13 @@ public class VistaActividadGeneral extends JFrame{
 
 	public VistaActividadGeneral() {
 		super("Gestor de Campamentos");
-		this.setBounds(100, 100, 1000, 525);
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 1000;
+		int alto = 525;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
+	//this.setBounds(100, 100, 1000, 525);
 		this.setLayout(null);
 		j = new JPanel();
 		this.setResizable(false);
