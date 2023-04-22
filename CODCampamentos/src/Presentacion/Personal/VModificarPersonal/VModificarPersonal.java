@@ -128,7 +128,7 @@ public class VModificarPersonal extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VModificarPersonal.this.setVisible(false);
 				Controlador.obtenerInstancia().run(
-						new TPersonal(Integer.parseInt(id.getText()), DNI.getText(), nombre.getText(), tPersonal.getText(), Integer.parseInt(idTurno.getText()),
+						new TPersonal(Integer.parseInt(id.getText()), DNI.getText(), nombre.getText(), Integer.parseInt(tPersonal.getText()), Integer.parseInt(idTurno.getText()),
 								  true), Evento.EModificarPersonalOK);
 				
 			}

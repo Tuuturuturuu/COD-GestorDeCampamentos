@@ -21,6 +21,8 @@ public enum Evento {
 	EVistaPersonalGeneral,
 	EAltaPersonal,
 	EAltaPersonalOK,
+	EAltaCocineroOK,
+	EAltaMonitorOK,
 	EBajaPersonal,    
 	EBajaPersonalOK,
 	EModificarPersonal,

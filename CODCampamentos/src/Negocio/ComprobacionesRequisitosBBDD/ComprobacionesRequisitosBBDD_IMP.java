@@ -80,6 +80,22 @@ public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBB
 		else
 			return true;
 	}
+	
+	//Personal
+	
+	public boolean tipoPersonalValido(String direccionLab) {
+		if (direccionLab.trim().length() > 45 || direccionLab.trim().length() < 1)
+			return false;
+		else
+			return true;
+	}
+	
+	public boolean aniosExp(int anios) {
+		if (anios > 70 && anios < 0)
+			return false;
+		else
+			return true;
+	}
 
 	
 

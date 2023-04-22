@@ -4,9 +4,12 @@ import java.util.Set;
 
 
 import Negocio.Personal.TPersonal;
-
+import Negocio.Personal.TPersonalCocinero;
+import Negocio.Personal.TPersonalMonitor;
 import Presentacion.Personal.VPersonal;
 import Presentacion.Personal.VAltaPersonal.VAltaPersonal;
+import Presentacion.Personal.VAltaPersonalCocinero.VAltaPersonalCocinero;
+import Presentacion.Personal.VAltaPersonalMonitor.VAltaPersonalMonitor;
 import Presentacion.Personal.VBajaPersonal.VBajaPersonal;
 import Presentacion.Personal.VModificarPersonal.VModificarPersonal;
 import Presentacion.Personal.VMostrarTodos.VMostrarTodos;
@@ -48,4 +51,16 @@ public class FactoriaVistaPersonalImp implements FactoriaVistaPersonal {
 
 		return new VPersonal();
 	}
+
+	@Override
+	public VAltaPersonalCocinero getVista_AltaCocinero(TPersonalCocinero tCocinero) {
+				return new VAltaPersonalCocinero(tCocinero);
+	}
+
+	@Override
+	public VAltaPersonalMonitor getVista_Altamonitor(TPersonalMonitor tMonitor) {
+				return new VAltaPersonalMonitor(tMonitor);
+	}
+
+	
 }

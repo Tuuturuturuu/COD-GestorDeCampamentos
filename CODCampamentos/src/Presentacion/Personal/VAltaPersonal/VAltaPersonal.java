@@ -12,12 +12,15 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Negocio.Personal.TPersonal;
+import Negocio.Personal.TPersonalCocinero;
+import Negocio.Personal.TPersonalMonitor;
 import Presentacion.Evento;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
@@ -90,11 +93,13 @@ public class VAltaPersonal extends JFrame implements IGUI {
 		JLabel labelTPersonal = ComponentsBuilder.createLabel("                Tipo de Personal: ", 10, 100, 80, 20,
 				Color.BLACK);
 		panelTPersonal.add(labelTPersonal);
-
-		JTextField tipoPersonal = new JTextField();
-		tipoPersonal.setPreferredSize(new Dimension(250, 30));
-		tipoPersonal.setEditable(true);
+		
+		JComboBox<String> tipoPersonal = new JComboBox<String>();
+		tipoPersonal.addItem("Monitor");
+		tipoPersonal.addItem("Cocinero");
+		tipoPersonal.setPreferredSize(new Dimension(250, 25));
 		panelTPersonal.add(tipoPersonal);
+
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		
@@ -122,10 +127,20 @@ public class VAltaPersonal extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaPersonal.this.setVisible(false);
+				int tipo;
+				if (tipoPersonal.getSelectedItem() == "Monitor") {
+					tipo = 0;
 				Controlador.obtenerInstancia().run(
-						new TPersonal(0, DNI.getText(), nombre.getText(), tipoPersonal.getText(),
-								Integer.parseInt(idTurno.getText()),  true), Evento.EAltaPersonalOK);
-
+						new TPersonalMonitor(0, DNI.getText(), nombre.getText(), tipo,
+								Integer.parseInt(idTurno.getText()),  true, null, null), Evento.EAltaPersonalOK);
+				}else{
+					tipo = 1;
+					Controlador.obtenerInstancia().run(
+							new TPersonalCocinero(0, DNI.getText(), nombre.getText(), tipo,
+									Integer.parseInt(idTurno.getText()),  true, null, 0), Evento.EAltaPersonalOK);
+				}
+				
+				
 			}
 		});
 		panelBotones.add(botonAceptar);

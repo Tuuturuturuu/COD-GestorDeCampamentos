@@ -75,7 +75,7 @@ public class VMostrarUno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarUno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(new TPersonal(Integer.parseInt(id.getText()),null, null, null, null, true),
+				Controlador.obtenerInstancia().run(new TPersonal(Integer.parseInt(id.getText()),null, null, 0, null, true),
 						Evento.EMostrarUnPersonalOK);
 
 			}

@@ -7,6 +7,8 @@ import Negocio.Actividad.TActividad;
 import Negocio.FactoriaNegocio.FactoriaSAImp;
 import Negocio.Material.TMaterial;
 import Negocio.Personal.TPersonal;
+import Negocio.Personal.TPersonalCocinero;
+import Negocio.Personal.TPersonalMonitor;
 import Presentacion.Evento;
 import Presentacion.FactoriaPresentacion.FactoriaVistas;
 
@@ -176,7 +178,27 @@ public class ControladorImp extends Controlador {
 				break;
 				
 			case EAltaPersonalOK:
-				auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().crearPersonal((TPersonal)Obj);
+				auxPersonal = (TPersonal) Obj;
+				if(auxPersonal.getTipo() == 0){
+					gui.getVistaPersonal().getVista_Altamonitor((TPersonalMonitor)auxPersonal);
+				}
+				else{
+					gui.getVistaPersonal().getVista_AltaCocinero((TPersonalCocinero)auxPersonal);
+				}
+				break;
+				
+			case EAltaMonitorOK:
+				auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().crearPersonal((TPersonal) Obj);
+				if(auxPersonal.getIdPersonal() <= 0){
+					gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
+				}
+				else{
+					gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxPersonal.getIdPersonal(), null);
+				}
+				break;
+			
+			case EAltaCocineroOK:
+				auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().crearPersonal((TPersonal) auxPersonal);
 				if(auxPersonal.getIdPersonal() <= 0){
 					gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
 				}

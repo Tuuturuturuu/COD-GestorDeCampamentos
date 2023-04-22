@@ -34,6 +34,13 @@ public class FailureDialog extends JFrame implements IGUI {
 
 	//Errores Personal
 	private static final String error9 = "Error: El personal con dicho ID, no existe";
+	private static final String error16 = "Error: campo especialidad incorrecto";
+	private static final String error17 = "Error: campo estudios incorrecto";
+	private static final String error18 = "Error: campo puesto incorrecto";
+	private static final String error19 = "Error: campo Años de Experiencia incorrecto";
+	private static final String error20 = "Error: El DNI ya se encuentra en la BD";
+
+
 	
 	//Errores Material
 	private static final String error10 = "Error: El almacen introducido con longitud incorrecta";
@@ -110,6 +117,21 @@ public class FailureDialog extends JFrame implements IGUI {
 		case -15:
 			info = new JLabel(error15);
 			break;
+		case -16:
+			info = new JLabel(error16);
+			break;
+		case -17:
+			info = new JLabel(error17);
+			break;
+		case -18:
+			info = new JLabel(error18);
+			break;
+		case -19:
+			info = new JLabel(error19);
+		break;
+		case -20:
+			info = new JLabel(error20);
+		break;
 			
 		default:
 			info = new JLabel("Error en la operacion");

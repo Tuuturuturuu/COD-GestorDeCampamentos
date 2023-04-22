@@ -1,30 +1,34 @@
-/**
- * 
- */
 package Negocio.Personal;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
- * @author airam
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
+
 public class TPersonalMonitor extends TPersonal {
-	public TPersonalMonitor(Integer idPersonal, String dNI, String nombre, String tipoPersonal, Integer idTurno,
-			boolean activo) {
-		super(idPersonal, dNI, nombre, tipoPersonal, idTurno, activo);
+	private String especialidad;
+	private String estudios;
+	public TPersonalMonitor(Integer idPersonal, String dNI, String nombre, int tipo, Integer idTurno,
+			boolean activo, String especialidad, String estudios) {
+		super(idPersonal, dNI, nombre, tipo, idTurno, activo);
+		this.especialidad = especialidad;
+		this.estudios = estudios;
+	}
+	
+	
+	public TPersonalMonitor() {
 		// TODO Auto-generated constructor stub
 	}
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private String especialidad;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private String estudios;
+
+
+	public String getEspecialidad() {
+		return especialidad;
+	}
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
+	}
+	public String getEstudios() {
+		return estudios;
+	}
+	public void setEstudios(String estudios) {
+		this.estudios = estudios;
+	}
+	
+
 }

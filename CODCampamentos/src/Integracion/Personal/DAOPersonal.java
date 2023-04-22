@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Integracion.Personal;
 
 import Negocio.Personal.TPersonal;
@@ -22,4 +19,6 @@ public interface DAOPersonal {
 	public Set<TPersonal> MostrarPersonalPorTurno(TTurno tTurno);
 
 	public TPersonal ModificarPersonal(TPersonal tPersonal);
+
+	public TPersonal buscarPorDNI(TPersonal tPersonal);
 }

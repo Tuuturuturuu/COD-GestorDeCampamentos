@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Negocio.Personal;
 
 public class TPersonal  {
@@ -23,11 +20,11 @@ public class TPersonal  {
 	public void setNombre(String nombre) {
 		Nombre = nombre;
 	}
-	public String getTipoPersonal() {
-		return TipoPersonal;
+	public Integer getTipo() {
+		return tipo;
 	}
-	public void setTipoPersonal(String tipoPersonal) {
-		TipoPersonal = tipoPersonal;
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
 	}
 	public Integer getIdTurno() {
 		return IdTurno;
@@ -35,19 +32,19 @@ public class TPersonal  {
 	public void setIdTurno(Integer idTurno) {
 		IdTurno = idTurno;
 	}
-	public boolean isActivo() {
+	public boolean getIsActivo() {
 		return activo;
 	}
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
-	public TPersonal(Integer idPersonal, String dNI, String nombre, String tipoPersonal, Integer idTurno,
+	public TPersonal(Integer idPersonal, String dNI, String nombre, int tipo, Integer idTurno,
 			boolean activo) {
 		super();
-		IdPersonal = idPersonal;
-		DNI = dNI;
-		Nombre = nombre;
-		TipoPersonal = tipoPersonal;
+		this.IdPersonal = idPersonal;
+		this.DNI = dNI;
+		this.Nombre = nombre;
+		this.tipo = tipo;
 		IdTurno = idTurno;
 		this.activo = activo;
 	}
@@ -57,7 +54,7 @@ public class TPersonal  {
 	private Integer IdPersonal;
 	private String DNI;
 	private String Nombre;
-	private String TipoPersonal;
+	private Integer tipo;
 	private Integer IdTurno;
 	private boolean activo;
 

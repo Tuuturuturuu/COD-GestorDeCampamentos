@@ -76,7 +76,7 @@ public class VBajaPersonal extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VBajaPersonal.this.setVisible(false);
-				Controlador.obtenerInstancia().run(new TPersonal(Integer.parseInt(id.getText()),null, null, null, null, false)
+				Controlador.obtenerInstancia().run(new TPersonal(Integer.parseInt(id.getText()),null, null, 0, null, false)
 						, Evento.EBajaPersonalOK);
 				
 			}

@@ -1,98 +1,73 @@
-/**
- * 
- */
 package Negocio.Personal;
 
 import java.util.Set;
+
+import Integracion.FactoriaIntegracion.FactoriaIntegracionImp;
+import Integracion.Personal.DAOPersonal;
+import Integracion.Turno.DAOTurno;
+import Negocio.ComprobacionesRequisitosBBDD.ComprobacionesRequisitosBBDD_IMP;
 import Negocio.Turno.TTurno;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
 public class SAPersonalImp implements SAPersonal {
-	/** 
-	* (non-Javadoc)
-	* @see SAPersonal#CrearPersonal(TPersonal tPersonal)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer CrearPersonal(TPersonal tPersonal) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	/** 
-	* (non-Javadoc)
-	* @see SAPersonal#EiminarPersonal(TPersonal IdPersonal)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Class EiminarPersonal(TPersonal IdPersonal) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	/** 
-	* (non-Javadoc)
-	* @see SAPersonal#ModificarPersonal(Object tPersonal)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Class ModificarPersonal(Object tPersonal) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	/** 
-	* (non-Javadoc)
-	* @see SAPersonal#MostrarUno(TPersonal IdPersonal)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public TPersonal MostrarUno(TPersonal IdPersonal) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	/** 
-	* (non-Javadoc)
-	* @see SAPersonal#MostrarTodos()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Set<TPersonal> MostrarTodos() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	/** 
-	* (non-Javadoc)
-	* @see SAPersonal#MostrarPersonalPorTurno(TTurno idTurno)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Set<TPersonal> MostrarPersonalPorTurno(TTurno idTurno) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
+	private DAOPersonal daoPersonal = FactoriaIntegracionImp.obtenerInstancia().generaDAOPersonal();
+	private ComprobacionesRequisitosBBDD_IMP compr = (ComprobacionesRequisitosBBDD_IMP) ComprobacionesRequisitosBBDD_IMP
+			.getComprobacionesRequisitosBBDD();
+	private DAOTurno daoTurno = FactoriaIntegracionImp.obtenerInstancia().generaDAOTurno();
+	
 
 	@Override
 	public TPersonal crearPersonal(TPersonal tPersonal) {
-		// TODO Auto-generated method stub
-		return null;
+		TPersonal bbddPersona = null;
+
+	//	TTurno tTurno = daoTurno.MostrarTurno(tPersonal.getIdTurno());
+				
+		/*if ((tTurno.getIdTurno() < 0) || (!tTurno.getActivo())){
+			tPersonal.setIdPersonal(-1);
+		}*/
+		if (tPersonal.getIdPersonal() < 0) {
+			return tPersonal;
+		} else {
+			if (!compr.dniValido(tPersonal.getDNI()) && tPersonal.getIdPersonal() == 0 ){
+				tPersonal.setIdPersonal(-1);
+			}
+			if (!compr.nombreValido(tPersonal.getNombre()) && tPersonal.getIdPersonal() == 0)
+				tPersonal.setIdPersonal(-9);
+
+			if (tPersonal.getIdPersonal() == 0)
+				if (tPersonal.getTipo() == 0) {// Monitor
+					if (!compr.nombreValido(((TPersonalMonitor) tPersonal).getEspecialidad()))
+						tPersonal.setIdPersonal(-16);
+					if(!compr.nombreValido(((TPersonalMonitor) tPersonal).getEstudios())){
+						tPersonal.setIdPersonal(-17);
+					}
+					else {
+						bbddPersona = new TPersonalMonitor();
+						bbddPersona.setIdPersonal(tPersonal.getIdPersonal());
+					}
+				} else { // Cocinero
+					if (!compr.nombreValido(((TPersonalCocinero) tPersonal).getPuestoEnCocina()))
+						tPersonal.setIdPersonal(-18);
+					if (!compr.aniosExp(((TPersonalCocinero) tPersonal).getAniosExperiencia()))
+						tPersonal.setIdPersonal(-19);
+					else {
+						bbddPersona = new TPersonalCocinero();
+						bbddPersona.setIdPersonal(tPersonal.getIdPersonal());
+					}
+				}
+		}
+		if(tPersonal.getIdPersonal() == 0)
+			if (bbddPersona.getIdPersonal() < 0)
+				if (daoPersonal.buscarPorDNI(bbddPersona).getDNI()
+						.equalsIgnoreCase(tPersonal.getDNI()))
+					tPersonal.setIdPersonal(-4);
+
+		if (tPersonal.getIdPersonal() == 0)
+			tPersonal = daoPersonal.CrearPersonal(tPersonal);
+		return tPersonal;
 	}
 
 	@Override
-	public TPersonal eliminarPersonal(TPersonal IdPersonal) {
+	public TPersonal eliminarPersonal(TPersonal tPersonal) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -104,20 +79,21 @@ public class SAPersonalImp implements SAPersonal {
 	}
 
 	@Override
-	public TPersonal mostrarUno(TPersonal IdPersonal) {
+	public TPersonal mostrarUno(TPersonal tPersonal) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Set<TPersonal> mostrarTodos() {
+		return daoPersonal.MostrarTodos();
+	}
+
+	@Override
+	public Set<TPersonal> mostrarPersonalPorTurno(TTurno turno) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public Set<TPersonal> mostrarPersonalPorTurno(TTurno idTurno) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }
