@@ -22,10 +22,9 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error14 = "Error: Id no valido";
 
 	
-	private static final String error5 = "Error: Ya estaba desactivada";
 	private static final String error5 = "Error: Dicho objeto se encuentra inactivo";
 	private static final String error6 = "Error: Campo unico ya en uso";
-	private static final String error10 = "Error: Fallo a la hora de borrar en la BD";
+	private static final String error15 = "Error: Fallo a la hora de borrar en la BD";
 
 	//Errores Actividad
 	private static final String error4 = "Error: Actividad ya presente en la BD";
@@ -107,6 +106,9 @@ public class FailureDialog extends JFrame implements IGUI {
 			break;
 		case -14:
 			info = new JLabel(error14);
+			break;
+		case -15:
+			info = new JLabel(error15);
 			break;
 			
 		default:

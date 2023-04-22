@@ -96,7 +96,7 @@ public class DAOActividadImp implements DAOActividad {
 			ps.setInt(2, tActividad.getIdActividad());
 			int result = ps.executeUpdate();
 			if (result < 1)
-				tActividad.setIdActividad(-10);
+				tActividad.setIdActividad(-15);
 			ps.close();
 			conexion.close();
 		} catch (SQLException | ClassNotFoundException ex) {
