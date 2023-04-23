@@ -33,6 +33,11 @@ public class SAMaterialImp implements SAMaterial {
 		}
 		if (tMaterial.getId() == 0)
 			tMaterial = daoMaterial.crearMaterial(tMaterial);
+			//Comprubas que existe la actividad
+		
+			//Vinculas
+		
+			//Si no existe
 		return tMaterial;
 	}
 

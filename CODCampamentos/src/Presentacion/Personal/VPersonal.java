@@ -36,7 +36,6 @@ public class VPersonal extends JFrame{
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);
-	//this.setBounds(100, 100, 1000, 525);
 		this.setLayout(null);
 		j = new JPanel();
 		this.setResizable(false);

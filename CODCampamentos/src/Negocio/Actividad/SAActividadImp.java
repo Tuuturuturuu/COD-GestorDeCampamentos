@@ -57,11 +57,11 @@ public class SAActividadImp implements SAActividad{
 		// nombre
 		if (tActividadBBDD.getIdActividad() == -1)
 			tActividad.setIdActividad(-1);
-
-		// no esta activo
-		if (tActividadBBDD.getActivo() == false)
-			tActividad.setIdActividad(-5);
-
+		else{
+			// no esta activo
+			if (tActividadBBDD.getActivo() == false)
+				tActividad.setIdActividad(-5);
+		}
 		// se quiere cambiar el nombre
 		if (tActividad.getNombre().equals("") && tActividad.getIdActividad() > 0) {
 			// los campos modificables que vengan en nulo los rellenamos con los
@@ -121,7 +121,6 @@ public class SAActividadImp implements SAActividad{
 				ActividadesMaterial = daoActividadMaterial.BuscarporActividad(tActividad.getIdActividad());
 				//Recorremos todos esos elementos y los vamos desvinculando
 				for (TActividadMaterial actividadMaterial : ActividadesMaterial) {
-				    int idActividad = actividadMaterial.getIdActividad();
 				    //Desvinculamos pasando el id del Material y de la Actividad para asegurarnos que es correcto
 				    correct = daoActividadMaterial.desvincular(actividadMaterial.getIdActividad(), actividadMaterial.getIdMaterial());
 				    if(correct == 1) i++;
@@ -214,7 +213,5 @@ public class SAActividadImp implements SAActividad{
 		
 		return Actividades;
 	}
-	
-
 
 }
