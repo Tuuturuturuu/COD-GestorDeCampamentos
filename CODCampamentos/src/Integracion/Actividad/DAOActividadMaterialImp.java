@@ -18,10 +18,27 @@ import Integracion.Connection.ConnectorBD;
 public class DAOActividadMaterialImp implements DAOActividadMaterial {	
 	
 	public Integer vincular(TActividadMaterial actividadMaterial) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		Integer correct = 0;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("INSERT INTO ActividadMaterial (idActividad, idMaterial) VALUES (?,?)",
+					Statement.RETURN_GENERATED_KEYS);
+
+			ps.setInt(1, actividadMaterial.getIdActividad());
+			ps.setInt(2, actividadMaterial.getIdMaterial());
+			int result = ps.executeUpdate();
+			if (result == 1)
+				correct = 1;
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return correct;
 	}
 
 	

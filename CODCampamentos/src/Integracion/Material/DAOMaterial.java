@@ -17,6 +17,7 @@ public interface DAOMaterial {
 	
 	//AÑADIDOS PARA NEGOCIO
 	public TMaterial buscarMaterialID(TMaterial tMaterial);
+	public TMaterial buscarMaterialNombre(TMaterial tMaterial);
 
 	public Set<TMaterial> listarMaterialPorActividad(int idActividad);
 	

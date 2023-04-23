@@ -30,15 +30,20 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error7 = "Error: Numero de plazas con longitud incorrecta";
 	private static final String error8 = "Error: El precio con longitud incorrecta";
 	private static final String error22 = "Error: Fallo en desvincular Actividad y Material";
+	private static final String error23= "Error: No existe actividad con dicho ID";
+	private static final String error25= "Error: La actividad esta dada de baja";
+
+
 
 	//Errores Personal
 	private static final String error9 = "Error: El personal con dicho ID, no existe";
 	private static final String error16 = "Error: campo especialidad incorrecto";
 	private static final String error17 = "Error: campo estudios incorrecto";
 	private static final String error18 = "Error: campo puesto incorrecto";
-	private static final String error19 = "Error: campo Años de Experiencia incorrecto";
+	private static final String error19 = "Error: campo Aï¿½os de Experiencia incorrecto";
 	private static final String error20 = "Error: El DNI ya se encuentra en la BD";
 	private static final String error21 = "Error: Ya estaba desactivado";
+	private static final String error24 = "Error: Fallo a la hora de vincular Actividad con el Material";
 
 
 	
@@ -47,6 +52,8 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error11 = "Error: Numero de existencias introducido con longitud incorrecta";
 	private static final String error12 = "Error: El material esta dado de baja";
 	private static final String error13 = "Error: No hay ningun material para ese id de Actividad";
+	private static final String error26 = "Error: Ya hay material con este nombre";
+
 	
 	private int id;
 
@@ -137,6 +144,18 @@ public class FailureDialog extends JFrame implements IGUI {
 		break;
 		case -22:
 			info = new JLabel(error22);
+		break;
+		case -23:
+			info = new JLabel(error23);
+		break;
+		case -24:
+			info = new JLabel(error24);
+			break;
+		case -25:
+			info = new JLabel(error25);
+			break;
+		case -26:
+			info = new JLabel(error26);
 		break;
 		default:
 			info = new JLabel("Error en la operacion");

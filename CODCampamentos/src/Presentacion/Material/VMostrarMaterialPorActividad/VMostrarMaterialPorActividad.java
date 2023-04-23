@@ -2,9 +2,10 @@ package Presentacion.Material.VMostrarMaterialPorActividad;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.Set;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Negocio.Material.TMaterial;
 import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
@@ -23,7 +25,12 @@ public class VMostrarMaterialPorActividad extends JFrame implements IGUI{
 	
 	public VMostrarMaterialPorActividad(){
 		super("Mostrar Material Por Actividad");
-		this.setBounds(100, 100, 430, 330);
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 430;
+		int alto = 330;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

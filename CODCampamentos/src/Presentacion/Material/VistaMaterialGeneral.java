@@ -1,6 +1,8 @@
 package Presentacion.Material;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +21,7 @@ public class VistaMaterialGeneral extends JFrame{
 	private JButton altaMaterial_Button;
 	private JButton bajaMaterial_Button;
 	private JButton modificarMaterial_Button;
+	private JButton añadirActividad_Button;
 	private JButton mostrarMaterial_Button;
 	private JButton mostrarTodosMaterial_Button;
 	private JButton mostrarMaterialPorActividad;
@@ -29,7 +32,12 @@ public class VistaMaterialGeneral extends JFrame{
 
 	public VistaMaterialGeneral() {
 		super("Gestor de Campamentos");
-		this.setBounds(100, 100, 1000, 525);
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 1000;
+		int alto = 525;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
 		this.setLayout(null);
 		j = new JPanel();
 		this.setResizable(false);
@@ -134,6 +142,20 @@ public class VistaMaterialGeneral extends JFrame{
 		});
 		mostrarMaterialPorActividad.setVisible(true);
 		this.add(mostrarMaterialPorActividad);
+		
+		//AÑADIR ACTIVIDAD
+		añadirActividad_Button = ComponentsBuilder.createButton("Añadir Actividad", 715, 120, 185, 100);
+		añadirActividad_Button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VistaMaterialGeneral.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tMaterial, Evento.EAnadirActividad);
+			}
+		});
+		
+		añadirActividad_Button.setVisible(true);
+		this.add(añadirActividad_Button);
 
 		backButton = ComponentsBuilder.createBackButton();
 		backButton.addActionListener(new ActionListener() {

@@ -192,12 +192,23 @@ public class ControladorImp extends Controlador {
 			gui.getVistaMaterial().getVista_MostrarMaterialPorActividad();
 			break;
 		case EMostrarUnMaterialPorActividadOK:
-			Set<TMaterial> listaMateriales2=FactoriaSAImp.obtenerInstancia().generarSAMaterial().listarMaterialPorActividad((int)Obj);
-			if(listaMateriales2 == null){
-				gui.getVistaGeneralAux().getFailureDialg().actualizar(-13, null);
+//			Set<TMaterial> listaMateriales2=FactoriaSAImp.obtenerInstancia().generarSAMaterial().listarMaterialPorActividad((int)Obj);
+//			if(listaMateriales2 == null){
+//				gui.getVistaGeneralAux().getFailureDialg().actualizar(-13, null);
+//			}
+//			else{
+//				gui.getVistaMaterial().getVista_MostrarTodosMateriales(listaMateriales2);
+//			}
+			Set<TMaterial> Materiales = FactoriaSAImp.obtenerInstancia().generarSAMaterial().listarMaterialPorActividad((Integer)Obj);
+			if(Materiales.size() == 1){
+				 TMaterial materialUnico = Materiales.iterator().next();
+				 if(materialUnico.getId() <= 0)
+					 gui.getVistaGeneralAux().getFailureDialg().actualizar(materialUnico.getId(), null);
+				 else
+					gui.getVistaMaterial().getVista_MostrarTodosMateriales(Materiales);
 			}
 			else{
-				gui.getVistaMaterial().getVista_MostrarTodosMateriales(listaMateriales2);
+				gui.getVistaMaterial().getVista_MostrarTodosMateriales(Materiales);
 			}
 			break;
 			

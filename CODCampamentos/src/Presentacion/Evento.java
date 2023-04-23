@@ -50,6 +50,7 @@ public enum Evento {
 	EMostrarTodosLosMateriales,
 	EMostrarMaterialPorActividad,
 	EMostrarUnMaterialPorActividadOK, 
+	EAnadirActividad, 
 	
 	//Turno
 	EVistaTurnoGeneral,      

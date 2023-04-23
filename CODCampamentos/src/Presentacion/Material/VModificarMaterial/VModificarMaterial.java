@@ -10,6 +10,7 @@ import Presentacion.Controlador.Controlador;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
@@ -23,15 +24,20 @@ import javax.swing.JTextField;
 import Negocio.Material.TMaterial;
 
 public class VModificarMaterial extends JFrame implements IGUI {
-	public VModificarMaterial(){
+	public VModificarMaterial() {
 		super("Modificar Material");
-		this.setBounds(100, 100, 430, 330);
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 700;
+		int alto = 525;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	public void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -39,8 +45,8 @@ public class VModificarMaterial extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JLabel msgIntroIDCabecera = ComponentsBuilder
-				.createLabel("Introduzca el ID del Material que quiere modificar ", 1, 10, 80, 20, Color.BLACK);
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel("Introduzca el ID del Material que quiere modificar ",
+				1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -71,8 +77,8 @@ public class VModificarMaterial extends JFrame implements IGUI {
 		panelNombre.add(nombre);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		//NALMACEN
+
+		// NALMACEN
 		JPanel panelNAlmacen = new JPanel();
 		mainPanel.add(panelNAlmacen);
 
@@ -83,10 +89,10 @@ public class VModificarMaterial extends JFrame implements IGUI {
 		nAlmacen.setPreferredSize(new Dimension(250, 30));
 		nAlmacen.setEditable(true);
 		panelNAlmacen.add(nAlmacen);
-		
+
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		 //EXISTENCIAS
+
+		// EXISTENCIAS
 		JPanel panelExistencias = new JPanel();
 		mainPanel.add(panelExistencias);
 
@@ -97,10 +103,10 @@ public class VModificarMaterial extends JFrame implements IGUI {
 		existencias.setPreferredSize(new Dimension(250, 30));
 		existencias.setEditable(true);
 		panelExistencias.add(existencias);
-		
+
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		 //ID ACTIVIDAD
+
+		// ID ACTIVIDAD
 		JPanel panelIDActividad = new JPanel();
 		mainPanel.add(panelIDActividad);
 
@@ -125,9 +131,12 @@ public class VModificarMaterial extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VModificarMaterial.this.setVisible(false);
 				Controlador.obtenerInstancia().run(
-						new TMaterial(Integer.parseInt(id.getText()), nombre.getText(), Integer.parseInt(nAlmacen.getText()), Integer.parseInt(existencias.getText()),
-								Integer.parseInt(idActividad.getText()),  true), Evento.EModificarMaterialOK);
-				
+						new TMaterial(Integer.parseInt(id.getText()), nombre.getText() != null ? nombre.getText() : "",
+								!nAlmacen.getText().isEmpty()  ? Integer.parseInt(nAlmacen.getText()) : 0,
+								!existencias.getText().isEmpty() ? Integer.parseInt(existencias.getText()) : 0,
+								!idActividad.getText().isEmpty() ? Integer.parseInt(idActividad.getText()) : 0, true),
+						Evento.EModificarMaterialOK);
+
 			}
 		});
 		panelBotones.add(botonAceptar);
@@ -152,6 +161,6 @@ public class VModificarMaterial extends JFrame implements IGUI {
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

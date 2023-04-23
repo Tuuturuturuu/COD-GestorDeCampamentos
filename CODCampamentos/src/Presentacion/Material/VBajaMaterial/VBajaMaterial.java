@@ -17,6 +17,7 @@ import javax.swing.JDialog;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
@@ -37,7 +38,12 @@ public class VBajaMaterial extends JFrame implements IGUI {
 	
 	public VBajaMaterial(){
 		super("Eliminar Material");
-		this.setBounds(100, 100, 430, 330);
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 430;
+		int alto = 330;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

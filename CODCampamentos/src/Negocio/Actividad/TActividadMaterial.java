@@ -9,6 +9,9 @@ public class TActividadMaterial {
 		this.idActividad = idActividad;
 		this.idMaterial = idMaterial;
 	}
+	public TActividadMaterial() {
+		// TODO Auto-generated constructor stub
+	}
 	private Integer idActividad;
 	private Integer idMaterial;
 
