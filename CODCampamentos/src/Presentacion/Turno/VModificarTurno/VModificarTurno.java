@@ -76,10 +76,12 @@ public class VModificarTurno extends JFrame implements IGUI {
 		botonAceptar.setBounds(75, 50, 100, 100);
 		botonAceptar.addActionListener(new ActionListener() {
 
+			
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VModificarTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(new TTurno(nombre.getText(), null, 0, 0,  true), Evento.EModifTurnoOK);
+				//Controlador.obtenerInstancia().run(new TTurno(nombre.getText(), null, 0, 0,  true), Evento.EModifTurnoOK);
 			}
 		});
 		panelBotones.add(botonAceptar);

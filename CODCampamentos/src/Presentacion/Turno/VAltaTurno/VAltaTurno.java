@@ -81,6 +81,7 @@ public class VAltaTurno extends JFrame implements IGUI {
 				VAltaTurno.this.setVisible(false);
 				Controlador.obtenerInstancia().run(new TTurno(nombre.getText(), null, 0, 0, true), Evento.EAltaTurnoOK);
 			}
+			
 		});
 		panelBotones.add(botonAceptar);
 

@@ -71,6 +71,7 @@ public class VMostrarTurno extends JFrame implements IGUI {
 				VMostrarTurno.this.setVisible(false);
 				//Controlador.obtenerInstancia().run(new TTurno(Integer.parseInt(id.getText()),null, null, null, null, null, true),Evento.EMostrarUnActividadOK);
 
+				
 			}
 		});
 		panelBotones.add(botonAceptar);

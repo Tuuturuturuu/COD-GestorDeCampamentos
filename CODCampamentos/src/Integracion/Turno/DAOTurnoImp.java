@@ -18,6 +18,7 @@ public class DAOTurnoImp implements DAOTurno {
 	* @see DAOTurno#CrearTurno(TTurno tTurno)
 	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	*/
+	
 	public Integer CrearTurno(TTurno tTurno) {
 		// begin-user-code
 		// TODO Auto-generated method stub

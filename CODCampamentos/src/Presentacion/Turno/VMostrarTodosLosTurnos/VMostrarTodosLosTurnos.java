@@ -47,6 +47,7 @@ public class VMostrarTodosLosTurnos extends JFrame implements IGUI {
 
 		JButton botonCancelar = new JButton("Cancelar");
 		botonCancelar.setBounds(200, 50, 100, 100);
+		
 		botonCancelar.addActionListener(new ActionListener() {
 
 			@Override

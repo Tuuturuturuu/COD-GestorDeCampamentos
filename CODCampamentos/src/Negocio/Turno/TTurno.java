@@ -60,6 +60,7 @@ public class TTurno {
 	/*public void setActivo(Integer activo) {
 		this.Activo=activo;
 	}*/
+	
 
 	public void setId(Integer IdTurno) {
 	this.IdTurno= IdTurno;
