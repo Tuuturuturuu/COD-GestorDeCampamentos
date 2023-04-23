@@ -8,6 +8,10 @@ import Presentacion.Actividad.VAltaActividad.VAltaActividad;
 import Presentacion.Actividad.VBajaActividad.VBajaActividad;
 import Presentacion.Actividad.VModificarActividad.VModificarActividad;
 import Presentacion.Actividad.VMostrarActividad.VMostrarActividad;
+import Presentacion.Actividad.VMostrarActividadesPorMaterial.MostrarActividadPorMaterialOK;
+import Presentacion.Actividad.VMostrarActividadesPorMaterial.VMostrarActividadesPorMaterial;
+import Presentacion.Actividad.VMostrarActividadesPorPersonal.VMostrarActividadesPorPersonal;
+import Presentacion.Actividad.VMostrarActividadesPorPersonal.VMostrarActividadesPorPersonalOK;
 import Presentacion.Actividad.VMostrarTodasActividades.VMostrarTodasActividades;
 
 public class FactoriaVistaActividadImp implements FactoriaVistaActividad {
@@ -47,5 +51,28 @@ public class FactoriaVistaActividadImp implements FactoriaVistaActividad {
 
 		return new VistaActividadGeneral();
 	}
+
+	public VMostrarActividadesPorPersonal getVista_MostrarActividadPorPersonal() {
+		return new VMostrarActividadesPorPersonal();
+	}
+
+	@Override
+	public VMostrarActividadesPorPersonalOK getVista_MostrarActividadPorPersonalOK(Set<TActividad> listaActividades) {
+		// TODO Auto-generated method stub
+		return  new VMostrarActividadesPorPersonalOK(listaActividades);
+	}
+
+	@Override
+	public VMostrarActividadesPorMaterial getVista_MostrarActividadPorMaterial() {
+		// TODO Auto-generated method stub
+		return new VMostrarActividadesPorMaterial();
+	}
+
+	@Override
+	public MostrarActividadPorMaterialOK getVista_MostrarActividadPorMaterialOK(Set<TActividad> listaActividad) {
+		// TODO Auto-generated method stub
+		return new MostrarActividadPorMaterialOK(listaActividad);
+	}
+
 
 }

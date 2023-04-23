@@ -14,7 +14,7 @@ import java.util.Set;
 
 	public Set<TActividad> mostrarActividades();
 	
-	public Set<TActividad> mostrarActividadesporPersonal(TActividadMaterial tActividadMaterial);
+	public Set<TActividad> mostrarActividadesporPersonal(Integer IdPersonal );
 	
-	public Set<TActividad> mostarActividadporMaterial(TActividad tActividad);
+	public Set<TActividad> mostarActividadporMaterial(Integer IdMaterial);
 }

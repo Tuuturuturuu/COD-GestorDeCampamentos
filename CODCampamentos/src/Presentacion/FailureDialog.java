@@ -20,8 +20,6 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error1 = "Error: ID no encontrado en la BD";
 	private static final String error2 = "Error: Nombre con longitud incorrecta";
 	private static final String error14 = "Error: Id no valido";
-
-	
 	private static final String error5 = "Error: Dicho objeto se encuentra inactivo";
 	private static final String error6 = "Error: Campo unico ya en uso";
 	private static final String error15 = "Error: Fallo a la hora de borrar en la BD";
@@ -31,6 +29,7 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error3 = "Error: Lugar especificado con longitud incorrecta";
 	private static final String error7 = "Error: Numero de plazas con longitud incorrecta";
 	private static final String error8 = "Error: El precio con longitud incorrecta";
+	private static final String error22 = "Error: Fallo en desvincular Actividad y Material";
 
 	//Errores Personal
 	private static final String error9 = "Error: El personal con dicho ID, no existe";
@@ -136,7 +135,9 @@ public class FailureDialog extends JFrame implements IGUI {
 		case -21:
 			info = new JLabel(error21);
 		break;
-			
+		case -22:
+			info = new JLabel(error22);
+		break;
 		default:
 			info = new JLabel("Error en la operacion");
 		}

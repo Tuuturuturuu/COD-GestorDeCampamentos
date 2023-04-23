@@ -1,11 +1,16 @@
 package Negocio.Actividad;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import Integracion.Actividad.DAOActividad;
+import Integracion.Actividad.DAOActividadMaterial;
 import Integracion.FactoriaIntegracion.FactoriaIntegracionImp;
+import Integracion.Material.DAOMaterial;
 import Integracion.Personal.DAOPersonal;
 import Negocio.ComprobacionesRequisitosBBDD.ComprobacionesRequisitosBBDD_IMP;
+import Negocio.Material.TMaterial;
+import Negocio.Personal.TPersonal;
 
 
 public class SAActividadImp implements SAActividad{
@@ -13,8 +18,8 @@ public class SAActividadImp implements SAActividad{
 			.getComprobacionesRequisitosBBDD();
 	private DAOActividad daoActividad = FactoriaIntegracionImp.obtenerInstancia().generaDAOActividad();
 	private DAOPersonal daoPersonal = FactoriaIntegracionImp.obtenerInstancia().generaDAOPersonal();
-	
-
+	private DAOMaterial daoMaterial = FactoriaIntegracionImp.obtenerInstancia().generaDAOMaterial();
+	private DAOActividadMaterial daoActividadMaterial = FactoriaIntegracionImp.obtenerInstancia().generaDAOActividadMaterial();
 	@Override
 	public TActividad crearActividad(TActividad tActividad) {
 		TActividad actividadBBDD = new TActividad();
@@ -106,10 +111,26 @@ public class SAActividadImp implements SAActividad{
 	public TActividad borrarActividad(TActividad tActividad) {
 		TActividad tActividadbbdd = new TActividad();
 		tActividadbbdd = daoActividad.buscarActividadID(tActividad);
-		// si no ha encontrado la Cliente el id sera -1
+		Set<TActividadMaterial> ActividadesMaterial = new HashSet<TActividadMaterial>();
+		int i = 0;
+		Integer correct;
+		// si no ha encontrado la Actividad el id sera -1
 		if (tActividadbbdd.getIdActividad() != -1){
-			if (tActividadbbdd.getActivo() == true)
-				tActividad = daoActividad.borrarActividad(tActividad);
+			if (tActividadbbdd.getActivo() == true){
+				//Conseguimos todos los elementos ActividadMaterial que tengan el idActividad en común
+				ActividadesMaterial = daoActividadMaterial.BuscarporActividad(tActividad.getIdActividad());
+				//Recorremos todos esos elementos y los vamos desvinculando
+				for (TActividadMaterial actividadMaterial : ActividadesMaterial) {
+				    int idActividad = actividadMaterial.getIdActividad();
+				    //Desvinculamos pasando el id del Material y de la Actividad para asegurarnos que es correcto
+				    correct = daoActividadMaterial.desvincular(actividadMaterial.getIdActividad(), actividadMaterial.getIdMaterial());
+				    if(correct == 1) i++;
+				}
+				if(ActividadesMaterial.size() == i) //Si hemos desvinculado todos los elementos correctamente, entonces damos de baja a dicha actividad, caso contrario enviamos un error
+					tActividad = daoActividad.borrarActividad(tActividad);
+				else
+					tActividad.setIdActividad(-22);
+			}
 			else
 				tActividad.setIdActividad(-5); // ya estaba desactivada
 		}
@@ -131,15 +152,67 @@ public class SAActividadImp implements SAActividad{
 	}
 
 	@Override
-	public Set<TActividad> mostrarActividadesporPersonal(TActividadMaterial tActividadMaterial) {
+	public Set<TActividad> mostrarActividadesporPersonal(Integer IdPersonal) {
+		
+		Set<TActividad> Actividades = new HashSet<TActividad>();
+		
+		//Comprobar que el Personal existe
+		TPersonal tPersonalBuscado = daoPersonal.MostrarUno(IdPersonal);
+		TActividad tActividad = new TActividad();
+		if(tPersonalBuscado.getIdPersonal() <= 0){
+			tActividad.setIdActividad(-1);
+			Actividades.add(tActividad);	
+		}else{
+			//Comprobar que el personal esta activo
+			if(tPersonalBuscado.getIsActivo() == false){
+				tActividad.setIdActividad(-5);
+				Actividades.add(tActividad);
+			}
+			else{
+				//Buscar las actividades de dicho personal
+				Actividades = daoActividad.mostrarActividadesporPersonal(IdPersonal);
+			}
+		}
+	
 		// TODO Auto-generated method stub
-		return null;
+		return Actividades;
 	}
 
 	@Override
-	public Set<TActividad> mostarActividadporMaterial(TActividad tActividad) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<TActividad> mostarActividadporMaterial(Integer IdMaterial) {
+
+		Set<TActividad> Actividades = new HashSet<TActividad>();
+		Set<TActividadMaterial> ActividadesMaterial = new HashSet<TActividadMaterial>();
+
+		//Comprobar que el material existe
+		TMaterial tMaterialBuscado = new TMaterial(IdMaterial,null,0,0,0,false);
+		tMaterialBuscado = daoMaterial.buscarMaterialID(tMaterialBuscado);
+		if(tMaterialBuscado.getId() <= 0){
+			TActividad tActividad = new TActividad();
+			tActividad.setIdActividad(-1);
+			Actividades.add(tActividad);	
+		}else{
+			//Comprobar que el material esta activo
+			if(tMaterialBuscado.getActivo() == false){
+				TActividad tActividad = new TActividad();
+				tActividad.setIdActividad(-12);
+				Actividades.add(tActividad);
+			}else{
+				//Buscar en DAOActividadMaterial
+				ActividadesMaterial = daoActividadMaterial.BuscarporMaterial(IdMaterial);
+				for (TActividadMaterial actividadMaterial : ActividadesMaterial) {
+				    int idActividad = actividadMaterial.getIdActividad();
+				    // Buscar cada actividad
+					TActividad tActividad = new TActividad();
+				    tActividad.setIdActividad(idActividad);
+				    TActividad tActividadAux = daoActividad.mostrarActividad(tActividad);
+					Actividades.add(tActividadAux);	
+				}
+			}			
+		}
+
+		
+		return Actividades;
 	}
 	
 

@@ -23,6 +23,8 @@ public class VistaActividadGeneral extends JFrame{
 	private JButton modificarActividad_Button;
 	private JButton mostrarActividad_Button;
 	private JButton mostrarTodasActividades_Button;
+	private JButton mostrarTodasActividadesPersonal_Button;
+	private JButton mostrarTodasActividadesMaterial_Button;
 	private JButton backButton;
 
 	private JPanel j;
@@ -54,8 +56,7 @@ public class VistaActividadGeneral extends JFrame{
 		JLabel label = ComponentsBuilder.createLabel("Actividad", 250, 30, 500, 50, Color.BLACK);
 		this.add(label);
 
-		altaActividad_Button = ComponentsBuilder.createButton("Alta Actividad", 100, 120, 185, 100);
-
+		altaActividad_Button = ComponentsBuilder.createButton("Alta Actividad", 100, 100, 185, 100);
 		altaActividad_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -68,7 +69,7 @@ public class VistaActividadGeneral extends JFrame{
 		altaActividad_Button.setVisible(true);
 		this.add(altaActividad_Button);
 
-		bajaActividad_Button = ComponentsBuilder.createButton("Baja Actividad", 407, 120, 185, 100);
+		bajaActividad_Button = ComponentsBuilder.createButton("Baja Actividad", 300, 100, 185, 100);
 		bajaActividad_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -82,7 +83,7 @@ public class VistaActividadGeneral extends JFrame{
 		bajaActividad_Button.setVisible(true);
 		this.add(bajaActividad_Button);
 
-		modificarActividad_Button = ComponentsBuilder.createButton("Modificar Actividad", 715, 120, 185, 100);
+		modificarActividad_Button = ComponentsBuilder.createButton("Modificar Actividad", 500, 100, 185, 100);
 		modificarActividad_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -95,7 +96,7 @@ public class VistaActividadGeneral extends JFrame{
 		modificarActividad_Button.setVisible(true);
 		this.add(modificarActividad_Button);
 
-		mostrarActividad_Button = ComponentsBuilder.createButton("Mostrar una Actividad", 213, 290, 185, 100);
+		mostrarActividad_Button = ComponentsBuilder.createButton("Mostrar una Actividad", 700, 100, 185, 100);
 		mostrarActividad_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -108,7 +109,7 @@ public class VistaActividadGeneral extends JFrame{
 		mostrarActividad_Button.setVisible(true);
 		this.add(mostrarActividad_Button);
 
-		mostrarTodasActividades_Button = ComponentsBuilder.createButton("Mostrar todos las Actividades", 602, 290, 200, 100);
+		mostrarTodasActividades_Button = ComponentsBuilder.createButton("Mostrar todos las Actividades", 150, 250, 200, 100);
 		mostrarTodasActividades_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -118,8 +119,35 @@ public class VistaActividadGeneral extends JFrame{
 
 			}
 		});
+		
 		mostrarTodasActividades_Button.setVisible(true);
 		this.add(mostrarTodasActividades_Button);
+		
+		mostrarTodasActividadesPersonal_Button = ComponentsBuilder.createButton("Mostrar Actividades por Personal", 400, 250, 200, 100);
+		mostrarTodasActividadesPersonal_Button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VistaActividadGeneral.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tActividad, Evento.EMostrarTodosLosActividadporPersonal);
+
+			}
+		});
+		mostrarTodasActividadesPersonal_Button.setVisible(true);
+		this.add(mostrarTodasActividadesPersonal_Button);
+
+		mostrarTodasActividadesMaterial_Button = ComponentsBuilder.createButton("Mostrar Actividades por Material", 700, 250, 200, 100);
+		mostrarTodasActividadesMaterial_Button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VistaActividadGeneral.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tActividad, Evento.EMostrarTodosLosActividadporMaterial);
+
+			}
+		});
+		mostrarTodasActividadesMaterial_Button.setVisible(true);
+		this.add(mostrarTodasActividadesMaterial_Button);
 
 		backButton = ComponentsBuilder.createBackButton();
 		backButton.addActionListener(new ActionListener() {

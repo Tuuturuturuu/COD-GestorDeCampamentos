@@ -16,7 +16,10 @@ public enum Evento {
 	EMostrarUnActividad,
 	EMostrarUnActividadOK,
 	EMostrarTodosLosActividad,
-	
+	EMostrarTodosLosActividadporPersonal,
+	EMostrarTodosLosActividadporPersonalOK,
+	EMostrarTodosLosActividadporMaterial,
+	EMostrarTodosLosActividadporMaterialOK,
 	//Personal
 	EVistaPersonalGeneral,
 	EAltaPersonal,

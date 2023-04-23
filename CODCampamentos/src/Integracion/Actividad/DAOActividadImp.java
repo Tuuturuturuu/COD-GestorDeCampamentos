@@ -164,14 +164,34 @@ public class DAOActividadImp implements DAOActividad {
 	}
 
 	@Override
-	public Set<TActividad> mostrarActividadesporPersonal(TActividadMaterial tActividadMaterial) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<TActividad> mostrarActividadesporPersonal(Integer IdPersonal) {
+		Set<TActividad> ActividadesPersonal = new HashSet<TActividad>();
+		TActividad e;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("SELECT * FROM Actividad WHERE IDPersonal = ?");
+			ps.setInt(1, IdPersonal);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				e = new TActividad(rs.getInt("IdActividad"), rs.getString("Nombre"), rs.getString("lugar"),
+						rs.getInt("NumPlazas"),rs.getFloat("Precio"), rs.getInt("IdPersonal"), rs.getBoolean("Activo"));
+				ActividadesPersonal.add(e);
+			}
+			rs.close();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return ActividadesPersonal;
 	}
 
 
 	@Override
-	public Set<TActividad> mostrarActividadporMaterial(TActividad tActividad) {
+	public Set<TActividad> mostrarActividadporMaterial(TActividadMaterial tActividadMaterial) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -196,7 +216,7 @@ public class DAOActividadImp implements DAOActividad {
 				tActividadBBDD.setIdPersonal(rs.getInt(6));
 				tActividadBBDD.setActivo(rs.getBoolean(7));
 			} else
-				tActividad.setIdActividad(-1);
+				tActividadBBDD.setIdActividad(-1);
 
 
 			rs.close();

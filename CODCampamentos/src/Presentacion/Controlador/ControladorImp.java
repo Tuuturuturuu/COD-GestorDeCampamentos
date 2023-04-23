@@ -1,6 +1,7 @@
 
 package Presentacion.Controlador;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import Negocio.Actividad.TActividad;
@@ -97,6 +98,38 @@ public class ControladorImp extends Controlador {
 			Set<TActividad> listaActividades = FactoriaSAImp.obtenerInstancia().generarSAActividad().mostrarActividades();
 			gui.getVistaActividad().getVista_MostrarTodosActividad(listaActividades);
 			break;
+		case EMostrarTodosLosActividadporMaterial:
+			gui.getVistaActividad().getVista_MostrarActividadPorMaterial();
+			break;
+		case EMostrarTodosLosActividadporMaterialOK:
+			Set<TActividad> Actividades = FactoriaSAImp.obtenerInstancia().generarSAActividad().mostarActividadporMaterial((Integer)Obj);
+			if(Actividades.size() == 1){
+				 TActividad actividadUnica = Actividades.iterator().next();
+				 if(actividadUnica.getIdActividad() <= 0)
+					 gui.getVistaGeneralAux().getFailureDialg().actualizar(actividadUnica.getIdActividad(), null);
+				 else
+					gui.getVistaActividad().getVista_MostrarActividadPorMaterialOK(Actividades);
+			}
+			else{
+				gui.getVistaActividad().getVista_MostrarActividadPorMaterialOK(Actividades);
+			}
+			break;
+		case EMostrarTodosLosActividadporPersonal:
+			gui.getVistaActividad().getVista_MostrarActividadPorPersonal();
+			break;
+		case EMostrarTodosLosActividadporPersonalOK:
+			Set<TActividad> listaActividadesPersonal = FactoriaSAImp.obtenerInstancia().generarSAActividad().mostrarActividadesporPersonal((Integer)Obj);
+			if(listaActividadesPersonal.size() == 1){
+				 TActividad actividadUnica = listaActividadesPersonal.iterator().next();
+				 if(actividadUnica.getIdActividad() <= 0)
+					 gui.getVistaGeneralAux().getFailureDialg().actualizar(actividadUnica.getIdActividad(), null);
+				 else
+					gui.getVistaActividad().getVista_MostrarActividadPorPersonalOK(listaActividadesPersonal);
+			}
+			else{
+				gui.getVistaActividad().getVista_MostrarActividadPorPersonalOK(listaActividadesPersonal);
+			}
+			break;			
 			
 			//MATERIAL
 		case EVistaMaterialGeneral:

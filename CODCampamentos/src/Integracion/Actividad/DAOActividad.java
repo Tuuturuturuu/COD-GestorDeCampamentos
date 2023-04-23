@@ -17,9 +17,9 @@ public interface DAOActividad {
 
 	public Set<TActividad> mostrarActividades();
 
-	public Set<TActividad> mostrarActividadesporPersonal(TActividadMaterial tActividadMaterial);
+	public Set<TActividad> mostrarActividadesporPersonal(Integer IdPersonal);
 
-	public Set<TActividad> mostrarActividadporMaterial(TActividad tActividad);
+	public Set<TActividad> mostrarActividadporMaterial(TActividadMaterial tActividadMaterial);
 
 	public TActividad buscarActividadID(TActividad tActividad);
 	
