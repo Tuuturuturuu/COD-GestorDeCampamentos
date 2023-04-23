@@ -60,7 +60,7 @@ public class DAOPersonalImp implements DAOPersonal {
 				ps = conexion.prepareStatement("INSERT INTO Cocineros (idPersonal, puesto, experiencia) VALUES (?,?,?)");
 				ps.setInt(1, tPersonal.getIdPersonal());
 				ps.setString(2, ((TPersonalCocinero) tPersonal).getPuestoEnCocina());
-				ps.setInt(2, ((TPersonalCocinero) tPersonal).getAniosExperiencia());
+				ps.setInt(3, ((TPersonalCocinero) tPersonal).getAniosExperiencia());
 				ps.executeUpdate();
 				ps.close();
 
@@ -159,9 +159,9 @@ public class DAOPersonalImp implements DAOPersonal {
 					"Select Personal.IdPersonal,DNI,Nombre,TipoPersonal,IdTurno,Activo,puesto,experiencia From Personal, Cocineros Where Personal.IdPersonal = Cocineros.IdPersonal");
 			ResultSet rsg = psg.executeQuery();
 			while (rsg.next()) {
-				e = new TPersonalCocinero(rsl.getInt("IdPersonal"), rsl.getString("DNI"), rsl.getString("Nombre"),
-						rsl.getInt("TipoPersonal"), rsl.getInt("IdTurno"), rsl.getBoolean("Activo"),
-						rsl.getString("puesto"), rsl.getInt("experiencia"));
+				e = new TPersonalCocinero(rsg.getInt("IdPersonal"), rsg.getString("DNI"), rsg.getString("Nombre"),
+						rsg.getInt("TipoPersonal"), rsg.getInt("IdTurno"), rsg.getBoolean("Activo"),
+						rsg.getString("puesto"), rsg.getInt("experiencia"));
 				personal.add(e);
 			}
 			rsg.close();
