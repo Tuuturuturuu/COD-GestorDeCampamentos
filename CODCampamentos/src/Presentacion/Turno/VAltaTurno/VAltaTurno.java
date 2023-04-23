@@ -12,13 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import Negocio.Turno.TTurno;
 import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
-
 
 
 public class VAltaTurno extends JFrame implements IGUI {
@@ -81,10 +79,7 @@ public class VAltaTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaTurno.this.setVisible(false);
-
-			//Controlador.obtenerInstancia().run(
-				//new TTurno(0, nombre.getText(), dni.getText(), tfno.getText(), true), Evento);
-
+				Controlador.obtenerInstancia().run(new TTurno(nombre.getText(), null, 0, 0, true), Evento.EAltaTurnoOK);
 			}
 		});
 		panelBotones.add(botonAceptar);
@@ -97,7 +92,6 @@ public class VAltaTurno extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VAltaTurno.this.setVisible(false);
 				Controlador.obtenerInstancia().run(null, Evento.EVistaTurnoGeneral);
-
 			}
 		});
 		panelBotones.add(botonCancelar);
@@ -115,6 +109,5 @@ public class VAltaTurno extends JFrame implements IGUI {
 	@Override
 	public void actualizar(Object object, Evento event) {
 	
-		
 	}
 }

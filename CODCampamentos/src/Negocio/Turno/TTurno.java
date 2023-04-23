@@ -1,95 +1,67 @@
-/**
- * 
- */
 package Negocio.Turno;
 
 import java.util.Date;
 import java.sql.Time;
 
+//EN PRINCIPIO ESTATODO
 
 public class TTurno {
 	
-	private String Nombre;
+	private String Nombre;	
 	private Date Fecha;
 	private Time Hora;
-	private Integer IdTurno;
-	private Integer Activo;
-
-	public Integer getId() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
+	private Integer IdTurno;	
+	private boolean Activo;
 	
-	public String getNombre() {
-		return Nombre;
+	//CAMBIAR EL TIPO DE ACTIVO A BOOLEANO??
+	public TTurno(String nombre, Date Fecha, Time i, Integer IdTurno, boolean b){
+		this.Nombre=nombre;
+		this.Fecha =Fecha;
+		this.Hora =i;
+		this.IdTurno=IdTurno;
+		this.Activo=b;
+	}
+	
+	public TTurno(){
+	}
+	
+	public Integer getId() {
+		return IdTurno;
 	}
 
+	public String getNombre() {
+		return Nombre;	
+	}
 
 	public Date getFecha() {
 		return Fecha;
 	}
 
-	
 	public Time getHora() {
 		return Hora;
 	}
 
-	
-	public Integer getActivo() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public boolean getActivo() {
+		return Activo;
 	}
 
-	
-	public void setNombre() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public void setNombre(String Nombre) {
+		this.Nombre=Nombre;
 	}
 
-	
-	public void serFecha() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public void serFecha(Date fecha) {
+		this.Fecha=fecha;
 	}
 
-	
-	public void setHora() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public void setHora(Time hora) {
+		this.Hora= hora;
 	}
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void setActivo() {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	/*public void setActivo(Integer activo) {
+		this.Activo=activo;
+	}*/
 
-		// end-user-code
-	}
-
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void setId() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+	public void setId(Integer IdTurno) {
+	this.IdTurno= IdTurno;
 	}
 }

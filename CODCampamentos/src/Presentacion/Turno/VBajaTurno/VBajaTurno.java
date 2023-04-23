@@ -44,8 +44,7 @@ public class VBajaTurno extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JLabel msgIntroIDCabecera = ComponentsBuilder
-				.createLabel("Introduzca el ID del turno que quiere dar de baja ", 1, 10, 80, 20, Color.BLACK);
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel("Introduzca el ID del turno que quiere dar de baja ", 1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -74,8 +73,7 @@ public class VBajaTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VBajaTurno.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(new TTurno(Integer.parseInt(id.getText()),null, null, null, null, null, false)
-						//, Evento.EBajaActividadOK);
+				//Controlador.obtenerInstancia().run(new TTurno(Integer.parseInt(id.getText()),null, null, null, null, null, false), Evento.EBajaTurnoOK);
 				
 			}
 		});
@@ -89,7 +87,6 @@ public class VBajaTurno extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VBajaTurno.this.setVisible(false);
 				Controlador.obtenerInstancia().run(null, Evento.EVistaTurnoGeneral);
-
 			}
 		});
 		panelBotones.add(botonCancelar);

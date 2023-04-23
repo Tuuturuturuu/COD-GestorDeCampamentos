@@ -69,9 +69,7 @@ public class VMostrarTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarTurno.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(
-						//new TTurno(Integer.parseInt(id.getText()),null, null, null, null, null, true),
-						//Evento.EMostrarUnActividadOK);
+				//Controlador.obtenerInstancia().run(new TTurno(Integer.parseInt(id.getText()),null, null, null, null, null, true),Evento.EMostrarUnActividadOK);
 
 			}
 		});
@@ -85,7 +83,6 @@ public class VMostrarTurno extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VMostrarTurno.this.setVisible(false);
 				Controlador.obtenerInstancia().run(null, Evento.EVistaActividadGeneral);
-
 			}
 		});
 		panelBotones.add(botonCancelar);

@@ -28,8 +28,12 @@ public enum Evento {
 	EAltaTurno,
 	EAltaTurnoOK,
 	EBajaTurno,
+	EBajaTurnoOK,
 	EModifTurno,
+	EModifTurnoOK,
 	EMostrarTodosLosTurnos,
+	EMostrarTodosLosTurnosOK,
 	EMostrarUnTurno,
+	EMostrarUnTurnoOK,
 	
 }

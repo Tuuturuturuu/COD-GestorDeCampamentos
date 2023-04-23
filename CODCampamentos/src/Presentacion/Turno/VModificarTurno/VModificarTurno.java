@@ -1,7 +1,6 @@
 package Presentacion.Turno.VModificarTurno;
 
 import javax.swing.JFrame;
-
 import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
@@ -11,7 +10,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -19,13 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Negocio.Turno.TTurno;
-
 import javax.swing.JLabel;
 import javax.swing.JDialog;
 
 public class VModificarTurno extends JFrame implements IGUI {
 	public VModificarTurno(){
-		super("Modificar Turno");
+		super("Modificar turno");
 		this.setBounds(100, 100, 430, 330);
 		this.setLayout(null);
 		this.setResizable(false);
@@ -40,8 +37,7 @@ public class VModificarTurno extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JLabel msgIntroIDCabecera = ComponentsBuilder
-				.createLabel("Introduzca el ID del turno que quiere modificar ", 1, 10, 80, 20, Color.BLACK);
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel("Introduzca el ID del turno que quiere modificar ", 1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -50,13 +46,26 @@ public class VModificarTurno extends JFrame implements IGUI {
 		JPanel panelID = new JPanel();
 		mainPanel.add(panelID);
 
-		JLabel labelID = ComponentsBuilder.createLabel("ID turno: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelID = ComponentsBuilder.createLabel("ID del turno: ", 10, 100, 80, 20, Color.BLACK);
 		panelID.add(labelID);
 
 		JTextField id = new JTextField();
 		id.setPreferredSize(new Dimension(250, 30));
 		id.setEditable(true);
 		panelID.add(id);
+
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+		JPanel panelNombre = new JPanel();
+		mainPanel.add(panelNombre);
+
+		JLabel labelNombre = ComponentsBuilder.createLabel("Nombre Cliente: ", 10, 100, 80, 20, Color.BLACK);
+		panelNombre.add(labelNombre);
+
+		JTextField nombre = new JTextField();
+		nombre.setPreferredSize(new Dimension(250, 30));
+		nombre.setEditable(true);
+		panelNombre.add(nombre);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 
@@ -70,10 +79,7 @@ public class VModificarTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VModificarTurno.this.setVisible(false);
-				//Controlador.obtenerInstancia().run(
-						//new TTurno(Integer.parseInt(id.getText()), nombre.getText(), lugar.getText(), Integer.parseInt(plazas.getText()), Float.parseFloat(precio.getText()),
-							//	Integer.parseInt(idPersonal.getText()),  true), Evento.EModificarActividadOK);
-				
+				Controlador.obtenerInstancia().run(new TTurno(nombre.getText(), null, 0, 0,  true), Evento.EModifTurnoOK);
 			}
 		});
 		panelBotones.add(botonAceptar);
@@ -86,7 +92,6 @@ public class VModificarTurno extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VModificarTurno.this.setVisible(false);
 				Controlador.obtenerInstancia().run(null, Evento.EVistaTurnoGeneral);
-
 			}
 		});
 		panelBotones.add(botonCancelar);

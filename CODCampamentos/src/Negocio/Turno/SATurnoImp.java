@@ -4,71 +4,62 @@
 package Negocio.Turno;
 
 import java.util.Set;
+import Integracion.Turno.DAOTurno;
+import Integracion.FactoriaIntegracion.FactoriaIntegracionImp;
+import Negocio.ComprobacionesRequisitosBBDD.ComprobacionesRequisitosBBDD_IMP;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
 public class SATurnoImp implements SATurno {
-	/** 
-	* (non-Javadoc)
-	* @see SATurno#crearTurno(TTurno tTurno)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer crearTurno(TTurno tTurno) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	
+	private ComprobacionesRequisitosBBDD_IMP compr = (ComprobacionesRequisitosBBDD_IMP) ComprobacionesRequisitosBBDD_IMP.getComprobacionesRequisitosBBDD();
+	private DAOTurno daoTurnos = FactoriaIntegracionImp.obtenerInstancia().generaDAOTurno();
+	
+	public TTurno crearTurno(TTurno tTurno) {
+		TTurno turnoBBDD = new TTurno();
+		if(!compr.nombreValido(tTurno.getNombre())){
+			tTurno.setId(-2);
+		}
+		else{
+			//turnoBBDD = daoTurnos.buscarPorNombre(tTurno);
+			if(turnoBBDD.getId() != -1){
+				if(turnoBBDD.getActivo() == true){
+					tTurno.setId(-4);
+				}
+				else{
+					tTurno.setId(-6);
+				}
+			}
+			else{
+				//tTurno = daoTurnos.CrearTurno(tTurno);
+			}
+		}
+		return tTurno;
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SATurno#ModificarTurno(TTurno tTurno)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public Integer ModificarTurno(TTurno tTurno) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+		
 		return null;
-		// end-user-code
+	}
+	
+	//LA CABECERA ESTABA CON INTEGER IDTURNO PERO LO HE CAMBIADO 
+	public Integer BorrarTurno(TTurno tTurno) {
+		TTurno turno = daoTurnos.MostrarTurno(tTurno.getId());
+		if((turno.getId() < 0) || (!turno.getActivo())){
+			turno.setId(-5);
+		}
+		else{
+			daoTurnos.EliminarTurno(turno);
+		}
+		return daoTurnos.EliminarTurno(turno);
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SATurno#BorrarTurno(Integer idTurno)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer BorrarTurno(Integer idTurno) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	//LA CABECERA ESTABA CON INTEGER IDTURNO PERO LO HE CAMBIADO 
+	public TTurno MostrarTurno(TTurno tTurno) {
+		return daoTurnos.MostrarTurno(tTurno.getId());
+		
 	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SATurno#MostrarTurno(Integer idTurno)
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public TTurno MostrarTurno(Integer idTurno) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
 
-	/** 
-	* (non-Javadoc)
-	* @see SATurno#MostrarTurnos()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
 	public Set<TTurno> MostrarTurnos() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return daoTurnos.MostrarAllTurnos();
 	}
 }
