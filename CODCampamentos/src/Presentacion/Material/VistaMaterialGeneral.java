@@ -21,7 +21,7 @@ public class VistaMaterialGeneral extends JFrame{
 	private JButton altaMaterial_Button;
 	private JButton bajaMaterial_Button;
 	private JButton modificarMaterial_Button;
-	private JButton añadirActividad_Button;
+	private JButton aniadirActividad_Button;
 	private JButton mostrarMaterial_Button;
 	private JButton mostrarTodosMaterial_Button;
 	private JButton mostrarMaterialPorActividad;
@@ -143,9 +143,9 @@ public class VistaMaterialGeneral extends JFrame{
 		mostrarMaterialPorActividad.setVisible(true);
 		this.add(mostrarMaterialPorActividad);
 		
-		//AÑADIR ACTIVIDAD
-		añadirActividad_Button = ComponentsBuilder.createButton("Añadir Actividad", 715, 120, 185, 100);
-		añadirActividad_Button.addActionListener(new ActionListener() {
+		//ANIADIR ACTIVIDAD
+		aniadirActividad_Button = ComponentsBuilder.createButton("Añadir Actividad", 715, 120, 185, 100);
+		aniadirActividad_Button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -154,8 +154,8 @@ public class VistaMaterialGeneral extends JFrame{
 			}
 		});
 		
-		añadirActividad_Button.setVisible(true);
-		this.add(añadirActividad_Button);
+		aniadirActividad_Button.setVisible(true);
+		this.add(aniadirActividad_Button);
 
 		backButton = ComponentsBuilder.createBackButton();
 		backButton.addActionListener(new ActionListener() {
