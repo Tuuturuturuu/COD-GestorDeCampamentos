@@ -4,7 +4,7 @@ import java.util.Set;
 
  public interface SAActividad {
 	
-	public TActividad crearActividad(TActividad tActividad);
+	public TActividad crearActividad (TActividad tActividad);
 
 	public TActividad modificarActividad(TActividad tActividad);
 
