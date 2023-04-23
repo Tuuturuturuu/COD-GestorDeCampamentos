@@ -39,6 +39,7 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error18 = "Error: campo puesto incorrecto";
 	private static final String error19 = "Error: campo Años de Experiencia incorrecto";
 	private static final String error20 = "Error: El DNI ya se encuentra en la BD";
+	private static final String error21 = "Error: Ya estaba desactivado";
 
 
 	
@@ -131,6 +132,9 @@ public class FailureDialog extends JFrame implements IGUI {
 		break;
 		case -20:
 			info = new JLabel(error20);
+		break;
+		case -21:
+			info = new JLabel(error21);
 		break;
 			
 		default:

@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -76,9 +77,30 @@ public class DAOPersonalImp implements DAOPersonal {
 	}
 
 	@Override
-	public TPersonal EliminarPersonal(TPersonal IdPersonal) {
-		// TODO Auto-generated method stub
-		return null;
+	public TPersonal EliminarPersonal(TPersonal tPersonal) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("UPDATE Personal SET Activo = ? WHERE idPersonal = ?",
+					Statement.RETURN_GENERATED_KEYS);
+			tPersonal.setActivo(false);
+
+			ps.setBoolean(1, tPersonal.getIsActivo());
+			ps.setInt(2, tPersonal.getIdPersonal());
+			int result = ps.executeUpdate();
+			if (result < 1)
+				tPersonal.setIdPersonal(-1); // si el execute devuelve menos de 1
+			// (lineas afectadas) es que no ha
+			// actualizado el valor
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return tPersonal;
 	}
 
 	@Override
@@ -94,8 +116,8 @@ public class DAOPersonalImp implements DAOPersonal {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				tPersonal.setDNI(rs.getString(1));
-				tPersonal.setIdPersonal(rs.getInt(2));
+				tPersonal.setIdPersonal(rs.getInt(1));
+				tPersonal.setDNI(rs.getString(2));
 				tPersonal.setNombre(rs.getString(3));
 				tPersonal.setTipo(rs.getInt(4));
 				tPersonal.setIdTurno(rs.getInt(5));

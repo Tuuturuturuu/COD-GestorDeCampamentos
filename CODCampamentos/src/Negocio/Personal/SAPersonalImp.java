@@ -68,8 +68,14 @@ public class SAPersonalImp implements SAPersonal {
 
 	@Override
 	public TPersonal eliminarPersonal(TPersonal tPersonal) {
-		// TODO Auto-generated method stub
-		return null;
+		TPersonal persona = daoPersonal.MostrarUno(tPersonal.getIdPersonal());
+		if (persona.getIdPersonal() < 0 || !persona.getIsActivo()) {
+			persona.setIdPersonal(-5);
+
+		} else {
+			daoPersonal.EliminarPersonal(persona);
+		}
+		return persona;
 	}
 
 	@Override
@@ -80,8 +86,7 @@ public class SAPersonalImp implements SAPersonal {
 
 	@Override
 	public TPersonal mostrarUno(TPersonal tPersonal) {
-		// TODO Auto-generated method stub
-		return null;
+				return daoPersonal.MostrarUno(tPersonal.getIdPersonal());
 	}
 
 	@Override

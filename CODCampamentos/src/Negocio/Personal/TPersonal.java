@@ -57,5 +57,10 @@ public class TPersonal  {
 	private Integer tipo;
 	private Integer IdTurno;
 	private boolean activo;
+	@Override
+	public String toString() {
+		return "IdPersonal = " + IdPersonal + " , DNI = " + DNI + " , Nombre = " + Nombre + " , tipo = " + tipo
+				+ " , IdTurno = " + IdTurno + " , activo= " + activo;
+	}
 
 }
