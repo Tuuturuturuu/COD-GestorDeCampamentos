@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Presentacion.Turno.VBajaTurno;
 
 import javax.swing.JDialog;
@@ -8,90 +5,99 @@ import javax.swing.JFrame;
 
 import Presentacion.Evento;
 import Presentacion.IGUI;
+import Presentacion.Actividad.VAltaActividad.VAltaActividad;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
+
+import javax.swing.JLabel;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Set;
-import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
+import Negocio.Turno.TTurno;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+
+
 public class VBajaTurno extends JFrame implements IGUI {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<Class> jButton2;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<Class> jPanel2;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<Class> jLabel2;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Class jButton;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private JDialog jDialog;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Class nombre;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private JFrame jFrame;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JButton> jButton3;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JPanel> jPanel;
+	public VBajaTurno(){
+		super("Baja Turno");
+		this.setBounds(100, 100, 430, 330);
+		this.setLayout(null);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		initGUI();
 
-	/** 
-	* (non-Javadoc)
-	* @see IGUI#actualizar()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void actualizar() {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	}
+	
+	public void initGUI() {
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		this.setContentPane(mainPanel);
 
-		// end-user-code
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+		JLabel msgIntroIDCabecera = ComponentsBuilder
+				.createLabel("Introduzca el ID del turno que quiere dar de baja ", 1, 10, 80, 20, Color.BLACK);
+		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
+		mainPanel.add(msgIntroIDCabecera);
+
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
+
+		JPanel panelID = new JPanel();
+		mainPanel.add(panelID);
+
+		JLabel labelID = ComponentsBuilder.createLabel("ID Turno: ", 10, 100, 80, 20, Color.BLACK);
+		panelID.add(labelID);
+
+		JTextField id = new JTextField();
+		id.setPreferredSize(new Dimension(250, 30));
+		id.setEditable(true);
+		panelID.add(id);
+
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
+
+		JPanel panelBotones = new JPanel();
+		mainPanel.add(panelBotones);
+
+		JButton botonAceptar = new JButton("Aceptar");
+		botonAceptar.setBounds(75, 50, 100, 100);
+		botonAceptar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VBajaTurno.this.setVisible(false);
+				//Controlador.obtenerInstancia().run(new TTurno(Integer.parseInt(id.getText()),null, null, null, null, null, false)
+						//, Evento.EBajaActividadOK);
+				
+			}
+		});
+		panelBotones.add(botonAceptar);
+
+		JButton botonCancelar = new JButton("Cancelar");
+		botonCancelar.setBounds(200, 50, 100, 100);
+		botonCancelar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VBajaTurno.this.setVisible(false);
+				Controlador.obtenerInstancia().run(null, Evento.EVistaTurnoGeneral);
+
+			}
+		});
+		panelBotones.add(botonCancelar);
+
+		this.setVisible(true);
+		this.setResizable(true);
 	}
 
-	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
 		
