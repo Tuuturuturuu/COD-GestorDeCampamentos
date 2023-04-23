@@ -242,7 +242,7 @@ public class ControladorImp extends Controlador {
 				break;
 			
 			case EAltaCocineroOK:
-				auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().crearPersonal((TPersonal) auxPersonal);
+				auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().crearPersonal((TPersonal) Obj);
 				if(auxPersonal.getIdPersonal() <= 0){
 					gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
 				}

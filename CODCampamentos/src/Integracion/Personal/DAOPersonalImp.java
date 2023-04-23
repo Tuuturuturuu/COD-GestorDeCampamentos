@@ -60,7 +60,7 @@ public class DAOPersonalImp implements DAOPersonal {
 				ps = conexion.prepareStatement("INSERT INTO Cocineros (idPersonal, puesto, experiencia) VALUES (?,?,?)");
 				ps.setInt(1, tPersonal.getIdPersonal());
 				ps.setString(2, ((TPersonalCocinero) tPersonal).getPuestoEnCocina());
-				ps.setInt(2, ((TPersonalCocinero) tPersonal).getAniosExperiencia());
+				ps.setInt(3, ((TPersonalCocinero) tPersonal).getAniosExperiencia());
 				ps.executeUpdate();
 				ps.close();
 
