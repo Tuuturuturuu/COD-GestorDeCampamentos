@@ -19,12 +19,12 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import Negocio.Actividad.TActividad;
+import Negocio.Turno.TTurno;
 import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
-
-
 
 public class VTurno extends JFrame implements IGUI {
 	
@@ -35,6 +35,7 @@ public class VTurno extends JFrame implements IGUI {
 	private JButton mostrarUnTurno_button;
 	private JButton backButton;
 	private JPanel j;
+	private TTurno tTurno;
 	
 	public VTurno() {
 		super("Gestor de Campamentos");
@@ -59,7 +60,7 @@ public class VTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(null, Evento.EAltaTurno);
+				Controlador.obtenerInstancia().run(tTurno, Evento.EAltaTurno);
 			}
 
 		});
@@ -72,7 +73,7 @@ public class VTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(null, Evento.EBajaTurno);
+				Controlador.obtenerInstancia().run(tTurno, Evento.EBajaTurno);
 
 			}
 		});
@@ -86,7 +87,7 @@ public class VTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(null, Evento.EModifTurno);
+				Controlador.obtenerInstancia().run(tTurno, Evento.EModifTurno);
 
 			}
 		});
@@ -99,7 +100,7 @@ public class VTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(null, Evento.EMostrarUnTurno);
+				Controlador.obtenerInstancia().run(tTurno, Evento.EMostrarUnTurno);
 
 			}
 		});
@@ -112,7 +113,7 @@ public class VTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(null, Evento.EMostrarTodosLosTurnos);
+				Controlador.obtenerInstancia().run(tTurno, Evento.EMostrarTodosLosTurnos);
 
 			}
 		});
@@ -125,7 +126,7 @@ public class VTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(null, Evento.EVistaTurnoGeneral);
+				Controlador.obtenerInstancia().run(tTurno, Evento.EVistaTurnoGeneral);
 
 			}
 		});
