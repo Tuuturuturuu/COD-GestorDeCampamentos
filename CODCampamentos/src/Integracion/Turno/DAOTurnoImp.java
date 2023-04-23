@@ -18,7 +18,9 @@ import Integracion.Connection.ConnectorBD;
 
 public class DAOTurnoImp implements DAOTurno {
 	
-	public Integer CrearTurno(TTurno tTurno) {
+	public TTurno CrearTurno(TTurno tTurno) {
+		
+		try{
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
 				ConnectorBD.password);
@@ -33,27 +35,27 @@ public class DAOTurnoImp implements DAOTurno {
 		
 		ps.setString(1, tTurno.getNombre());
 		ps.setDate(2, tTurno.getFecha());
-		ps.setInt(3, tActividad.getNumplazas());
-		ps.setString(4, tActividad.getLugar());
-		ps.setFloat(5, tActividad.getPrecio());
-		ps.setInt(6, tActividad.getIdPersonal());
-		ps.setBoolean(7, tActividad.getActivo());
+		ps.setInt(4, tTurno.getId());
+		ps.setTime(3, tTurno.getHora());
+		
+		
 		ps.executeUpdate();
 		ResultSet rs = ps.getGeneratedKeys();
 
 		if (rs.next())
-			tActividad.setIdActividad(rs.getInt(1));
+			tTurno.setId(rs.getInt(4));
 
 		rs.close();
 		ps.close();
 		conexion.close();
 		// cerrar conexion y tratar excepciones
-	} catch (SQLException | ClassNotFoundException ex) {
+	} 
+	catch (SQLException | ClassNotFoundException ex) {
 		ex.printStackTrace();
 	}
-		return null;
+		return tTurno;
 		// end-user-code
-	}
+}
 
 	
 	public Integer EliminarTurno(Integer id) {
@@ -73,9 +75,35 @@ public class DAOTurnoImp implements DAOTurno {
 
 	
 	public TTurno MostrarTurno(Integer idTurno) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("SELECT * FROM Actividad WHERE IdTurno = ?");
+			ps.setInt(1, );
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+
+				//CAMBIAR ESTO POR LOS ATRIBUTOS E TURNO
+				tActividad.setIdActividad(rs.getInt(1));
+				tActividad.setNombre(rs.getString(1));
+				tActividad.setLugar(rs.getString(3));
+				tActividad.setNumplazas(rs.getInt(4));
+				tActividad.setPrecio(rs.getFloat(5));
+				tActividad.setIdPersonal(rs.getInt(6));
+				tActividad.setActivo(rs.getBoolean(7));
+			} else
+				tTurno.(-1);
+
+
+			rs.close();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return tTurno;
 		// end-user-code
 	}
 
@@ -94,9 +122,6 @@ public class DAOTurnoImp implements DAOTurno {
 	}
 
 	public void activar() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
+		
 	}
 }
