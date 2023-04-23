@@ -65,21 +65,7 @@ public class VModificarPersonal extends JFrame implements IGUI {
 		panelID.add(id);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		//DNI
-		JPanel panelDNI = new JPanel();
-		mainPanel.add(panelDNI);
-		
-		JLabel labelDNI = ComponentsBuilder.createLabel("DNI: ", 10, 100, 80, 20, Color.BLACK);
-		panelDNI.add(labelDNI);
 
-		JTextField DNI = new JTextField();
-		DNI.setPreferredSize(new Dimension(250, 30));
-		DNI.setEditable(true);
-		panelDNI.add(DNI);
-		
-		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
 		//NOMBRE
 		JPanel panelNombre = new JPanel();
 		mainPanel.add(panelNombre);
@@ -92,21 +78,6 @@ public class VModificarPersonal extends JFrame implements IGUI {
 		nombre.setEditable(true);
 		panelNombre.add(nombre);
 
-		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		
-		//TIPO PERSONAL
-		JPanel panelTPersonal = new JPanel();
-		mainPanel.add(panelTPersonal);
-
-		JLabel labelTPersonal = ComponentsBuilder.createLabel("Tipo Personal: ", 10, 100, 80, 20, Color.BLACK);
-		panelTPersonal.add(labelTPersonal);
-
-		JTextField tPersonal = new JTextField();
-		tPersonal.setPreferredSize(new Dimension(250, 30));
-		tPersonal.setEditable(true);
-		panelTPersonal.add(tPersonal);
-		
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		//ID TURNO
@@ -134,7 +105,11 @@ public class VModificarPersonal extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VModificarPersonal.this.setVisible(false);
 				Controlador.obtenerInstancia().run(
-						new TPersonal(Integer.parseInt(id.getText()), DNI.getText(), nombre.getText(), Integer.parseInt(tPersonal.getText()), Integer.parseInt(idTurno.getText()),
+						new TPersonal(Integer.parseInt(id.getText()), 
+								"", 
+								nombre.getText() != null ? nombre.getText() : "", 
+								0, 
+								!idTurno.getText().isEmpty() ? Integer.parseInt(idTurno.getText()):0,
 								  true), Evento.EModificarPersonalOK);
 				
 			}

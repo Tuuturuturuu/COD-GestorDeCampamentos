@@ -159,9 +159,9 @@ public class DAOPersonalImp implements DAOPersonal {
 					"Select Personal.IdPersonal,DNI,Nombre,TipoPersonal,IdTurno,Activo,puesto,experiencia From Personal, Cocineros Where Personal.IdPersonal = Cocineros.IdPersonal");
 			ResultSet rsg = psg.executeQuery();
 			while (rsg.next()) {
-				e = new TPersonalCocinero(rsl.getInt("IdPersonal"), rsl.getString("DNI"), rsl.getString("Nombre"),
-						rsl.getInt("TipoPersonal"), rsl.getInt("IdTurno"), rsl.getBoolean("Activo"),
-						rsl.getString("puesto"), rsl.getInt("experiencia"));
+				e = new TPersonalCocinero(rsg.getInt("IdPersonal"), rsg.getString("DNI"), rsg.getString("Nombre"),
+						rsg.getInt("TipoPersonal"), rsg.getInt("IdTurno"), rsg.getBoolean("Activo"),
+						rsg.getString("puesto"), rsg.getInt("experiencia"));
 				personal.add(e);
 			}
 			rsg.close();
@@ -181,8 +181,28 @@ public class DAOPersonalImp implements DAOPersonal {
 
 	@Override
 	public TPersonal ModificarPersonal(TPersonal tPersonal) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("UPDATE Personal SET DNI = ?, Nombre = ?, TipoPersonal = ?, IdTurno = ?, Activo = ? WHERE IdPersonal = ? ",
+					Statement.RETURN_GENERATED_KEYS);
+
+			ps.setString(1, tPersonal.getDNI());
+			ps.setString(2, tPersonal.getNombre());
+			ps.setInt(3, tPersonal.getTipo());
+			ps.setInt(4, tPersonal.getIdTurno());
+			ps.setBoolean(5, tPersonal.getIsActivo());
+			ps.setInt(6, tPersonal.getIdPersonal());
+			ps.executeUpdate();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return tPersonal;
 	}
 
 	@Override

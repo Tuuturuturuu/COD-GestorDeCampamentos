@@ -5,6 +5,7 @@ import java.util.Set;
 import Integracion.FactoriaIntegracion.FactoriaIntegracionImp;
 import Integracion.Personal.DAOPersonal;
 import Integracion.Turno.DAOTurno;
+import Negocio.Actividad.TActividad;
 import Negocio.ComprobacionesRequisitosBBDD.ComprobacionesRequisitosBBDD_IMP;
 import Negocio.Turno.TTurno;
 
@@ -80,13 +81,62 @@ public class SAPersonalImp implements SAPersonal {
 
 	@Override
 	public TPersonal modificarPersonal(TPersonal tPersonal) {
-		// TODO Auto-generated method stub
-		return null;
+		TPersonal tPersonalBBDD = new TPersonal();
+		//Buscar que existe el personal con dicho id en la BBDD
+		tPersonalBBDD = daoPersonal.MostrarUno(tPersonal.getIdPersonal());
+
+		// si no ha encontrado el personal a modificar no se le puede cambiar el
+		// nombre
+		if (tPersonalBBDD.getIdPersonal() == -1)
+			tPersonal.setIdPersonal(-1);
+		else{
+			// no esta activo
+			if (tPersonalBBDD.getIsActivo() == false)
+				tPersonal.setIdPersonal(-5);
+		}
+		//Se pone el campo DNI con su valor original
+		if (tPersonal.getDNI().equals("") && tPersonal.getIdPersonal() > 0) {
+			// los campos modificables que vengan en nulo los rellenamos con los
+			// valores de bbdd
+			tPersonal.setDNI(tPersonalBBDD.getDNI());
+		} 
+		//Se pone el campo TipoPersonal con su valor original
+		if (tPersonal.getTipo() == 0 && tPersonal.getIdPersonal() > 0) {
+			// los campos modificables que vengan en nulo los rellenamos con los
+			// valores de bbdd
+			tPersonal.setTipo(tPersonalBBDD.getTipo());
+		} 
+		
+		// se quiere cambiar el nombre
+		if (tPersonal.getNombre().equals("") && tPersonal.getIdPersonal() > 0) {
+			// los campos modificables que vengan en nulo los rellenamos con los
+			// valores de bbdd
+			tPersonal.setNombre(tPersonalBBDD.getNombre());
+		} else if (tPersonal.getIdPersonal() > 0) {
+			if (!compr.nombreValido(tPersonal.getNombre()))
+				tPersonal.setIdPersonal(-2);
+		}		
+		
+		// se quiere cambiar idTurno Y DEBERIAMOS COMPROBAR QUE ID DE Turno EXISTA EN LA BASE DE DATOS
+		if (tPersonal.getIdTurno() != 0 && tPersonal.getIdPersonal() > 0 ) {
+			//Aqui debemos usar el Dao de turno para ver si existe el TURNO
+			//if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1) //Comprobar que el id de Personal existe
+				//tActividad.setIdActividad(-9);
+		} else if (tPersonal.getIdPersonal() > 0)
+			tPersonal.setIdTurno(tPersonalBBDD.getIdTurno());
+
+		// si no ha habido ningun codigo de error puede modificarse.
+		if (tPersonal.getIdPersonal()> 0) {
+			tPersonal = daoPersonal.ModificarPersonal(tPersonal);
+		}
+		return tPersonal;		
 	}
 
 	@Override
 	public TPersonal mostrarUno(TPersonal tPersonal) {
-				return daoPersonal.MostrarUno(tPersonal.getIdPersonal());
+		if( daoPersonal.MostrarUno(tPersonal.getIdPersonal()).getIsActivo() == false )
+			tPersonal.setIdPersonal(-5);
+				return tPersonal;
 	}
 
 	@Override

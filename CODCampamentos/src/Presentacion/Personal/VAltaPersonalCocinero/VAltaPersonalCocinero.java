@@ -2,6 +2,7 @@ package Presentacion.Personal.VAltaPersonalCocinero;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,7 +26,12 @@ public class VAltaPersonalCocinero extends JFrame implements IGUI{
 
 	public VAltaPersonalCocinero(TPersonalCocinero tCocinero) {
 		super("Alta Cocinero");
-		this.setBounds(100, 100, 500, 300);
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 500;
+		int alto = 300;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
 		this.setLayout(null);
 		j = new JPanel();
 		this.tCocinero = tCocinero;

@@ -36,8 +36,6 @@ public class VAltaPersonal extends JFrame implements IGUI {
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);
-	//this.setBounds(100, 100, 1000, 525);
-		//this.setBounds(100, 100, 650, 430);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
