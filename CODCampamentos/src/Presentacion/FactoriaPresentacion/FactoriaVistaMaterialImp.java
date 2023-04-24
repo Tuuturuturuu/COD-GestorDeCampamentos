@@ -10,6 +10,7 @@ import Presentacion.Material.VModificarMaterial.VModificarMaterial;
 import Presentacion.Material.VMostrarMaterial.VMostrarMaterial;
 import Presentacion.Material.VMostrarMaterialPorActividad.VMostrarMaterialPorActividad;
 import Presentacion.Material.VMostrarTodosMateriales.VMostrarTodosMateriales;
+import Presentacion.Material.VVincularMaterialActividad.VVincularMaterialActividad;
 
 
 public class FactoriaVistaMaterialImp implements FactoriaVistaMaterial {
@@ -48,5 +49,10 @@ public class FactoriaVistaMaterialImp implements FactoriaVistaMaterial {
 	@Override
 	public VMostrarMaterialPorActividad getVista_MostrarMaterialPorActividad() {
 		return new VMostrarMaterialPorActividad();
+	}
+
+	@Override
+	public VVincularMaterialActividad getVista_VincularMaterialActividad() {
+		return new VVincularMaterialActividad();
 	}
 }

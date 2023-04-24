@@ -10,6 +10,7 @@ import Presentacion.Material.VModificarMaterial.VModificarMaterial;
 import Presentacion.Material.VMostrarMaterial.VMostrarMaterial;
 import Presentacion.Material.VMostrarMaterialPorActividad.VMostrarMaterialPorActividad;
 import Presentacion.Material.VMostrarTodosMateriales.VMostrarTodosMateriales;
+import Presentacion.Material.VVincularMaterialActividad.VVincularMaterialActividad;
 
 
 
@@ -27,5 +28,7 @@ public interface FactoriaVistaMaterial {
 	public VMostrarTodosMateriales getVista_MostrarTodosMateriales(Set<TMaterial> listaMateriales);
 
 	public VMostrarMaterialPorActividad getVista_MostrarMaterialPorActividad();
+
+	public VVincularMaterialActividad getVista_VincularMaterialActividad();
 
 }

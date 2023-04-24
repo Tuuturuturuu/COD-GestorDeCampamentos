@@ -16,4 +16,6 @@ public interface SAMaterial {
 	public Set<TMaterial> mostrarTodosMateriales();
 
 	public Set<TMaterial> listarMaterialPorActividad(int idActividad);
+	
+	public TMaterial vincularMaterialActividad(TMaterial tMaterial);
 }

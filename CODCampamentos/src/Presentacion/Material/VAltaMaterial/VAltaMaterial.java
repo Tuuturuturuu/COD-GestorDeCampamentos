@@ -23,10 +23,9 @@ import Presentacion.Controlador.Controlador;
 public class VAltaMaterial extends JFrame implements IGUI {
 	public VAltaMaterial(){
 		super("Crear Material");
-		//this.setBounds(100, 100, 430, 330);
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-		int ancho = 1000;
-		int alto = 525;
+		int ancho = 650;
+		int alto = 400;
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);
@@ -87,18 +86,18 @@ public class VAltaMaterial extends JFrame implements IGUI {
 		numExistencias.setEditable(true);
 		panelNumExistencias.add(numExistencias);
 
-		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
-		
-		JPanel panelIdActividad = new JPanel();
-		mainPanel.add(panelIdActividad);
-
-		JLabel labelIdActividad = ComponentsBuilder.createLabel("Id Actividad: ", 10, 100, 80, 20, Color.BLACK);
-		panelIdActividad.add(labelIdActividad);
-
-		JTextField idActividad = new JTextField();
-		idActividad.setPreferredSize(new Dimension(250, 30));
-		idActividad.setEditable(true);
-		panelIdActividad.add(idActividad);
+//		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
+//		
+//		JPanel panelIdActividad = new JPanel();
+//		mainPanel.add(panelIdActividad);
+//
+//		JLabel labelIdActividad = ComponentsBuilder.createLabel("Id Actividad: ", 10, 100, 80, 20, Color.BLACK);
+//		panelIdActividad.add(labelIdActividad);
+//
+//		JTextField idActividad = new JTextField();
+//		idActividad.setPreferredSize(new Dimension(250, 30));
+//		idActividad.setEditable(true);
+//		panelIdActividad.add(idActividad);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 
@@ -114,7 +113,7 @@ public class VAltaMaterial extends JFrame implements IGUI {
 				VAltaMaterial.this.setVisible(false);
 
 				Controlador.obtenerInstancia().run(
-						new TMaterial(0, nombre.getText(),  Integer.parseInt(almacen.getText()),  Integer.parseInt(numExistencias.getText()),  Integer.parseInt(idActividad.getText()), true), Evento.EAltaMaterialOK);
+						new TMaterial(0, nombre.getText(),  Integer.parseInt(almacen.getText()),  Integer.parseInt(numExistencias.getText()),  null, true), Evento.EAltaMaterialOK);
 
 			}
 		});

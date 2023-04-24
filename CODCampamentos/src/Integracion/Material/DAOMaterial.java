@@ -20,8 +20,6 @@ public interface DAOMaterial {
 	public TMaterial buscarMaterialNombre(TMaterial tMaterial);
 
 	public Set<TMaterial> listarMaterialPorActividad(int idActividad);
-	
-	
 
 	
 }

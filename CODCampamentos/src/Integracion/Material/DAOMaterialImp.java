@@ -183,6 +183,7 @@ public class DAOMaterialImp implements DAOMaterial {
 	
 	@Override
 	public TMaterial buscarMaterialNombre(TMaterial tMaterial) {
+		TMaterial ret = new TMaterial();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
@@ -193,13 +194,13 @@ public class DAOMaterialImp implements DAOMaterial {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 
-				tMaterial.setId(rs.getInt(1));
-				tMaterial.setNAlmacen(rs.getInt(2));
-				tMaterial.setNombre(rs.getString(3));
-				tMaterial.setExistencias(rs.getInt(4));
-				tMaterial.setActivo(rs.getBoolean(5));
+				ret.setId(rs.getInt(1));
+				ret.setNAlmacen(rs.getInt(2));
+				ret.setNombre(rs.getString(3));
+				ret.setExistencias(rs.getInt(4));
+				ret.setActivo(rs.getBoolean(5));
 			} else
-				tMaterial.setId(-1);
+				ret.setId(-1);
 
 
 			rs.close();
@@ -208,11 +209,12 @@ public class DAOMaterialImp implements DAOMaterial {
 		} catch (SQLException | ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
-		return tMaterial;
+		return ret;
 	}
 	
 	@Override
 	public Set<TMaterial> listarMaterialPorActividad(int id) {
 		return null;
 	}
+
 }

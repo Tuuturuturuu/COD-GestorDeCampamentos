@@ -21,7 +21,7 @@ public class VistaMaterialGeneral extends JFrame{
 	private JButton altaMaterial_Button;
 	private JButton bajaMaterial_Button;
 	private JButton modificarMaterial_Button;
-	private JButton aniadirActividad_Button;
+	private JButton vincularMaterialActividad_Button;
 	private JButton mostrarMaterial_Button;
 	private JButton mostrarTodosMaterial_Button;
 	private JButton mostrarMaterialPorActividad;
@@ -59,7 +59,7 @@ public class VistaMaterialGeneral extends JFrame{
 		this.add(label);
 		
 		//ALTA 
-		altaMaterial_Button = ComponentsBuilder.createButton("Alta Material", 100, 120, 185, 100);
+		altaMaterial_Button = ComponentsBuilder.createButton("Alta Material", 100, 100, 185, 100);
 		altaMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -73,7 +73,7 @@ public class VistaMaterialGeneral extends JFrame{
 		this.add(altaMaterial_Button);
 		
 		//BAJA
-		bajaMaterial_Button = ComponentsBuilder.createButton("Baja Material", 407, 120, 185, 100);
+		bajaMaterial_Button = ComponentsBuilder.createButton("Baja Material", 300, 100, 185, 100);
 		bajaMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -88,7 +88,7 @@ public class VistaMaterialGeneral extends JFrame{
 		this.add(bajaMaterial_Button);
 		
 		//MODIFICAR
-		modificarMaterial_Button = ComponentsBuilder.createButton("Modificar Material", 715, 120, 185, 100);
+		modificarMaterial_Button = ComponentsBuilder.createButton("Modificar Material", 500, 100, 185, 100);
 		modificarMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -102,7 +102,7 @@ public class VistaMaterialGeneral extends JFrame{
 		this.add(modificarMaterial_Button);
 
 		//MOSTRAR UNO
-		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar una Material", 100, 290, 185, 100);
+		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar una Material", 700, 100, 185, 100);
 		mostrarMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -116,7 +116,7 @@ public class VistaMaterialGeneral extends JFrame{
 		this.add(mostrarMaterial_Button);
 		
 		//MOSTRAR TODOS
-		mostrarTodosMaterial_Button = ComponentsBuilder.createButton("Mostrar todos los Materiales", 710, 290, 200, 100);
+		mostrarTodosMaterial_Button = ComponentsBuilder.createButton("Mostrar todos los Materiales", 150, 250, 200, 100);
 		mostrarTodosMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -130,7 +130,7 @@ public class VistaMaterialGeneral extends JFrame{
 		this.add(mostrarTodosMaterial_Button);
 		
 		// MATERIAL POR ACTIVIDAD
-		mostrarMaterialPorActividad = ComponentsBuilder.createButton("Mostrar Material por Actividad", 397, 290, 210, 100);
+		mostrarMaterialPorActividad = ComponentsBuilder.createButton("Mostrar Material por Actividad", 400, 250, 200, 100);
 		mostrarMaterialPorActividad.addActionListener(new ActionListener() {
 
 			@Override
@@ -143,19 +143,19 @@ public class VistaMaterialGeneral extends JFrame{
 		mostrarMaterialPorActividad.setVisible(true);
 		this.add(mostrarMaterialPorActividad);
 		
-		//ANIADIR ACTIVIDAD
-		aniadirActividad_Button = ComponentsBuilder.createButton("Añadir Actividad", 715, 120, 185, 100);
-		aniadirActividad_Button.addActionListener(new ActionListener() {
+		//	vincular material acividad
+		vincularMaterialActividad_Button = ComponentsBuilder.createButton("Vincular material actividad", 700, 250, 200, 100);
+		vincularMaterialActividad_Button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaMaterialGeneral.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tMaterial, Evento.EAnadirActividad);
+				Controlador.obtenerInstancia().run(tMaterial, Evento.EVincularMaterialActividad);
 			}
 		});
 		
-		aniadirActividad_Button.setVisible(true);
-		this.add(aniadirActividad_Button);
+		vincularMaterialActividad_Button.setVisible(true);
+		this.add(vincularMaterialActividad_Button);
 
 		backButton = ComponentsBuilder.createBackButton();
 		backButton.addActionListener(new ActionListener() {

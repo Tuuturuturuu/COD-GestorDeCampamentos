@@ -23,10 +23,10 @@ public class SAMaterialImp implements SAMaterial {
 	
 	public TMaterial crearMaterial(TMaterial tMaterial) {
 		TMaterial materialBBDD = new TMaterial();
-		TActividad tActividad = new TActividad();
-		TActividadMaterial tActividadMaterial = new TActividadMaterial();
+//		TActividad tActividad = new TActividad();
+//		TActividadMaterial tActividadMaterial = new TActividadMaterial();
 		
-		tActividad.setIdActividad(tMaterial.getIdActividad());
+//		tActividad.setIdActividad(tMaterial.getIdActividad());
 		
 		if (!compr.nombreValido(tMaterial.getNombre()))
 			tMaterial.setId(-2);
@@ -34,10 +34,10 @@ public class SAMaterialImp implements SAMaterial {
 			tMaterial.setId(-10);
 		else if (!compr.nExistenciasValido(tMaterial.getExistencias()))
 			tMaterial.setId(-11);
-		else if (!compr.idValido(tMaterial.getIdActividad()))
-			tMaterial.setId(-14);
-		else if (daoActividad.mostrarActividad(tActividad).getIdActividad() == -1) //Comprobar que el id de Personal existe
-			tMaterial.setId(-23);
+//		else if (!compr.idValido(tMaterial.getIdActividad()))
+//			tMaterial.setId(-14);
+//		else if (daoActividad.mostrarActividad(tActividad).getIdActividad() == -1) //Comprobar que el id de Personal existe
+//			tMaterial.setId(-23);
 			
 		else {
 			//materialBBDD.setId(tMaterial.getId());
@@ -50,13 +50,13 @@ public class SAMaterialImp implements SAMaterial {
 		if (tMaterial.getId() == 0){
 			tMaterial = daoMaterial.crearMaterial(tMaterial);
 			
-			tActividadMaterial.setIdActividad(tActividad.getIdActividad());
-			tActividadMaterial.setIdMaterial(tMaterial.getId());
-			
-			int correct = daoActividadMaterial.vincular(tActividadMaterial);
-			
-			if (correct == 0)
-				tMaterial.setId(-24);
+//			tActividadMaterial.setIdActividad(tActividad.getIdActividad());
+//			tActividadMaterial.setIdMaterial(tMaterial.getId());
+//			
+//			int correct = daoActividadMaterial.vincular(tActividadMaterial);
+//			
+//			if (correct == 0)
+//				tMaterial.setId(-24);
 		}
 		
 		
@@ -205,6 +205,39 @@ public class SAMaterialImp implements SAMaterial {
 		}
 		return Materiales;
 		
+	}
+
+	@Override
+	public TMaterial vincularMaterialActividad(TMaterial tMaterial) {
+
+		TMaterial materialBBDD = new TMaterial();
+		TActividad tActividad = new TActividad();
+		TActividadMaterial tActividadMaterial = new TActividadMaterial();
+		
+		tActividad.setIdActividad(tMaterial.getIdActividad());
+		// TODO comprobar id valido??
+		if (!compr.idValido(tMaterial.getId()))
+			tMaterial.setId(-14);
+		else if (!compr.idValido(tMaterial.getIdActividad()))
+			tMaterial.setId(-14);
+		else if (daoActividad.mostrarActividad(tActividad).getIdActividad() == -1) //Comprobar que el id de actividad existe
+			tMaterial.setId(-23);
+		else {
+			materialBBDD = daoMaterial.buscarMaterialNombre(tMaterial);
+
+			if (materialBBDD.getId() != -1)
+				if (materialBBDD.getActivo() == true)
+					tMaterial.setId(-26);
+		}
+
+		tActividadMaterial.setIdActividad(tActividad.getIdActividad());
+		tActividadMaterial.setIdMaterial(tMaterial.getId());
+		int correct = daoActividadMaterial.vincular(tActividadMaterial);
+		
+		if (correct == 0)
+			tMaterial.setId(-24);
+		
+		return tMaterial;
 	}
 
 	
