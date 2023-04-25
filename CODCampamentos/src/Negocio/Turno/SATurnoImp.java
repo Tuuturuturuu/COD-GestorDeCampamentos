@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package Negocio.Turno;
 
 import java.util.Set;
@@ -29,20 +27,22 @@ public class SATurnoImp implements SATurno {
 				}
 			}
 			else{
-				//tTurno = daoTurnos.CrearTurno(tTurno);
+				tTurno = daoTurnos.CrearTurno(tTurno);
 			}
 		}
 		return tTurno;
 	}
 	
 
-	public Integer ModificarTurno(TTurno tTurno) {
+	public TTurno ModificarTurno(TTurno tTurno) {
 		
-		return null;
+		TTurno turno= daoTurnos.ModificarTurno(tTurno);
+		
+		return turno;
 	}
 	
 	//LA CABECERA ESTABA CON INTEGER IDTURNO PERO LO HE CAMBIADO 
-	public Integer BorrarTurno(TTurno tTurno) {
+	public TTurno BorrarTurno(TTurno tTurno) {
 		TTurno turno = daoTurnos.MostrarTurno(tTurno.getId());
 		if((turno.getId() < 0) || (!turno.getActivo())){
 			turno.setId(-5);

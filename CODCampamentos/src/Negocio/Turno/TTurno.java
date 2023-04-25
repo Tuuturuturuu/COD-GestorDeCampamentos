@@ -57,9 +57,9 @@ public class TTurno {
 		this.Hora= hora;
 	}
 
-	/*public void setActivo(Integer activo) {
+	public void setActivo(Boolean activo) {
 		this.Activo=activo;
-	}*/
+	}
 	
 
 	public void setId(Integer IdTurno) {

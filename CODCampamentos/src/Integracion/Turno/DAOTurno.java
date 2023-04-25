@@ -5,11 +5,11 @@ import java.util.Set;
 
 public interface DAOTurno {
 
-	public Integer CrearTurno(TTurno tTurno);
+	public TTurno CrearTurno(TTurno tTurno);
 
-	public Integer EliminarTurno(TTurno turno);
+	public TTurno EliminarTurno(TTurno turno);
 
-	public Integer ModificarTurno(TTurno tTurno);
+	public TTurno ModificarTurno(TTurno tTurno);
 
 	public TTurno MostrarTurno(Integer integer);
 
