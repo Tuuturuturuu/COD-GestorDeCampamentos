@@ -6,6 +6,10 @@ import Integracion.Turno.DAOTurno;
 import Integracion.FactoriaIntegracion.FactoriaIntegracionImp;
 import Negocio.ComprobacionesRequisitosBBDD.ComprobacionesRequisitosBBDD_IMP;
 
+import java.sql.Date;
+import java.sql.Time;
+
+
 public class SATurnoImp implements SATurno {
 	
 	private ComprobacionesRequisitosBBDD_IMP compr = (ComprobacionesRequisitosBBDD_IMP) ComprobacionesRequisitosBBDD_IMP.getComprobacionesRequisitosBBDD();
@@ -34,11 +38,58 @@ public class SATurnoImp implements SATurno {
 	}
 	
 
+	//
 	public TTurno ModificarTurno(TTurno tTurno) {
+			
+		TTurno tTurnoBBDD= new TTurno();
 		
-		TTurno turno= daoTurnos.ModificarTurno(tTurno);
+		//EXISTE EN LA BASE DE DATOS
+		tTurnoBBDD.setId(tTurnoBBDD.getId());
+		tTurnoBBDD= daoTurnos.buscarPorNombre(tTurnoBBDD.getNombre());
 		
-		return turno;
+		if(tTurnoBBDD.getId()==-1){
+			tTurno.setId(-1);
+		}
+		if(tTurnoBBDD.getActivo()==false){
+			tTurno.setId(-8);
+		}
+		
+		//CAMBIAR EL NOMBRE
+		if(tTurno.getNombre()!=null && tTurno.getId()>0){
+			if(!compr.nombreValido(tTurno.getNombre())){
+				tTurno.setId(-2);
+			}
+		}else if (tTurno.getId()>0){
+			tTurno.setNombre(tTurnoBBDD.getNombre());
+		}
+		
+		
+		//CAMBIAR FECHA
+		//AÑADIR EN COMPR LA FUNCION DE FECHA ES VALIDAD
+		if(tTurno.getFecha()!=null && tTurno.getId()>0){
+			if(!compr.fechaValida(tTurno.getFecha())){
+				tTurno.setId(-2);
+			}
+		}else if (tTurno.getId()>0){
+			tTurno.serFecha(tTurnoBBDD.getFecha());
+		}
+		
+		//CAMBIAR HORA
+		if(tTurno.getHora()!=null && tTurno.getId()>0){
+			if(!compr.horaValida(tTurno.getHora())){
+				tTurno.setId(-2);
+			}
+		}else if (tTurno.getId()>0){
+			tTurno.getHora();
+		}
+		
+		
+		//SI HA PODIDO MODIFICARSE
+		if(tTurno.getId()>0){
+			tTurno = daoTurnos.ModificarTurno(tTurno);
+		}
+	
+		return tTurno;
 	}
 	
 	//LA CABECERA ESTABA CON INTEGER IDTURNO PERO LO HE CAMBIADO 

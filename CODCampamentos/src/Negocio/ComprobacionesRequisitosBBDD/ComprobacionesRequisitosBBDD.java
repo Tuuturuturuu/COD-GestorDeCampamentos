@@ -3,6 +3,9 @@
  */
 package Negocio.ComprobacionesRequisitosBBDD;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public abstract class ComprobacionesRequisitosBBDD {
 	private static ComprobacionesRequisitosBBDD comprobacionesR = null;
 
@@ -20,4 +23,8 @@ public abstract class ComprobacionesRequisitosBBDD {
 	public abstract boolean dniValido(String dni);
 
 	public abstract boolean isNumeric(String dni);
+	
+	public abstract boolean fechaValida(Date dia);
+	
+	public abstract boolean horaValida(Time fecha);
 }

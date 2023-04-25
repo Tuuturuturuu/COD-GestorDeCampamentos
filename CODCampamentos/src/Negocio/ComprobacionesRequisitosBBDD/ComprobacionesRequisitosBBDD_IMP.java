@@ -1,5 +1,8 @@
 package Negocio.ComprobacionesRequisitosBBDD;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBBDD {
 	public boolean nombreValido(String nombre) {
 		if (nombre.trim().length() > 45 || nombre.trim().length() < 1)
@@ -56,5 +59,25 @@ public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBB
 			return false;
 		else
 			return true;
+	}
+	
+	public  boolean fechaValida(java.util.Date date){
+		
+		if (date == null) {
+            return false;
+        }
+		else{
+			 return true;
+		}
+       
+	}
+	
+	public  boolean horaValida(java.util.Date date){
+		if (date == null) {
+            return false;
+        }
+		else{		
+			return true;
+		}
 	}
 }

@@ -57,7 +57,7 @@ public class DAOTurnoImp implements DAOTurno {
 			
 	}
 	
-	public TTurno MostrarTurno(Integer idTurno) {	
+	public TTurno MostrarTurno(TTurno idTurno) {	
 		return null;
 	}
 
