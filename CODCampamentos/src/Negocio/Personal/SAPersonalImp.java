@@ -1,5 +1,6 @@
 package Negocio.Personal;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import Integracion.FactoriaIntegracion.FactoriaIntegracionImp;
@@ -92,7 +93,7 @@ public class SAPersonalImp implements SAPersonal {
 		else{
 			// no esta activo
 			if (tPersonalBBDD.getIsActivo() == false)
-				tPersonal.setIdPersonal(-5);
+				tPersonal.setIdPersonal(-28);
 		}
 		//Se pone el campo DNI con su valor original
 		if (tPersonal.getDNI().equals("") && tPersonal.getIdPersonal() > 0) {
@@ -145,9 +146,15 @@ public class SAPersonalImp implements SAPersonal {
 	}
 
 	@Override
-	public Set<TPersonal> mostrarPersonalPorTurno(TTurno turno) {
+	public Set<TPersonal> mostrarPersonalPorTurno(Integer idTurno) {
+		Set<TPersonal> Personal = new HashSet<TPersonal>();
+		 
+		//Comprobar que el Turno existe y esta activo
+				//Buscar las actividades de dicho personal
+		Personal = daoPersonal.MostrarPersonalPorTurno(idTurno);
+	
 		// TODO Auto-generated method stub
-		return null;
+		return Personal;
 	}
 
 	

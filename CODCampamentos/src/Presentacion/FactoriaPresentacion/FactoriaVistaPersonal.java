@@ -11,6 +11,8 @@ import Presentacion.Personal.VAltaPersonalCocinero.VAltaPersonalCocinero;
 import Presentacion.Personal.VAltaPersonalMonitor.VAltaPersonalMonitor;
 import Presentacion.Personal.VBajaPersonal.VBajaPersonal;
 import Presentacion.Personal.VModificarPersonal.VModificarPersonal;
+import Presentacion.Personal.VMostrarPersonalPorTurno.VMostrarPersonalPorTurno;
+import Presentacion.Personal.VMostrarPersonalPorTurno.VMostrarPersonalPorTurnoOK;
 import Presentacion.Personal.VMostrarTodos.VMostrarTodos;
 import Presentacion.Personal.VMostrarUno.VMostrarUno;
 
@@ -29,6 +31,10 @@ public interface FactoriaVistaPersonal {
 	VMostrarUno getVista_MostrarPersonal();
 
 	VMostrarTodos getVista_MostrarTodosPersonal(Set<TPersonal> listaPersonal);
+	
+	VMostrarPersonalPorTurno getVista_MostrarPersonalPorTurno();
+	
+	VMostrarPersonalPorTurnoOK getVista_MostrarPersonalPorTurnoOK(Set<TPersonal> listaPersonal);
 
 	VPersonal getVista_VistaPersonalGeneral();
 }

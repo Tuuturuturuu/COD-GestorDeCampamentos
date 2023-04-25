@@ -12,6 +12,8 @@ import Presentacion.Personal.VAltaPersonalCocinero.VAltaPersonalCocinero;
 import Presentacion.Personal.VAltaPersonalMonitor.VAltaPersonalMonitor;
 import Presentacion.Personal.VBajaPersonal.VBajaPersonal;
 import Presentacion.Personal.VModificarPersonal.VModificarPersonal;
+import Presentacion.Personal.VMostrarPersonalPorTurno.VMostrarPersonalPorTurno;
+import Presentacion.Personal.VMostrarPersonalPorTurno.VMostrarPersonalPorTurnoOK;
 import Presentacion.Personal.VMostrarTodos.VMostrarTodos;
 import Presentacion.Personal.VMostrarUno.VMostrarUno;
 
@@ -60,6 +62,18 @@ public class FactoriaVistaPersonalImp implements FactoriaVistaPersonal {
 	@Override
 	public VAltaPersonalMonitor getVista_Altamonitor(TPersonalMonitor tMonitor) {
 				return new VAltaPersonalMonitor(tMonitor);
+	}
+
+	@Override
+	public VMostrarPersonalPorTurno getVista_MostrarPersonalPorTurno() {
+		// TODO Auto-generated method stub
+		return new VMostrarPersonalPorTurno();
+	}
+
+	@Override
+	public VMostrarPersonalPorTurnoOK getVista_MostrarPersonalPorTurnoOK(Set<TPersonal> listaPersonal) {
+		// TODO Auto-generated method stub
+		return new VMostrarPersonalPorTurnoOK(listaPersonal) ;
 	}
 
 	

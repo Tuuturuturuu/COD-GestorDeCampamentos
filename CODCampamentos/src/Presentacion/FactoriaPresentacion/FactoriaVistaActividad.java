@@ -13,6 +13,7 @@ import Presentacion.Actividad.VMostrarActividadesPorMaterial.VMostrarActividades
 import Presentacion.Actividad.VMostrarActividadesPorPersonal.VMostrarActividadesPorPersonal;
 import Presentacion.Actividad.VMostrarActividadesPorPersonal.VMostrarActividadesPorPersonalOK;
 import Presentacion.Actividad.VMostrarTodasActividades.VMostrarTodasActividades;
+import Presentacion.Actividad.VVincularActividadConMaterial.VVincularActividadConMaterial;
 
 public interface FactoriaVistaActividad {
 	public VAltaActividad getVista_AltaActividad();
@@ -31,6 +32,7 @@ public interface FactoriaVistaActividad {
 	public VMostrarActividadesPorMaterial getVista_MostrarActividadPorMaterial();
 	public MostrarActividadPorMaterialOK getVista_MostrarActividadPorMaterialOK(Set<TActividad> listaActividad);
 
+	public VVincularActividadConMaterial getVista_Vincular();
 	public VistaActividadGeneral getVista_VistaActividadGeneral();
 
 }

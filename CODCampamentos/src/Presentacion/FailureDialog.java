@@ -40,11 +40,11 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error16 = "Error: campo especialidad incorrecto";
 	private static final String error17 = "Error: campo estudios incorrecto";
 	private static final String error18 = "Error: campo puesto incorrecto";
-	private static final String error19 = "Error: campo A�os de Experiencia incorrecto";
+	private static final String error19 = "Error: campo Anioos de Experiencia incorrecto";
 	private static final String error20 = "Error: El DNI ya se encuentra en la BD";
 	private static final String error21 = "Error: Ya estaba desactivado";
 	private static final String error24 = "Error: Fallo a la hora de vincular Actividad con el Material";
-
+	private static final String error28 = "Error: El personal se encuentra inactivo";
 
 	
 	//Errores Material
@@ -53,6 +53,7 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error12 = "Error: El material esta dado de baja";
 	private static final String error13 = "Error: No hay ningun material para ese id de Actividad";
 	private static final String error26 = "Error: Ya hay material con este nombre";
+	private static final String error27 = "Error: No hay material con dicho id";
 
 	
 	private int id;
@@ -156,6 +157,12 @@ public class FailureDialog extends JFrame implements IGUI {
 			break;
 		case -26:
 			info = new JLabel(error26);
+		break;
+		case -27:
+			info = new JLabel(error27);
+		break;
+		case -28:
+			info = new JLabel(error28);
 		break;
 		default:
 			info = new JLabel("Error en la operacion");
