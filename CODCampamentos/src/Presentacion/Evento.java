@@ -20,6 +20,8 @@ public enum Evento {
 	EMostrarTodosLosActividadporPersonalOK,
 	EMostrarTodosLosActividadporMaterial,
 	EMostrarTodosLosActividadporMaterialOK,
+	EVincularActividadMaterial,
+	EVincularActividadMaterialOK,
 	//Personal
 	EVistaPersonalGeneral,
 	EAltaPersonal,
@@ -33,6 +35,8 @@ public enum Evento {
 	EMostrarUnPersonal,
 	EMostrarUnPersonalOK,
 	EMostrarTodosPersonal,
+	EMostrarTodosPersonalporTurno,
+	EMostrarTodosPersonalporTurnoOK,
 	
 	//Factura
 	EVistaFacturaGeneral,

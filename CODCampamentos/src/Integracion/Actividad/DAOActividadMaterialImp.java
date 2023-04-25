@@ -18,7 +18,6 @@ import Integracion.Connection.ConnectorBD;
 public class DAOActividadMaterialImp implements DAOActividadMaterial {	
 	
 	public Integer vincular(TActividadMaterial actividadMaterial) {
-		System.out.println("DAOAMI: vincular");
 		Integer correct = 0;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

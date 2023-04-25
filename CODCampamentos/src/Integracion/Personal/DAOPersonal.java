@@ -16,7 +16,7 @@ public interface DAOPersonal {
 
 	public Set<TPersonal> MostrarTodos();
 
-	public Set<TPersonal> MostrarPersonalPorTurno(TTurno tTurno);
+	public Set<TPersonal> MostrarPersonalPorTurno(Integer IdTurno);
 
 	public TPersonal ModificarPersonal(TPersonal tPersonal);
 

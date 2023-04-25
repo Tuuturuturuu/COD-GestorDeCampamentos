@@ -25,6 +25,7 @@ public class VistaActividadGeneral extends JFrame{
 	private JButton mostrarTodasActividades_Button;
 	private JButton mostrarTodasActividadesPersonal_Button;
 	private JButton mostrarTodasActividadesMaterial_Button;
+	private JButton vincularActividadMaterial_Button;
 	private JButton backButton;
 
 	private JPanel j;
@@ -109,7 +110,7 @@ public class VistaActividadGeneral extends JFrame{
 		mostrarActividad_Button.setVisible(true);
 		this.add(mostrarActividad_Button);
 
-		mostrarTodasActividades_Button = ComponentsBuilder.createButton("Mostrar todos las Actividades", 150, 250, 200, 100);
+		mostrarTodasActividades_Button = ComponentsBuilder.createButton("Todas las Actividades", 100, 250, 185, 100);
 		mostrarTodasActividades_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -123,7 +124,7 @@ public class VistaActividadGeneral extends JFrame{
 		mostrarTodasActividades_Button.setVisible(true);
 		this.add(mostrarTodasActividades_Button);
 		
-		mostrarTodasActividadesPersonal_Button = ComponentsBuilder.createButton("Mostrar Actividades por Personal", 400, 250, 200, 100);
+		mostrarTodasActividadesPersonal_Button = ComponentsBuilder.createButton("Actividades por Personal", 300, 250, 185, 100);
 		mostrarTodasActividadesPersonal_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -136,7 +137,7 @@ public class VistaActividadGeneral extends JFrame{
 		mostrarTodasActividadesPersonal_Button.setVisible(true);
 		this.add(mostrarTodasActividadesPersonal_Button);
 
-		mostrarTodasActividadesMaterial_Button = ComponentsBuilder.createButton("Mostrar Actividades por Material", 700, 250, 200, 100);
+		mostrarTodasActividadesMaterial_Button = ComponentsBuilder.createButton("Actividades por Material", 500, 250, 185, 100);
 		mostrarTodasActividadesMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -148,6 +149,19 @@ public class VistaActividadGeneral extends JFrame{
 		});
 		mostrarTodasActividadesMaterial_Button.setVisible(true);
 		this.add(mostrarTodasActividadesMaterial_Button);
+		
+		vincularActividadMaterial_Button = ComponentsBuilder.createButton("Vincular Actividades a Material", 700, 250, 185, 100);
+		vincularActividadMaterial_Button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VistaActividadGeneral.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tActividad, Evento.EVincularActividadMaterial);
+
+			}
+		});
+		vincularActividadMaterial_Button.setVisible(true);
+		this.add(vincularActividadMaterial_Button);
 
 		backButton = ComponentsBuilder.createBackButton();
 		backButton.addActionListener(new ActionListener() {

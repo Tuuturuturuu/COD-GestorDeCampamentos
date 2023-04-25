@@ -126,7 +126,18 @@ public class ControladorImp extends Controlador {
 				gui.getVistaActividad().getVista_MostrarActividadPorPersonalOK(listaActividadesPersonal);
 			}
 			break;
-
+		case EVincularActividadMaterial:
+			gui.getVistaActividad().getVista_Vincular();
+			break;
+		case EVincularActividadMaterialOK:
+			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial().vincularMaterialActividad((TMaterial) Obj);
+			if (auxMaterial.getId() <= 0) {
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxMaterial.getId(), null);
+			} else {
+				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxMaterial.getId(), null);
+			}
+			break;	
+			
 		// MATERIAL
 		case EVistaMaterialGeneral:
 			gui.getVistaMaterial().getVista_VistaMaterialGeneral();
@@ -287,6 +298,23 @@ public class ControladorImp extends Controlador {
 			Set<TPersonal> listaPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().mostrarTodos();
 			gui.getVistaPersonal().getVista_MostrarTodosPersonal(listaPersonal);
 			break;
+		case EMostrarTodosPersonalporTurno:
+			gui.getVistaPersonal().getVista_MostrarPersonalPorTurno();
+			break;
+
+		case EMostrarTodosPersonalporTurnoOK:
+			Set<TPersonal> listaPersonales = FactoriaSAImp.obtenerInstancia().generarSAPersonal().mostrarPersonalPorTurno((Integer) Obj);
+			if (listaPersonales.size() == 1) {
+				TPersonal personalUnico = listaPersonales.iterator().next();
+				if (personalUnico.getIdPersonal() <= 0)
+					gui.getVistaGeneralAux().getFailureDialg().actualizar(personalUnico.getIdPersonal(), null);
+				else
+					gui.getVistaPersonal().getVista_MostrarPersonalPorTurnoOK(listaPersonales);
+			} else {
+				gui.getVistaPersonal().getVista_MostrarPersonalPorTurnoOK(listaPersonales);
+			}
+			break;
+			
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();
 			break;

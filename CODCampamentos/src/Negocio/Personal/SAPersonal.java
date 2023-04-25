@@ -18,5 +18,5 @@ public interface SAPersonal {
 
 	public Set<TPersonal> mostrarTodos();
 
-	public Set<TPersonal> mostrarPersonalPorTurno(TTurno turno);
+	public Set<TPersonal> mostrarPersonalPorTurno(Integer idTurno);
 }

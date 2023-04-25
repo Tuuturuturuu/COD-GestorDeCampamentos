@@ -13,6 +13,7 @@ import Presentacion.Actividad.VMostrarActividadesPorMaterial.VMostrarActividades
 import Presentacion.Actividad.VMostrarActividadesPorPersonal.VMostrarActividadesPorPersonal;
 import Presentacion.Actividad.VMostrarActividadesPorPersonal.VMostrarActividadesPorPersonalOK;
 import Presentacion.Actividad.VMostrarTodasActividades.VMostrarTodasActividades;
+import Presentacion.Actividad.VVincularActividadConMaterial.VVincularActividadConMaterial;
 
 public class FactoriaVistaActividadImp implements FactoriaVistaActividad {
 
@@ -72,6 +73,12 @@ public class FactoriaVistaActividadImp implements FactoriaVistaActividad {
 	public MostrarActividadPorMaterialOK getVista_MostrarActividadPorMaterialOK(Set<TActividad> listaActividad) {
 		// TODO Auto-generated method stub
 		return new MostrarActividadPorMaterialOK(listaActividad);
+	}
+
+	@Override
+	public VVincularActividadConMaterial getVista_Vincular() {
+		// TODO Auto-generated method stub
+		return new VVincularActividadConMaterial();
 	}
 
 

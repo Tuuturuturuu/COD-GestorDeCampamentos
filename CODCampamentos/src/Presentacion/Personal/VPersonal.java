@@ -23,6 +23,7 @@ public class VPersonal extends JFrame{
 	private JButton modificarPersonal_Button;
 	private JButton mostrarUnPersonal_Button;
 	private JButton mostrarTodosPersonal_Button;
+	private JButton mostrarPersonalTurno_Button;
 	private JButton backButton;
 
 	private JPanel j;
@@ -94,7 +95,7 @@ public class VPersonal extends JFrame{
 		modificarPersonal_Button.setVisible(true);
 		this.add(modificarPersonal_Button);
 
-		mostrarUnPersonal_Button = ComponentsBuilder.createButton("Mostrar un Personal", 213, 290, 185, 100);
+		mostrarUnPersonal_Button = ComponentsBuilder.createButton("Mostrar un Personal", 100, 290, 185, 100);
 		mostrarUnPersonal_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -107,7 +108,7 @@ public class VPersonal extends JFrame{
 		mostrarUnPersonal_Button.setVisible(true);
 		this.add(mostrarUnPersonal_Button);
 
-		mostrarTodosPersonal_Button = ComponentsBuilder.createButton("Mostrar todos Personal", 602, 290, 200, 100);
+		mostrarTodosPersonal_Button = ComponentsBuilder.createButton("Mostrar todos Personal", 407, 290, 200, 100);
 		mostrarTodosPersonal_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -119,6 +120,19 @@ public class VPersonal extends JFrame{
 		});
 		mostrarTodosPersonal_Button.setVisible(true);
 		this.add(mostrarTodosPersonal_Button);
+		
+		mostrarPersonalTurno_Button = ComponentsBuilder.createButton("Personal por Turno", 715, 290, 200, 100);
+		mostrarPersonalTurno_Button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VPersonal.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tPersonal, Evento.EMostrarTodosPersonalporTurno);
+
+			}
+		});
+		mostrarPersonalTurno_Button.setVisible(true);
+		this.add(mostrarPersonalTurno_Button);
 
 		backButton = ComponentsBuilder.createBackButton();
 		backButton.addActionListener(new ActionListener() {
