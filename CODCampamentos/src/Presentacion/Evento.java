@@ -58,6 +58,15 @@ public enum Evento {
 	EVincularMaterialActividadOK,
 	
 	//Turno
-	EVistaTurnoGeneral,      
+	EVistaTurnoGeneral,
+	EAltaTurno,
+	EAltaTurnoOK,
+	EBajaTurno, 
+	EBajaTurnoOK,
+	EModificarTurno,
+	EModificarTurnoOK,
+	EMostrarUnTurnoOK, 
+	EMostrarUnTurno, 
+	EMostrarTodosLosTurnos, 
 	
 }

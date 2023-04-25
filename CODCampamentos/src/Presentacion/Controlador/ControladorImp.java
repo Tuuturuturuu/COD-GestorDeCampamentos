@@ -10,6 +10,7 @@ import Negocio.Material.TMaterial;
 import Negocio.Personal.TPersonal;
 import Negocio.Personal.TPersonalCocinero;
 import Negocio.Personal.TPersonalMonitor;
+import Negocio.Turno.TTurno;
 import Presentacion.Evento;
 import Presentacion.FactoriaPresentacion.FactoriaVistas;
 
@@ -26,6 +27,7 @@ public class ControladorImp extends Controlador {
 		TActividad auxActividad = null;
 		TMaterial auxMaterial = null;
 		TPersonal auxPersonal = null;
+		TTurno auxTurno = null;
 
 		switch (Evento) {
 
@@ -314,6 +316,59 @@ public class ControladorImp extends Controlador {
 				gui.getVistaPersonal().getVista_MostrarPersonalPorTurnoOK(listaPersonales);
 			}
 			break;
+			
+		//TURNO
+		case EVistaTurnoGeneral:
+			gui.getVistaTurno().getVista_VistaTurnoGeneral();
+			break;
+		case EAltaTurno:
+			gui.getVistaTurno().getVista_AltaTurno();
+			break;
+		case EAltaTurnoOK:
+			/*auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().crearTurno((TTurno) Obj);
+			if (auxTurno.getIdTurno() <= 0) {
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxTurno.getIdTurno(), null);
+			} else {
+				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxTurno.getIdTurno(), null);
+			}*/
+			break;
+		case EBajaTurno:
+			gui.getVistaTurno().getVista_BajaTurno();
+			break;
+		case EBajaTurnoOK:
+			/*auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().eliminarTurno((TTurno) Obj);
+			if (auxTurno.getIdTurno() <= 0) {
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxTurno.getIdTurno(), null);
+			} else {
+				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxTurno.getIdTurno(), null);
+			}*/
+			break;
+		case EModificarTurno:
+			gui.getVistaTurno().getVista_ModificarTurno();
+			break;
+		case EModificarTurnoOK:
+			/*auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().modificarTurno((TTurno) Obj);
+			if (auxTurno.getIdTurno() <= 0) {
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxTurno.getIdTurno(), null);
+			} else {
+				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxTurno.getIdTurno(), null);
+			}*/
+			break;
+		case EMostrarUnTurno:
+			gui.getVistaTurno().getVista_MostrarTurno();
+			break;
+		case EMostrarUnTurnoOK:
+			/*auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().mostrarTurno((TTurno) Obj);
+			if (auxTurno.getIdTurno() <= 0) {
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxTurno.getIdTurno(), null);
+			} else {
+				gui.getVistaGeneralAux().getConfirmDialogMostrarUna().actualizar(auxTurno.toString(), null);
+			}*/
+			break;
+		case EMostrarTodosLosTurnos:
+			/*Set<TTurno> listaTurnos = FactoriaSAImp.obtenerInstancia().generarSATurno().mostrarTurnos();
+			gui.getVistaTurno().getVista_MostrarTodosTurnos(listaTurnos);
+			break;*/
 			
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();
