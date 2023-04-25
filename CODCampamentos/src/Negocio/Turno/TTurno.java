@@ -4,6 +4,17 @@ import java.util.Date;
 
 public class TTurno {
 	private Integer IdTurno;
+	public TTurno(Integer idTurno, String nombreTurno, Date fecha, String hora, Boolean activo) {
+		super();
+		IdTurno = idTurno;
+		NombreTurno = nombreTurno;
+		Fecha = fecha;
+		Hora = hora;
+		Activo = activo;
+	}
+	public TTurno() {
+		// TODO Auto-generated constructor stub
+	}
 	private String NombreTurno;
 	private Date Fecha;
 	private String Hora;
