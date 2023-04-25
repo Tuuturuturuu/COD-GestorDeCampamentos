@@ -25,12 +25,12 @@ public class DAOTurnoImp implements DAOTurno {
 
 			PreparedStatement ps;
 			ps = conexion.prepareStatement(
-					"INSERT INTO Turno ( NombreTurno, Fecha, Hora, Activo) VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE Activo = ?",
+					"INSERT INTO Turno ( NombreTurno, Fecha, Hora, Activo) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE Activo = ?",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			
 
 			ps.setString(1, tTurno.getNombreTurno());
-			ps.setDate(2, (Date) tTurno.getFecha());
+			ps.setDate(2,  new java.sql.Date(tTurno.getFecha().getTime()));
 			ps.setString(3, tTurno.getHora());
 			ps.setBoolean(4, tTurno.getActivo());
 			ps.setBoolean(5, tTurno.getActivo());
@@ -105,7 +105,6 @@ public class DAOTurnoImp implements DAOTurno {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-
 				tturno.setIdTurno(rs.getInt(1));
 				tturno.setNombreTurno(rs.getString(2));
 				tturno.setFecha(rs.getDate(3));

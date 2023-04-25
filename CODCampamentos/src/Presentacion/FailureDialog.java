@@ -174,6 +174,9 @@ public class FailureDialog extends JFrame implements IGUI {
 		case -30:
 			info = new JLabel(error30);
 		break;
+		case -31:
+			info = new JLabel(error31);
+		break;
 		default:
 			info = new JLabel("Error en la operacion");
 		}

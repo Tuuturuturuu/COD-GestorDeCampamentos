@@ -45,7 +45,7 @@ public class VistaGeneral extends JFrame{
 	
 	private void initGUI() {
 		
-		label = ComponentsBuilder.createLabel("Selecciona el módulo sobre el cual quieres trabajar", 50, 30, 900, 50,
+		label = ComponentsBuilder.createLabel("Selecciona el modulo sobre el cual quieres trabajar", 50, 30, 900, 50,
 				Color.BLACK);
 		this.add(label);
 

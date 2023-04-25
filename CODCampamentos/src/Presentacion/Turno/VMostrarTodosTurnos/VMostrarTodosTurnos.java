@@ -57,14 +57,14 @@ public class VMostrarTodosTurnos extends JFrame implements IGUI  {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarTodosTurnos.this.setVisible(false);
-				Controlador.obtenerInstancia().run(null, Evento.EVistaActividadGeneral);
+				Controlador.obtenerInstancia().run(null, Evento.EVistaTurnoGeneral);
 
 			}
 		});
 		panelBotones.add(botonCancelar);
 
 		String[] nombreColumnas = { "ID", "Nombre", "Fecha", "Hora", "Activa" };
-		JTable tabla = ComponentsBuilder.createTable(listaTurnos.size(), 7, nombreColumnas);
+		JTable tabla = ComponentsBuilder.createTable(listaTurnos.size(), 5, nombreColumnas);
 		int i = 0;
 		for (TTurno t : listaTurnos) {
 			tabla.setValueAt(t.getIdTurno(), i, 0);

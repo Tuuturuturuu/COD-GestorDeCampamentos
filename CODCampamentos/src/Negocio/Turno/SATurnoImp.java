@@ -84,7 +84,8 @@ public class SATurnoImp implements SATurno {
 		
 		return tTurno;
 	}
-	public TTurno BorrarTurno(Integer idTurno) {
+	public TTurno BorrarTurno(TTurno tTurno) {
+		Integer idTurno = tTurno.getIdTurno();
 		TTurno tTurnoBBDD = new TTurno();
 		Set<TPersonal> PersonalTurno = new HashSet<TPersonal>();
 		tTurnoBBDD = daoTurno.MostrarTurno(idTurno);
@@ -99,7 +100,7 @@ public class SATurnoImp implements SATurno {
 					tTurnoBBDD.setIdTurno(idTurno);
 					tTurnoBBDD = daoTurno.EliminarTurno(tTurnoBBDD);
 				}else //Si hay personal con ese turno, envio error indicando que no puede eliminarlo
-					tTurnoBBDD.setIdTurno(-1);
+					tTurnoBBDD.setIdTurno(-31);
 			}else{
 				tTurnoBBDD.setIdTurno(-5);
 			}
@@ -108,11 +109,13 @@ public class SATurnoImp implements SATurno {
 		}
 		return tTurnoBBDD;
 	}
-	public TTurno MostrarTurno(Integer idTurno) {
-		TTurno tTurno =daoTurno.MostrarTurno(idTurno);
-		if(tTurno.getActivo() == false)
-			tTurno.setIdTurno(-5);;
-		return tTurno;
+	public TTurno MostrarTurno(TTurno tTurno) {
+		TTurno tTurnoBBDD = daoTurno.MostrarTurno(tTurno.getIdTurno());
+		if(tTurnoBBDD.getIdTurno() != -1){
+			if(tTurnoBBDD.getActivo() == false)
+				tTurnoBBDD.setIdTurno(-5);
+		}
+		return tTurnoBBDD;
 	}
 	public Set<TTurno> MostrarTurnos() {
 		return daoTurno.MostrarAllTurnos();

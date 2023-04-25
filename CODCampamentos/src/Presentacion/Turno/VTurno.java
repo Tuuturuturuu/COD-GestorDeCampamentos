@@ -115,7 +115,7 @@ public class VTurno extends JFrame implements IGUI {
 		mostrarTurno_Button.setVisible(true);
 		this.add(mostrarTurno_Button);
 
-		mostrarTodosTurnos_Button = ComponentsBuilder.createButton("Todos los Turnos", 100, 250, 185, 100);
+		mostrarTodosTurnos_Button = ComponentsBuilder.createButton("Mostrar todos los Turnos", 100, 250, 185, 100);
 		mostrarTodosTurnos_Button.addActionListener(new ActionListener() {
 
 			@Override

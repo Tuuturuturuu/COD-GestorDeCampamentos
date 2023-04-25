@@ -1,8 +1,13 @@
 package Negocio.Turno;
 
 import java.util.Date;
-
+	
 public class TTurno {
+	@Override
+	public String toString() {
+		return "IdTurno=" + IdTurno + ", NombreTurno=" + NombreTurno + ", Fecha=" + Fecha + ", Hora=" + Hora
+				+ ", Activo=" + Activo;
+	}
 	private Integer IdTurno;
 	public TTurno(Integer idTurno, String nombreTurno, Date fecha, String hora, Boolean activo) {
 		super();
@@ -19,18 +24,6 @@ public class TTurno {
 	private Date Fecha;
 	private String Hora;
 	private Boolean Activo;
-
-	public TTurno(Integer idTurno, String nombreTurno, Date fecha, String hora, Boolean activo) {
-		IdTurno = idTurno;
-		NombreTurno = nombreTurno;
-		Fecha = fecha;
-		Hora = hora;
-		Activo = activo;
-	}
-
-	public TTurno() {
-
-	}
 
 	public Integer getIdTurno() {
 		return IdTurno;

@@ -57,11 +57,26 @@ public class VModificarTurno extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 		
+		//IDTurno
+				JPanel panelId = new JPanel();
+				mainPanel.add(panelId);
+
+				JLabel labelId = ComponentsBuilder.createLabel("IdTurno: ", 10, 100, 80, 20, Color.BLACK);
+				panelId.add(labelId);
+
+				JTextField id = new JTextField();
+				id.setPreferredSize(new Dimension(250, 30));
+				id.setEditable(true);
+				panelId.add(id);
+
+				mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		
+		
 		//NOMBRE
 		JPanel panelNombre = new JPanel();
 		mainPanel.add(panelNombre);
 
-		JLabel labelNombre = ComponentsBuilder.createLabel("Nombre: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelNombre = ComponentsBuilder.createLabel("Nombre: ", 30, 100, 80, 20, Color.BLACK);
 		panelNombre.add(labelNombre);
 
 		JTextField nombre = new JTextField();
@@ -125,7 +140,12 @@ public class VModificarTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VModificarTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(new TTurno(null, nombre.getText(), fecha, campoHora.getText(), true), Evento.EModificarTurnoOK);
+				Controlador.obtenerInstancia().run(new TTurno(
+						Integer.parseInt(id.getText()),
+						nombre.getText() != null ? nombre.getText() : "" , 
+						fecha, 
+						campoHora.getText()  != null ? campoHora.getText() : "",
+						true), Evento.EModificarTurnoOK);
 			}
 			
 		});

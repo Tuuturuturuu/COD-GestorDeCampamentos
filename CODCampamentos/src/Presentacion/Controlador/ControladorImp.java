@@ -325,50 +325,50 @@ public class ControladorImp extends Controlador {
 			gui.getVistaTurno().getVista_AltaTurno();
 			break;
 		case EAltaTurnoOK:
-			/*auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().crearTurno((TTurno) Obj);
+			auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().crearTurno((TTurno) Obj);
 			if (auxTurno.getIdTurno() <= 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxTurno.getIdTurno(), null);
 			} else {
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxTurno.getIdTurno(), null);
-			}*/
+			}
 			break;
 		case EBajaTurno:
 			gui.getVistaTurno().getVista_BajaTurno();
 			break;
 		case EBajaTurnoOK:
-			/*auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().eliminarTurno((TTurno) Obj);
+			auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().BorrarTurno((TTurno) Obj);
 			if (auxTurno.getIdTurno() <= 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxTurno.getIdTurno(), null);
 			} else {
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxTurno.getIdTurno(), null);
-			}*/
+			}
 			break;
 		case EModificarTurno:
 			gui.getVistaTurno().getVista_ModificarTurno();
 			break;
 		case EModificarTurnoOK:
-			/*auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().modificarTurno((TTurno) Obj);
+			auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().ModificarTurno((TTurno) Obj);
 			if (auxTurno.getIdTurno() <= 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxTurno.getIdTurno(), null);
 			} else {
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxTurno.getIdTurno(), null);
-			}*/
+			}
 			break;
 		case EMostrarUnTurno:
 			gui.getVistaTurno().getVista_MostrarTurno();
 			break;
 		case EMostrarUnTurnoOK:
-			/*auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().mostrarTurno((TTurno) Obj);
+			auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().MostrarTurno((TTurno) Obj);
 			if (auxTurno.getIdTurno() <= 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxTurno.getIdTurno(), null);
 			} else {
 				gui.getVistaGeneralAux().getConfirmDialogMostrarUna().actualizar(auxTurno.toString(), null);
-			}*/
+			}
 			break;
 		case EMostrarTodosLosTurnos:
-			/*Set<TTurno> listaTurnos = FactoriaSAImp.obtenerInstancia().generarSATurno().mostrarTurnos();
+			Set<TTurno> listaTurnos = FactoriaSAImp.obtenerInstancia().generarSATurno().MostrarTurnos();
 			gui.getVistaTurno().getVista_MostrarTodosTurnos(listaTurnos);
-			break;*/
+			break;
 			
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();
