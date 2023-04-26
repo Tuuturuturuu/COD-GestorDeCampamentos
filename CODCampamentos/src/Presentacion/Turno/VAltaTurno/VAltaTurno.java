@@ -67,21 +67,17 @@ public class VAltaTurno extends JFrame implements IGUI {
 		//FECHA
 		SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 		JFormattedTextField campoFecha = new JFormattedTextField(formatoFecha);
+		
 		campoFecha.setValue(new Date()); // establece la fecha actual como valor inicial
+		
 		JLabel etiquetaFecha = new JLabel("Fecha:");
 		JPanel panelFecha = new JPanel();
+		
 		panelFecha.add(etiquetaFecha);
 		panelFecha.add(campoFecha);
-		Date fecha = (Date) campoFecha.getValue();
-		mainPanel.add(panelFecha);
 		
-		/*JLabel labelFecha = ComponentsBuilder.createLabel("Fecha: ", 10, 100, 80, 20, Color.BLACK);
-		panelFecha.add(labelFecha);
-
-		JTextField fecha = new JTextField();
-		fecha.setPreferredSize(new Dimension(250, 30));
-		fecha.setEditable(true);
-		panelFecha.add(fecha);*/
+		//Date fecha = (Date) campoFecha.getValue();
+		mainPanel.add(panelFecha);
 		
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		
@@ -118,7 +114,7 @@ public class VAltaTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(new TTurno(null, nombre.getText(), fecha, campoHora.getText(), true), Evento.EAltaTurnoOK);
+				Controlador.obtenerInstancia().run(new TTurno(null, nombre.getText(),  (Date) campoFecha.getValue(), campoHora.getText(), true), Evento.EAltaTurnoOK);
 			}
 			
 		});

@@ -23,7 +23,9 @@ public class SAActividadImp implements SAActividad{
 	@Override
 	public TActividad crearActividad(TActividad tActividad) {
 		TActividad actividadBBDD = new TActividad();
-		if (!compr.nombreValido(tActividad.getNombre()))
+		if (tActividad.getLugar().isEmpty() || tActividad.getNombre().isEmpty() || tActividad.getNumplazas() == 0 || tActividad.getIdPersonal() == 0)
+			tActividad.setIdActividad(-37);
+		else if (!compr.nombreValido(tActividad.getNombre()))
 			tActividad.setIdActividad(-2);
 		else if (!compr.nombreValido(tActividad.getLugar()))
 			tActividad.setIdActividad(-3);
@@ -31,7 +33,7 @@ public class SAActividadImp implements SAActividad{
 			tActividad.setIdActividad(-7);
 		else if (!compr.precio(tActividad.getPrecio()))
 			tActividad.setIdActividad(-8);
-		else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1) //Comprobar que el id de Personal existe
+		else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1 ) //Comprobar que el id de Personal existe
 			tActividad.setIdActividad(-9);
 		else {
 			actividadBBDD = daoActividad.buscarActividadNombreLugar(tActividad);
@@ -117,7 +119,7 @@ public class SAActividadImp implements SAActividad{
 		// si no ha encontrado la Actividad el id sera -1
 		if (tActividadbbdd.getIdActividad() != -1){
 			if (tActividadbbdd.getActivo() == true){
-				//Conseguimos todos los elementos ActividadMaterial que tengan el idActividad en común
+				//Conseguimos todos los elementos ActividadMaterial que tengan el idActividad en comï¿½n
 				ActividadesMaterial = daoActividadMaterial.BuscarporActividad(tActividad.getIdActividad());
 				//Recorremos todos esos elementos y los vamos desvinculando
 				for (TActividadMaterial actividadMaterial : ActividadesMaterial) {

@@ -21,7 +21,9 @@ public class SATurnoImp implements SATurno {
 
 	public TTurno crearTurno(TTurno tTurno) {
 		TTurno tTurnoBBDD = new TTurno();
-		if (!compr.nombreValido(tTurno.getNombreTurno()))
+		if (tTurno.getNombreTurno().isEmpty())
+			tTurno.setIdTurno(-37);
+		else if (!compr.nombreValido(tTurno.getNombreTurno()))
 			tTurno.setIdTurno(-2); //Faltan comprobaciones
 		else{
 			//Comprobar que el nombre no esta repetido
@@ -67,24 +69,24 @@ public class SATurnoImp implements SATurno {
 		
 		//Comprobar fecha
 		if (tTurno.getFecha() != null && tTurno.getIdTurno() > 0) {
-			//Código de fecha para comprobar formato
+			//Cï¿½digo de fecha para comprobar formato
 		} else if (tTurno.getIdTurno() > 0)
 			tTurno.setFecha(tTurnoBBDD.getFecha());
 		
 		//Comprobar hora
 		if (tTurno.getHora().equals("") && tTurno.getIdTurno() > 0) {
-			//Código de fecha para comprobar formato
+			//Cï¿½digo de fecha para comprobar formato
 		} else if (tTurno.getIdTurno() > 0)
 			tTurno.setHora(tTurnoBBDD.getHora());
 		
-		//No ha habido ningún error, entonces procede a modificar
+		//No ha habido ningï¿½n error, entonces procede a modificar
 		if (tTurno.getIdTurno() > 0) {
 			tTurno = daoTurno.ModificarTurno(tTurno);
 		}
 		
 		return tTurno;
 	}
-	public TTurno BorrarTurno(TTurno tTurno) {
+	public TTurno BorrarTurno(TTurno tTurno) { // Baja turno
 		Integer idTurno = tTurno.getIdTurno();
 		TTurno tTurnoBBDD = new TTurno();
 		Set<TPersonal> PersonalTurno = new HashSet<TPersonal>();
@@ -94,9 +96,9 @@ public class SATurnoImp implements SATurno {
 			//Comprobar que no este desactivado
 			if(tTurnoBBDD.getActivo() == true){
 				//Comprobar que no haya personales con ese turno
-				PersonalTurno = daoPersonal.MostrarPersonalPorTurno(idTurno);
+				PersonalTurno = daoPersonal.MostrarPersonalActivoPorTurno(idTurno);
 				if(PersonalTurno.isEmpty()){ 
-					//Si no hay personal con el turno, entonces puedo eliminar
+					//Si no hay personal con el turno, entonces puedo dar de baja
 					tTurnoBBDD.setIdTurno(idTurno);
 					tTurnoBBDD = daoTurno.EliminarTurno(tTurnoBBDD);
 				}else //Si hay personal con ese turno, envio error indicando que no puede eliminarlo

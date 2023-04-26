@@ -27,8 +27,9 @@ public class SAMaterialImp implements SAMaterial {
 //		TActividadMaterial tActividadMaterial = new TActividadMaterial();
 		
 //		tActividad.setIdActividad(tMaterial.getIdActividad());
-		
-		if (!compr.nombreValido(tMaterial.getNombre()))
+		if (tMaterial.getNombre().isEmpty() || tMaterial.getExistencias() == 0 || tMaterial.getNAlmacen() == 0)
+			tMaterial.setId(-37);
+		else if (!compr.nombreValido(tMaterial.getNombre()))
 			tMaterial.setId(-2);
 		else if (!compr.almacenValido(tMaterial.getNAlmacen()))
 			tMaterial.setId(-10);

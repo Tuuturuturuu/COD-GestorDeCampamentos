@@ -21,10 +21,8 @@ import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
-
-
 public class VAltaActividad extends JFrame implements IGUI {
-	public VAltaActividad(){
+	public VAltaActividad() {
 		super("Crear Actividad");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 1000;
@@ -32,14 +30,14 @@ public class VAltaActividad extends JFrame implements IGUI {
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);
-	//this.setBounds(100, 100, 1000, 525);
-		//this.setBounds(100, 100, 650, 430);
+		// this.setBounds(100, 100, 1000, 525);
+		// this.setBounds(100, 100, 650, 430);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -48,7 +46,8 @@ public class VAltaActividad extends JFrame implements IGUI {
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
-				"Introduzca el nombre, lugar, numero de plazas, precio y idPersonal de la actividad que quieres dar de alta ", 1, 10, 80, 20, Color.BLACK);
+				"Introduzca el nombre, lugar, numero de plazas, precio y idPersonal de la actividad que quieres dar de alta ",
+				1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -83,8 +82,7 @@ public class VAltaActividad extends JFrame implements IGUI {
 		JPanel panelNPlazas = new JPanel();
 		mainPanel.add(panelNPlazas);
 
-		JLabel labelNPlazas = ComponentsBuilder.createLabel("                Plazas: ", 10, 100, 80, 20,
-				Color.BLACK);
+		JLabel labelNPlazas = ComponentsBuilder.createLabel("                Plazas: ", 10, 100, 80, 20, Color.BLACK);
 		panelNPlazas.add(labelNPlazas);
 
 		JTextField plazas = new JTextField();
@@ -111,7 +109,8 @@ public class VAltaActividad extends JFrame implements IGUI {
 		JPanel panelIdPersonal = new JPanel();
 		mainPanel.add(panelIdPersonal);
 
-		JLabel labelIdPersonal = ComponentsBuilder.createLabel("           Id Personal: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelIdPersonal = ComponentsBuilder.createLabel("           Id Personal: ", 10, 100, 80, 20,
+				Color.BLACK);
 		panelIdPersonal.add(labelIdPersonal);
 
 		JTextField idPersonal = new JTextField();
@@ -131,10 +130,13 @@ public class VAltaActividad extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaActividad.this.setVisible(false);
-				Controlador.obtenerInstancia().run(
-						new TActividad(0, nombre.getText(), lugar.getText(), Integer.parseInt(plazas.getText()), Float.parseFloat(precio.getText()),
-								Integer.parseInt(idPersonal.getText()),  true), Evento.EAltaActividadOK);
-				
+				Controlador.obtenerInstancia()
+						.run(new TActividad(0, nombre.getText() != null ? nombre.getText() : "",
+								lugar.getText() != null ? lugar.getText() : "",
+								!plazas.getText().isEmpty() ? Integer.parseInt(plazas.getText()) : 0,
+								!precio.getText().isEmpty() ? Float.parseFloat(precio.getText()) : 0,
+								!idPersonal.getText().isEmpty() ? Integer.parseInt(idPersonal.getText()) : 0, true),
+								Evento.EAltaActividadOK);
 
 			}
 		});
@@ -156,6 +158,7 @@ public class VAltaActividad extends JFrame implements IGUI {
 		this.setVisible(true);
 		this.setResizable(true);
 	}
+
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -165,7 +168,6 @@ public class VAltaActividad extends JFrame implements IGUI {
 
 	@Override
 	public void actualizar(Object object, Evento event) {
-	
-		
+
 	}
 }

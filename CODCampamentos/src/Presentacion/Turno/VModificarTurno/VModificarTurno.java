@@ -94,16 +94,8 @@ public class VModificarTurno extends JFrame implements IGUI {
 		JPanel panelFecha = new JPanel();
 		panelFecha.add(etiquetaFecha);
 		panelFecha.add(campoFecha);
-		Date fecha = (Date) campoFecha.getValue();
-		mainPanel.add(panelFecha);
 		
-		/*JLabel labelFecha = ComponentsBuilder.createLabel("Fecha: ", 10, 100, 80, 20, Color.BLACK);
-		panelFecha.add(labelFecha);
-
-		JTextField fecha = new JTextField();
-		fecha.setPreferredSize(new Dimension(250, 30));
-		fecha.setEditable(true);
-		panelFecha.add(fecha);*/
+		mainPanel.add(panelFecha);
 		
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 		
@@ -123,11 +115,6 @@ public class VModificarTurno extends JFrame implements IGUI {
 		
 		mainPanel.add(panelHora);
 		
-		/*JTextField hora = new JTextField();
-		hora.setPreferredSize(new Dimension(250, 30));
-		hora.setEditable(true);
-		panelHora.add(hora);*/
-
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JPanel panelBotones = new JPanel();
@@ -143,7 +130,7 @@ public class VModificarTurno extends JFrame implements IGUI {
 				Controlador.obtenerInstancia().run(new TTurno(
 						Integer.parseInt(id.getText()),
 						nombre.getText() != null ? nombre.getText() : "" , 
-						fecha, 
+								(Date) campoFecha.getValue(), 
 						campoHora.getText()  != null ? campoHora.getText() : "",
 						true), Evento.EModificarTurnoOK);
 			}

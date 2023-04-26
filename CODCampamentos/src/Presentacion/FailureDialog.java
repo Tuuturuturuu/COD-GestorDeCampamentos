@@ -16,38 +16,40 @@ import Presentacion.Controlador.Controlador;
 
 public class FailureDialog extends JFrame implements IGUI {
 
-	//Errores Genericos
+	// Errores Genericos
 	private static final String error1 = "Error: ID no encontrado en la BD";
 	private static final String error2 = "Error: Nombre con longitud incorrecta";
 	private static final String error14 = "Error: Id no valido";
 	private static final String error5 = "Error: Dicho objeto se encuentra inactivo";
 	private static final String error6 = "Error: Campo unico ya en uso";
 	private static final String error15 = "Error: Fallo a la hora de borrar en la BD";
+	private static final String error32 = "Error: El DNI introducido es incorrecto";
+	private static final String error33 = "Error: El DNI introducido ya corresponde a un Personal";
+	private static final String error37 = "Error: No se pueden dejar campos vacios en ALTA";
 
-	//Errores Actividad
+	// Errores Actividad
 	private static final String error4 = "Error: Actividad ya presente en la BD";
 	private static final String error3 = "Error: Lugar especificado con longitud incorrecta";
 	private static final String error7 = "Error: Numero de plazas con longitud incorrecta";
 	private static final String error8 = "Error: El precio con longitud incorrecta";
 	private static final String error22 = "Error: Fallo en desvincular Actividad y Material";
-	private static final String error23= "Error: No existe actividad con dicho ID";
-	private static final String error25= "Error: La actividad esta dada de baja";
+	private static final String error23 = "Error: No existe actividad con dicho ID";
+	private static final String error25 = "Error: La actividad esta dada de baja";
+	private static final String error36 = "Error: El lugar y el nombre de la actividad no pueden estar duplicados";
 
-
-
-	//Errores Personal
+	// Errores Personal
 	private static final String error9 = "Error: El personal con dicho ID, no existe";
 	private static final String error16 = "Error: campo especialidad incorrecto";
 	private static final String error17 = "Error: campo estudios incorrecto";
 	private static final String error18 = "Error: campo puesto incorrecto";
-	private static final String error19 = "Error: campo Anioos de Experiencia incorrecto";
+	private static final String error19 = "Error: campo Anios de Experiencia incorrecto";
 	private static final String error20 = "Error: El DNI ya se encuentra en la BD";
 	private static final String error21 = "Error: Ya estaba desactivado";
 	private static final String error24 = "Error: Fallo a la hora de vincular Actividad con el Material";
 	private static final String error28 = "Error: El personal se encuentra inactivo";
+	private static final String error35 = "Error: El personal tiene actividades activas";
 
-	
-	//Errores Material
+	// Errores Material
 	private static final String error10 = "Error: El almacen introducido con longitud incorrecta";
 	private static final String error11 = "Error: Numero de existencias introducido con longitud incorrecta";
 	private static final String error12 = "Error: El material esta dado de baja";
@@ -55,10 +57,11 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error26 = "Error: Ya hay material con este nombre";
 	private static final String error27 = "Error: No hay material con dicho id";
 
-	//Errores Turno
+	// Errores Turno
 	private static final String error29 = "Error: El nombre del turno ya existe ";
 	private static final String error30 = "Error: Turno ya activo en BBDDexiste ";
-	private static final String error31 = "Error: El Turno tiene personal asignado";
+	private static final String error31 = "Error: El Turno tiene personal activo asignado";
+	private static final String error34 = "Error: El Turno está dado de baja";
 
 	private int id;
 
@@ -140,19 +143,19 @@ public class FailureDialog extends JFrame implements IGUI {
 			break;
 		case -19:
 			info = new JLabel(error19);
-		break;
+			break;
 		case -20:
 			info = new JLabel(error20);
-		break;
+			break;
 		case -21:
 			info = new JLabel(error21);
-		break;
+			break;
 		case -22:
 			info = new JLabel(error22);
-		break;
+			break;
 		case -23:
 			info = new JLabel(error23);
-		break;
+			break;
 		case -24:
 			info = new JLabel(error24);
 			break;
@@ -161,22 +164,40 @@ public class FailureDialog extends JFrame implements IGUI {
 			break;
 		case -26:
 			info = new JLabel(error26);
-		break;
+			break;
 		case -27:
 			info = new JLabel(error27);
-		break;
+			break;
 		case -28:
 			info = new JLabel(error28);
-		break;
+			break;
 		case -29:
 			info = new JLabel(error29);
-		break;
+			break;
 		case -30:
 			info = new JLabel(error30);
-		break;
+			break;
 		case -31:
 			info = new JLabel(error31);
-		break;
+			break;
+		case -32:
+			info = new JLabel(error32);
+			break;
+		case -33:
+			info = new JLabel(error33);
+			break;
+		case -34:
+			info = new JLabel(error34);
+			break;
+		case -35:
+			info = new JLabel(error35);
+			break;
+		case -36:
+			info = new JLabel(error36);
+			break;
+		case -37:
+			info = new JLabel(error37);
+			break;
 		default:
 			info = new JLabel("Error en la operacion");
 		}
@@ -206,7 +227,7 @@ public class FailureDialog extends JFrame implements IGUI {
 			this.id = res;
 			initGUI();
 		}
-		
+
 	}
-	
+
 }

@@ -24,6 +24,7 @@ public class DAOPersonalImp implements DAOPersonal {
 	@SuppressWarnings("resource")
 	@Override
 	public TPersonal CrearPersonal(TPersonal tPersonal) {
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
@@ -251,11 +252,12 @@ public class DAOPersonalImp implements DAOPersonal {
 			ps.setString(1, tPersonal.getDNI());
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				tPersonal.setDNI(rs.getString(1));
-				tPersonal.setNombre(rs.getString(2));
-				tPersonal.setTipo(rs.getInt(3));
-				tPersonal.setIdTurno(rs.getInt(4));
-				tPersonal.setActivo(rs.getBoolean(7));
+				tPersonal.setIdPersonal(rs.getInt(1));
+				tPersonal.setDNI(rs.getString(2));
+				tPersonal.setNombre(rs.getString(3));
+				tPersonal.setTipo(rs.getInt(4));
+				tPersonal.setIdTurno(rs.getInt(5));
+				tPersonal.setActivo(rs.getBoolean(6));
 			} else
 				tPersonal.setIdPersonal(-1);
 			rs.close();
@@ -265,6 +267,49 @@ public class DAOPersonalImp implements DAOPersonal {
 			ex.printStackTrace();
 		}
 		return tPersonal;
+	}
+
+	@Override
+	public Set<TPersonal> MostrarPersonalActivoPorTurno(Integer IdTurno) {
+		Set<TPersonal> personal = new HashSet<TPersonal>();
+		TPersonal e;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+			PreparedStatement psl;
+			psl = conexion.prepareStatement(
+					"Select Personal.IdPersonal,DNI,Nombre,TipoPersonal,IdTurno,Activo,especialidad,estudios From Personal, Monitores Where Personal.IdPersonal = Monitores.IdPersonal AND IdTurno = ?");
+			psl.setInt(1, IdTurno);
+			ResultSet rsl = psl.executeQuery();
+			while (rsl.next()) {
+				e = new TPersonalMonitor(rsl.getInt("IdPersonal"), rsl.getString("DNI"), rsl.getString("Nombre"),
+						rsl.getInt("TipoPersonal"), rsl.getInt("IdTurno"), rsl.getBoolean("Activo"),
+						rsl.getString("especialidad"), rsl.getString("estudios"));
+				if (e.getIsActivo())
+					personal.add(e);
+			}
+			rsl.close();
+			psl.close();
+
+			PreparedStatement psg = conexion.prepareStatement(
+					"Select Personal.IdPersonal,DNI,Nombre,TipoPersonal,IdTurno,Activo,puesto,experiencia From Personal, Cocineros Where Personal.IdPersonal = Cocineros.IdPersonal AND IdTurno = ?");
+			psg.setInt(1, IdTurno);
+			ResultSet rsg = psg.executeQuery();
+			while (rsg.next()) {
+				e = new TPersonalCocinero(rsg.getInt("IdPersonal"), rsg.getString("DNI"), rsg.getString("Nombre"),
+						rsg.getInt("TipoPersonal"), rsg.getInt("IdTurno"), rsg.getBoolean("Activo"),
+						rsg.getString("puesto"), rsg.getInt("experiencia"));
+				if (e.getIsActivo())
+					personal.add(e);
+			}
+			rsg.close();
+			psg.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return personal;
 	}
 
 }

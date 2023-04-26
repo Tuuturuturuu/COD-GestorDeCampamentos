@@ -5,14 +5,11 @@ public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBB
 		if (nombre.trim().length() > 100 || nombre.trim().length() < 1)
 			return false;
 		else
-			return true;
+			return nombre.matches("[a-zA-Z\\s]*");
 	}
 
 	public boolean tlValido(String tlf) {
-		if (tlf.trim().length() > 15)
-			return false;
-		else
-			return true;
+		return tlf.matches("\\d{9}");
 	}
 	
 	public boolean idValido(Integer idActividad) {
@@ -53,16 +50,8 @@ public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBB
 	}
 
 	public boolean dniValido(String dni) {
-		String dniChars = "TRWAGMYFPDXBNJZSQVHLCKE";
-		if (dni.length() != 9)
-			return false;
-		String parteEnteraDNI = dni.trim().replaceAll(" ", "").substring(0, 7);
-		char ltrDNI = dni.charAt(8);
-		int valNumDni = Integer.parseInt(parteEnteraDNI) % 23;
-		if (dni.length() != 9 && isNumeric(parteEnteraDNI) == false && dniChars.charAt(valNumDni) != ltrDNI)
-			return false;
-		else
-			return true;
+		
+		return dni.matches("\\d{8}[a-zA-Z]");
 	}
 
 	public boolean isNumeric(String num) {
@@ -83,8 +72,8 @@ public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBB
 	
 	//Personal
 	
-	public boolean tipoPersonalValido(String direccionLab) {
-		if (direccionLab.trim().length() > 45 || direccionLab.trim().length() < 1)
+	public boolean tipoPersonalValido(String p) {
+		if (p.trim().length() > 45 || p.trim().length() < 1)
 			return false;
 		else
 			return true;
@@ -96,9 +85,5 @@ public class ComprobacionesRequisitosBBDD_IMP extends ComprobacionesRequisitosBB
 		else
 			return true;
 	}
-
-	
-
-	
 	
 }

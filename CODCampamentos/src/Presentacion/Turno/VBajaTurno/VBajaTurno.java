@@ -3,13 +3,12 @@
  */
 package Presentacion.Turno.VBajaTurno;
 
-import javax.swing.JDialog;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import Presentacion.Evento;
 import Presentacion.IGUI;
-import Presentacion.Actividad.VBajaActividad.VBajaActividad;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
@@ -18,7 +17,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;

@@ -129,13 +129,14 @@ public class VAltaPersonal extends JFrame implements IGUI {
 				if (tipoPersonal.getSelectedItem() == "Monitor") {
 					tipo = 0;
 				Controlador.obtenerInstancia().run(
-						new TPersonalMonitor(0, DNI.getText(), nombre.getText(), tipo,
-								Integer.parseInt(idTurno.getText()),  true, null, null), Evento.EAltaPersonalOK);
+						new TPersonalMonitor(0, DNI.getText() != null ? DNI.getText() : "", nombre.getText() != null ? nombre.getText() : "", tipo,
+								!idTurno.getText().isEmpty() ? Integer.parseInt(idTurno.getText()):0,  true, null, null), Evento.EAltaPersonalOK);
+		
 				}else{
 					tipo = 1;
 					Controlador.obtenerInstancia().run(
-							new TPersonalCocinero(0, DNI.getText(), nombre.getText(), tipo,
-									Integer.parseInt(idTurno.getText()),  true, null, 0), Evento.EAltaPersonalOK);
+							new TPersonalCocinero(0, DNI.getText() != null ? DNI.getText() : "", nombre.getText() != null ? nombre.getText() : "", tipo,
+								!idTurno.getText().isEmpty() ? Integer.parseInt(idTurno.getText()):0,  true, null, 0), Evento.EAltaPersonalOK);
 				}
 				
 				

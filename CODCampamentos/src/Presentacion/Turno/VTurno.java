@@ -102,7 +102,7 @@ public class VTurno extends JFrame implements IGUI {
 		modificarTurno_Button.setVisible(true);
 		this.add(modificarTurno_Button);
 
-		mostrarTurno_Button = ComponentsBuilder.createButton("Mostrar un Turno,", 700, 100, 185, 100);
+		mostrarTurno_Button = ComponentsBuilder.createButton("Mostrar un Turno", 700, 100, 185, 100);
 		mostrarTurno_Button.addActionListener(new ActionListener() {
 
 			@Override

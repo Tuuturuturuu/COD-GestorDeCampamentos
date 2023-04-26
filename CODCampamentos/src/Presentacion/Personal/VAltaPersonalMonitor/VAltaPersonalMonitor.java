@@ -93,8 +93,8 @@ public class VAltaPersonalMonitor extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaPersonalMonitor.this.setVisible(false);
-				tMonitor.setEspecialidad(especialidad.getText());
-				tMonitor.setEstudios(estudios.getText());
+				tMonitor.setEspecialidad(especialidad.getText() != null ? especialidad.getText() : "");
+				tMonitor.setEstudios(estudios.getText() != null ? estudios.getText() : "");
 				Controlador.obtenerInstancia().run(tMonitor, Evento.EAltaMonitorOK);
 
 			}

@@ -48,7 +48,7 @@ public class VAltaPersonalCocinero extends JFrame implements IGUI{
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
-				"Introduzca el puesto en cocina y años de experiencia del cocinero que quiere dar de alta ", 1, 10, 80, 20,
+				"Introduzca el puesto en cocina y aï¿½os de experiencia del cocinero que quiere dar de alta ", 1, 10, 80, 20,
 				Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
@@ -71,7 +71,7 @@ public class VAltaPersonalCocinero extends JFrame implements IGUI{
 		JPanel panelExperiencia = new JPanel();
 		mainPanel.add(panelExperiencia);
 
-		JLabel labelExperiencia = ComponentsBuilder.createLabel("    Años de experiencia: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelExperiencia = ComponentsBuilder.createLabel("    Anios experiencia: ", 10, 100, 80, 20, Color.BLACK);
 		panelExperiencia.add(labelExperiencia);
 
 		JTextField experiencia = new JTextField();
@@ -91,8 +91,8 @@ public class VAltaPersonalCocinero extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaPersonalCocinero.this.setVisible(false);
-				tCocinero.setPuestoEnCocina(puesto.getText());
-				tCocinero.setAniosExperiencia(Integer.parseInt(experiencia.getText()));
+				tCocinero.setPuestoEnCocina(puesto.getText() != null ? puesto.getText() : "");
+				tCocinero.setAniosExperiencia(!experiencia.getText().isEmpty() ? Integer.parseInt(experiencia.getText()):0);
 				Controlador.obtenerInstancia().run(tCocinero, Evento.EAltaCocineroOK);
 
 			}

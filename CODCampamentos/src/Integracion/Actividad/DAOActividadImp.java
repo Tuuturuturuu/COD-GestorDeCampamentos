@@ -29,7 +29,6 @@ public class DAOActividadImp implements DAOActividad {
 			ps = conexion.prepareStatement(
 					"INSERT INTO Actividad ( Nombre, Lugar, NumPlazas, Precio, IdPersonal, Activo) VALUES (?,?,?,?,?,?) ON DUPLICATE KEY UPDATE Activo = ?",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-			
 
 			ps.setString(1, tActividad.getNombre());
 			ps.setString(2, tActividad.getLugar());
@@ -75,7 +74,7 @@ public class DAOActividadImp implements DAOActividad {
 			ps.close();
 			conexion.close();
 		} catch (SQLException | ClassNotFoundException ex) {
-			ex.printStackTrace();
+			tActividad.setIdActividad(-36);
 		}
 		return tActividad;
 	}
@@ -188,12 +187,31 @@ public class DAOActividadImp implements DAOActividad {
 		}
 		return ActividadesPersonal;
 	}
-
-
-	@Override
-	public Set<TActividad> mostrarActividadporMaterial(TActividadMaterial tActividadMaterial) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Set<TActividad> mostrarActividadesActivasporPersonal(Integer IdPersonal) {
+		Set<TActividad> ActividadesPersonal = new HashSet<TActividad>();
+		TActividad e;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("SELECT * FROM Actividad WHERE IDPersonal = ?");
+			ps.setInt(1, IdPersonal);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				e = new TActividad(rs.getInt("IdActividad"), rs.getString("Nombre"), rs.getString("lugar"),
+						rs.getInt("NumPlazas"),rs.getFloat("Precio"), rs.getInt("IdPersonal"), rs.getBoolean("Activo"));
+				if (e.getActivo())
+					ActividadesPersonal.add(e);
+			}
+			rs.close();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return ActividadesPersonal;
 	}
 
 	@Override
