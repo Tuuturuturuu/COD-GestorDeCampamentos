@@ -89,14 +89,14 @@ public class VistaGeneralFactura extends JFrame{
 		CerrarFactura_Button.setVisible(true);
 		this.add(CerrarFactura_Button);
 		
-		//Añadir Actividad a Factura
-		AnadirActividadFactura_Button = ComponentsBuilder.createButton("Añadir Actividad a Factura", 500, 100, 185, 100);
+		//Aï¿½adir Actividad a Factura
+		AnadirActividadFactura_Button = ComponentsBuilder.createButton("Aï¿½adir Actividad a Factura", 500, 100, 185, 100);
 		AnadirActividadFactura_Button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaGeneralFactura.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tFactura, Evento.EAñadirActividadFactura);
+				Controlador.obtenerInstancia().run(tFactura, Evento.EAnadirActividadFactura);
 			}
 		});
 		

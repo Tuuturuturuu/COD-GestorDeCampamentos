@@ -130,13 +130,18 @@ public class VAltaActividad extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaActividad.this.setVisible(false);
-				Controlador.obtenerInstancia()
-						.run(new TActividad(0, nombre.getText() != null ? nombre.getText() : "",
-								lugar.getText() != null ? lugar.getText() : "",
-								!plazas.getText().isEmpty() ? Integer.parseInt(plazas.getText()) : 0,
-								!precio.getText().isEmpty() ? Float.parseFloat(precio.getText()) : 0,
-								!idPersonal.getText().isEmpty() ? Integer.parseInt(idPersonal.getText()) : 0, true),
-								Evento.EAltaActividadOK);
+				try {
+					Controlador.obtenerInstancia()
+							.run(new TActividad(0, nombre.getText() != null ? nombre.getText() : "",
+									lugar.getText() != null ? lugar.getText() : "",
+									!plazas.getText().isEmpty() ? Integer.parseInt(plazas.getText()) : 0,
+									!precio.getText().isEmpty() ? Float.parseFloat(precio.getText()) : 0,
+									!idPersonal.getText().isEmpty() ? Integer.parseInt(idPersonal.getText()) : 0, true),
+									Evento.EAltaActividadOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TActividad(-38, null, null, null, null, null, true),
+							Evento.EAltaActividadOK);
+				}
 
 			}
 		});

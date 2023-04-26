@@ -76,7 +76,6 @@ public class VAltaTurno extends JFrame implements IGUI {
 		panelFecha.add(etiquetaFecha);
 		panelFecha.add(campoFecha);
 		
-		//Date fecha = (Date) campoFecha.getValue();
 		mainPanel.add(panelFecha);
 		
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -93,14 +92,8 @@ public class VAltaTurno extends JFrame implements IGUI {
 		panelHora.add(etiquetaHora);
 		panelHora.add(campoHora);
 		
-		Date hora = (Date) campoHora.getValue();
 		
 		mainPanel.add(panelHora);
-		
-		/*JTextField hora = new JTextField();
-		hora.setPreferredSize(new Dimension(250, 30));
-		hora.setEditable(true);
-		panelHora.add(hora);*/
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 

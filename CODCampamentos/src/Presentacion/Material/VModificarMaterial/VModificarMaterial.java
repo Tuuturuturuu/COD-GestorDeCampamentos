@@ -130,12 +130,14 @@ public class VModificarMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VModificarMaterial.this.setVisible(false);
-				Controlador.obtenerInstancia().run(
-						new TMaterial(Integer.parseInt(id.getText()), nombre.getText() != null ? nombre.getText() : "",
-								!nAlmacen.getText().isEmpty()  ? Integer.parseInt(nAlmacen.getText()) : 0,
-								!existencias.getText().isEmpty() ? Integer.parseInt(existencias.getText()) : 0,
-								!idActividad.getText().isEmpty() ? Integer.parseInt(idActividad.getText()) : 0, true),
-						Evento.EModificarMaterialOK);
+				try{
+					Controlador.obtenerInstancia().run(
+							new TMaterial(0, nombre.getText() != null ? nombre.getText() : "",  !nAlmacen.getText().isEmpty()  ? Integer.parseInt(nAlmacen.getText()) : 0,  !existencias.getText().isEmpty() ? Integer.parseInt(existencias.getText()) : 0,  null, true), Evento.EModificarMaterialOK);
+				}
+				catch(Exception ex){
+					Controlador.obtenerInstancia().run(new TMaterial(-38, null,  null,  null,  null, true), Evento.EModificarMaterialOK);
+
+				}
 
 			}
 		});

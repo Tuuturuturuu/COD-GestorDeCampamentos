@@ -23,6 +23,7 @@ public class SAActividadImp implements SAActividad{
 	@Override
 	public TActividad crearActividad(TActividad tActividad) {
 		TActividad actividadBBDD = new TActividad();
+<<<<<<< Updated upstream
 		if (tActividad.getLugar().isEmpty() || tActividad.getNombre().isEmpty() || tActividad.getNumplazas() == 0 || tActividad.getIdPersonal() == 0)
 			tActividad.setIdActividad(-37);
 		else if (!compr.nombreValido(tActividad.getNombre()))
@@ -44,6 +45,35 @@ public class SAActividadImp implements SAActividad{
 					tActividad.setIdActividad(daoActividad.activar(actividadBBDD.getIdActividad()));
 			}else{
 				tActividad = daoActividad.crearActividad(tActividad);	
+=======
+		if(tActividad.getIdActividad() >= 0){
+			if (tActividad.getLugar().isEmpty() || tActividad.getNombre().isEmpty() || tActividad.getNumplazas() == 0 || tActividad.getIdPersonal() == 0)
+				tActividad.setIdActividad(-37);
+			else if (!compr.nombreValido(tActividad.getNombre()))
+				tActividad.setIdActividad(-2);
+			else if (!compr.checkString(tActividad.getNombre()))
+				tActividad.setIdActividad(-38);
+			else if (!compr.nombreValido(tActividad.getLugar()))
+				tActividad.setIdActividad(-3);
+			else if (!compr.checkString(tActividad.getLugar()))
+				tActividad.setIdActividad(-38);
+			else if (!compr.numPlazas(tActividad.getNumplazas()))
+				tActividad.setIdActividad(-7);
+			else if (!compr.precio(tActividad.getPrecio()))
+				tActividad.setIdActividad(-8);
+			else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1 ) //Comprobar que el id de Personal existe
+				tActividad.setIdActividad(-9);
+			else {
+				actividadBBDD = daoActividad.buscarActividadNombreLugar(tActividad);
+				if (actividadBBDD.getIdActividad() != -1) {// encontrado en bbdd
+					if (actividadBBDD.getActivo() == true)
+						tActividad.setIdActividad(-4); // ERROR: ya esta activo
+					else
+						tActividad.setIdActividad(-6);
+				}else{
+					tActividad = daoActividad.crearActividad(tActividad);	
+				}
+>>>>>>> Stashed changes
 			}
 		}
 		return tActividad;
@@ -53,58 +83,64 @@ public class SAActividadImp implements SAActividad{
 	public TActividad modificarActividad(TActividad tActividad) {
 		TActividad tActividadBBDD = new TActividad();
 		//Buscar que existe la actividad con dicho id en la BBDD
-		tActividadBBDD = daoActividad.buscarActividadID(tActividad);
-
-		// si no ha encontrado la Actividad a modificar no se le puede cambiar el
-		// nombre
-		if (tActividadBBDD.getIdActividad() == -1)
-			tActividad.setIdActividad(-1);
-		else{
-			// no esta activo
-			if (tActividadBBDD.getActivo() == false)
-				tActividad.setIdActividad(-5);
-		}
-		// se quiere cambiar el nombre
-		if (tActividad.getNombre().equals("") && tActividad.getIdActividad() > 0) {
-			// los campos modificables que vengan en nulo los rellenamos con los
-			// valores de bbdd
-			tActividad.setNombre(tActividadBBDD.getNombre());
-		} else if (tActividad.getIdActividad() > 0) {
-			if (!compr.nombreValido(tActividad.getNombre()))
-				tActividad.setIdActividad(-2);
-		}
-
-		// se quiere cambiar lugar
-		if (tActividad.getLugar().equals("") && tActividad.getIdActividad() > 0) {
-			tActividad.setLugar(tActividadBBDD.getLugar());
-		} else if (tActividad.getIdActividad() > 0)
-			if (!compr.nombreValido(tActividad.getLugar()))
-				tActividad.setIdActividad(-3);			
-		
-		// se quiere cambiar numPlazas
-		if (tActividad.getNumplazas() != 0 && tActividad.getIdActividad() > 0) {
-			if (!compr.numPlazas(tActividad.getNumplazas()))
-				tActividad.setIdActividad(-7);
-		} else if (tActividad.getIdActividad() > 0)
-			tActividad.setNumplazas(tActividadBBDD.getNumplazas());
-				
-		// se quiere cambiar precio
-		if (tActividad.getPrecio() != 0 && tActividad.getIdActividad() > 0) {
-			if (!compr.precio(tActividad.getPrecio()))
-				tActividad.setIdActividad(-7);
-		} else if (tActividad.getIdActividad() > 0)
-			tActividad.setPrecio(tActividadBBDD.getPrecio());
-		
-		// se quiere cambiar idPersonal Y DEBERIAMOS COMPROBAR QUE ID DE EMPLEADO EXISTA EN LA BASE DE DATOS
-		if (tActividad.getIdPersonal() != 0 && tActividad.getIdActividad() > 0 ) {
-			if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1) //Comprobar que el id de Personal existe
-				tActividad.setIdActividad(-9);
-		} else if (tActividad.getIdActividad() > 0)
-					tActividad.setIdPersonal(tActividadBBDD.getIdPersonal());
-
-		// si no ha habido ningun codigo de error puede modificarse.
-		if (tActividad.getIdActividad() > 0) {
-			tActividad = daoActividad.modificarActividad(tActividad);
+		if(tActividad.getIdActividad() >= 0){
+			tActividadBBDD = daoActividad.buscarActividadID(tActividad);
+	
+			// si no ha encontrado la Actividad a modificar no se le puede cambiar el
+			// nombre
+			if (tActividadBBDD.getIdActividad() == -1)
+				tActividad.setIdActividad(-1);
+			else{
+				// no esta activo
+				if (tActividadBBDD.getActivo() == false)
+					tActividad.setIdActividad(-5);
+			}
+			// se quiere cambiar el nombre
+			if (tActividad.getNombre().equals("") && tActividad.getIdActividad() > 0) {
+				// los campos modificables que vengan en nulo los rellenamos con los
+				// valores de bbdd
+				tActividad.setNombre(tActividadBBDD.getNombre());
+			} else if (tActividad.getIdActividad() > 0) {
+				if (!compr.nombreValido(tActividad.getNombre()))
+					tActividad.setIdActividad(-2);
+				else if (!compr.checkString(tActividad.getNombre()))
+					tActividad.setIdActividad(-38);
+			}
+	
+			// se quiere cambiar lugar
+			if (tActividad.getLugar().equals("") && tActividad.getIdActividad() > 0) {
+				tActividad.setLugar(tActividadBBDD.getLugar());
+			} else if (tActividad.getIdActividad() > 0)
+				if (!compr.nombreValido(tActividad.getLugar()))
+					tActividad.setIdActividad(-3);	
+				else if (!compr.checkString(tActividad.getLugar()))
+					tActividad.setIdActividad(-38);
+			
+			// se quiere cambiar numPlazas
+			if (tActividad.getNumplazas() != 0 && tActividad.getIdActividad() > 0) {
+				if (!compr.numPlazas(tActividad.getNumplazas()))
+					tActividad.setIdActividad(-7);
+			} else if (tActividad.getIdActividad() > 0)
+				tActividad.setNumplazas(tActividadBBDD.getNumplazas());
+					
+			// se quiere cambiar precio
+			if (tActividad.getPrecio() != 0 && tActividad.getIdActividad() > 0) {
+				if (!compr.precio(tActividad.getPrecio()))
+					tActividad.setIdActividad(-7);
+			} else if (tActividad.getIdActividad() > 0)
+				tActividad.setPrecio(tActividadBBDD.getPrecio());
+			
+			// se quiere cambiar idPersonal Y DEBERIAMOS COMPROBAR QUE ID DE EMPLEADO EXISTA EN LA BASE DE DATOS
+			if (tActividad.getIdPersonal() != 0 && tActividad.getIdActividad() > 0 ) {
+				if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1) //Comprobar que el id de Personal existe
+					tActividad.setIdActividad(-9);
+			} else if (tActividad.getIdActividad() > 0)
+						tActividad.setIdPersonal(tActividadBBDD.getIdPersonal());
+	
+			// si no ha habido ningun codigo de error puede modificarse.
+			if (tActividad.getIdActividad() > 0) {
+				tActividad = daoActividad.modificarActividad(tActividad);
+			}
 		}
 		return tActividad;
 	}

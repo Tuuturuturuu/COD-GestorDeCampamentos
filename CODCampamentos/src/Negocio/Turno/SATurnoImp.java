@@ -21,6 +21,7 @@ public class SATurnoImp implements SATurno {
 
 	public TTurno crearTurno(TTurno tTurno) {
 		TTurno tTurnoBBDD = new TTurno();
+<<<<<<< Updated upstream
 		if (tTurno.getNombreTurno().isEmpty())
 			tTurno.setIdTurno(-37);
 		else if (!compr.nombreValido(tTurno.getNombreTurno()))
@@ -37,8 +38,31 @@ public class SATurnoImp implements SATurno {
 				}
 			}else{
 				tTurno = daoTurno.CrearTurno(tTurno);	
+=======
+		
+		
+			if (tTurno.getNombreTurno().isEmpty())
+				tTurno.setIdTurno(-37);
+			else if (!compr.nombreValido(tTurno.getNombreTurno()))
+				tTurno.setIdTurno(-2); //Faltan comprobaciones
+			else if(!compr.checkString(tTurno.getNombreTurno()))
+				tTurno.setIdTurno(-38);
+	
+			else{
+				//Comprobar que el nombre no esta repetido
+				tTurnoBBDD = daoTurno.BuscarTurnoPorNombre(tTurno.getNombreTurno());
+				if (tTurnoBBDD.getIdTurno()!= -1) {// encontrado en bbdd
+					if (tTurnoBBDD.getActivo() == true)
+						tTurnoBBDD.setIdTurno(-30); // ERROR: ya esta activo
+					else
+						tTurnoBBDD.setIdTurno(-29);
+				}
+				else{
+					tTurno = daoTurno.CrearTurno(tTurno);	
+				}
+>>>>>>> Stashed changes
 			}
-		}
+		
 		return tTurno;
 	}
 	public TTurno ModificarTurno(TTurno tTurno) {
@@ -62,6 +86,8 @@ public class SATurnoImp implements SATurno {
 		} else if (tTurno.getIdTurno() > 0) {
 			if (!compr.nombreValido(tTurno.getNombreTurno()))
 				tTurno.setIdTurno(-52);
+			if (!compr.checkString(tTurno.getNombreTurno()))
+				tTurno.setIdTurno(-38);
 			else{//Comprobar que el nombre no es repetido
 				tTurnoBBDDNombre = daoTurno.BuscarTurnoPorNombre(tTurno.getNombreTurno());
 				if (tTurnoBBDDNombre.getIdTurno()!= -1) // encontrado en bbdd un turno con mismo nombre

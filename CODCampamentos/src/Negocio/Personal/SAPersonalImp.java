@@ -33,31 +33,40 @@ public class SAPersonalImp implements SAPersonal {
 		else if (tPersonal.getIdPersonal() < 0) {
 			return tPersonal;
 		} else {
-			if (!compr.dniValido(tPersonal.getDNI()) && tPersonal.getIdPersonal() == 0 ){
+			if (!compr.dniValido(tPersonal.getDNI()) && tPersonal.getIdPersonal() == 0 )
 				tPersonal.setIdPersonal(-32);
-			}
+			
 			if (!compr.nombreValido(tPersonal.getNombre()) && tPersonal.getIdPersonal() == 0)
 				tPersonal.setIdPersonal(-9);
-
-			if (tPersonal.getIdPersonal() == 0)
+			
+			if(!compr.checkString(tPersonal.getNombre()))
+				tPersonal.setIdPersonal(-38);
+			
+			if (tPersonal.getIdPersonal() == 0){
 				if (tPersonal.getTipo() == 0) {// Monitor
 					if (((TPersonalMonitor) tPersonal).getEspecialidad().isEmpty() || ((TPersonalMonitor) tPersonal).getEstudios().isEmpty())
 						tPersonal.setIdPersonal(-37);
 					else if (!compr.nombreValido(((TPersonalMonitor) tPersonal).getEspecialidad()))
 						tPersonal.setIdPersonal(-16);
-					else if(!compr.nombreValido(((TPersonalMonitor) tPersonal).getEstudios())){
+					else if(!compr.checkString(((TPersonalMonitor) tPersonal).getEspecialidad()))
+						tPersonal.setIdPersonal(-38);
+					else if(!compr.nombreValido(((TPersonalMonitor) tPersonal).getEstudios()))
 						tPersonal.setIdPersonal(-17);
+					else if(!compr.checkString(((TPersonalMonitor) tPersonal).getEstudios()))
+						tPersonal.setIdPersonal(-38);
 					}
 					else {
 						bbddPersona = new TPersonalMonitor();
 						bbddPersona.setIdPersonal(tPersonal.getIdPersonal());
 						bbddPersona.setDNI(tPersonal.getDNI());
 					}
-				} else { // Cocinero
+				} else if(tPersonal.getTipo() == 1){ // Cocinero
 					if (((TPersonalCocinero) tPersonal).getPuestoEnCocina().isEmpty() || ((TPersonalCocinero) tPersonal).getAniosExperiencia() == 0)
 						tPersonal.setIdPersonal(-37);
 					else if (!compr.nombreValido(((TPersonalCocinero) tPersonal).getPuestoEnCocina()))
 						tPersonal.setIdPersonal(-18);
+					else if(!compr.checkString(((TPersonalCocinero) tPersonal).getPuestoEnCocina()))
+						tPersonal.setIdPersonal(-38);
 					else if (!compr.aniosExp(((TPersonalCocinero) tPersonal).getAniosExperiencia()))
 						tPersonal.setIdPersonal(-19);
 					else {
@@ -120,6 +129,8 @@ public class SAPersonalImp implements SAPersonal {
 			// valores de bbdd
 			tPersonal.setDNI(tPersonalBBDD.getDNI());
 		} 
+		else if(!compr.dniValido(tPersonal.getDNI()))
+			tPersonal.setIdPersonal(-38);
 		//Se pone el campo TipoPersonal con su valor original
 		if (tPersonal.getTipo() == 0 && tPersonal.getIdPersonal() > 0) {
 			// los campos modificables que vengan en nulo los rellenamos con los
@@ -135,6 +146,8 @@ public class SAPersonalImp implements SAPersonal {
 		} else if (tPersonal.getIdPersonal() > 0) {
 			if (!compr.nombreValido(tPersonal.getNombre()))
 				tPersonal.setIdPersonal(-2);
+			else if(!compr.checkString(tPersonal.getNombre()))
+				tPersonal.setIdPersonal(-38);
 		}		
 		
 		// se quiere cambiar idTurno Y DEBERIAMOS COMPROBAR QUE ID DE Turno EXISTA EN LA BASE DE DATOS

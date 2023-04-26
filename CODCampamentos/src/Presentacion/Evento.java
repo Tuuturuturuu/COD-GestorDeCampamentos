@@ -22,6 +22,7 @@ public enum Evento {
 	EMostrarTodosLosActividadporMaterialOK,
 	EVincularActividadMaterial,
 	EVincularActividadMaterialOK,
+	
 	//Personal
 	EVistaPersonalGeneral,
 	EAltaPersonal,
@@ -42,7 +43,7 @@ public enum Evento {
 	EVistaFacturaGeneral,
 	EAbrirFactura,
 	ECerrarFactura,
-	EAñadirActividadFactura,
+	EAnadirActividadFactura,
 	EQuitarActividadFactura,
 	EDelvolverUnaActividad,
 	EMostrarUnaFactura,

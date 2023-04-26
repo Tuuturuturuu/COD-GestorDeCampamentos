@@ -86,19 +86,6 @@ public class VAltaMaterial extends JFrame implements IGUI {
 		numExistencias.setEditable(true);
 		panelNumExistencias.add(numExistencias);
 
-//		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
-//		
-//		JPanel panelIdActividad = new JPanel();
-//		mainPanel.add(panelIdActividad);
-//
-//		JLabel labelIdActividad = ComponentsBuilder.createLabel("Id Actividad: ", 10, 100, 80, 20, Color.BLACK);
-//		panelIdActividad.add(labelIdActividad);
-//
-//		JTextField idActividad = new JTextField();
-//		idActividad.setPreferredSize(new Dimension(250, 30));
-//		idActividad.setEditable(true);
-//		panelIdActividad.add(idActividad);
-
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 
 		JPanel panelBotones = new JPanel();
@@ -111,9 +98,16 @@ public class VAltaMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaMaterial.this.setVisible(false);
+				
+				try{
+					Controlador.obtenerInstancia().run(
+							new TMaterial(0, nombre.getText() != null ? nombre.getText() : "",  !almacen.getText().isEmpty()  ? Integer.parseInt(almacen.getText()) : 0,  !numExistencias.getText().isEmpty() ? Integer.parseInt(numExistencias.getText()) : 0,  null, true), Evento.EAltaMaterialOK);
+				}
+				catch(Exception ex){
+					Controlador.obtenerInstancia().run(new TMaterial(-38, null,  null,  null,  null, true), Evento.EAltaMaterialOK);
 
-				Controlador.obtenerInstancia().run(
-						new TMaterial(0, nombre.getText() != null ? nombre.getText() : "",  !almacen.getText().isEmpty()  ? Integer.parseInt(almacen.getText()) : 0,  !numExistencias.getText().isEmpty() ? Integer.parseInt(numExistencias.getText()) : 0,  null, true), Evento.EAltaMaterialOK);
+				}
+				
 
 			}
 		});

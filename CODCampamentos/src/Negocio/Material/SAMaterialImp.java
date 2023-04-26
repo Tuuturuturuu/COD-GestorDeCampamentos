@@ -23,27 +23,8 @@ public class SAMaterialImp implements SAMaterial {
 	
 	public TMaterial crearMaterial(TMaterial tMaterial) {
 		TMaterial materialBBDD = new TMaterial();
-//		TActividad tActividad = new TActividad();
-//		TActividadMaterial tActividadMaterial = new TActividadMaterial();
-		
-//		tActividad.setIdActividad(tMaterial.getIdActividad());
-		if (tMaterial.getNombre().isEmpty() || tMaterial.getExistencias() == 0 || tMaterial.getNAlmacen() == 0)
-			tMaterial.setId(-37);
-		else if (!compr.nombreValido(tMaterial.getNombre()))
-			tMaterial.setId(-2);
-		else if (!compr.almacenValido(tMaterial.getNAlmacen()))
-			tMaterial.setId(-10);
-		else if (!compr.nExistenciasValido(tMaterial.getExistencias()))
-			tMaterial.setId(-11);
-//		else if (!compr.idValido(tMaterial.getIdActividad()))
-//			tMaterial.setId(-14);
-//		else if (daoActividad.mostrarActividad(tActividad).getIdActividad() == -1) //Comprobar que el id de Actividad existe
-//			tMaterial.setId(-23);
-			
-		else {
-			//materialBBDD.setId(tMaterial.getId());
-			materialBBDD = daoMaterial.buscarMaterialNombre(tMaterial);
 
+<<<<<<< Updated upstream
 			if (materialBBDD.getId() != -1) {// encontrado en bbdd
 				if (materialBBDD.getActivo() == true)
 					tMaterial.setId(-26); // ya esta activo
@@ -61,79 +42,109 @@ public class SAMaterialImp implements SAMaterial {
 //				tMaterial.setId(-24);
 		}
 		
+=======
+		if(tMaterial.getId() >= 0){
+			if (tMaterial.getNombre().isEmpty() || tMaterial.getExistencias() == 0 || tMaterial.getNAlmacen() == 0)
+				tMaterial.setId(-37);
+			else if (!compr.nombreValido(tMaterial.getNombre()))
+				tMaterial.setId(-2);
+			else if (!compr.checkString(tMaterial.getNombre()))
+				tMaterial.setId(-38);
+			else if (!compr.almacenValido(tMaterial.getNAlmacen()))
+				tMaterial.setId(-10);
+			else if (!compr.nExistenciasValido(tMaterial.getExistencias()))
+				tMaterial.setId(-11);
+				
+			else {
+			
+				materialBBDD = daoMaterial.buscarMaterialNombre(tMaterial);
+	
+				if (materialBBDD.getId() != -1) // encontrado en bbdd
+					if (materialBBDD.getActivo() == true)
+						tMaterial.setId(-26); // ya esta activo
+			}
+			if (tMaterial.getId() == 0){
+				tMaterial = daoMaterial.crearMaterial(tMaterial);
+				
+			}
+		}	
+>>>>>>> Stashed changes
 		
 		return tMaterial;
 	}
 
 	public TMaterial modificarMaterial(TMaterial tMaterial) {
-		TMaterial tMaterialBBDD = new TMaterial();
-		TActividad tActividad = new TActividad();
-		tActividad.setIdActividad(tMaterial.getIdActividad());
-		TMaterial materialBBDD = new TMaterial();
-
-		// existe el Material en bbdd
-		tMaterialBBDD.setId(tMaterial.getId());
-		tMaterialBBDD = daoMaterial.mostrarMaterial(tMaterialBBDD);
-
-		// si no ha encontrado el Material a modificar no se le puede cambiar el
-		// nombre
-		if (tMaterialBBDD.getId() == -1)
-			tMaterial.setId(-1);
-
-		// no esta activo
-		else{
+		
+		if(tMaterial.getId() >= 0){
+			TMaterial tMaterialBBDD = new TMaterial();
+			TActividad tActividad = new TActividad();
+			tActividad.setIdActividad(tMaterial.getIdActividad());
+			TMaterial materialBBDD = new TMaterial();
+	
+			// existe el Material en bbdd
+			tMaterialBBDD.setId(tMaterial.getId());
+			tMaterialBBDD = daoMaterial.mostrarMaterial(tMaterialBBDD);
+	
+			// si no ha encontrado el Material a modificar no se le puede cambiar el
+			// nombre
+			if (tMaterialBBDD.getId() == -1)
+				tMaterial.setId(-1);
+	
 			// no esta activo
-			if (tMaterialBBDD.getActivo() == false)
-				tMaterial.setId(-5);
-		}
-
-		// se quiere cambiar el nombre
-		if (tMaterial.getNombre().equals("") && tMaterial.getId() > 0) {
-			tMaterial.setNombre(tMaterialBBDD.getNombre());
-		} else if (tMaterial.getId() > 0) {
-			if (!compr.nombreValido(tMaterial.getNombre()))
-				tMaterial.setId(-2);
-			else {
-				materialBBDD = daoMaterial.buscarMaterialNombre(tMaterial);
-				if (materialBBDD.getId() != -1) 
-						tMaterial.setId(-26);
+			else{
+				// no esta activo
+				if (tMaterialBBDD.getActivo() == false)
+					tMaterial.setId(-5);
 			}
-		}
-		
-
-		// se quiere cambiar el numero del almacen
-		if (tMaterial.getNAlmacen() != 0 && tMaterial.getId() > 0) {
+	
+			// se quiere cambiar el nombre
+			if (tMaterial.getNombre().equals("") && tMaterial.getId() > 0) {
+				tMaterial.setNombre(tMaterialBBDD.getNombre());
+			} else if (tMaterial.getId() > 0) {
+				if (!compr.nombreValido(tMaterial.getNombre()))
+					tMaterial.setId(-2);
+				else if (!compr.checkString(tMaterial.getNombre()))
+					tMaterial.setId(-38);
+				else {
+					materialBBDD = daoMaterial.buscarMaterialNombre(tMaterial);
+					if (materialBBDD.getId() != -1) 
+							tMaterial.setId(-26);
+				}
+			}
 			
-			if (!compr.almacenValido(tMaterial.getNAlmacen()))
-				tMaterial.setId(-10);	
-		} else if (tMaterial.getId() > 0){
-			tMaterial.setNAlmacen(tMaterialBBDD.getNAlmacen());
-		}
-		
-		// se quiere cambiar el numero de existencias
-		
-		if (tMaterial.getExistencias() != 0 && tMaterial.getId() > 0) {
-			if (!compr.nExistenciasValido(tMaterial.getExistencias()))
-				tMaterial.setId(-11);
-		} else if (tMaterial.getId() > 0){
-			tMaterial.setExistencias(tMaterialBBDD.getExistencias());
+	
+			// se quiere cambiar el numero del almacen
+			if (tMaterial.getNAlmacen() != 0 && tMaterial.getId() > 0) {
+				
+				if (!compr.almacenValido(tMaterial.getNAlmacen()))
+					tMaterial.setId(-10);	
+			} else if (tMaterial.getId() > 0){
+				tMaterial.setNAlmacen(tMaterialBBDD.getNAlmacen());
+			}
 			
-		}
-					
-		
-		// se quiere cambiar idActividad Y DEBERIAMOS COMPROBAR QUE ID DE actividad EXISTA EN LA BASE DE DATOS
-		if (tMaterial.getIdActividad() != 0 && tMaterial.getId() > 0 ) {
-			if (daoActividad.mostrarActividad(tActividad).getIdActividad() == -1) //Comprobar que el id de Personal existe
-				tMaterial.setId(-9);
-		} else if (tMaterial.getId() > 0){
-			tMaterial.setIdActividad(tMaterialBBDD.getIdActividad());
-		}
-					
-
-		// si no ha habido ningun codigo de error puede modificarse.
-		if (tMaterial.getId() > 0) {
-
-			tMaterial = daoMaterial.modificarMaterial(tMaterial);
+			// se quiere cambiar el numero de existencias
+			
+			if (tMaterial.getExistencias() != 0 && tMaterial.getId() > 0) {
+				if (!compr.nExistenciasValido(tMaterial.getExistencias()))
+					tMaterial.setId(-11);
+			} else if (tMaterial.getId() > 0){
+				tMaterial.setExistencias(tMaterialBBDD.getExistencias());
+			}
+						
+			// se quiere cambiar idActividad Y DEBERIAMOS COMPROBAR QUE ID DE actividad EXISTA EN LA BASE DE DATOS
+			if (tMaterial.getIdActividad() != 0 && tMaterial.getId() > 0 ) {
+				if (daoActividad.mostrarActividad(tActividad).getIdActividad() == -1) //Comprobar que el id de Personal existe
+					tMaterial.setId(-9);
+			} else if (tMaterial.getId() > 0){
+				tMaterial.setIdActividad(tMaterialBBDD.getIdActividad());
+			}
+						
+	
+			// si no ha habido ningun codigo de error puede modificarse.
+			if (tMaterial.getId() > 0) {
+	
+				tMaterial = daoMaterial.modificarMaterial(tMaterial);
+			}
 		}
 		return tMaterial;
 	}
