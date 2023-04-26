@@ -24,7 +24,7 @@ public class SAMaterialImp implements SAMaterial {
 	public TMaterial crearMaterial(TMaterial tMaterial) {
 		TMaterial materialBBDD = new TMaterial();
 
-<<<<<<< Updated upstream
+
 			if (materialBBDD.getId() != -1) {// encontrado en bbdd
 				if (materialBBDD.getActivo() == true)
 					tMaterial.setId(-26); // ya esta activo
@@ -40,9 +40,9 @@ public class SAMaterialImp implements SAMaterial {
 //			
 //			if (correct == 0)
 //				tMaterial.setId(-24);
-		}
 		
-=======
+		
+
 		if(tMaterial.getId() >= 0){
 			if (tMaterial.getNombre().isEmpty() || tMaterial.getExistencias() == 0 || tMaterial.getNAlmacen() == 0)
 				tMaterial.setId(-37);
@@ -68,7 +68,7 @@ public class SAMaterialImp implements SAMaterial {
 				
 			}
 		}	
->>>>>>> Stashed changes
+
 		
 		return tMaterial;
 	}

@@ -23,7 +23,6 @@ public class SAActividadImp implements SAActividad{
 	@Override
 	public TActividad crearActividad(TActividad tActividad) {
 		TActividad actividadBBDD = new TActividad();
-<<<<<<< Updated upstream
 		if (tActividad.getLugar().isEmpty() || tActividad.getNombre().isEmpty() || tActividad.getNumplazas() == 0 || tActividad.getIdPersonal() == 0)
 			tActividad.setIdActividad(-37);
 		else if (!compr.nombreValido(tActividad.getNombre()))
@@ -45,7 +44,7 @@ public class SAActividadImp implements SAActividad{
 					tActividad.setIdActividad(daoActividad.activar(actividadBBDD.getIdActividad()));
 			}else{
 				tActividad = daoActividad.crearActividad(tActividad);	
-=======
+
 		if(tActividad.getIdActividad() >= 0){
 			if (tActividad.getLugar().isEmpty() || tActividad.getNombre().isEmpty() || tActividad.getNumplazas() == 0 || tActividad.getIdPersonal() == 0)
 				tActividad.setIdActividad(-37);
@@ -73,8 +72,8 @@ public class SAActividadImp implements SAActividad{
 				}else{
 					tActividad = daoActividad.crearActividad(tActividad);	
 				}
->>>>>>> Stashed changes
-			}
+
+			}}}
 		}
 		return tActividad;
 	}

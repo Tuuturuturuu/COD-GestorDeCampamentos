@@ -49,7 +49,7 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error24 = "Error: Fallo a la hora de vincular Actividad con el Material";
 	private static final String error28 = "Error: El personal se encuentra inactivo";
 	private static final String error35 = "Error: El personal tiene actividades activas";
-	private static final String error38 = "Error: El DNI introducido ya corresponde a un Personal Activo";
+	private static final String error39 = "Error: El DNI introducido ya corresponde a un Personal Activo";
 
 
 	// Errores Material
@@ -203,6 +203,9 @@ public class FailureDialog extends JFrame implements IGUI {
 			break;
 		case -38:
 			info = new JLabel(error38);
+			break;
+		case -39:
+			info = new JLabel(error39);
 			break;
 		default:
 			info = new JLabel("Error en la operacion");
