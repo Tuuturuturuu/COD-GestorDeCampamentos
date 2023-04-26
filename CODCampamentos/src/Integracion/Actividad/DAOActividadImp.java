@@ -275,5 +275,26 @@ public class DAOActividadImp implements DAOActividad {
 		}
 		return tActividad;
 	}
+
+	@Override
+	public Integer activar(Integer IdActividad) {
+		Integer correcto = 0;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("UPDATE Actividad SET Activo = 1 WHERE IdActividad = ? ",
+					Statement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, IdActividad);
+			ps.executeUpdate();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return correcto;
+	}
 	
 }

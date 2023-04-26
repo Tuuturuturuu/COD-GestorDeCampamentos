@@ -24,5 +24,7 @@ public interface DAOActividad {
 	public TActividad buscarActividadID(TActividad tActividad);
 	
 	public TActividad buscarActividadNombreLugar(TActividad tActividad);
+	
+	public Integer activar(Integer IdActividad);
 
 }

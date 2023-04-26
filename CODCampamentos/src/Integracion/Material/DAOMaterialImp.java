@@ -217,4 +217,25 @@ public class DAOMaterialImp implements DAOMaterial {
 		return null;
 	}
 
+	@Override
+	public Integer activar(Integer IdMaterial) {
+		Integer correcto = 0;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("UPDATE Material SET Activo = 1 WHERE IdMaterial = ? ",
+					Statement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, IdMaterial);
+			ps.executeUpdate();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return correcto;
+	}
+
 }

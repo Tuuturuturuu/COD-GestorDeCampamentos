@@ -41,7 +41,7 @@ public class SAActividadImp implements SAActividad{
 				if (actividadBBDD.getActivo() == true)
 					tActividad.setIdActividad(-4); // ERROR: ya esta activo
 				else
-					tActividad.setIdActividad(-6);
+					tActividad.setIdActividad(daoActividad.activar(actividadBBDD.getIdActividad()));
 			}else{
 				tActividad = daoActividad.crearActividad(tActividad);	
 			}

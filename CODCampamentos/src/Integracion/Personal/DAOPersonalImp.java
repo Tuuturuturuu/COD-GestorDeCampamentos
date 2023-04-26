@@ -312,4 +312,25 @@ public class DAOPersonalImp implements DAOPersonal {
 		return personal;
 	}
 
+	@Override
+	public Integer activar(Integer IdPersonal) {
+		Integer correcto = 0;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("UPDATE Personal SET Activo = 1 WHERE IdPersonal = ? ",
+					Statement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, IdPersonal);
+			ps.executeUpdate();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return correcto;
+	}
+
 }

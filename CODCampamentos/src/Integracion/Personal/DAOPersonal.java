@@ -23,4 +23,6 @@ public interface DAOPersonal {
 	public TPersonal ModificarPersonal(TPersonal tPersonal);
 
 	public TPersonal buscarPorDNI(TPersonal tPersonal);
+	
+	public Integer activar(Integer IdPersonal);
 }

@@ -68,12 +68,14 @@ public class SAPersonalImp implements SAPersonal {
 		}
 		if(tPersonal.getIdPersonal() == 0 && bbddPersona.getIdPersonal() == 0){
 			TPersonal aux = daoPersonal.buscarPorDNI(bbddPersona);
-				if (aux.getIdPersonal() != -1) // Se ha encontrado una persona con ese DNI en la bbdd
-					tPersonal.setIdPersonal(-33);
+				if (aux.getIdPersonal() != -1){ 					// Se ha encontrado una persona con ese DNI en la bbdd
+					if(aux.getIsActivo() == true)
+						tPersonal.setIdPersonal(-38);
+					else
+						tPersonal.setIdPersonal(daoPersonal.activar(aux.getIdPersonal()));
+				}else if (tPersonal.getIdPersonal() == 0)
+					tPersonal = daoPersonal.CrearPersonal(tPersonal);
 		}
-
-		if (tPersonal.getIdPersonal() == 0)
-			tPersonal = daoPersonal.CrearPersonal(tPersonal);
 		return tPersonal;
 	}
 

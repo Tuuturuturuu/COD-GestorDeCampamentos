@@ -46,13 +46,13 @@ public class ControladorImp extends Controlador {
 
 		case EAltaActividadOK:
 			auxActividad = FactoriaSAImp.obtenerInstancia().generarSAActividad().crearActividad((TActividad) Obj);
-			if (auxActividad.getIdActividad() <= 0) {
+			if (auxActividad.getIdActividad() < 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxActividad.getIdActividad(), null);
-			} else {
+			} else if(auxActividad.getIdActividad() == 0){
+				gui.getVistaGeneralAux().getConfirmDialogActivar().actualizar(auxActividad.getIdActividad(), null);
+			}else
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxActividad.getIdActividad(), null);
-			}
 			break;
-
 		case EBajaActividad:
 			gui.getVistaActividad().getVista_BajaActividad();
 			break;
@@ -149,12 +149,13 @@ public class ControladorImp extends Controlador {
 			break;
 		case EAltaMaterialOK:
 			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial().crearMaterial((TMaterial) Obj);
-			if (auxMaterial.getId() <= 0) {
+			if (auxMaterial.getId() < 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxMaterial.getId(), null);
-			} else {
+			} else if(auxMaterial.getId()  == 0){
+				gui.getVistaGeneralAux().getConfirmDialogActivar().actualizar(auxMaterial.getId(), null);
+			}else
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxMaterial.getId(), null);
-			}
-			break;
+			break;		 			
 		case EBajaMaterial:
 			gui.getVistaMaterial().getVista_BajaMaterial();
 			break;
@@ -242,21 +243,26 @@ public class ControladorImp extends Controlador {
 
 		case EAltaMonitorOK:
 			auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().crearPersonal((TPersonal) Obj);
-			if (auxPersonal.getIdPersonal() <= 0) {
+			if (auxPersonal.getIdPersonal() < 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
-			} else {
+			}else if(auxPersonal.getIdPersonal() == 0){
+				gui.getVistaGeneralAux().getConfirmDialogActivar().actualizar(auxPersonal.getIdPersonal(), null);
+			}else
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxPersonal.getIdPersonal(), null);
-			}
 			break;
+			
+
 
 		case EAltaCocineroOK:
 			auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().crearPersonal((TPersonal) Obj);
 			if (auxPersonal.getIdPersonal() <= 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
-			} else {
+			}else if(auxPersonal.getIdPersonal() == 0){
+				gui.getVistaGeneralAux().getConfirmDialogActivar().actualizar(auxPersonal.getIdPersonal(), null);
+			}else
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxPersonal.getIdPersonal(), null);
-			}
 			break;
+			
 
 		case EBajaPersonal:
 			gui.getVistaPersonal().getVista_BajaPersonal();

@@ -15,11 +15,12 @@ public interface DAOMaterial {
 	
 	public Set<TMaterial> mostrarTodosMateriales();
 	
-	//AÑADIDOS PARA NEGOCIO
+	//ANIADIDOS PARA NEGOCIO
 	public TMaterial buscarMaterialID(TMaterial tMaterial);
 	public TMaterial buscarMaterialNombre(TMaterial tMaterial);
 
 	public Set<TMaterial> listarMaterialPorActividad(int idActividad);
-
+	
+	public Integer activar(Integer IdMaterial);
 	
 }

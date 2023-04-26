@@ -44,13 +44,14 @@ public class SAMaterialImp implements SAMaterial {
 			//materialBBDD.setId(tMaterial.getId());
 			materialBBDD = daoMaterial.buscarMaterialNombre(tMaterial);
 
-			if (materialBBDD.getId() != -1) // encontrado en bbdd
+			if (materialBBDD.getId() != -1) {// encontrado en bbdd
 				if (materialBBDD.getActivo() == true)
 					tMaterial.setId(-26); // ya esta activo
-		}
-		if (tMaterial.getId() == 0){
-			tMaterial = daoMaterial.crearMaterial(tMaterial);
-			
+				else
+					tMaterial.setId(daoMaterial.activar(materialBBDD.getId()));
+			}else if(tMaterial.getId() == 0)
+					tMaterial = daoMaterial.crearMaterial(tMaterial);
+
 //			tActividadMaterial.setIdActividad(tActividad.getIdActividad());
 //			tActividadMaterial.setIdMaterial(tMaterial.getId());
 //			
