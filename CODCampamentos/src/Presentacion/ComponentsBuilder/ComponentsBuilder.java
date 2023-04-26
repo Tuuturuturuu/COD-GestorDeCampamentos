@@ -36,7 +36,7 @@ public class ComponentsBuilder {
 	public static JButton createBackButton() {
 		JButton button = new JButton();
 
-		ImageIcon icon = new ImageIcon("icons/back.png");
+		ImageIcon icon = new ImageIcon("imagen/back.png");
 		Image newImg = icon.getImage().getScaledInstance(80, 60, java.awt.Image.SCALE_SMOOTH);
 		icon = new ImageIcon(newImg);
 		button.setIcon(icon);

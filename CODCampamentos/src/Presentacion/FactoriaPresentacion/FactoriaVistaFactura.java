@@ -7,6 +7,7 @@ import Presentacion.Factura.VistaGeneralFactura;
 import Presentacion.Factura.VAbrirFactura.VAbrirFactura;
 import Presentacion.Factura.VAniadirActividadAFactura.VAniadirActividadAFactura;
 import Presentacion.Factura.VCerrarFactura.VCerrarFactura;
+import Presentacion.Factura.VDevolverUnaActividadAFactura.VDevolverUnaActividadAFactura;
 import Presentacion.Factura.VMostrarFactura.VMostrarFactura;
 import Presentacion.Factura.VMostrarFacturaPorActividad.VMostrarFacturaPorActividad;
 import Presentacion.Factura.VMostrarTodasFacturas.VMostrarTodasFacturas;
@@ -22,15 +23,13 @@ public interface FactoriaVistaFactura {
 
 	public VQuitarActividadAFactura getVista_QuitarActividadFactura();
 
-	public VMostrarTodasFacturas getVista_MostrarTodosActividad(Set<TFactura> listaFacturas);
+	public VMostrarTodasFacturas getVista_MostrarTodasFacturas(Set<TFactura> listaFacturas);
 	
-	public VMostrarFactura getVista_MostrarUnaActividad();
+	public VMostrarFactura getVista_MostrarUnaFactura();
 	
-	public VMostrarFacturaPorActividad getVista_MostrarActividadPorPersonalOK(Set<TFactura> listaFacturas);
+	public VMostrarFacturaPorActividad getVista_MostrarFacturaPorActividad();
 	
-	public VMostrarActividadesPorMaterial getVista_MostrarActividadPorMaterial();
-	public MostrarActividadPorMaterialOK getVista_MostrarActividadPorMaterialOK(Set<TFactura> listaFacturas);
+	public VDevolverUnaActividadAFactura getVista_DevolverUnaActividadAFactura();
 
-	public VVincularActividadConMaterial getVista_Vincular();
 	public VistaGeneralFactura getVista_VistaFacturaGeneral();
 }

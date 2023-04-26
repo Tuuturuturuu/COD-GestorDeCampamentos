@@ -61,7 +61,7 @@ public class VistaGeneralFactura extends JFrame{
 		this.add(label);
 		
 		//CrearFactura
-		CrearFactura_Button = ComponentsBuilder.createButton("Crear Factura", 100, 100, 185, 100);
+		CrearFactura_Button = ComponentsBuilder.createButton("Crear Factura", 85, 100, 200, 100);
 		CrearFactura_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -104,7 +104,7 @@ public class VistaGeneralFactura extends JFrame{
 		this.add(AnadirActividadFactura_Button);
 
 		//Quitar Actividad De Factura
-		QuitarActividadDeFactura_Button = ComponentsBuilder.createButton("Quitar Actividad de Factura", 700, 100, 185, 100);
+		QuitarActividadDeFactura_Button = ComponentsBuilder.createButton("Quitar Actividad de Factura", 700, 100, 200, 100);
 		QuitarActividadDeFactura_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -118,7 +118,7 @@ public class VistaGeneralFactura extends JFrame{
 		this.add(QuitarActividadDeFactura_Button);
 		
 		//Devolver Actividad 
-		devolverActividad_Button = ComponentsBuilder.createButton("Devolucion de Actividad", 150, 250, 200, 100);
+		devolverActividad_Button = ComponentsBuilder.createButton("Devolucion de Actividad", 85, 250, 200, 100);
 		devolverActividad_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -132,7 +132,7 @@ public class VistaGeneralFactura extends JFrame{
 		this.add(devolverActividad_Button);
 		
 		// Mostrar una Factura
-		mostrarUnaFactura_Button = ComponentsBuilder.createButton("Mostrar una Factura", 400, 250, 200, 100);
+		mostrarUnaFactura_Button = ComponentsBuilder.createButton("Mostrar una Factura", 300, 250, 185, 100);
 		mostrarUnaFactura_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -146,7 +146,7 @@ public class VistaGeneralFactura extends JFrame{
 		this.add(mostrarUnaFactura_Button);
 		
 		//	Mostrar Todas las facturas
-		mostrarTodasLasFacturas_Button = ComponentsBuilder.createButton("Mostrar Todas Las Facturas", 900, 250, 200, 100);
+		mostrarTodasLasFacturas_Button = ComponentsBuilder.createButton("Mostrar Todas Las Facturas", 500, 250, 185, 100);
 		mostrarTodasLasFacturas_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -160,7 +160,7 @@ public class VistaGeneralFactura extends JFrame{
 		this.add(mostrarTodasLasFacturas_Button);
 		
 		// Mostrar Factura por Actividad
-		mostrarFacturaPorActividad_Button = ComponentsBuilder.createButton("Mostrar Factura Por Actividad", 400, 250, 200, 100);
+		mostrarFacturaPorActividad_Button = ComponentsBuilder.createButton("Mostrar Factura Por Actividad", 700, 250, 200, 100);
 		mostrarFacturaPorActividad_Button.addActionListener(new ActionListener() {
 
 					@Override
