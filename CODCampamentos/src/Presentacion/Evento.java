@@ -40,6 +40,14 @@ public enum Evento {
 	
 	//Factura
 	EVistaFacturaGeneral,
+	EAbrirFactura,
+	ECerrarFactura,
+	EAñadirActividadFactura,
+	EQuitarActividadFactura,
+	EDelvolverUnaActividad,
+	EMostrarUnaFactura,
+	EMostrarTodasLasFacturas,
+	EMostrarFacturaPorActividad,
 	
 	//Material
 	EVistaMaterialGeneral,

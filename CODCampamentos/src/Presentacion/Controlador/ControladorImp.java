@@ -369,6 +369,10 @@ public class ControladorImp extends Controlador {
 			Set<TTurno> listaTurnos = FactoriaSAImp.obtenerInstancia().generarSATurno().MostrarTurnos();
 			gui.getVistaTurno().getVista_MostrarTodosTurnos(listaTurnos);
 			break;
+		//TURNO
+		case EVistaFacturaGeneral:
+			gui.getVistaFactura().;
+			break;
 			
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();

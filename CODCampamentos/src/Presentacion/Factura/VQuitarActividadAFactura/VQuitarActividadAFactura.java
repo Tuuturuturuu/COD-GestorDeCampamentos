@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Presentacion.Factura.VQuitarVentaAFactura;
+package Presentacion.Factura.VQuitarActividadAFactura;
 
 import Presentacion.Evento;
 import Presentacion.IGUI;
@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 * @author airam
 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 */
-public class VQuitarVentaAFactura implements IGUI {
+public class VQuitarActividadAFactura implements IGUI {
 	/** 
 	* <!-- begin-UML-doc -->
 	* <!-- end-UML-doc -->

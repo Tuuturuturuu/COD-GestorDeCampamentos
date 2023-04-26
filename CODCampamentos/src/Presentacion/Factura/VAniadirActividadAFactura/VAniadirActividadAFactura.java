@@ -1,7 +1,5 @@
-/**
- * 
- */
-package Presentacion.Factura.VAniadirVentaAFactura;
+
+package Presentacion.Factura.VAniadirActividadAFactura;
 
 import javax.swing.JFrame;
 
@@ -14,12 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
 public class VAniadirActividadAFactura extends JFrame implements IGUI {
 	/** 
 	* <!-- begin-UML-doc -->
