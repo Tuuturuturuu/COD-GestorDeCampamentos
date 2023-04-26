@@ -380,6 +380,9 @@ public class ControladorImp extends Controlador {
 		case EVistaFacturaGeneral:
 			gui.getVistaFactura().getVista_VistaFacturaGeneral();
 			break;
+		case EVistaCrearFactura:
+			gui.getVistaFactura().getVista_AbrirFactura();
+			break;
 			
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();

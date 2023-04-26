@@ -61,61 +61,18 @@ public class VistaGeneralFactura extends JFrame{
 		this.add(label);
 		
 		//CrearFactura
-		CrearFactura_Button = ComponentsBuilder.createButton("Crear Factura", 85, 100, 200, 100);
+		CrearFactura_Button = ComponentsBuilder.createButton("Crear Factura", 390, 100, 220, 120);
 		CrearFactura_Button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaGeneralFactura.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tFactura, Evento.EAbrirFactura);
+				Controlador.obtenerInstancia().run(tFactura, Evento.EVistaCrearFactura);
 			}
 
 		});
 		CrearFactura_Button.setVisible(true);
 		this.add(CrearFactura_Button);
-		
-		//cerrarFactura
-		CerrarFactura_Button = ComponentsBuilder.createButton("Cerrar Factura", 300, 100, 185, 100);
-		CerrarFactura_Button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VistaGeneralFactura.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tFactura, Evento.ECerrarFactura);
-
-			}
-		});
-
-		CerrarFactura_Button.setVisible(true);
-		this.add(CerrarFactura_Button);
-		
-		//Añadir Actividad a Factura
-		AnadirActividadFactura_Button = ComponentsBuilder.createButton("Añadir Actividad a Factura", 500, 100, 185, 100);
-		AnadirActividadFactura_Button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VistaGeneralFactura.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tFactura, Evento.EAñadirActividadFactura);
-			}
-		});
-		
-		AnadirActividadFactura_Button.setVisible(true);
-		this.add(AnadirActividadFactura_Button);
-
-		//Quitar Actividad De Factura
-		QuitarActividadDeFactura_Button = ComponentsBuilder.createButton("Quitar Actividad de Factura", 700, 100, 200, 100);
-		QuitarActividadDeFactura_Button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VistaGeneralFactura.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tFactura, Evento.EQuitarActividadFactura);
-
-			}
-		});
-		QuitarActividadDeFactura_Button.setVisible(true);
-		this.add(QuitarActividadDeFactura_Button);
 		
 		//Devolver Actividad 
 		devolverActividad_Button = ComponentsBuilder.createButton("Devolucion de Actividad", 85, 250, 200, 100);
