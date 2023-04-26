@@ -326,11 +326,12 @@ public class ControladorImp extends Controlador {
 			break;
 		case EAltaTurnoOK:
 			auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().crearTurno((TTurno) Obj);
-			if (auxTurno.getIdTurno() <= 0) {
+			if (auxTurno.getIdTurno() < 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxTurno.getIdTurno(), null);
-			} else {
+			} else if(auxTurno.getIdTurno()  == 0){
+				gui.getVistaGeneralAux().getConfirmDialogActivar().actualizar(auxTurno.getIdTurno(), null);
+			}else
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxTurno.getIdTurno(), null);
-			}
 			break;
 		case EBajaTurno:
 			gui.getVistaTurno().getVista_BajaTurno();

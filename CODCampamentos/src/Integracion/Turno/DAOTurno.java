@@ -13,4 +13,5 @@ public interface DAOTurno {
 	public TTurno MostrarTurno(Integer idTurno);
 	public Set<TTurno> MostrarAllTurnos();
 	public TTurno BuscarTurnoPorNombre(String NombreTurno);
+	public Integer activar(Integer IdTurno);
 }

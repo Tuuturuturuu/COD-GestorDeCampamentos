@@ -174,4 +174,24 @@ public class DAOTurnoImp implements DAOTurno {
 		}
 		return tTurno;
 	}
+	@Override
+	public Integer activar(Integer IdTurno) {
+		Integer correcto = 0;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("UPDATE Turno SET Activo = 1 WHERE IdTurno = ? ",
+					Statement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, IdTurno);
+			ps.executeUpdate();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return correcto;
+	}
 }

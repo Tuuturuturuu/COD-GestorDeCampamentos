@@ -1,6 +1,7 @@
 package Presentacion.FactoriaPresentacion;
 
 import Presentacion.ConfirmDialog;
+import Presentacion.ConfirmDialogActivar;
 import Presentacion.ConfirmDialogMostrarUna;
 import Presentacion.FailureDialog;
 import Presentacion.VistaGeneral;
@@ -25,6 +26,12 @@ public class FactoriaVistaGeneralAuxImp implements FactoriaVistaGeneralAux {
 	@Override
 	public ConfirmDialogMostrarUna getConfirmDialogMostrarUna() {
 		return new ConfirmDialogMostrarUna();
+	}
+
+	@Override
+	public ConfirmDialogActivar getConfirmDialogActivar() {
+		// TODO Auto-generated method stub
+		return new ConfirmDialogActivar();
 	}
 
 }

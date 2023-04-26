@@ -1,6 +1,7 @@
 package Presentacion.FactoriaPresentacion;
 
 import Presentacion.ConfirmDialog;
+import Presentacion.ConfirmDialogActivar;
 import Presentacion.ConfirmDialogMostrarUna;
 import Presentacion.FailureDialog;
 import Presentacion.VistaGeneral;
@@ -12,6 +13,8 @@ public interface FactoriaVistaGeneralAux {
 	public abstract FailureDialog getFailureDialg();
 
 	public abstract ConfirmDialog getConfirmDialg();
+	
+	public abstract ConfirmDialogActivar getConfirmDialogActivar();
 
 	public abstract ConfirmDialogMostrarUna getConfirmDialogMostrarUna();
 

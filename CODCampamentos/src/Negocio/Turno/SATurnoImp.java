@@ -30,9 +30,11 @@ public class SATurnoImp implements SATurno {
 			tTurnoBBDD = daoTurno.BuscarTurnoPorNombre(tTurno.getNombreTurno());
 			if (tTurnoBBDD.getIdTurno()!= -1) {// encontrado en bbdd
 				if (tTurnoBBDD.getActivo() == true)
-					tTurnoBBDD.setIdTurno(-30); // ERROR: ya esta activo
-				else
-					tTurnoBBDD.setIdTurno(-29);
+					tTurno.setIdTurno(-30);// ERROR: ya esta activo
+				else{
+					Integer correct = daoTurno.activar(tTurnoBBDD.getIdTurno());
+					tTurno.setIdTurno(correct);
+				}
 			}else{
 				tTurno = daoTurno.CrearTurno(tTurno);	
 			}
