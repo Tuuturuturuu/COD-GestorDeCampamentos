@@ -156,9 +156,10 @@ public class SAPersonalImp implements SAPersonal {
 
 	@Override
 	public TPersonal mostrarUno(TPersonal tPersonal) {
-		if( daoPersonal.MostrarUno(tPersonal.getIdPersonal()).getIsActivo() == false )
+		tPersonal = daoPersonal.MostrarUno(tPersonal.getIdPersonal());
+		if( tPersonal.getIsActivo() == false )
 			tPersonal.setIdPersonal(-5);
-				return tPersonal;
+		return tPersonal;
 	}
 
 	@Override
