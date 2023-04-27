@@ -143,7 +143,8 @@ public class VModificarActividad extends JFrame implements IGUI {
 				VModificarActividad.this.setVisible(false);
 				try {
 					Controlador.obtenerInstancia()
-							.run(new TActividad(0, nombre.getText() != null ? nombre.getText() : "",
+							.run(new TActividad(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0, 
+									nombre.getText() != null ? nombre.getText() : "",
 									lugar.getText() != null ? lugar.getText() : "",
 									!plazas.getText().isEmpty() ? Integer.parseInt(plazas.getText()) : 0,
 									!precio.getText().isEmpty() ? Float.parseFloat(precio.getText()) : 0,

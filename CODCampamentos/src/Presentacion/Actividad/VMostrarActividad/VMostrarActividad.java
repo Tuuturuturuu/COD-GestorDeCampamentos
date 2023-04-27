@@ -77,9 +77,18 @@ public class VMostrarActividad extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarActividad.this.setVisible(false);
-				Controlador.obtenerInstancia().run(
-						new TActividad(Integer.parseInt(id.getText()),null, null, null, null, null, true),
-						Evento.EMostrarUnActividadOK);
+				try{
+					Controlador.obtenerInstancia().run(
+							new TActividad(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,null, null, null, null, null, true),
+							Evento.EMostrarUnActividadOK);
+					
+				}
+				catch(Exception ex){
+					Controlador.obtenerInstancia().run(
+							new TActividad(-38,null, null, null, null, null, true),
+							Evento.EMostrarUnActividadOK);
+				}
+			
 
 			}
 		});

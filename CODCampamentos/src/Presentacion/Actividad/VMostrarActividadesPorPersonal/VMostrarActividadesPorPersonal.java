@@ -83,9 +83,15 @@ public class VMostrarActividadesPorPersonal extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarActividadesPorPersonal.this.setVisible(false);
-				Controlador.obtenerInstancia().run(
-						Integer.parseInt(id.getText()),
-						Evento.EMostrarTodosLosActividadporPersonalOK);
+				try{
+					Controlador.obtenerInstancia().run(
+							!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,
+							Evento.EMostrarTodosLosActividadporPersonalOK);
+				}catch(Exception ex){
+					Controlador.obtenerInstancia().run(
+							-38,
+							Evento.EMostrarTodosLosActividadporPersonalOK);
+				}
 
 			}
 		});

@@ -81,8 +81,14 @@ public class VBajaActividad extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VBajaActividad.this.setVisible(false);
-				Controlador.obtenerInstancia().run(new TActividad(Integer.parseInt(id.getText()),null, null, null, null, null, false)
-						, Evento.EBajaActividadOK);
+				try{
+					Controlador.obtenerInstancia().run(new TActividad(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,null, null, null, null, null, false)
+							, Evento.EBajaActividadOK);
+					
+				}catch(Exception ex){
+					Controlador.obtenerInstancia().run(new TActividad(-38,null, null, null, null, null, false)
+							, Evento.EBajaActividadOK);
+				}
 				
 			}
 		});

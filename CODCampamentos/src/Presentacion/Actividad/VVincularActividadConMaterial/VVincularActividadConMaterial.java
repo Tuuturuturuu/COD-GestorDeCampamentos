@@ -93,10 +93,14 @@ public class VVincularActividadConMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VVincularActividadConMaterial.this.setVisible(false);
-
-				Controlador.obtenerInstancia().run(
-						new TMaterial(Integer.parseInt(matId.getText()), null, null, null,  Integer.parseInt(actId.getText()), null), Evento.EVincularMaterialActividadOK);
-
+				try{
+					Controlador.obtenerInstancia().run(
+							new TMaterial(!matId.getText().isEmpty() ? Integer.parseInt(matId.getText()) : 0, null, null, null,  !actId.getText().isEmpty() ? Integer.parseInt(actId.getText()) : 0, null), Evento.EVincularMaterialActividadOK);
+				}
+				catch(Exception ex){
+					Controlador.obtenerInstancia().run(
+							new TMaterial(-38, null, null, null,  null, null), Evento.EVincularMaterialActividadOK);
+				}
 			}
 		});
 

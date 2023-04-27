@@ -226,36 +226,37 @@ public class SAMaterialImp implements SAMaterial {
 		TMaterial materialBBDD = new TMaterial();
 		TActividad tActividad = new TActividad();
 		TActividadMaterial tActividadMaterial = new TActividadMaterial();
-		
-		tActividad.setIdActividad(tMaterial.getIdActividad());
-		// TODO comprobar id valido??
-		if (!compr.idValido(tMaterial.getId()))
-			tMaterial.setId(-14);
-		else if (!compr.idValido(tMaterial.getIdActividad()))
-			tMaterial.setId(-14);
-		else if (daoActividad.mostrarActividad(tActividad).getIdActividad() == -1)
-			//Comprobar que el id de actividad existe
-			tMaterial.setId(-23);
-		//Comprobar que la actividad esta dada de alta
-		else if (daoActividad.mostrarActividad(tActividad).getActivo() == false)
-			tMaterial.setId(-25);
-		else {
-			materialBBDD = daoMaterial.buscarMaterialID(tMaterial);
-			//Comprobar que el material existe
-			if (materialBBDD.getId() != -1){
-				//Comprobar que el material no esta dado de baja
-				if (materialBBDD.getActivo() == false)
-					tMaterial.setId(-12);
-				else{
-					tActividadMaterial.setIdActividad(tActividad.getIdActividad());
-					tActividadMaterial.setIdMaterial(tMaterial.getId());
-					int correct = daoActividadMaterial.vincular(tActividadMaterial);
-					
-					if (correct == 0)
-						tMaterial.setId(-24);
-				}
-			}else
-				tMaterial.setId(-27);				
+		if(tMaterial.getId() >= 0){
+			tActividad.setIdActividad(tMaterial.getIdActividad());
+			// TODO comprobar id valido??
+			if (!compr.idValido(tMaterial.getId()))
+				tMaterial.setId(-14);
+			else if (!compr.idValido(tMaterial.getIdActividad()))
+				tMaterial.setId(-14);
+			else if (daoActividad.mostrarActividad(tActividad).getIdActividad() == -1)
+				//Comprobar que el id de actividad existe
+				tMaterial.setId(-23);
+			//Comprobar que la actividad esta dada de alta
+			else if (daoActividad.mostrarActividad(tActividad).getActivo() == false)
+				tMaterial.setId(-25);
+			else {
+				materialBBDD = daoMaterial.buscarMaterialID(tMaterial);
+				//Comprobar que el material existe
+				if (materialBBDD.getId() != -1){
+					//Comprobar que el material no esta dado de baja
+					if (materialBBDD.getActivo() == false)
+						tMaterial.setId(-12);
+					else{
+						tActividadMaterial.setIdActividad(tActividad.getIdActividad());
+						tActividadMaterial.setIdMaterial(tMaterial.getId());
+						int correct = daoActividadMaterial.vincular(tActividadMaterial);
+						
+						if (correct == 0)
+							tMaterial.setId(-24);
+					}
+				}else
+					tMaterial.setId(-27);				
+			}
 		}
 
 		
