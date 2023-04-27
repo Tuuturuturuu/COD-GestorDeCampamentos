@@ -44,7 +44,6 @@ public class SAActividadImp implements SAActividad {
 																								// que
 																								// el
 																								// id
-																								// de
 																								// Personal
 																								// existe
 				tActividad.setIdActividad(-9);
@@ -54,7 +53,7 @@ public class SAActividadImp implements SAActividad {
 					if (actividadBBDD.getActivo() == true)
 						tActividad.setIdActividad(-4); // ERROR: ya esta activo
 					else
-						tActividad.setIdActividad(-6);
+						tActividad.setIdActividad(daoActividad.activar(actividadBBDD.getIdActividad()));
 				} else {
 					tActividad = daoActividad.crearActividad(tActividad);
 				}
@@ -67,6 +66,7 @@ public class SAActividadImp implements SAActividad {
 	@Override
 	public TActividad modificarActividad(TActividad tActividad) {
 		TActividad tActividadBBDD = new TActividad();
+		TActividad tActividadNombreLugarBBDD = new TActividad();
 		// Buscar que existe la actividad con dicho id en la BBDD
 		if (tActividad.getIdActividad() >= 0) {
 			tActividadBBDD = daoActividad.buscarActividadID(tActividad);
@@ -81,6 +81,7 @@ public class SAActividadImp implements SAActividad {
 				if (tActividadBBDD.getActivo() == false)
 					tActividad.setIdActividad(-5);
 			}
+
 			// se quiere cambiar el nombre
 			if (tActividad.getNombre().equals("") && tActividad.getIdActividad() > 0) {
 				// los campos modificables que vengan en nulo los rellenamos con
@@ -102,6 +103,15 @@ public class SAActividadImp implements SAActividad {
 					tActividad.setIdActividad(-3);
 				else if (!compr.checkString(tActividad.getLugar()))
 					tActividad.setIdActividad(-38);
+
+			// Se comprueba que no mete un nombre y lugar repetidos
+			if (!tActividad.getNombre().equals("") && !tActividad.getLugar().equals("")) {
+				tActividadNombreLugarBBDD = daoActividad.buscarActividadNombreLugar(tActividad);
+				if (tActividadNombreLugarBBDD.getIdActividad() != -1)
+					tActividad.setIdActividad(-6); // Se envia error de que mete
+													// campos unicos y los
+													// repite
+			}
 
 			// se quiere cambiar numPlazas
 			if (tActividad.getNumplazas() != 0 && tActividad.getIdActividad() > 0) {
@@ -181,7 +191,7 @@ public class SAActividadImp implements SAActividad {
 
 	@Override
 	public TActividad mostrarActividad(TActividad tActividad) {
-		if (tActividad.getIdActividad() <= 0) {
+		if (tActividad.getIdActividad() >= 0) {
 			if (daoActividad.mostrarActividad(tActividad).getActivo() == false)
 				tActividad.setIdActividad(-5);
 		}
@@ -197,7 +207,7 @@ public class SAActividadImp implements SAActividad {
 	public Set<TActividad> mostrarActividadesporPersonal(Integer IdPersonal) {
 
 		Set<TActividad> Actividades = new HashSet<TActividad>();
-		if (IdPersonal <= 0) {
+		if (IdPersonal >= 0) {
 			// Comprobar que el Personal existe
 			TPersonal tPersonalBuscado = daoPersonal.MostrarUno(IdPersonal);
 			TActividad tActividad = new TActividad();
@@ -225,7 +235,7 @@ public class SAActividadImp implements SAActividad {
 
 		Set<TActividad> Actividades = new HashSet<TActividad>();
 		Set<TActividadMaterial> ActividadesMaterial = new HashSet<TActividadMaterial>();
-		if (IdMaterial <= 0) {
+		if (IdMaterial >= 0) {
 			// Comprobar que el material existe
 			TMaterial tMaterialBuscado = new TMaterial(IdMaterial, null, 0, 0, 0, false);
 			tMaterialBuscado = daoMaterial.buscarMaterialID(tMaterialBuscado);

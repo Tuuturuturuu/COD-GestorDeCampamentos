@@ -28,7 +28,7 @@ public class SAPersonalImp implements SAPersonal {
 			if (tPersonal.getNombre().isEmpty() || tPersonal.getDNI().isEmpty() || tPersonal.getIdTurno() == 0)
 				tPersonal.setIdPersonal(-37);
 			else if ((tTurno.getIdTurno() < 0))
-				tPersonal.setIdPersonal(-1);
+				tPersonal.setIdPersonal(-40);
 			else if (!tTurno.getActivo())
 				tPersonal.setIdPersonal(-34);
 			else if (tPersonal.getIdPersonal() < 0) {
@@ -56,24 +56,25 @@ public class SAPersonalImp implements SAPersonal {
 							tPersonal.setIdPersonal(-17);
 						else if (!compr.checkString(((TPersonalMonitor) tPersonal).getEstudios()))
 							tPersonal.setIdPersonal(-38);
-					} else {
-						bbddPersona = new TPersonalMonitor();
-						bbddPersona.setIdPersonal(tPersonal.getIdPersonal());
-						bbddPersona.setDNI(tPersonal.getDNI());
-					}
-				} else if (tPersonal.getTipo() == 1) { // Cocinero
-					if (((TPersonalCocinero) tPersonal).getPuestoEnCocina().isEmpty()
-							|| ((TPersonalCocinero) tPersonal).getAniosExperiencia() == 0)
-						tPersonal.setIdPersonal(-37);
-					else if (!compr.nombreValido(((TPersonalCocinero) tPersonal).getPuestoEnCocina()))
-						tPersonal.setIdPersonal(-18);
-					else if (!compr.checkString(((TPersonalCocinero) tPersonal).getPuestoEnCocina()))
-						tPersonal.setIdPersonal(-38);
-					else if (!compr.aniosExp(((TPersonalCocinero) tPersonal).getAniosExperiencia()))
-						tPersonal.setIdPersonal(-19);
-					else {
-						bbddPersona = new TPersonalCocinero();
-						bbddPersona.setIdPersonal(tPersonal.getIdPersonal());
+						else {
+							bbddPersona = new TPersonalMonitor();
+							bbddPersona.setIdPersonal(tPersonal.getIdPersonal());
+							bbddPersona.setDNI(tPersonal.getDNI());
+						}
+					} else if (tPersonal.getTipo() == 1) { // Cocinero
+						if (((TPersonalCocinero) tPersonal).getPuestoEnCocina().isEmpty()
+								|| ((TPersonalCocinero) tPersonal).getAniosExperiencia() == 0)
+							tPersonal.setIdPersonal(-37);
+						else if (!compr.nombreValido(((TPersonalCocinero) tPersonal).getPuestoEnCocina()))
+							tPersonal.setIdPersonal(-18);
+						else if (!compr.checkString(((TPersonalCocinero) tPersonal).getPuestoEnCocina()))
+							tPersonal.setIdPersonal(-38);
+						else if (!compr.aniosExp(((TPersonalCocinero) tPersonal).getAniosExperiencia()))
+							tPersonal.setIdPersonal(-19);
+						else {
+							bbddPersona = new TPersonalCocinero();
+							bbddPersona.setIdPersonal(tPersonal.getIdPersonal());
+						}
 					}
 				}
 			}
@@ -122,9 +123,6 @@ public class SAPersonalImp implements SAPersonal {
 			TPersonal tPersonalBBDD = new TPersonal();
 			// Buscar que existe el personal con dicho id en la BBDD
 			tPersonalBBDD = daoPersonal.MostrarUno(tPersonal.getIdPersonal());
-
-			TTurno tTurno = daoTurno.MostrarTurno(tPersonal.getIdTurno());
-
 			// si no ha encontrado el personal a modificar no se le puede
 			// cambiar el
 			// nombre
@@ -138,8 +136,7 @@ public class SAPersonalImp implements SAPersonal {
 			// Se pone el campo DNI con su valor original
 			if (tPersonal.getDNI().equals("") && tPersonal.getIdPersonal() > 0) {
 				// los campos modificables que vengan en nulo los rellenamos con
-				// los
-				// valores de bbdd
+				// valores BBDD
 				tPersonal.setDNI(tPersonalBBDD.getDNI());
 			} else if (!compr.dniValido(tPersonal.getDNI()))
 				tPersonal.setIdPersonal(-38);
@@ -167,12 +164,21 @@ public class SAPersonalImp implements SAPersonal {
 			// se quiere cambiar idTurno Y DEBERIAMOS COMPROBAR QUE ID DE Turno
 			// EXISTA EN LA BASE DE DATOS
 
-			if ((tTurno.getIdTurno() < 0))
-				tPersonal.setIdPersonal(-1);
-			if (!tTurno.getActivo())
-				tPersonal.setIdPersonal(-34);
-			if (tPersonal.getIdPersonal() > 0)
+			// En caso de que el no haya ingresado un id de Turno
+			if (tPersonal.getIdTurno() == 0 && tPersonal.getIdPersonal() > 0) {
+				// los campos modificables que vengan en nulo los rellenamos
+				// con los valores de bbdd
 				tPersonal.setIdTurno(tPersonalBBDD.getIdTurno());
+			} else if (tPersonal.getIdPersonal() > 0) { // En caso de ingresar el id de turno hacemos sus respectivas comprobaciones
+				TTurno tTurno = daoTurno.MostrarTurno(tPersonal.getIdTurno());
+				// Si turno no existe enviamos el error
+				if ((tTurno.getIdTurno() < 0))
+					tPersonal.setIdPersonal(-40);
+				else {// Si el id que desea modificar no esta activo
+					if (!tTurno.getActivo())
+						tPersonal.setIdPersonal(-34);
+				}
+			}
 
 			// si no ha habido ningun codigo de error puede modificarse.
 			if (tPersonal.getIdPersonal() > 0) {
@@ -184,8 +190,9 @@ public class SAPersonalImp implements SAPersonal {
 
 	@Override
 	public TPersonal mostrarUno(TPersonal tPersonal) {
+		tPersonal = daoPersonal.MostrarUno(tPersonal.getIdPersonal());
 		if (tPersonal.getIdPersonal() >= 0) {
-			if (daoPersonal.MostrarUno(tPersonal.getIdPersonal()).getIsActivo() == false)
+			if (tPersonal.getIsActivo() == false)
 				tPersonal.setIdPersonal(-5);
 		}
 		return tPersonal;

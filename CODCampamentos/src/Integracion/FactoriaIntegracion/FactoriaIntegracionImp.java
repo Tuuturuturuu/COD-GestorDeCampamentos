@@ -7,8 +7,8 @@ import Integracion.Actividad.DAOActividadMaterial;
 import Integracion.Actividad.DAOActividadMaterialImp;
 import Integracion.Factura.DAOFactura;
 import Integracion.Factura.DAOFacturaImp;
-import Integracion.Factura.DAOGenera;
-import Integracion.Factura.DAOGeneraImp;
+import Integracion.Factura.DAOLineaFactura;
+import Integracion.Factura.DAOLineaFacturaImp;
 import Integracion.Material.DAOMaterial;
 import Integracion.Material.DAOMaterialImp;
 import Integracion.Personal.DAOPersonal;
@@ -50,7 +50,7 @@ public class FactoriaIntegracionImp extends FactoriaIntegracion {
 
 	}
 
-	public DAOGenera generaDAOGenera() {
-		return new DAOGeneraImp();
+	public DAOLineaFactura generaDAOLineaFactura() {
+		return new DAOLineaFacturaImp();
 	}
 }

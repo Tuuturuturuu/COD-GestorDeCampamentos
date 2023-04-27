@@ -57,7 +57,7 @@ public class SATurnoImp implements SATurno {
 								tTurnoBBDD.setIdTurno(-30); // ERROR: ya esta
 															// activo
 							else
-								tTurnoBBDD.setIdTurno(-29);
+								tTurnoBBDD.setIdTurno(daoTurno.activar(tTurnoBBDD.getIdTurno()));
 						} else {
 							tTurno = daoTurno.CrearTurno(tTurno);
 						}
