@@ -71,7 +71,11 @@ public class VMostrarMaterialPorActividad extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarMaterialPorActividad.this.setVisible(false);
-				Controlador.obtenerInstancia().run(Integer.parseInt(id.getText()), Evento.EMostrarUnMaterialPorActividadOK);
+				try{
+					Controlador.obtenerInstancia().run(Integer.parseInt(id.getText()), Evento.EMostrarUnMaterialPorActividadOK);
+				}catch (Exception ex){
+					Controlador.obtenerInstancia().run(-38, Evento.EMostrarUnMaterialPorActividadOK);
+				}
 			}
 		});
 

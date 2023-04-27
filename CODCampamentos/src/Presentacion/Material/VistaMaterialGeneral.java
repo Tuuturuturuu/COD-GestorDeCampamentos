@@ -102,7 +102,7 @@ public class VistaMaterialGeneral extends JFrame{
 		this.add(modificarMaterial_Button);
 
 		//MOSTRAR UNO
-		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar una Material", 700, 100, 185, 100);
+		mostrarMaterial_Button = ComponentsBuilder.createButton("Mostrar un Material", 700, 100, 185, 100);
 		mostrarMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -116,7 +116,7 @@ public class VistaMaterialGeneral extends JFrame{
 		this.add(mostrarMaterial_Button);
 		
 		//MOSTRAR TODOS
-		mostrarTodosMaterial_Button = ComponentsBuilder.createButton("Mostrar Materiales", 150, 250, 200, 100);
+		mostrarTodosMaterial_Button = ComponentsBuilder.createButton("Mostrar Todos Materiales", 150, 250, 200, 100);
 		mostrarTodosMaterial_Button.addActionListener(new ActionListener() {
 
 			@Override

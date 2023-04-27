@@ -24,25 +24,6 @@ public class SAMaterialImp implements SAMaterial {
 	public TMaterial crearMaterial(TMaterial tMaterial) {
 		TMaterial materialBBDD = new TMaterial();
 
-
-			if (materialBBDD.getId() != -1) {// encontrado en bbdd
-				if (materialBBDD.getActivo() == true)
-					tMaterial.setId(-26); // ya esta activo
-				else
-					tMaterial.setId(daoMaterial.activar(materialBBDD.getId()));
-			}else if(tMaterial.getId() == 0)
-					tMaterial = daoMaterial.crearMaterial(tMaterial);
-
-//			tActividadMaterial.setIdActividad(tActividad.getIdActividad());
-//			tActividadMaterial.setIdMaterial(tMaterial.getId());
-//			
-//			int correct = daoActividadMaterial.vincular(tActividadMaterial);
-//			
-//			if (correct == 0)
-//				tMaterial.setId(-24);
-		
-		
-
 		if(tMaterial.getId() >= 0){
 			if (tMaterial.getNombre().isEmpty() || tMaterial.getExistencias() == 0 || tMaterial.getNAlmacen() == 0)
 				tMaterial.setId(-37);

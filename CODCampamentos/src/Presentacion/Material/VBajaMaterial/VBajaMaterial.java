@@ -29,13 +29,6 @@ import Negocio.Material.TMaterial;
 
 public class VBajaMaterial extends JFrame implements IGUI {
 	
-	private JButton jButton;
-	private JDialog jDialog;
-	private JDialog jDialog2;
-	private JFrame jFrame;
-	private Set<JLabel> jLabel;
-	private Set<JPanel> jPanel;
-	
 	public VBajaMaterial(){
 		super("Eliminar Material");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -84,12 +77,14 @@ public class VBajaMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VBajaMaterial.this.setVisible(false);
-
-				Controlador.obtenerInstancia().run(
-						new TMaterial(Integer.parseInt(id.getText()),null, null, null, null,false), Evento.EBajaMaterialOK);
-
-			
-
+				try{	
+					Controlador.obtenerInstancia().run(
+							new TMaterial(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,null, null, null, null,false), Evento.EBajaMaterialOK);
+				}
+				catch(Exception ex){
+					Controlador.obtenerInstancia().run(
+							new TMaterial(-38,null, null, null, null,false), Evento.EBajaMaterialOK);
+				}
 			}
 		});
 

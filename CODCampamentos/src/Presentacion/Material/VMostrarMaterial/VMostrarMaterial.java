@@ -76,9 +76,16 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarMaterial.this.setVisible(false);
-				Controlador.obtenerInstancia().run(
-						new TMaterial(Integer.parseInt(id.getText()),null, null, null, null, true),
-						Evento.EMostrarUnMaterialOK);
+				try{
+					Controlador.obtenerInstancia().run(
+							new TMaterial(Integer.parseInt(id.getText()),null, null, null, null, true),
+							Evento.EMostrarUnMaterialOK);
+				}
+				catch(Exception ex ){
+					Controlador.obtenerInstancia().run(
+							new TMaterial(-38,null, null, null, null, true),
+							Evento.EMostrarUnMaterialOK);
+				}
 			}
 		});
 

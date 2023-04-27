@@ -107,7 +107,12 @@ public class VAltaTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(new TTurno(null, nombre.getText(),  (Date) campoFecha.getValue(), campoHora.getText(), true), Evento.EAltaTurnoOK);
+				try{
+					Controlador.obtenerInstancia().run(new TTurno(0, nombre.getText(),  (Date) campoFecha.getValue(), campoHora.getText(), true), Evento.EAltaTurnoOK);
+				}catch(Exception ex){
+					Controlador.obtenerInstancia().run(new TTurno(-38, null,  null, null, true), Evento.EAltaTurnoOK);
+				}
+			
 			}
 			
 		});

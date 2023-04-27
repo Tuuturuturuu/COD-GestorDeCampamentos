@@ -80,9 +80,15 @@ public class VBajaTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VBajaTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(
-						new TTurno(Integer.parseInt(id.getText()),null, null, null, false)
-						, Evento.EBajaTurnoOK);
+				try{
+					Controlador.obtenerInstancia().run(
+							new TTurno(Integer.parseInt(id.getText()),null, null, null, false)
+							, Evento.EBajaTurnoOK);
+				}catch(Exception ex){
+					Controlador.obtenerInstancia().run(
+							new TTurno(-38,null, null, null, false)
+							, Evento.EBajaTurnoOK);
+				}
 				
 			}
 		});

@@ -81,9 +81,15 @@ public class VMostrarTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(
-						new TTurno(Integer.parseInt(id.getText()),null, null, null, true),
-						Evento.EMostrarUnTurnoOK);
+				try{
+					Controlador.obtenerInstancia().run(
+							new TTurno(Integer.parseInt(id.getText()),null, null, null, true),
+							Evento.EMostrarUnTurnoOK);
+				}catch(Exception ex){
+					Controlador.obtenerInstancia().run(
+							new TTurno(-38,null, null, null, true),
+							Evento.EMostrarUnTurnoOK);
+				}
 
 			}
 		});
