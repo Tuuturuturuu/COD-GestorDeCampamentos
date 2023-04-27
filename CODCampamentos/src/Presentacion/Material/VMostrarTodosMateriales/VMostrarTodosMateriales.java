@@ -9,11 +9,10 @@ import java.util.Set;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;import javax.swing.JLabel;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 
 import Negocio.Material.TMaterial;
 import Presentacion.Evento;
@@ -21,9 +20,8 @@ import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
-
-public class VMostrarTodosMateriales extends JFrame implements IGUI{
-	public VMostrarTodosMateriales(Set<TMaterial> listaMateriales){
+public class VMostrarTodosMateriales extends JFrame implements IGUI {
+	public VMostrarTodosMateriales(Set<TMaterial> listaMateriales) {
 		super("Mostrar todos los Materiales");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 630;
@@ -36,7 +34,7 @@ public class VMostrarTodosMateriales extends JFrame implements IGUI{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI((Set<TMaterial>) listaMateriales);
 	}
-	
+
 	private void initGUI(Set<TMaterial> listaMateriales) {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -87,6 +85,6 @@ public class VMostrarTodosMateriales extends JFrame implements IGUI{
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

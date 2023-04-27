@@ -1,29 +1,28 @@
 package Presentacion;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
-import javax.swing.JButton;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VistaGeneral extends JFrame{
-	
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
+
+public class VistaGeneral extends JFrame {
+
 	private Object controlador;
-	
+
 	private JButton VistaActividadGeneral_Button;
 	private JButton VistaPersonalGeneral_Button;
 	private JButton VistaFacturaGeneral_Button;
 	private JButton VistaMaterialGeneral_Button;
 	private JButton VistaTurnoGeneral_Button;
-	
+
 	private JLabel label;
 
 	public VistaGeneral() {
@@ -34,17 +33,17 @@ public class VistaGeneral extends JFrame{
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);
-	//this.setBounds(100, 100, 1000, 525);
-		//this.setBounds(100, 100, 950, 500);
+		// this.setBounds(100, 100, 1000, 525);
+		// this.setBounds(100, 100, 950, 500);
 		this.setLayout(null);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 		this.setVisible(true);
 	}
-	
+
 	private void initGUI() {
-		
+
 		label = ComponentsBuilder.createLabel("Selecciona el modulo sobre el cual quieres trabajar", 50, 30, 900, 50,
 				Color.BLACK);
 		this.add(label);
@@ -114,9 +113,6 @@ public class VistaGeneral extends JFrame{
 
 		this.add(VistaTurnoGeneral_Button);
 
-		
-	
 	}
-
 
 }

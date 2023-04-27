@@ -1,9 +1,6 @@
 
 package Integracion.Actividad;
 
-import Negocio.Actividad.TActividad;
-import Negocio.Actividad.TActividadMaterial;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Integracion.Connection.ConnectorBD;
-
+import Negocio.Actividad.TActividad;
 
 public class DAOActividadImp implements DAOActividad {
 
@@ -61,7 +58,8 @@ public class DAOActividadImp implements DAOActividad {
 					ConnectorBD.password);
 
 			PreparedStatement ps;
-			ps = conexion.prepareStatement("UPDATE Actividad SET Nombre = ?, Lugar = ?, NumPlazas = ?, Precio = ?, IdPersonal = ? WHERE idActividad = ? ",
+			ps = conexion.prepareStatement(
+					"UPDATE Actividad SET Nombre = ?, Lugar = ?, NumPlazas = ?, Precio = ?, IdPersonal = ? WHERE idActividad = ? ",
 					Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, tActividad.getNombre());
@@ -150,7 +148,8 @@ public class DAOActividadImp implements DAOActividad {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				e = new TActividad(rs.getInt("IdActividad"), rs.getString("Nombre"), rs.getString("lugar"),
-						rs.getInt("NumPlazas"),rs.getFloat("Precio"), rs.getInt("IdPersonal"), rs.getBoolean("Activo"));
+						rs.getInt("NumPlazas"), rs.getFloat("Precio"), rs.getInt("IdPersonal"),
+						rs.getBoolean("Activo"));
 				Actividades.add(e);
 			}
 			rs.close();
@@ -176,7 +175,8 @@ public class DAOActividadImp implements DAOActividad {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				e = new TActividad(rs.getInt("IdActividad"), rs.getString("Nombre"), rs.getString("lugar"),
-						rs.getInt("NumPlazas"),rs.getFloat("Precio"), rs.getInt("IdPersonal"), rs.getBoolean("Activo"));
+						rs.getInt("NumPlazas"), rs.getFloat("Precio"), rs.getInt("IdPersonal"),
+						rs.getBoolean("Activo"));
 				ActividadesPersonal.add(e);
 			}
 			rs.close();
@@ -187,7 +187,7 @@ public class DAOActividadImp implements DAOActividad {
 		}
 		return ActividadesPersonal;
 	}
-	
+
 	public Set<TActividad> mostrarActividadesActivasporPersonal(Integer IdPersonal) {
 		Set<TActividad> ActividadesPersonal = new HashSet<TActividad>();
 		TActividad e;
@@ -201,7 +201,8 @@ public class DAOActividadImp implements DAOActividad {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				e = new TActividad(rs.getInt("IdActividad"), rs.getString("Nombre"), rs.getString("lugar"),
-						rs.getInt("NumPlazas"),rs.getFloat("Precio"), rs.getInt("IdPersonal"), rs.getBoolean("Activo"));
+						rs.getInt("NumPlazas"), rs.getFloat("Precio"), rs.getInt("IdPersonal"),
+						rs.getBoolean("Activo"));
 				if (e.getActivo())
 					ActividadesPersonal.add(e);
 			}
@@ -235,7 +236,6 @@ public class DAOActividadImp implements DAOActividad {
 				tActividadBBDD.setActivo(rs.getBoolean(7));
 			} else
 				tActividadBBDD.setIdActividad(-1);
-
 
 			rs.close();
 			ps.close();
@@ -296,5 +296,5 @@ public class DAOActividadImp implements DAOActividad {
 		}
 		return correcto;
 	}
-	
+
 }

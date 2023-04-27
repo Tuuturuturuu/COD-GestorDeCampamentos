@@ -14,15 +14,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Negocio.Personal.TPersonalCocinero;
 import Negocio.Personal.TPersonalMonitor;
 import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
-import Presentacion.Personal.VAltaPersonalCocinero.VAltaPersonalCocinero;
 
-public class VAltaPersonalMonitor extends JFrame implements IGUI{
+public class VAltaPersonalMonitor extends JFrame implements IGUI {
 	private JPanel j;
 	private TPersonalMonitor tMonitor;
 
@@ -117,10 +115,11 @@ public class VAltaPersonalMonitor extends JFrame implements IGUI{
 		this.setVisible(true);
 		this.setResizable(true);
 	}
+
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

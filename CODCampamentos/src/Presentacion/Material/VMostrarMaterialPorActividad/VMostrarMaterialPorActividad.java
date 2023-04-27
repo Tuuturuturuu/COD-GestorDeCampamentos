@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -15,15 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Negocio.Material.TMaterial;
 import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
-public class VMostrarMaterialPorActividad extends JFrame implements IGUI{
-	
-	public VMostrarMaterialPorActividad(){
+public class VMostrarMaterialPorActividad extends JFrame implements IGUI {
+
+	public VMostrarMaterialPorActividad() {
 		super("Mostrar Material Por Actividad");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 430;
@@ -36,7 +34,7 @@ public class VMostrarMaterialPorActividad extends JFrame implements IGUI{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -67,13 +65,15 @@ public class VMostrarMaterialPorActividad extends JFrame implements IGUI{
 		JButton botonAceptar = new JButton("Aceptar");
 		botonAceptar.setBounds(75, 50, 100, 100);
 		botonAceptar.addActionListener(new ActionListener() {
-			//En este ActionListener tiene que aparecer una  ventana que muestre la informacion del material seleccionado??
+			// En este ActionListener tiene que aparecer una ventana que muestre
+			// la informacion del material seleccionado??
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarMaterialPorActividad.this.setVisible(false);
-				try{
-					Controlador.obtenerInstancia().run(Integer.parseInt(id.getText()), Evento.EMostrarUnMaterialPorActividadOK);
-				}catch (Exception ex){
+				try {
+					Controlador.obtenerInstancia().run(Integer.parseInt(id.getText()),
+							Evento.EMostrarUnMaterialPorActividadOK);
+				} catch (Exception ex) {
 					Controlador.obtenerInstancia().run(-38, Evento.EMostrarUnMaterialPorActividadOK);
 				}
 			}
@@ -90,16 +90,16 @@ public class VMostrarMaterialPorActividad extends JFrame implements IGUI{
 
 			}
 		});
-		
+
 		JPanel panelBotones = new JPanel();
 		panelBotones.add(botonAceptar);
 		panelBotones.add(botonCancelar);
 		mainPanel.add(panelBotones);
 
 		this.setVisible(true);
-		
+
 	}
-	
+
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -110,7 +110,7 @@ public class VMostrarMaterialPorActividad extends JFrame implements IGUI{
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

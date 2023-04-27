@@ -3,34 +3,28 @@
  */
 package Presentacion.Turno.VMostrarTurno;
 
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.Actividad.VMostrarActividad.VMostrarActividad;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
-import javax.swing.JTextField;
-
-import Negocio.Actividad.TActividad;
-import Negocio.Turno.TTurno;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import Negocio.Turno.TTurno;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VMostrarTurno extends JFrame implements IGUI {
-	public VMostrarTurno(){
+	public VMostrarTurno() {
 		super("Mostrar Turno");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 430;
@@ -43,15 +37,15 @@ public class VMostrarTurno extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		this.setContentPane(mainPanel);
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JLabel msgIntroIDCabecera = ComponentsBuilder
-				.createLabel("Introduzca el ID del Turno que quiera mostrar ", 1, 10, 80, 20, Color.BLACK);
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel("Introduzca el ID del Turno que quiera mostrar ", 1,
+				10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -81,13 +75,12 @@ public class VMostrarTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarTurno.this.setVisible(false);
-				try{
+				try {
 					Controlador.obtenerInstancia().run(
-							new TTurno(Integer.parseInt(id.getText()),null, null, null, true),
+							new TTurno(Integer.parseInt(id.getText()), null, null, null, true),
 							Evento.EMostrarUnTurnoOK);
-				}catch(Exception ex){
-					Controlador.obtenerInstancia().run(
-							new TTurno(-38,null, null, null, true),
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TTurno(-38, null, null, null, true),
 							Evento.EMostrarUnTurnoOK);
 				}
 
@@ -111,10 +104,10 @@ public class VMostrarTurno extends JFrame implements IGUI {
 		this.setVisible(true);
 		this.setResizable(true);
 	}
-	
+
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

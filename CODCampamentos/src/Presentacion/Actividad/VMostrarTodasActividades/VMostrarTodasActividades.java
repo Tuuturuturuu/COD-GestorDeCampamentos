@@ -1,29 +1,28 @@
 
 package Presentacion.Actividad.VMostrarTodasActividades;
 
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import Negocio.Actividad.TActividad;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VMostrarTodasActividades extends JFrame implements IGUI {
-	public VMostrarTodasActividades(Set<TActividad> listaActividades){
+	public VMostrarTodasActividades(Set<TActividad> listaActividades) {
 		super("Mostrar todas las Actividades");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 630;
@@ -36,7 +35,7 @@ public class VMostrarTodasActividades extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI((Set<TActividad>) listaActividades);
 	}
-	
+
 	private void initGUI(Set<TActividad> listaActividades) {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -89,6 +88,6 @@ public class VMostrarTodasActividades extends JFrame implements IGUI {
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

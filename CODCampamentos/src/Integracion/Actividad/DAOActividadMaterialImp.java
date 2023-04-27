@@ -1,8 +1,5 @@
 package Integracion.Actividad;
 
-import Negocio.Actividad.TActividad;
-import Negocio.Actividad.TActividadMaterial;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,10 +10,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Integracion.Connection.ConnectorBD;
+import Negocio.Actividad.TActividadMaterial;
 
+public class DAOActividadMaterialImp implements DAOActividadMaterial {
 
-public class DAOActividadMaterialImp implements DAOActividadMaterial {	
-	
 	public Integer vincular(TActividadMaterial actividadMaterial) {
 		Integer correct = 0;
 		try {
@@ -41,7 +38,6 @@ public class DAOActividadMaterialImp implements DAOActividadMaterial {
 		return correct;
 	}
 
-	
 	public Integer desvincular(Integer idActividad, Integer idMaterial) {
 		Integer correct = 0;
 		try {
@@ -67,7 +63,6 @@ public class DAOActividadMaterialImp implements DAOActividadMaterial {
 		// end-user-code
 	}
 
-
 	public Set<TActividadMaterial> BuscarporActividad(Integer idActividad) {
 		Set<TActividadMaterial> ActividadesMaterial = new HashSet<TActividadMaterial>();
 		TActividadMaterial e;
@@ -80,7 +75,7 @@ public class DAOActividadMaterialImp implements DAOActividadMaterial {
 			ps.setInt(1, idActividad);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				e = new TActividadMaterial(rs.getInt("idActividad"),rs.getInt("idMaterial") );
+				e = new TActividadMaterial(rs.getInt("idActividad"), rs.getInt("idMaterial"));
 				ActividadesMaterial.add(e);
 			}
 			rs.close();
@@ -92,7 +87,6 @@ public class DAOActividadMaterialImp implements DAOActividadMaterial {
 		return ActividadesMaterial;
 	}
 
-	
 	public Set<TActividadMaterial> BuscarporMaterial(Integer idMaterial) {
 		Set<TActividadMaterial> ActividadesMaterial = new HashSet<TActividadMaterial>();
 		TActividadMaterial e;
@@ -105,7 +99,7 @@ public class DAOActividadMaterialImp implements DAOActividadMaterial {
 			ps.setInt(1, idMaterial);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				e = new TActividadMaterial(rs.getInt("idActividad"),rs.getInt("idMaterial") );
+				e = new TActividadMaterial(rs.getInt("idActividad"), rs.getInt("idMaterial"));
 				ActividadesMaterial.add(e);
 			}
 			rs.close();
@@ -117,11 +111,10 @@ public class DAOActividadMaterialImp implements DAOActividadMaterial {
 		return ActividadesMaterial;
 	}
 
-	
+	@Override
 	public TActividadMaterial BuscarActividadMaterial(Integer idActividad, Integer idMaterial) {
-		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
-		// end-user-code
 	}
+
 }

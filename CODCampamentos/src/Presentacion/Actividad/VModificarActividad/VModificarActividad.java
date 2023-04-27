@@ -1,12 +1,5 @@
 package Presentacion.Actividad.VModificarActividad;
 
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -16,16 +9,19 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Negocio.Actividad.TActividad;
-
-import javax.swing.JLabel;
-import javax.swing.JDialog;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VModificarActividad extends JFrame implements IGUI {
-	public VModificarActividad(){
+	public VModificarActividad() {
 		super("Modificar Actividad");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 430;
@@ -38,7 +34,7 @@ public class VModificarActividad extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	public void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -89,7 +85,7 @@ public class VModificarActividad extends JFrame implements IGUI {
 		lugar.setPreferredSize(new Dimension(250, 30));
 		lugar.setEditable(true);
 		panelLugar.add(lugar);
-		
+
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JPanel panelPlazas = new JPanel();
@@ -102,7 +98,7 @@ public class VModificarActividad extends JFrame implements IGUI {
 		plazas.setPreferredSize(new Dimension(250, 30));
 		plazas.setEditable(true);
 		panelPlazas.add(plazas);
-		
+
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JPanel panelPrecio = new JPanel();
@@ -115,7 +111,7 @@ public class VModificarActividad extends JFrame implements IGUI {
 		precio.setPreferredSize(new Dimension(250, 30));
 		precio.setEditable(true);
 		panelPrecio.add(precio);
-		
+
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JPanel panelIDPersonal = new JPanel();
@@ -143,7 +139,7 @@ public class VModificarActividad extends JFrame implements IGUI {
 				VModificarActividad.this.setVisible(false);
 				try {
 					Controlador.obtenerInstancia()
-							.run(new TActividad(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0, 
+							.run(new TActividad(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,
 									nombre.getText() != null ? nombre.getText() : "",
 									lugar.getText() != null ? lugar.getText() : "",
 									!plazas.getText().isEmpty() ? Integer.parseInt(plazas.getText()) : 0,
@@ -178,6 +174,6 @@ public class VModificarActividad extends JFrame implements IGUI {
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

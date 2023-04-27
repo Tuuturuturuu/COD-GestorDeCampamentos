@@ -51,7 +51,6 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error35 = "Error: El personal tiene actividades activas";
 	private static final String error39 = "Error: El DNI introducido ya corresponde a un Personal Activo";
 
-
 	// Errores Material
 	private static final String error10 = "Error: El almacen introducido con longitud incorrecta";
 	private static final String error11 = "Error: Numero de existencias introducido con longitud incorrecta";

@@ -3,6 +3,7 @@ package Presentacion;
 
 public enum Evento {
 	
+	
 	EVistaGeneral,
 	
 	//Actividad

@@ -78,6 +78,6 @@ public class ConfirmDialogMostrarUna extends JFrame implements IGUI {
 			this.msj = res;
 			initGUI();
 		}
-		
+
 	}
 }

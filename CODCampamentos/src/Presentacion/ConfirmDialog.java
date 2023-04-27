@@ -5,8 +5,6 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -76,8 +74,7 @@ public class ConfirmDialog extends JFrame implements IGUI {
 			this.id = res;
 			initGUI();
 		}
-		
-	}
 
+	}
 
 }

@@ -3,15 +3,6 @@
  */
 package Presentacion.Turno.VBajaTurno;
 
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -21,14 +12,19 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Negocio.Actividad.TActividad;
 import Negocio.Turno.TTurno;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VBajaTurno extends JFrame implements IGUI {
-	public VBajaTurno(){
+	public VBajaTurno() {
 		super("Baja Turno");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 430;
@@ -42,7 +38,7 @@ public class VBajaTurno extends JFrame implements IGUI {
 		initGUI();
 
 	}
-	
+
 	public void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -50,8 +46,8 @@ public class VBajaTurno extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JLabel msgIntroIDCabecera = ComponentsBuilder
-				.createLabel("Introduzca el ID del Turno que quiere dar de baja ", 1, 10, 80, 20, Color.BLACK);
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel("Introduzca el ID del Turno que quiere dar de baja ",
+				1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -80,16 +76,13 @@ public class VBajaTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VBajaTurno.this.setVisible(false);
-				try{
+				try {
 					Controlador.obtenerInstancia().run(
-							new TTurno(Integer.parseInt(id.getText()),null, null, null, false)
-							, Evento.EBajaTurnoOK);
-				}catch(Exception ex){
-					Controlador.obtenerInstancia().run(
-							new TTurno(-38,null, null, null, false)
-							, Evento.EBajaTurnoOK);
+							new TTurno(Integer.parseInt(id.getText()), null, null, null, false), Evento.EBajaTurnoOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TTurno(-38, null, null, null, false), Evento.EBajaTurnoOK);
 				}
-				
+
 			}
 		});
 		panelBotones.add(botonAceptar);
@@ -113,6 +106,6 @@ public class VBajaTurno extends JFrame implements IGUI {
 
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

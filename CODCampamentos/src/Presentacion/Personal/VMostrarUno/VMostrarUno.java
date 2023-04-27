@@ -3,34 +3,28 @@
  */
 package Presentacion.Personal.VMostrarUno;
 
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.Actividad.VMostrarActividad.VMostrarActividad;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-import Presentacion.Personal.IGUI;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
-import javax.swing.JPanel;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Negocio.Actividad.TActividad;
 import Negocio.Personal.TPersonal;
-
-import javax.swing.JLabel;
-
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VMostrarUno extends JFrame implements IGUI {
-	public VMostrarUno(){
+	public VMostrarUno() {
 		super("Mostrar Personal");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 430;
@@ -43,7 +37,7 @@ public class VMostrarUno extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -81,8 +75,15 @@ public class VMostrarUno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarUno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(new TPersonal(Integer.parseInt(id.getText()),null, null, 0, null, true),
-						Evento.EMostrarUnPersonalOK);
+
+				try {
+					Controlador.obtenerInstancia().run(
+							new TPersonal(Integer.parseInt(id.getText()), null, null, 0, null, true),
+							Evento.EMostrarUnPersonalOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TPersonal(-38, null, null, 0, null, true),
+							Evento.EMostrarUnPersonalOK);
+				}
 
 			}
 		});
@@ -104,10 +105,17 @@ public class VMostrarUno extends JFrame implements IGUI {
 		this.setVisible(true);
 		this.setResizable(true);
 	}
+
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
 
 		// end-user-code
+	}
+
+	@Override
+	public void actualizar(Object object, Evento event) {
+		// TODO Auto-generated method stub
+
 	}
 }

@@ -1,13 +1,6 @@
 
 package Integracion.FactoriaIntegracion;
 
-import Negocio.Actividad.TActividadMaterial;
-import Integracion.Turno.DAOTurno;
-import Integracion.Turno.DAOTurnoImp;
-import Integracion.Material.DAOMaterial;
-import Integracion.Material.DAOMaterialImp;
-import Integracion.Personal.DAOPersonal;
-import Integracion.Personal.DAOPersonalImp;
 import Integracion.Actividad.DAOActividad;
 import Integracion.Actividad.DAOActividadImp;
 import Integracion.Actividad.DAOActividadMaterial;
@@ -16,19 +9,25 @@ import Integracion.Factura.DAOFactura;
 import Integracion.Factura.DAOFacturaImp;
 import Integracion.Factura.DAOGenera;
 import Integracion.Factura.DAOGeneraImp;
-
+import Integracion.Material.DAOMaterial;
+import Integracion.Material.DAOMaterialImp;
+import Integracion.Personal.DAOPersonal;
+import Integracion.Personal.DAOPersonalImp;
+import Integracion.Turno.DAOTurno;
+import Integracion.Turno.DAOTurnoImp;
 
 public class FactoriaIntegracionImp extends FactoriaIntegracion {
-	
+
 	public DAOActividadMaterial generaDAOActividadMaterial() {
 		return new DAOActividadMaterialImp();
 	}
 
 	public DAOTurno generaDAOTurno() {
+
 		return new DAOTurnoImp();
 
 	}
-	
+
 	public DAOPersonal generaDAOPersonal() {
 
 		return new DAOPersonalImp();
@@ -39,7 +38,6 @@ public class FactoriaIntegracionImp extends FactoriaIntegracion {
 
 		return new DAOMaterialImp();
 	}
-
 
 	public DAOActividad generaDAOActividad() {
 

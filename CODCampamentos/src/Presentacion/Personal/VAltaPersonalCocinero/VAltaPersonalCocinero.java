@@ -20,7 +20,7 @@ import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
-public class VAltaPersonalCocinero extends JFrame implements IGUI{
+public class VAltaPersonalCocinero extends JFrame implements IGUI {
 	private JPanel j;
 	private TPersonalCocinero tCocinero;
 
@@ -48,8 +48,8 @@ public class VAltaPersonalCocinero extends JFrame implements IGUI{
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
-				"Introduzca el puesto en cocina y a�os de experiencia del cocinero que quiere dar de alta ", 1, 10, 80, 20,
-				Color.BLACK);
+				"Introduzca el puesto en cocina y a�os de experiencia del cocinero que quiere dar de alta ", 1, 10, 80,
+				20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -71,7 +71,8 @@ public class VAltaPersonalCocinero extends JFrame implements IGUI{
 		JPanel panelExperiencia = new JPanel();
 		mainPanel.add(panelExperiencia);
 
-		JLabel labelExperiencia = ComponentsBuilder.createLabel("    Anios experiencia: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelExperiencia = ComponentsBuilder.createLabel("    Anios experiencia: ", 10, 100, 80, 20,
+				Color.BLACK);
 		panelExperiencia.add(labelExperiencia);
 
 		JTextField experiencia = new JTextField();
@@ -91,9 +92,16 @@ public class VAltaPersonalCocinero extends JFrame implements IGUI{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaPersonalCocinero.this.setVisible(false);
-				tCocinero.setPuestoEnCocina(puesto.getText() != null ? puesto.getText() : "");
-				tCocinero.setAniosExperiencia(!experiencia.getText().isEmpty() ? Integer.parseInt(experiencia.getText()):0);
-				Controlador.obtenerInstancia().run(tCocinero, Evento.EAltaCocineroOK);
+				try {
+					tCocinero.setPuestoEnCocina(puesto.getText() != null ? puesto.getText() : "");
+					tCocinero.setAniosExperiencia(
+							!experiencia.getText().isEmpty() ? Integer.parseInt(experiencia.getText()) : 0);
+					Controlador.obtenerInstancia().run(tCocinero, Evento.EAltaCocineroOK);
+				} catch (Exception ex) {
+					tCocinero.setIdPersonal(-38);
+					;
+					Controlador.obtenerInstancia().run(tCocinero, Evento.EAltaCocineroOK);
+				}
 
 			}
 		});
@@ -115,10 +123,11 @@ public class VAltaPersonalCocinero extends JFrame implements IGUI{
 		this.setVisible(true);
 		this.setResizable(true);
 	}
+
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

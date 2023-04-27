@@ -16,13 +16,12 @@ import javax.swing.JTextField;
 
 import Presentacion.Evento;
 import Presentacion.IGUI;
-import Presentacion.Actividad.VMostrarActividadesPorPersonal.VMostrarActividadesPorPersonal;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
 public class VMostrarActividadesPorMaterial extends JFrame implements IGUI {
 
-	public VMostrarActividadesPorMaterial(){
+	public VMostrarActividadesPorMaterial() {
 		super("Mostrar todas las Actividades para dicho Personal");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 630;
@@ -35,15 +34,15 @@ public class VMostrarActividadesPorMaterial extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		this.setContentPane(mainPanel);
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JLabel msgIntroIDCabecera = ComponentsBuilder
-				.createLabel("Introduzca el ID del material que desea consultar sus actividades", 1, 10, 80, 20, Color.BLACK);
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
+				"Introduzca el ID del material que desea consultar sus actividades", 1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -73,16 +72,12 @@ public class VMostrarActividadesPorMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarActividadesPorMaterial.this.setVisible(false);
-				try{
-					Controlador.obtenerInstancia().run(
-							!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,
+				try {
+					Controlador.obtenerInstancia().run(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,
 							Evento.EMostrarTodosLosActividadporMaterialOK);
-				}catch(Exception ex){
-					Controlador.obtenerInstancia().run(
-							-38,
-							Evento.EMostrarTodosLosActividadporMaterialOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(-38, Evento.EMostrarTodosLosActividadporMaterialOK);
 				}
-				
 
 			}
 		});
@@ -104,11 +99,11 @@ public class VMostrarActividadesPorMaterial extends JFrame implements IGUI {
 		this.setVisible(true);
 		this.setResizable(true);
 	}
-	
+
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

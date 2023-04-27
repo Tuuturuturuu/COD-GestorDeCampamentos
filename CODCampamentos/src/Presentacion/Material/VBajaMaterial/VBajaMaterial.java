@@ -3,33 +3,29 @@
  */
 package Presentacion.Material.VBajaMaterial;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
-import javax.swing.JDialog;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Negocio.Material.TMaterial;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VBajaMaterial extends JFrame implements IGUI {
-	
-	public VBajaMaterial(){
+
+	public VBajaMaterial() {
 		super("Eliminar Material");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 430;
@@ -42,7 +38,7 @@ public class VBajaMaterial extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -50,8 +46,8 @@ public class VBajaMaterial extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
-				"Introduzca el id del material que quieres dar de baja", 1, 10, 80, 20, Color.BLACK);
+		JLabel msgIntroIDCabecera = ComponentsBuilder
+				.createLabel("Introduzca el id del material que quieres dar de baja", 1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -77,13 +73,13 @@ public class VBajaMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VBajaMaterial.this.setVisible(false);
-				try{	
-					Controlador.obtenerInstancia().run(
-							new TMaterial(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,null, null, null, null,false), Evento.EBajaMaterialOK);
-				}
-				catch(Exception ex){
-					Controlador.obtenerInstancia().run(
-							new TMaterial(-38,null, null, null, null,false), Evento.EBajaMaterialOK);
+				try {
+					Controlador.obtenerInstancia()
+							.run(new TMaterial(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0, null, null,
+									null, null, false), Evento.EBajaMaterialOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TMaterial(-38, null, null, null, null, false),
+							Evento.EBajaMaterialOK);
 				}
 			}
 		});
@@ -99,15 +95,16 @@ public class VBajaMaterial extends JFrame implements IGUI {
 
 			}
 		});
-		
+
 		JPanel panelBotones = new JPanel();
 		panelBotones.add(botonAceptar);
 		panelBotones.add(botonCancelar);
 		mainPanel.add(panelBotones);
 
 		this.setVisible(true);
-		
+
 	}
+
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -118,6 +115,6 @@ public class VBajaMaterial extends JFrame implements IGUI {
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

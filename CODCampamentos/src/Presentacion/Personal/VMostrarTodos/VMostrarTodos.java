@@ -3,36 +3,30 @@
  */
 package Presentacion.Personal.VMostrarTodos;
 
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.Actividad.VMostrarTodasActividades.VMostrarTodasActividades;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-import Presentacion.Personal.IGUI;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Set;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
-import Negocio.Actividad.TActividad;
 import Negocio.Personal.TPersonal;
 import Negocio.Personal.TPersonalCocinero;
 import Negocio.Personal.TPersonalMonitor;
-
-import javax.swing.JLabel;
-import javax.swing.JTable;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VMostrarTodos extends JFrame implements IGUI {
-	public VMostrarTodos(Set<TPersonal> listaPersonal){
+	public VMostrarTodos(Set<TPersonal> listaPersonal) {
 		super("Mostrar todo el Personal");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 630;
@@ -45,7 +39,7 @@ public class VMostrarTodos extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI((Set<TPersonal>) listaPersonal);
 	}
-	
+
 	private void initGUI(Set<TPersonal> listaPersonal) {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -74,7 +68,8 @@ public class VMostrarTodos extends JFrame implements IGUI {
 		});
 		panelBotones.add(botonCancelar);
 
-		String[] nombreColumnas = { "ID", "DNI", "Nombre", "Tipo Personal", "IdTurno",  "Activo", "Especialidad", "Estudios", "Puesto", "Años Experiencia"};
+		String[] nombreColumnas = { "ID", "DNI", "Nombre", "Tipo Personal", "IdTurno", "Activo", "Especialidad",
+				"Estudios", "Puesto", "Aï¿½os Experiencia" };
 		JTable tabla = ComponentsBuilder.createTable(listaPersonal.size(), 10, nombreColumnas);
 		int i = 0;
 		for (TPersonal t : listaPersonal) {
@@ -112,5 +107,11 @@ public class VMostrarTodos extends JFrame implements IGUI {
 		// TODO Auto-generated method stub
 
 		// end-user-code
+	}
+
+	@Override
+	public void actualizar(Object object, Evento event) {
+		// TODO Auto-generated method stub
+
 	}
 }

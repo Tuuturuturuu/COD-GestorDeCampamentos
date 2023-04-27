@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import Presentacion.Controlador.Controlador;
 
-public class ConfirmDialogActivar extends JFrame implements IGUI  {
+public class ConfirmDialogActivar extends JFrame implements IGUI {
 
 	private int id;
 
@@ -57,7 +57,7 @@ public class ConfirmDialogActivar extends JFrame implements IGUI  {
 		});
 		botonPanel.add(confirmar);
 	}
-	
+
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub

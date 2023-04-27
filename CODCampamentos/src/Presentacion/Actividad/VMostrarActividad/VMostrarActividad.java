@@ -1,32 +1,28 @@
 
 package Presentacion.Actividad.VMostrarActividad;
 
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
-import javax.swing.JPanel;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Negocio.Actividad.TActividad;
-
-import javax.swing.JDialog;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VMostrarActividad extends JFrame implements IGUI {
-	public VMostrarActividad(){
+	public VMostrarActividad() {
 		super("Mostrar Actividad");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 430;
@@ -39,7 +35,7 @@ public class VMostrarActividad extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -77,18 +73,15 @@ public class VMostrarActividad extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarActividad.this.setVisible(false);
-				try{
-					Controlador.obtenerInstancia().run(
-							new TActividad(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,null, null, null, null, null, true),
-							Evento.EMostrarUnActividadOK);
-					
-				}
-				catch(Exception ex){
-					Controlador.obtenerInstancia().run(
-							new TActividad(-38,null, null, null, null, null, true),
+				try {
+					Controlador.obtenerInstancia()
+							.run(new TActividad(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0, null,
+									null, null, null, null, true), Evento.EMostrarUnActividadOK);
+
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TActividad(-38, null, null, null, null, null, true),
 							Evento.EMostrarUnActividadOK);
 				}
-			
 
 			}
 		});
@@ -110,10 +103,10 @@ public class VMostrarActividad extends JFrame implements IGUI {
 		this.setVisible(true);
 		this.setResizable(true);
 	}
-	
+
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

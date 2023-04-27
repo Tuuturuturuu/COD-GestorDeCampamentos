@@ -3,27 +3,22 @@
  */
 package Presentacion.Turno;
 
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.Actividad.VistaActividadGeneral;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
-import javax.swing.JPanel;
-
-import Negocio.Actividad.TActividad;
-import Negocio.Turno.TTurno;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import Negocio.Turno.TTurno;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VTurno extends JFrame implements IGUI {
 	private JButton altaTurno_Button;
@@ -44,7 +39,7 @@ public class VTurno extends JFrame implements IGUI {
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);
-	//this.setBounds(100, 100, 1000, 525);
+		// this.setBounds(100, 100, 1000, 525);
 		this.setLayout(null);
 		j = new JPanel();
 		this.setResizable(false);
@@ -54,7 +49,7 @@ public class VTurno extends JFrame implements IGUI {
 	}
 
 	public void update(Object object, Evento event) {
-		
+
 	}
 
 	public void initGUI() {
@@ -125,10 +120,9 @@ public class VTurno extends JFrame implements IGUI {
 
 			}
 		});
-		
+
 		mostrarTodosTurnos_Button.setVisible(true);
 		this.add(mostrarTodosTurnos_Button);
-		
 
 		backButton = ComponentsBuilder.createBackButton();
 		backButton.addActionListener(new ActionListener() {
@@ -144,13 +138,13 @@ public class VTurno extends JFrame implements IGUI {
 		this.add(backButton);
 
 		getContentPane().add(j);
-		//pack();
+		// pack();
 
 	}
 
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

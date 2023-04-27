@@ -18,17 +18,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Negocio.Personal.TPersonal;
 import Negocio.Personal.TPersonalCocinero;
 import Negocio.Personal.TPersonalMonitor;
 import Presentacion.Evento;
+import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
-import Presentacion.Personal.IGUI;
 
 public class VAltaPersonal extends JFrame implements IGUI {
 
-	public VAltaPersonal(){
+	public VAltaPersonal() {
 		super("Dar de alta un Personal");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 1000;
@@ -41,7 +40,7 @@ public class VAltaPersonal extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -50,13 +49,14 @@ public class VAltaPersonal extends JFrame implements IGUI {
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
-				"Introduzca el DNI, nombre, tipo de personal y el idTurno del personal que quieres dar de alta ", 1, 10, 80, 20, Color.BLACK);
+				"Introduzca el DNI, nombre, tipo de personal y el idTurno del personal que quieres dar de alta ", 1, 10,
+				80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
-		
-		//DNI
+
+		// DNI
 		JPanel panelDNI = new JPanel();
 		mainPanel.add(panelDNI);
 
@@ -70,7 +70,7 @@ public class VAltaPersonal extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		//NOMBRE
+		// NOMBRE
 		JPanel panelNombre = new JPanel();
 		mainPanel.add(panelNombre);
 
@@ -83,28 +83,27 @@ public class VAltaPersonal extends JFrame implements IGUI {
 		panelNombre.add(nombre);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		//TIPO PERSONAL
+
+		// TIPO PERSONAL
 		JPanel panelTPersonal = new JPanel();
 		mainPanel.add(panelTPersonal);
 
 		JLabel labelTPersonal = ComponentsBuilder.createLabel("                Tipo de Personal: ", 10, 100, 80, 20,
 				Color.BLACK);
 		panelTPersonal.add(labelTPersonal);
-		
+
 		JComboBox<String> tipoPersonal = new JComboBox<String>();
 		tipoPersonal.addItem("Monitor");
 		tipoPersonal.addItem("Cocinero");
 		tipoPersonal.setPreferredSize(new Dimension(250, 25));
 		panelTPersonal.add(tipoPersonal);
 
-
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		//ID TURNO
+
+		// ID TURNO
 		JPanel panelIdTurno = new JPanel();
 		mainPanel.add(panelIdTurno);
-		
+
 		JLabel labelIdTurno = ComponentsBuilder.createLabel("           Id Turno: ", 10, 100, 80, 20, Color.BLACK);
 		panelIdTurno.add(labelIdTurno);
 
@@ -125,21 +124,39 @@ public class VAltaPersonal extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaPersonal.this.setVisible(false);
-				int tipo;
-				if (tipoPersonal.getSelectedItem() == "Monitor") {
-					tipo = 0;
-				Controlador.obtenerInstancia().run(
-						new TPersonalMonitor(0, DNI.getText() != null ? DNI.getText() : "", nombre.getText() != null ? nombre.getText() : "", tipo,
-								!idTurno.getText().isEmpty() ? Integer.parseInt(idTurno.getText()):0,  true, null, null), Evento.EAltaPersonalOK);
-		
-				}else{
-					tipo = 1;
-					Controlador.obtenerInstancia().run(
-							new TPersonalCocinero(0, DNI.getText() != null ? DNI.getText() : "", nombre.getText() != null ? nombre.getText() : "", tipo,
-								!idTurno.getText().isEmpty() ? Integer.parseInt(idTurno.getText()):0,  true, null, 0), Evento.EAltaPersonalOK);
+				int tipo = -78;
+				try {
+
+					if (tipoPersonal.getSelectedItem() == "Monitor") {
+						tipo = 0;
+						Controlador.obtenerInstancia()
+								.run(new TPersonalMonitor(0, DNI.getText() != null ? DNI.getText() : "",
+										nombre.getText() != null ? nombre.getText() : "", tipo,
+										!idTurno.getText().isEmpty() ? Integer.parseInt(idTurno.getText()) : 0, true,
+										null, null), Evento.EAltaPersonalOK);
+
+					} else if (tipoPersonal.getSelectedItem() == "Cocinero") {
+						tipo = 1;
+						Controlador.obtenerInstancia()
+								.run(new TPersonalCocinero(0, DNI.getText() != null ? DNI.getText() : "",
+										nombre.getText() != null ? nombre.getText() : "", tipo,
+										!idTurno.getText().isEmpty() ? Integer.parseInt(idTurno.getText()) : 0, true,
+										null, 0), Evento.EAltaPersonalOK);
+					}
+				} catch (Exception ex) {
+					if (tipoPersonal.getSelectedItem() == "Monitor") {
+						tipo = 0;
+						Controlador.obtenerInstancia().run(
+								new TPersonalMonitor(-38, null, null, tipo, null, true, null, null),
+								Evento.EAltaPersonalOK);
+
+					} else if (tipoPersonal.getSelectedItem() == "Cocinero") {
+						tipo = 1;
+						Controlador.obtenerInstancia().run(
+								new TPersonalCocinero(-38, null, null, tipo, null, true, null, 0),
+								Evento.EAltaPersonalOK);
+					}
 				}
-				
-				
 			}
 		});
 		panelBotones.add(botonAceptar);
@@ -160,10 +177,17 @@ public class VAltaPersonal extends JFrame implements IGUI {
 		this.setVisible(true);
 		this.setResizable(true);
 	}
+
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
 
 		// end-user-code
 	}
+
+	@Override
+	public void actualizar(Object object, Evento event) {
+		// TODO Auto-generated method stub
+
 	}
+}

@@ -3,36 +3,28 @@
  */
 package Presentacion.Actividad.VMostrarActividadesPorPersonal;
 
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.Actividad.VMostrarActividad.VMostrarActividad;
-import Presentacion.Actividad.VMostrarTodasActividades.VMostrarTodasActividades;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
-import javax.swing.JLabel;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JDialog;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import Negocio.Actividad.TActividad;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VMostrarActividadesPorPersonal extends JFrame implements IGUI {
 
-	public VMostrarActividadesPorPersonal(){
+	public VMostrarActividadesPorPersonal() {
 		super("Mostrar todas las Actividades para dicho Personal");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 630;
@@ -45,15 +37,15 @@ public class VMostrarActividadesPorPersonal extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		this.setContentPane(mainPanel);
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JLabel msgIntroIDCabecera = ComponentsBuilder
-				.createLabel("Introduzca el ID del personal que desea consultar sus actividades", 1, 10, 80, 20, Color.BLACK);
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
+				"Introduzca el ID del personal que desea consultar sus actividades", 1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -83,14 +75,11 @@ public class VMostrarActividadesPorPersonal extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarActividadesPorPersonal.this.setVisible(false);
-				try{
-					Controlador.obtenerInstancia().run(
-							!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,
+				try {
+					Controlador.obtenerInstancia().run(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,
 							Evento.EMostrarTodosLosActividadporPersonalOK);
-				}catch(Exception ex){
-					Controlador.obtenerInstancia().run(
-							-38,
-							Evento.EMostrarTodosLosActividadporPersonalOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(-38, Evento.EMostrarTodosLosActividadporPersonalOK);
 				}
 
 			}
@@ -114,10 +103,9 @@ public class VMostrarActividadesPorPersonal extends JFrame implements IGUI {
 		this.setResizable(true);
 	}
 
-
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -14,8 +14,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Integracion.Connection.ConnectorBD;
-import Negocio.Actividad.TActividad;
 import Negocio.Turno.TTurno;
+
 public class DAOTurnoImp implements DAOTurno {
 	public TTurno CrearTurno(TTurno tTurno) {
 		try {
@@ -27,10 +27,9 @@ public class DAOTurnoImp implements DAOTurno {
 			ps = conexion.prepareStatement(
 					"INSERT INTO Turno ( NombreTurno, Fecha, Hora, Activo) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE Activo = ?",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-			
 
 			ps.setString(1, tTurno.getNombreTurno());
-			ps.setDate(2,  new java.sql.Date(tTurno.getFecha().getTime()));
+			ps.setDate(2, new java.sql.Date(tTurno.getFecha().getTime()));
 			ps.setString(3, tTurno.getHora());
 			ps.setBoolean(4, tTurno.getActivo());
 			ps.setBoolean(5, tTurno.getActivo());
@@ -49,6 +48,7 @@ public class DAOTurnoImp implements DAOTurno {
 		}
 		return tTurno;
 	}
+
 	public TTurno EliminarTurno(TTurno tTurno) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -71,6 +71,7 @@ public class DAOTurnoImp implements DAOTurno {
 		}
 		return tTurno;
 	}
+
 	public TTurno ModificarTurno(TTurno tTurno) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -93,6 +94,7 @@ public class DAOTurnoImp implements DAOTurno {
 		}
 		return tTurno;
 	}
+
 	public TTurno MostrarTurno(Integer idTurno) {
 		TTurno tturno = new TTurno();
 		try {
@@ -122,6 +124,7 @@ public class DAOTurnoImp implements DAOTurno {
 
 		return tturno;
 	}
+
 	public Set<TTurno> MostrarAllTurnos() {
 		Set<TTurno> Turnos = new HashSet<TTurno>();
 		TTurno e;
@@ -134,7 +137,7 @@ public class DAOTurnoImp implements DAOTurno {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				e = new TTurno(rs.getInt("IdTurno"), rs.getString("NombreTurno"), rs.getDate("Fecha"),
-						 rs.getString("Hora"),rs.getBoolean("Activo"));
+						rs.getString("Hora"), rs.getBoolean("Activo"));
 				Turnos.add(e);
 			}
 			rs.close();
@@ -145,6 +148,7 @@ public class DAOTurnoImp implements DAOTurno {
 		}
 		return Turnos;
 	}
+
 	@Override
 	public TTurno BuscarTurnoPorNombre(String NombreTurno) {
 		TTurno tTurno = new TTurno();
@@ -174,6 +178,7 @@ public class DAOTurnoImp implements DAOTurno {
 		}
 		return tTurno;
 	}
+
 	@Override
 	public Integer activar(Integer IdTurno) {
 		Integer correcto = 0;

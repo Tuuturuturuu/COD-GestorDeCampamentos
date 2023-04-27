@@ -60,7 +60,7 @@ public class FactoriaVistaActividadImp implements FactoriaVistaActividad {
 	@Override
 	public VMostrarActividadesPorPersonalOK getVista_MostrarActividadPorPersonalOK(Set<TActividad> listaActividades) {
 		// TODO Auto-generated method stub
-		return  new VMostrarActividadesPorPersonalOK(listaActividades);
+		return new VMostrarActividadesPorPersonalOK(listaActividades);
 	}
 
 	@Override
@@ -80,6 +80,5 @@ public class FactoriaVistaActividadImp implements FactoriaVistaActividad {
 		// TODO Auto-generated method stub
 		return new VVincularActividadConMaterial();
 	}
-
 
 }

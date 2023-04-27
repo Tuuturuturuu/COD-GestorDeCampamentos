@@ -17,13 +17,12 @@ import javax.swing.JTable;
 import Negocio.Actividad.TActividad;
 import Presentacion.Evento;
 import Presentacion.IGUI;
-import Presentacion.Actividad.VMostrarTodasActividades.VMostrarTodasActividades;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
 public class VMostrarActividadesPorPersonalOK extends JFrame implements IGUI {
 
-	public VMostrarActividadesPorPersonalOK(Set<TActividad> listaActividades){
+	public VMostrarActividadesPorPersonalOK(Set<TActividad> listaActividades) {
 		super("Mostrar todas las Actividades de un Personal");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 630;
@@ -36,7 +35,7 @@ public class VMostrarActividadesPorPersonalOK extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI((Set<TActividad>) listaActividades);
 	}
-	
+
 	private void initGUI(Set<TActividad> listaActividades) {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -85,11 +84,11 @@ public class VMostrarActividadesPorPersonalOK extends JFrame implements IGUI {
 		this.setVisible(true);
 		this.setResizable(true);
 	}
-	
+
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

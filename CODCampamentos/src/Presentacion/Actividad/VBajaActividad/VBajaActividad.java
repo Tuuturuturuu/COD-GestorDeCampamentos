@@ -1,35 +1,28 @@
 
 package Presentacion.Actividad.VBajaActividad;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.Actividad.VAltaActividad.VAltaActividad;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
-import javax.swing.JLabel;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import Negocio.Actividad.TActividad;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import Negocio.Actividad.TActividad;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VBajaActividad extends JFrame implements IGUI {
-	public VBajaActividad(){
+	public VBajaActividad() {
 		super("Baja Actividad");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 430;
@@ -43,7 +36,7 @@ public class VBajaActividad extends JFrame implements IGUI {
 		initGUI();
 
 	}
-	
+
 	public void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -81,15 +74,16 @@ public class VBajaActividad extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VBajaActividad.this.setVisible(false);
-				try{
-					Controlador.obtenerInstancia().run(new TActividad(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,null, null, null, null, null, false)
-							, Evento.EBajaActividadOK);
-					
-				}catch(Exception ex){
-					Controlador.obtenerInstancia().run(new TActividad(-38,null, null, null, null, null, false)
-							, Evento.EBajaActividadOK);
+				try {
+					Controlador.obtenerInstancia()
+							.run(new TActividad(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0, null,
+									null, null, null, null, false), Evento.EBajaActividadOK);
+
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TActividad(-38, null, null, null, null, null, false),
+							Evento.EBajaActividadOK);
 				}
-				
+
 			}
 		});
 		panelBotones.add(botonAceptar);
@@ -113,6 +107,6 @@ public class VBajaActividad extends JFrame implements IGUI {
 
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

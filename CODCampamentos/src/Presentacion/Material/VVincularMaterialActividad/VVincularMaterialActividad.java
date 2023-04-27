@@ -21,7 +21,6 @@ import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
-import Presentacion.Material.VBajaMaterial.VBajaMaterial;
 
 public class VVincularMaterialActividad extends JFrame implements IGUI {
 	private JButton jButton;
@@ -30,8 +29,8 @@ public class VVincularMaterialActividad extends JFrame implements IGUI {
 	private JFrame jFrame;
 	private Set<JLabel> jLabel;
 	private Set<JPanel> jPanel;
-	
-	public VVincularMaterialActividad(){
+
+	public VVincularMaterialActividad() {
 		super("Vincular Material Actividad");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 600;
@@ -44,7 +43,7 @@ public class VVincularMaterialActividad extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -53,7 +52,8 @@ public class VVincularMaterialActividad extends JFrame implements IGUI {
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
-				"Introduzca los IDs del material que quieres vincular y la actividad correspondiente", 1, 10, 80, 20, Color.BLACK);
+				"Introduzca los IDs del material que quieres vincular y la actividad correspondiente", 1, 10, 80, 20,
+				Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -70,7 +70,7 @@ public class VVincularMaterialActividad extends JFrame implements IGUI {
 		matId.setPreferredSize(new Dimension(250, 30));
 		matId.setEditable(true);
 		panelMatId.add(matId);
-		
+
 		// ID actividad
 		JPanel panelActId = new JPanel();
 		mainPanel.add(panelActId);
@@ -93,8 +93,8 @@ public class VVincularMaterialActividad extends JFrame implements IGUI {
 			public void actionPerformed(ActionEvent e) {
 				VVincularMaterialActividad.this.setVisible(false);
 
-				Controlador.obtenerInstancia().run(
-						new TMaterial(Integer.parseInt(matId.getText()), null, null, null,  Integer.parseInt(actId.getText()), null), Evento.EVincularMaterialActividadOK);
+				Controlador.obtenerInstancia().run(new TMaterial(Integer.parseInt(matId.getText()), null, null, null,
+						Integer.parseInt(actId.getText()), null), Evento.EVincularMaterialActividadOK);
 
 			}
 		});
@@ -110,15 +110,16 @@ public class VVincularMaterialActividad extends JFrame implements IGUI {
 
 			}
 		});
-		
+
 		JPanel panelBotones = new JPanel();
 		panelBotones.add(botonAceptar);
 		panelBotones.add(botonCancelar);
 		mainPanel.add(panelBotones);
 
 		this.setVisible(true);
-		
+
 	}
+
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -129,7 +130,7 @@ public class VVincularMaterialActividad extends JFrame implements IGUI {
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

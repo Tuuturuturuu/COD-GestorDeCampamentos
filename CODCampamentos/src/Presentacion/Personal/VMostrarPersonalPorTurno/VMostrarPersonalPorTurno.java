@@ -3,30 +3,28 @@
  */
 package Presentacion.Personal.VMostrarPersonalPorTurno;
 
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.Actividad.VMostrarActividadesPorPersonal.VMostrarActividadesPorPersonal;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-import Presentacion.Personal.IGUI;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
-import javax.swing.JPanel;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VMostrarPersonalPorTurno extends JFrame implements IGUI {
 
-	public VMostrarPersonalPorTurno(){
+	public VMostrarPersonalPorTurno() {
 		super("Mostrar todo el Personal para dicho Turno");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 630;
@@ -39,7 +37,7 @@ public class VMostrarPersonalPorTurno extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -77,9 +75,12 @@ public class VMostrarPersonalPorTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarPersonalPorTurno.this.setVisible(false);
-				Controlador.obtenerInstancia().run(
-						Integer.parseInt(id.getText()),
-						Evento.EMostrarTodosPersonalporTurnoOK);
+				try {
+					Controlador.obtenerInstancia().run(Integer.parseInt(id.getText()),
+							Evento.EMostrarTodosPersonalporTurnoOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(-38, Evento.EMostrarTodosPersonalporTurnoOK);
+				}
 
 			}
 		});
@@ -102,11 +103,16 @@ public class VMostrarPersonalPorTurno extends JFrame implements IGUI {
 		this.setResizable(true);
 	}
 
-	
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
 
 		// end-user-code
+	}
+
+	@Override
+	public void actualizar(Object object, Evento event) {
+		// TODO Auto-generated method stub
+
 	}
 }

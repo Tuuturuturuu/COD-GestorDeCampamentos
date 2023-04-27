@@ -5,16 +5,18 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.*;
-import java.text.*;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import Negocio.Turno.TTurno;
 import Presentacion.Evento;
 import Presentacion.IGUI;
@@ -22,7 +24,7 @@ import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
 public class VAltaTurno extends JFrame implements IGUI {
-	public VAltaTurno(){
+	public VAltaTurno() {
 		super("Crear Turno");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 600;
@@ -35,22 +37,22 @@ public class VAltaTurno extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
-	private void initGUI(){
+
+	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		this.setContentPane(mainPanel);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		//ID
+		// ID
 		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
 				"Introduzca el id, nombre, fecha y hora del turno que quiera dar de alta ", 1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
-		
-		//NOMBRE
+
+		// NOMBRE
 		JPanel panelNombre = new JPanel();
 		mainPanel.add(panelNombre);
 
@@ -63,36 +65,36 @@ public class VAltaTurno extends JFrame implements IGUI {
 		panelNombre.add(nombre);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		//FECHA
+
+		// FECHA
 		SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
 		JFormattedTextField campoFecha = new JFormattedTextField(formatoFecha);
-		
-		campoFecha.setValue(new Date()); // establece la fecha actual como valor inicial
-		
+
+		campoFecha.setValue(new Date()); // establece la fecha actual como valor
+											// inicial
+
 		JLabel etiquetaFecha = new JLabel("Fecha:");
 		JPanel panelFecha = new JPanel();
-		
+
 		panelFecha.add(etiquetaFecha);
 		panelFecha.add(campoFecha);
-		
+
 		mainPanel.add(panelFecha);
-		
+
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		
-		//HORA
+
+		// HORA
 		JPanel panelHora = new JPanel();
 
 		SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
 		JFormattedTextField campoHora = new JFormattedTextField(formatoHora);
 		campoHora.setValue(new Date());
-		
+
 		JLabel etiquetaHora = new JLabel("Hora:");
-		
+
 		panelHora.add(etiquetaHora);
 		panelHora.add(campoHora);
-		
-		
+
 		mainPanel.add(panelHora);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -107,14 +109,16 @@ public class VAltaTurno extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaTurno.this.setVisible(false);
-				try{
-					Controlador.obtenerInstancia().run(new TTurno(0, nombre.getText(),  (Date) campoFecha.getValue(), campoHora.getText(), true), Evento.EAltaTurnoOK);
-				}catch(Exception ex){
-					Controlador.obtenerInstancia().run(new TTurno(-38, null,  null, null, true), Evento.EAltaTurnoOK);
+				try {
+					Controlador.obtenerInstancia().run(
+							new TTurno(0, nombre.getText(), (Date) campoFecha.getValue(), campoHora.getText(), true),
+							Evento.EAltaTurnoOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TTurno(-38, null, null, null, true), Evento.EAltaTurnoOK);
 				}
-			
+
 			}
-			
+
 		});
 		panelBotones.add(botonAceptar);
 
@@ -133,6 +137,7 @@ public class VAltaTurno extends JFrame implements IGUI {
 		this.setVisible(true);
 		this.setResizable(true);
 	}
+
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -142,6 +147,6 @@ public class VAltaTurno extends JFrame implements IGUI {
 
 	@Override
 	public void actualizar(Object object, Evento event) {
-	
+
 	}
 }

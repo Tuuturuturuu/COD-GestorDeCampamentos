@@ -1,34 +1,29 @@
 
 package Presentacion.Material.VMostrarMaterial;
 
-import javax.swing.JFrame;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JPanel;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 import Negocio.Material.TMaterial;
-
-import javax.swing.JLabel;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VMostrarMaterial extends JFrame implements IGUI {
 
-	
-	public VMostrarMaterial(){
+	public VMostrarMaterial() {
 		super("Mostrar Material");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 430;
@@ -41,7 +36,7 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -49,8 +44,8 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
-				"Introduzca el id del material que quiera mostrar", 1, 10, 80, 20, Color.BLACK);
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel("Introduzca el id del material que quiera mostrar", 1,
+				10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -72,18 +67,17 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 		JButton botonAceptar = new JButton("Aceptar");
 		botonAceptar.setBounds(75, 50, 100, 100);
 		botonAceptar.addActionListener(new ActionListener() {
-			//En este ActionListener tiene que aparecer una  ventana que muestre la informacion del material seleccionado??
+			// En este ActionListener tiene que aparecer una ventana que muestre
+			// la informacion del material seleccionado??
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VMostrarMaterial.this.setVisible(false);
-				try{
+				try {
 					Controlador.obtenerInstancia().run(
-							new TMaterial(Integer.parseInt(id.getText()),null, null, null, null, true),
+							new TMaterial(Integer.parseInt(id.getText()), null, null, null, null, true),
 							Evento.EMostrarUnMaterialOK);
-				}
-				catch(Exception ex ){
-					Controlador.obtenerInstancia().run(
-							new TMaterial(-38,null, null, null, null, true),
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TMaterial(-38, null, null, null, null, true),
 							Evento.EMostrarUnMaterialOK);
 				}
 			}
@@ -100,16 +94,16 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 
 			}
 		});
-		
+
 		JPanel panelBotones = new JPanel();
 		panelBotones.add(botonAceptar);
 		panelBotones.add(botonCancelar);
 		mainPanel.add(panelBotones);
 
 		this.setVisible(true);
-		
+
 	}
-	
+
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -120,6 +114,6 @@ public class VMostrarMaterial extends JFrame implements IGUI {
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

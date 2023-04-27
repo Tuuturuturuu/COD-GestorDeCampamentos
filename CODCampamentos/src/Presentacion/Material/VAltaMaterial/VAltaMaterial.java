@@ -21,7 +21,7 @@ import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
 public class VAltaMaterial extends JFrame implements IGUI {
-	public VAltaMaterial(){
+	public VAltaMaterial() {
 		super("Crear Material");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 650;
@@ -34,7 +34,7 @@ public class VAltaMaterial extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -43,7 +43,8 @@ public class VAltaMaterial extends JFrame implements IGUI {
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel(
-				"Introduzca el nombre, almacen, numero de existencias, y idActividad del material que quieres dar de alta ", 1, 10, 80, 20, Color.BLACK);
+				"Introduzca el nombre, almacen, numero de existencias, y idActividad del material que quieres dar de alta ",
+				1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -78,7 +79,8 @@ public class VAltaMaterial extends JFrame implements IGUI {
 		JPanel panelNumExistencias = new JPanel();
 		mainPanel.add(panelNumExistencias);
 
-		JLabel labelNumExistencias = ComponentsBuilder.createLabel("Numero de Existencias: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelNumExistencias = ComponentsBuilder.createLabel("Numero de Existencias: ", 10, 100, 80, 20,
+				Color.BLACK);
 		panelNumExistencias.add(labelNumExistencias);
 
 		JTextField numExistencias = new JTextField();
@@ -98,16 +100,21 @@ public class VAltaMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAltaMaterial.this.setVisible(false);
-				
-				try{
-					Controlador.obtenerInstancia().run(
-							new TMaterial(0, nombre.getText() != null ? nombre.getText() : "",  !almacen.getText().isEmpty()  ? Integer.parseInt(almacen.getText()) : 0,  !numExistencias.getText().isEmpty() ? Integer.parseInt(numExistencias.getText()) : 0,  null, true), Evento.EAltaMaterialOK);
-				}
-				catch(Exception ex){
-					Controlador.obtenerInstancia().run(new TMaterial(-38, null,  null,  null,  null, true), Evento.EAltaMaterialOK);
+
+				try {
+					Controlador
+							.obtenerInstancia().run(
+									new TMaterial(0, nombre.getText() != null ? nombre.getText() : "",
+											!almacen.getText().isEmpty() ? Integer.parseInt(almacen.getText()) : 0,
+											!numExistencias.getText().isEmpty()
+													? Integer.parseInt(numExistencias.getText()) : 0,
+											null, true),
+									Evento.EAltaMaterialOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TMaterial(-38, null, null, null, null, true),
+							Evento.EAltaMaterialOK);
 
 				}
-				
 
 			}
 		});
@@ -129,6 +136,7 @@ public class VAltaMaterial extends JFrame implements IGUI {
 		this.setVisible(true);
 		this.setResizable(true);
 	}
+
 	public void actualizar() {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -138,7 +146,6 @@ public class VAltaMaterial extends JFrame implements IGUI {
 
 	@Override
 	public void actualizar(Object object, Evento event) {
-	
-		
+
 	}
-	}
+}

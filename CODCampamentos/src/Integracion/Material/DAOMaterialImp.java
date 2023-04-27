@@ -1,7 +1,5 @@
 package Integracion.Material;
 
-import Negocio.Material.TMaterial;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Integracion.Connection.ConnectorBD;
+import Negocio.Material.TMaterial;
 
 public class DAOMaterialImp implements DAOMaterial {
 	public TMaterial crearMaterial(TMaterial tMaterial) {
@@ -24,7 +23,6 @@ public class DAOMaterialImp implements DAOMaterial {
 			ps = conexion.prepareStatement(
 					"INSERT INTO Material (Almacen, Nombre, NumExistencias, Activo) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE Activo = ?",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-			
 
 			ps.setInt(1, tMaterial.getNAlmacen());
 			ps.setString(2, tMaterial.getNombre());
@@ -78,7 +76,8 @@ public class DAOMaterialImp implements DAOMaterial {
 					ConnectorBD.password);
 
 			PreparedStatement ps;
-			ps = conexion.prepareStatement("UPDATE Material SET Almacen = ?, Nombre = ?, NumExistencias = ? WHERE idMaterial = ? ",
+			ps = conexion.prepareStatement(
+					"UPDATE Material SET Almacen = ?, Nombre = ?, NumExistencias = ? WHERE idMaterial = ? ",
 					Statement.RETURN_GENERATED_KEYS);
 
 			ps.setInt(1, tMaterial.getNAlmacen());
@@ -113,7 +112,7 @@ public class DAOMaterialImp implements DAOMaterial {
 				tMaterial.setNombre(rs.getString(3));
 				tMaterial.setExistencias(rs.getInt(4));
 				tMaterial.setActivo(rs.getBoolean(5));
-				
+
 			} else {
 				tMaterial.setId(-1);
 			}
@@ -138,7 +137,7 @@ public class DAOMaterialImp implements DAOMaterial {
 			ps = conexion.prepareStatement("SELECT * FROM Material");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				e = new TMaterial(rs.getInt("IdMaterial"), rs.getString("Nombre"), rs.getInt("Almacen"), 
+				e = new TMaterial(rs.getInt("IdMaterial"), rs.getString("Nombre"), rs.getInt("Almacen"),
 						rs.getInt("NumExistencias"), null, rs.getBoolean("Activo"));
 				Materiales.add(e);
 			}
@@ -171,7 +170,6 @@ public class DAOMaterialImp implements DAOMaterial {
 			} else
 				tMaterial.setId(-1);
 
-
 			rs.close();
 			ps.close();
 			conexion.close();
@@ -180,7 +178,7 @@ public class DAOMaterialImp implements DAOMaterial {
 		}
 		return tMaterial;
 	}
-	
+
 	@Override
 	public TMaterial buscarMaterialNombre(TMaterial tMaterial) {
 		TMaterial ret = new TMaterial();
@@ -202,7 +200,6 @@ public class DAOMaterialImp implements DAOMaterial {
 			} else
 				ret.setId(-1);
 
-
 			rs.close();
 			ps.close();
 			conexion.close();
@@ -211,7 +208,7 @@ public class DAOMaterialImp implements DAOMaterial {
 		}
 		return ret;
 	}
-	
+
 	@Override
 	public Set<TMaterial> listarMaterialPorActividad(int id) {
 		return null;

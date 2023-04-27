@@ -1,27 +1,24 @@
 package Presentacion.Material.VModificarMaterial;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import Presentacion.Evento;
-import Presentacion.IGUI;
-import Presentacion.ComponentsBuilder.ComponentsBuilder;
-import Presentacion.Controlador.Controlador;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Negocio.Material.TMaterial;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
 public class VModificarMaterial extends JFrame implements IGUI {
 	public VModificarMaterial() {
@@ -130,12 +127,15 @@ public class VModificarMaterial extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VModificarMaterial.this.setVisible(false);
-				try{
-					Controlador.obtenerInstancia().run(
-							new TMaterial(0, nombre.getText() != null ? nombre.getText() : "",  !nAlmacen.getText().isEmpty()  ? Integer.parseInt(nAlmacen.getText()) : 0,  !existencias.getText().isEmpty() ? Integer.parseInt(existencias.getText()) : 0,  null, true), Evento.EModificarMaterialOK);
-				}
-				catch(Exception ex){
-					Controlador.obtenerInstancia().run(new TMaterial(-38, null,  null,  null,  null, true), Evento.EModificarMaterialOK);
+				try {
+					Controlador.obtenerInstancia()
+							.run(new TMaterial(0, nombre.getText() != null ? nombre.getText() : "",
+									!nAlmacen.getText().isEmpty() ? Integer.parseInt(nAlmacen.getText()) : 0,
+									!existencias.getText().isEmpty() ? Integer.parseInt(existencias.getText()) : 0,
+									null, true), Evento.EModificarMaterialOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TMaterial(-38, null, null, null, null, true),
+							Evento.EModificarMaterialOK);
 
 				}
 

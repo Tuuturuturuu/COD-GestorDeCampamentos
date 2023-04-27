@@ -18,14 +18,13 @@ import Negocio.Personal.TPersonal;
 import Negocio.Personal.TPersonalCocinero;
 import Negocio.Personal.TPersonalMonitor;
 import Presentacion.Evento;
-import Presentacion.Actividad.VMostrarActividadesPorPersonal.VMostrarActividadesPorPersonalOK;
+import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
-import Presentacion.Personal.IGUI;
 
-public class VMostrarPersonalPorTurnoOK extends JFrame implements IGUI{
+public class VMostrarPersonalPorTurnoOK extends JFrame implements IGUI {
 
-	public VMostrarPersonalPorTurnoOK(Set<TPersonal> listaPersonal){
+	public VMostrarPersonalPorTurnoOK(Set<TPersonal> listaPersonal) {
 		super("Mostrar todo el Personal de un Turno");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 630;
@@ -38,7 +37,7 @@ public class VMostrarPersonalPorTurnoOK extends JFrame implements IGUI{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI((Set<TPersonal>) listaPersonal);
 	}
-	
+
 	private void initGUI(Set<TPersonal> listaPersonal) {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -67,7 +66,8 @@ public class VMostrarPersonalPorTurnoOK extends JFrame implements IGUI{
 		});
 		panelBotones.add(botonCancelar);
 
-		String[] nombreColumnas = { "ID", "DNI", "Nombre", "Tipo Personal", "IdTurno",  "Activo", "Especialidad", "Estudios", "Puesto", "Años Experiencia"};
+		String[] nombreColumnas = { "ID", "DNI", "Nombre", "Tipo Personal", "IdTurno", "Activo", "Especialidad",
+				"Estudios", "Puesto", "Aï¿½os Experiencia" };
 		JTable tabla = ComponentsBuilder.createTable(listaPersonal.size(), 10, nombreColumnas);
 		int i = 0;
 		for (TPersonal t : listaPersonal) {
@@ -99,11 +99,11 @@ public class VMostrarPersonalPorTurnoOK extends JFrame implements IGUI{
 		this.setVisible(true);
 		this.setResizable(true);
 	}
-	
+
 	@Override
-	public void actualizar() {
+	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

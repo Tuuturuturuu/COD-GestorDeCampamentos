@@ -3,11 +3,6 @@
  */
 package Integracion.Personal;
 
-import Negocio.Personal.TPersonal;
-import Negocio.Personal.TPersonalCocinero;
-import Negocio.Personal.TPersonalMonitor;
-import Negocio.Turno.TTurno;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,6 +13,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Integracion.Connection.ConnectorBD;
+import Negocio.Personal.TPersonal;
+import Negocio.Personal.TPersonalCocinero;
+import Negocio.Personal.TPersonalMonitor;
 
 public class DAOPersonalImp implements DAOPersonal {
 
@@ -26,6 +24,7 @@ public class DAOPersonalImp implements DAOPersonal {
 	public TPersonal CrearPersonal(TPersonal tPersonal) {
 
 		try {
+
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
 					ConnectorBD.password);
@@ -51,14 +50,16 @@ public class DAOPersonalImp implements DAOPersonal {
 				tPersonal.setIdPersonal(rs.getInt(1));
 
 			if (tPersonal.getTipo() == 0) {
-				ps = conexion.prepareStatement("INSERT INTO Monitores (idPersonal, especialidad, estudios) VALUES (?,?,?)");
+				ps = conexion
+						.prepareStatement("INSERT INTO Monitores (idPersonal, especialidad, estudios) VALUES (?,?,?)");
 				ps.setInt(1, tPersonal.getIdPersonal());
 				ps.setString(2, ((TPersonalMonitor) tPersonal).getEspecialidad());
 				ps.setString(3, ((TPersonalMonitor) tPersonal).getEstudios());
 				ps.executeUpdate();
 
 			} else {
-				ps = conexion.prepareStatement("INSERT INTO Cocineros (idPersonal, puesto, experiencia) VALUES (?,?,?)");
+				ps = conexion
+						.prepareStatement("INSERT INTO Cocineros (idPersonal, puesto, experiencia) VALUES (?,?,?)");
 				ps.setInt(1, tPersonal.getIdPersonal());
 				ps.setString(2, ((TPersonalCocinero) tPersonal).getPuestoEnCocina());
 				ps.setInt(3, ((TPersonalCocinero) tPersonal).getAniosExperiencia());
@@ -93,7 +94,8 @@ public class DAOPersonalImp implements DAOPersonal {
 			ps.setInt(2, tPersonal.getIdPersonal());
 			int result = ps.executeUpdate();
 			if (result < 1)
-				tPersonal.setIdPersonal(-1); // si el execute devuelve menos de 1
+				tPersonal.setIdPersonal(-1); // si el execute devuelve menos de
+												// 1
 			// (lineas afectadas) es que no ha
 			// actualizado el valor
 			ps.close();
@@ -223,7 +225,8 @@ public class DAOPersonalImp implements DAOPersonal {
 					ConnectorBD.password);
 
 			PreparedStatement ps;
-			ps = conexion.prepareStatement("UPDATE Personal SET DNI = ?, Nombre = ?, TipoPersonal = ?, IdTurno = ?, Activo = ? WHERE IdPersonal = ? ",
+			ps = conexion.prepareStatement(
+					"UPDATE Personal SET DNI = ?, Nombre = ?, TipoPersonal = ?, IdTurno = ?, Activo = ? WHERE IdPersonal = ? ",
 					Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, tPersonal.getDNI());

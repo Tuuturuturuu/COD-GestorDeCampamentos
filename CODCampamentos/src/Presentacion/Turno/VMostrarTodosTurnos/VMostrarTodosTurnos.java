@@ -20,8 +20,8 @@ import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
-public class VMostrarTodosTurnos extends JFrame implements IGUI  {
-	public VMostrarTodosTurnos(Set<TTurno> listaTurnos){
+public class VMostrarTodosTurnos extends JFrame implements IGUI {
+	public VMostrarTodosTurnos(Set<TTurno> listaTurnos) {
 		super("Mostrar todos los Turnos");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 630;
@@ -34,7 +34,7 @@ public class VMostrarTodosTurnos extends JFrame implements IGUI  {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI((Set<TTurno>) listaTurnos);
 	}
-	
+
 	private void initGUI(Set<TTurno> listaTurnos) {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -85,6 +85,6 @@ public class VMostrarTodosTurnos extends JFrame implements IGUI  {
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

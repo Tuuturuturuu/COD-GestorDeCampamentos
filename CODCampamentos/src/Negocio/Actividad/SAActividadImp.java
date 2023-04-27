@@ -181,7 +181,7 @@ public class SAActividadImp implements SAActividad {
 
 	@Override
 	public TActividad mostrarActividad(TActividad tActividad) {
-		if(tActividad.getIdActividad() <= 0){
+		if (tActividad.getIdActividad() <= 0) {
 			if (daoActividad.mostrarActividad(tActividad).getActivo() == false)
 				tActividad.setIdActividad(-5);
 		}
@@ -197,7 +197,7 @@ public class SAActividadImp implements SAActividad {
 	public Set<TActividad> mostrarActividadesporPersonal(Integer IdPersonal) {
 
 		Set<TActividad> Actividades = new HashSet<TActividad>();
-		if(IdPersonal <= 0){
+		if (IdPersonal <= 0) {
 			// Comprobar que el Personal existe
 			TPersonal tPersonalBuscado = daoPersonal.MostrarUno(IdPersonal);
 			TActividad tActividad = new TActividad();
@@ -225,7 +225,7 @@ public class SAActividadImp implements SAActividad {
 
 		Set<TActividad> Actividades = new HashSet<TActividad>();
 		Set<TActividadMaterial> ActividadesMaterial = new HashSet<TActividadMaterial>();
-		if(IdMaterial <= 0){
+		if (IdMaterial <= 0) {
 			// Comprobar que el material existe
 			TMaterial tMaterialBuscado = new TMaterial(IdMaterial, null, 0, 0, 0, false);
 			tMaterialBuscado = daoMaterial.buscarMaterialID(tMaterialBuscado);

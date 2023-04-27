@@ -19,13 +19,12 @@ import javax.swing.JTextField;
 
 import Negocio.Personal.TPersonal;
 import Presentacion.Evento;
+import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
-import Presentacion.Personal.IGUI;
-
 
 public class VModificarPersonal extends JFrame implements IGUI {
-	public VModificarPersonal(){
+	public VModificarPersonal() {
 		super("Modificar Personal");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 630;
@@ -38,16 +37,16 @@ public class VModificarPersonal extends JFrame implements IGUI {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initGUI();
 	}
-	
+
 	public void initGUI() {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		this.setContentPane(mainPanel);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		//ID
-		JLabel msgIntroIDCabecera = ComponentsBuilder
-				.createLabel("Introduzca el ID del Personal que quiere modificar ", 1, 10, 80, 20, Color.BLACK);
+		// ID
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel("Introduzca el ID del Personal que quiere modificar ",
+				1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -66,7 +65,7 @@ public class VModificarPersonal extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		//NOMBRE
+		// NOMBRE
 		JPanel panelNombre = new JPanel();
 		mainPanel.add(panelNombre);
 
@@ -80,11 +79,11 @@ public class VModificarPersonal extends JFrame implements IGUI {
 
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		//ID TURNO
+		// ID TURNO
 		JPanel panelIDTurno = new JPanel();
 		mainPanel.add(panelIDTurno);
-		
-		JLabel labelIDTurno= ComponentsBuilder.createLabel("ID Turno: ", 10, 100, 80, 20, Color.BLACK);
+
+		JLabel labelIDTurno = ComponentsBuilder.createLabel("ID Turno: ", 10, 100, 80, 20, Color.BLACK);
 		panelIDTurno.add(labelIDTurno);
 
 		JTextField idTurno = new JTextField();
@@ -104,14 +103,18 @@ public class VModificarPersonal extends JFrame implements IGUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VModificarPersonal.this.setVisible(false);
-				Controlador.obtenerInstancia().run(
-						new TPersonal(Integer.parseInt(id.getText()), 
-								"", 
-								nombre.getText() != null ? nombre.getText() : "", 
-								0, 
-								!idTurno.getText().isEmpty() ? Integer.parseInt(idTurno.getText()):0,
-								  true), Evento.EModificarPersonalOK);
-				
+
+				try {
+					Controlador.obtenerInstancia()
+							.run(new TPersonal(Integer.parseInt(id.getText()), "",
+									nombre.getText() != null ? nombre.getText() : "", 0,
+									!idTurno.getText().isEmpty() ? Integer.parseInt(idTurno.getText()) : 0, true),
+									Evento.EModificarPersonalOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(new TPersonal(-38, null, null, 0, null, true),
+							Evento.EModificarPersonalOK);
+				}
+
 			}
 		});
 		panelBotones.add(botonAceptar);
@@ -134,10 +137,9 @@ public class VModificarPersonal extends JFrame implements IGUI {
 	}
 
 	@Override
-	public void actualizar() {
+	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
 }
