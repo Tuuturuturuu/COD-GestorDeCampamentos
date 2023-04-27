@@ -6,7 +6,7 @@ import Integracion.Turno.DAOTurno;
 import Integracion.Personal.DAOPersonal;
 import Integracion.Material.DAOMaterial;
 import Integracion.Factura.DAOFactura;
-import Integracion.Factura.DAOGenera;
+import Integracion.Factura.DAOLineaFactura;
 import Integracion.Actividad.DAOActividad;
 import Integracion.Actividad.DAOActividadMaterial;;
 
@@ -33,5 +33,5 @@ public abstract class FactoriaIntegracion {
 
 	public abstract DAOFactura generaDAOFactura();
 
-	public abstract DAOGenera generaDAOGenera();
+	public abstract DAOLineaFactura generaDAOLineaFactura();
 }

@@ -139,10 +139,11 @@ public class SAPersonalImp implements SAPersonal {
 		
 		// se quiere cambiar idTurno Y DEBERIAMOS COMPROBAR QUE ID DE Turno EXISTA EN LA BASE DE DATOS
 		
-		if ((tTurno.getIdTurno() < 0))
+		if ((tTurno.getIdTurno() == -1))
 			tPersonal.setIdPersonal(-1);
-		if (!tTurno.getActivo())
-			tPersonal.setIdPersonal(-34);
+		else if (!tTurno.getActivo())
+			tPersonal.setIdPersonal(-34);			
+		
 		if (tPersonal.getIdPersonal() > 0)
 			tPersonal.setIdTurno(tPersonalBBDD.getIdTurno());
 
