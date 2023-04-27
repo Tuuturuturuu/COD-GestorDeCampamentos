@@ -42,7 +42,7 @@ public enum Evento {
 	
 	//Factura
 	EVistaFacturaGeneral,
-	EAbrirFactura,
+	EVistaCrearFactura,
 	ECerrarFactura,
 	EAnadirActividadFactura,
 	EQuitarActividadFactura,

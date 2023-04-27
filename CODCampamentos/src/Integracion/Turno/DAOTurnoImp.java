@@ -83,7 +83,7 @@ public class DAOTurnoImp implements DAOTurno {
 					Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, tTurno.getNombreTurno());
-			ps.setDate(2, (Date) tTurno.getFecha());
+			ps.setDate(2, new java.sql.Date(tTurno.getFecha().getTime()));
 			ps.setString(3, tTurno.getHora());
 			ps.setInt(4, tTurno.getIdTurno());
 			ps.executeUpdate();
