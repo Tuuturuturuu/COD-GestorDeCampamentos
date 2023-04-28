@@ -29,72 +29,51 @@ public class TFactura {
 	private TCarrito tFacturaConActividades;
 
 	public Integer getIdFactura() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return idFactura;
+	}
+
+	public void setIdFactura(Integer idFactura) {
+		this.idFactura = idFactura;
 	}
 
 	public Integer getIdCliente() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return idCliente;
+	}
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public Date getFecha() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	public Float getTotal() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return total;
+	}
+
+	public void setTotal(Float total) {
+		this.total = total;
 	}
 
 	public Boolean getActivo() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return activo;
 	}
 
-	public Integer setIdFactura(Integer idFactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
-	public Integer setIdCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public TCarrito gettFacturaConActividades() {
+		return tFacturaConActividades;
 	}
 
-	public Integer setFecha(Date fecha) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public void settFacturaConActividades(TCarrito tFacturaConActividades) {
+		this.tFacturaConActividades = tFacturaConActividades;
 	}
 
-	public Integer setTotal(Float total) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	public Integer setActivo(Boolean activo) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
 }

@@ -2,6 +2,7 @@ package Presentacion.FactoriaPresentacion;
 
 import java.util.Set;
 
+import Negocio.Factura.TCarrito;
 import Negocio.Factura.TFactura;
 import Presentacion.Factura.VistaGeneralFactura;
 import Presentacion.Factura.VAbrirFactura.VAbrirFactura;
@@ -19,11 +20,6 @@ public class FactoriaVistaFacturaImp implements FactoriaVistaFactura {
 	@Override
 	public VAbrirFactura getVista_AbrirFactura() {
 		return new VAbrirFactura();
-	}
-
-	@Override
-	public VAbrirFacturaOk getVista_AbrirFacturaOk() {
-		return new VAbrirFacturaOk();
 	}
 
 	@Override
@@ -64,6 +60,12 @@ public class FactoriaVistaFacturaImp implements FactoriaVistaFactura {
 	@Override
 	public VistaGeneralFactura getVista_VistaFacturaGeneral() {
 		return new VistaGeneralFactura();
+	}
+
+	@Override
+	public VAbrirFacturaOk getVista_AbrirFacturaOk(TCarrito tCarrito) {
+		// TODO Auto-generated method stub
+		return new VAbrirFacturaOk(tCarrito);
 	}
 
 }

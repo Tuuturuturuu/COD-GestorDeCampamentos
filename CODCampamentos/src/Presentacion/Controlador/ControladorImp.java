@@ -386,10 +386,10 @@ public class ControladorImp extends Controlador {
 			break;
 		case EVistaCrearFacturaOK:
 			auxCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura().abrirVenta((Integer) Obj);
-			if (auxCarrito.gettFactura().getIdFactura() < 0) {
+			if (auxCarrito.gettFactura().getIdCliente() < 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxCarrito.gettFactura().getIdFactura(), null);
 			} else
-				gui.getVistaFactura().getVista_AbrirFacturaOk();
+				gui.getVistaFactura().getVista_AbrirFacturaOk(auxCarrito);
 			break;
 
 		default:
