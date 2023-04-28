@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Negocio.Factura.TCarrito;
 import Negocio.Factura.TFactura;
 import Presentacion.Evento;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
@@ -26,7 +27,7 @@ public class VAbrirFacturaOk extends JFrame {
 	private JPanel j;
 	private TFactura tFactura;
 
-	public VAbrirFacturaOk() {
+	public VAbrirFacturaOk(TCarrito tCarrito) {
 		super("Gestor de Campamentos");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		int ancho = 1000;
@@ -38,11 +39,11 @@ public class VAbrirFacturaOk extends JFrame {
 		j = new JPanel();
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		initGUI();
+		initGUI(tCarrito);
 		this.setVisible(true);
 	}
 
-	public void initGUI() {
+	public void initGUI(TCarrito tCarrito) {
 		tFactura = new TFactura();
 		JLabel label = ComponentsBuilder.createLabel("Factura", 250, 30, 500, 50, Color.BLACK);
 		this.add(label);

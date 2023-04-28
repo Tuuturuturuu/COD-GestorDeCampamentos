@@ -5,6 +5,7 @@ import java.util.Set;
 
 import Negocio.Actividad.TActividad;
 import Negocio.FactoriaNegocio.FactoriaSAImp;
+import Negocio.Factura.TCarrito;
 import Negocio.Material.TMaterial;
 import Negocio.Personal.TPersonal;
 import Negocio.Personal.TPersonalCocinero;
@@ -27,6 +28,7 @@ public class ControladorImp extends Controlador {
 		TMaterial auxMaterial = null;
 		TPersonal auxPersonal = null;
 		TTurno auxTurno = null;
+		TCarrito auxCarrito = null;
 
 		switch (Evento) {
 
@@ -383,8 +385,11 @@ public class ControladorImp extends Controlador {
 			gui.getVistaFactura().getVista_AbrirFactura();
 			break;
 		case EVistaCrearFacturaOK:
-			System.out.print((Integer) Obj);
-			gui.getVistaFactura().getVista_AbrirFacturaOk();
+			auxCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura().abrirVenta((Integer) Obj);
+			if (auxCarrito.gettFactura().getIdFactura() < 0) {
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxCarrito.gettFactura().getIdFactura(), null);
+			} else
+				gui.getVistaFactura().getVista_AbrirFacturaOk();
 			break;
 
 		default:

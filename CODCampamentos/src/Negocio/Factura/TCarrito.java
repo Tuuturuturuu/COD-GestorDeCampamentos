@@ -5,28 +5,34 @@ package Negocio.Factura;
 
 import java.util.Set;
 
-import Negocio.Actividad.TActividad;
-
 public class TCarrito {
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 	private TFactura tFactura;
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+
+	public TCarrito(TFactura tFactura, Set<TLineaFactura> tGenera) {
+		super();
+		this.tFactura = tFactura;
+		this.tGenera = tGenera;
+	}
+
+	public TCarrito() {
+		// TODO Auto-generated constructor stub
+	}
+
 	private Set<TLineaFactura> tGenera;
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private Set<TActividad> tActividad;
+
+	public TFactura gettFactura() {
+		return tFactura;
+	}
+
+	public void settFactura(TFactura tFactura) {
+		this.tFactura = tFactura;
+	}
+
+	public Set<TLineaFactura> gettGenera() {
+		return tGenera;
+	}
+
+	public void settGenera(Set<TLineaFactura> tGenera) {
+		this.tGenera = tGenera;
+	}
 }

@@ -8,10 +8,15 @@ import java.util.Set;
 public class SAFacturaImp implements SAFactura {
 
 	public TCarrito abrirVenta(Integer idCliente) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		TFactura tFactura = new TFactura();
+		TCarrito tCarrito = new TCarrito();
+
+		if (idCliente >= 0) {
+			// Abrimos la factura y modificamos el id del cliente
+			tFactura.setIdCliente(idCliente);
+			tCarrito.settFactura(tFactura);
+		}
+		return tCarrito;
 	}
 
 	public Set<TFactura> mostrarFacturas() {
@@ -63,10 +68,4 @@ public class SAFacturaImp implements SAFactura {
 		// end-user-code
 	}
 
-	public Set<TFactura> mostrarFacturasporCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
 }
