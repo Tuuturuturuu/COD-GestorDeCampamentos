@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package Negocio.Factura;
 
 import java.util.Set;

@@ -30,6 +30,8 @@ public class ControladorImp extends Controlador {
 		TTurno auxTurno = null;
 		TCarrito auxCarrito = null;
 
+		Set<TCarrito> listaCarrito = null;
+
 		switch (Evento) {
 
 		case EVistaGeneral:
@@ -390,6 +392,26 @@ public class ControladorImp extends Controlador {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxCarrito.gettFactura().getIdFactura(), null);
 			} else
 				gui.getVistaFactura().getVista_AbrirFacturaOk(auxCarrito);
+			break;
+		case EMostrarActividadesporFactura:
+			gui.getVistaFactura().getVista_MostrarUnaFactura();
+			break;
+
+		case EMostrarActividadesporFacturaOK:
+			auxCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura().mostarVenta((Integer) Obj);
+			if (auxCarrito.gettFactura().getIdFactura() <= 0) {
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxCarrito.gettFactura().getIdFactura(), null);
+			} else {
+				// Importante implementar algo para que se vea la tabla de las
+				// actividades en la factura
+				gui.getVistaFactura().getVista_MostrarUnaFactura().actualizar(auxCarrito, null);
+			}
+			;
+			break;
+
+		case EMostrarTodasLasFacturas:
+			listaCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura().mostrarFacturas();
+			gui.getVistaFactura().getVista_MostrarTodasFacturas(listaCarrito);
 			break;
 
 		default:

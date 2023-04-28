@@ -3,7 +3,6 @@ package Presentacion.FactoriaPresentacion;
 import java.util.Set;
 
 import Negocio.Factura.TCarrito;
-import Negocio.Factura.TFactura;
 import Presentacion.Factura.VistaGeneralFactura;
 import Presentacion.Factura.VAbrirFactura.VAbrirFactura;
 import Presentacion.Factura.VAbrirFactura.VAbrirFacturaOk;
@@ -26,7 +25,7 @@ public interface FactoriaVistaFactura {
 
 	public VQuitarActividadAFactura getVista_QuitarActividadFactura();
 
-	public VMostrarTodasFacturas getVista_MostrarTodasFacturas(Set<TFactura> listaFacturas);
+	public VMostrarTodasFacturas getVista_MostrarTodasFacturas(Set<TCarrito> listaCarrito);
 
 	public VMostrarFactura getVista_MostrarUnaFactura();
 

@@ -6,6 +6,8 @@ package Negocio.Factura;
 import java.util.Set;
 
 public class SAFacturaImp implements SAFactura {
+	// private DAOFactura daoFactura =
+	// FactoriaIntegracionImp.obtenerInstancia().();
 
 	public TCarrito abrirVenta(Integer idCliente) {
 		TFactura tFactura = new TFactura();
@@ -19,7 +21,7 @@ public class SAFacturaImp implements SAFactura {
 		return tCarrito;
 	}
 
-	public Set<TFactura> mostrarFacturas() {
+	public Set<TCarrito> mostrarFacturas() {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
