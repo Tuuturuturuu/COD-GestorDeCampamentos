@@ -5,6 +5,7 @@ import java.util.Set;
 import Negocio.Factura.TFactura;
 import Presentacion.Factura.VistaGeneralFactura;
 import Presentacion.Factura.VAbrirFactura.VAbrirFactura;
+import Presentacion.Factura.VAbrirFactura.VAbrirFacturaOk;
 import Presentacion.Factura.VAniadirActividadAFactura.VAniadirActividadAFactura;
 import Presentacion.Factura.VCerrarFactura.VCerrarFactura;
 import Presentacion.Factura.VDevolverUnaActividadAFactura.VDevolverUnaActividadAFactura;
@@ -13,9 +14,10 @@ import Presentacion.Factura.VMostrarFacturaPorActividad.VMostrarFacturaPorActivi
 import Presentacion.Factura.VMostrarTodasFacturas.VMostrarTodasFacturas;
 import Presentacion.Factura.VQuitarActividadAFactura.VQuitarActividadAFactura;
 
-
 public interface FactoriaVistaFactura {
 	public VAbrirFactura getVista_AbrirFactura();
+
+	public VAbrirFacturaOk getVista_AbrirFacturaOk();
 
 	public VCerrarFactura getVista_CerrarFactura();
 
@@ -24,11 +26,11 @@ public interface FactoriaVistaFactura {
 	public VQuitarActividadAFactura getVista_QuitarActividadFactura();
 
 	public VMostrarTodasFacturas getVista_MostrarTodasFacturas(Set<TFactura> listaFacturas);
-	
+
 	public VMostrarFactura getVista_MostrarUnaFactura();
-	
+
 	public VMostrarFacturaPorActividad getVista_MostrarFacturaPorActividad();
-	
+
 	public VDevolverUnaActividadAFactura getVista_DevolverUnaActividadAFactura();
 
 	public VistaGeneralFactura getVista_VistaFacturaGeneral();

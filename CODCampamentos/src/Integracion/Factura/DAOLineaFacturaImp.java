@@ -3,50 +3,55 @@
  */
 package Integracion.Factura;
 
-import Negocio.Factura.TGenera;
 import java.util.Set;
 
+import Negocio.Factura.TLineaFactura;
 
 public class DAOLineaFacturaImp implements DAOLineaFactura {
 
-	public Integer generar(TGenera tgenera) {
+	public Integer crearLineaFactura(TLineaFactura tLinea) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
 		// end-user-code
 	}
 
-	public Integer desgenerar(Integer idFactura, Integer idActividad) {
+	public Integer eliminarLineaFactura(Integer idFactura, Integer idActividad) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
 		// end-user-code
 	}
-	public Integer modificarGenera(TGenera tgenera) {
+
+	public Integer modificarLineaFactura(TLineaFactura tLinea) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
 		// end-user-code
 	}
-	public TGenera mostrarGenera(Integer idActividad, Integer idFactura) {
+
+	public TLineaFactura mostrarLineaFactura(Integer idActividad, Integer idFactura) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
 		// end-user-code
 	}
-	public Set<TGenera> mostrarAllGenera() {
+
+	public Set<TLineaFactura> mostrarAllLineaFacturas() {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
 		// end-user-code
 	}
-	public TGenera mostrarGeneraPorActividad(Integer idActividad) {
+
+	public TLineaFactura mostrarLineaFacturaPorActividad(Integer idActividad) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
 		// end-user-code
 	}
-	public TGenera mostrarGeneraPorFactura(Integer idFactura) {
+
+	public TLineaFactura mostrarLineaFacturaPorFactura(Integer idFactura) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;

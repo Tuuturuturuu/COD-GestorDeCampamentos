@@ -1,7 +1,6 @@
 
 package Presentacion.Controlador;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import Negocio.Actividad.TActividad;
@@ -48,9 +47,9 @@ public class ControladorImp extends Controlador {
 			auxActividad = FactoriaSAImp.obtenerInstancia().generarSAActividad().crearActividad((TActividad) Obj);
 			if (auxActividad.getIdActividad() < 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxActividad.getIdActividad(), null);
-			} else if(auxActividad.getIdActividad() == 0){
+			} else if (auxActividad.getIdActividad() == 0) {
 				gui.getVistaGeneralAux().getConfirmDialogActivar().actualizar(auxActividad.getIdActividad(), null);
-			}else
+			} else
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxActividad.getIdActividad(), null);
 			break;
 		case EBajaActividad:
@@ -132,14 +131,15 @@ public class ControladorImp extends Controlador {
 			gui.getVistaActividad().getVista_Vincular();
 			break;
 		case EVincularActividadMaterialOK:
-			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial().vincularMaterialActividad((TMaterial) Obj);
+			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial()
+					.vincularMaterialActividad((TMaterial) Obj);
 			if (auxMaterial.getId() <= 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxMaterial.getId(), null);
 			} else {
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxMaterial.getId(), null);
 			}
-			break;	
-			
+			break;
+
 		// MATERIAL
 		case EVistaMaterialGeneral:
 			gui.getVistaMaterial().getVista_VistaMaterialGeneral();
@@ -151,11 +151,11 @@ public class ControladorImp extends Controlador {
 			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial().crearMaterial((TMaterial) Obj);
 			if (auxMaterial.getId() < 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxMaterial.getId(), null);
-			} else if(auxMaterial.getId()  == 0){
+			} else if (auxMaterial.getId() == 0) {
 				gui.getVistaGeneralAux().getConfirmDialogActivar().actualizar(auxMaterial.getId(), null);
-			}else
+			} else
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxMaterial.getId(), null);
-			break;		 			
+			break;
 		case EBajaMaterial:
 			gui.getVistaMaterial().getVista_BajaMaterial();
 			break;
@@ -215,7 +215,8 @@ public class ControladorImp extends Controlador {
 			gui.getVistaMaterial().getVista_VincularMaterialActividad();
 			break;
 		case EVincularMaterialActividadOK:
-			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial().vincularMaterialActividad((TMaterial) Obj);
+			auxMaterial = FactoriaSAImp.obtenerInstancia().generarSAMaterial()
+					.vincularMaterialActividad((TMaterial) Obj);
 			if (auxMaterial.getId() <= 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxMaterial.getId(), null);
 			} else {
@@ -245,24 +246,21 @@ public class ControladorImp extends Controlador {
 			auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().crearPersonal((TPersonal) Obj);
 			if (auxPersonal.getIdPersonal() < 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
-			}else if(auxPersonal.getIdPersonal() == 0){
+			} else if (auxPersonal.getIdPersonal() == 0) {
 				gui.getVistaGeneralAux().getConfirmDialogActivar().actualizar(auxPersonal.getIdPersonal(), null);
-			}else
+			} else
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxPersonal.getIdPersonal(), null);
 			break;
-			
-
 
 		case EAltaCocineroOK:
 			auxPersonal = FactoriaSAImp.obtenerInstancia().generarSAPersonal().crearPersonal((TPersonal) Obj);
 			if (auxPersonal.getIdPersonal() <= 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxPersonal.getIdPersonal(), null);
-			}else if(auxPersonal.getIdPersonal() == 0){
+			} else if (auxPersonal.getIdPersonal() == 0) {
 				gui.getVistaGeneralAux().getConfirmDialogActivar().actualizar(auxPersonal.getIdPersonal(), null);
-			}else
+			} else
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxPersonal.getIdPersonal(), null);
 			break;
-			
 
 		case EBajaPersonal:
 			gui.getVistaPersonal().getVista_BajaPersonal();
@@ -311,7 +309,8 @@ public class ControladorImp extends Controlador {
 			break;
 
 		case EMostrarTodosPersonalporTurnoOK:
-			Set<TPersonal> listaPersonales = FactoriaSAImp.obtenerInstancia().generarSAPersonal().mostrarPersonalPorTurno((Integer) Obj);
+			Set<TPersonal> listaPersonales = FactoriaSAImp.obtenerInstancia().generarSAPersonal()
+					.mostrarPersonalPorTurno((Integer) Obj);
 			if (listaPersonales.size() == 1) {
 				TPersonal personalUnico = listaPersonales.iterator().next();
 				if (personalUnico.getIdPersonal() <= 0)
@@ -322,8 +321,8 @@ public class ControladorImp extends Controlador {
 				gui.getVistaPersonal().getVista_MostrarPersonalPorTurnoOK(listaPersonales);
 			}
 			break;
-			
-		//TURNO
+
+		// TURNO
 		case EVistaTurnoGeneral:
 			gui.getVistaTurno().getVista_VistaTurnoGeneral();
 			break;
@@ -334,9 +333,9 @@ public class ControladorImp extends Controlador {
 			auxTurno = FactoriaSAImp.obtenerInstancia().generarSATurno().crearTurno((TTurno) Obj);
 			if (auxTurno.getIdTurno() < 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxTurno.getIdTurno(), null);
-			} else if(auxTurno.getIdTurno()  == 0){
+			} else if (auxTurno.getIdTurno() == 0) {
 				gui.getVistaGeneralAux().getConfirmDialogActivar().actualizar(auxTurno.getIdTurno(), null);
-			}else
+			} else
 				gui.getVistaGeneralAux().getConfirmDialg().actualizar(auxTurno.getIdTurno(), null);
 			break;
 		case EBajaTurno:
@@ -376,14 +375,18 @@ public class ControladorImp extends Controlador {
 			Set<TTurno> listaTurnos = FactoriaSAImp.obtenerInstancia().generarSATurno().MostrarTurnos();
 			gui.getVistaTurno().getVista_MostrarTodosTurnos(listaTurnos);
 			break;
-		//Factura
+		// Factura
 		case EVistaFacturaGeneral:
 			gui.getVistaFactura().getVista_VistaFacturaGeneral();
 			break;
 		case EVistaCrearFactura:
 			gui.getVistaFactura().getVista_AbrirFactura();
 			break;
-			
+		case EVistaCrearFacturaOK:
+			System.out.print((Integer) Obj);
+			gui.getVistaFactura().getVista_AbrirFacturaOk();
+			break;
+
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();
 			break;

@@ -3,8 +3,6 @@
  */
 package Negocio.Factura;
 
-import java.util.Date;
-
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -12,7 +10,14 @@ import java.util.Date;
  * @generated "UML a Java
  *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class TFactura {
+public class TLineaFactura {
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated "UML a Java
+	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private Integer idActividad;
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -26,28 +31,14 @@ public class TFactura {
 	 * @generated "UML a Java
 	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Integer idCliente;
+	private Float precio;
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
 	 * @generated "UML a Java
 	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Date fecha;
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private Float total;
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private Boolean activo;
+	private Integer cantidad;
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -55,6 +46,34 @@ public class TFactura {
 	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private TCarrito tFacturaConActividades;
+
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @return
+	 * @generated "UML a Java
+	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public Integer getIdActividad() {
+		// begin-user-code
+		// TODO Auto-generated method stub
+		return null;
+		// end-user-code
+	}
+
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @param idactividad
+	 * @generated "UML a Java
+	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void setIdActividad(Integer idactividad) {
+		// begin-user-code
+		// TODO Auto-generated method stub
+
+		// end-user-code
+	}
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -73,14 +92,14 @@ public class TFactura {
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
-	 * @return
+	 * @param idfactura
 	 * @generated "UML a Java
 	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getIdCliente() {
+	public void setIdFactura(Integer idfactura) {
 		// begin-user-code
 		// TODO Auto-generated method stub
-		return null;
+
 		// end-user-code
 	}
 
@@ -91,10 +110,24 @@ public class TFactura {
 	 * @generated "UML a Java
 	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Date getFecha() {
+	public Integer getPrecio() {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
+		// end-user-code
+	}
+
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @param newPrecio
+	 * @generated "UML a Java
+	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void setPrecio(Float newPrecio) {
+		// begin-user-code
+		// TODO Auto-generated method stub
+
 		// end-user-code
 	}
 
@@ -105,7 +138,7 @@ public class TFactura {
 	 * @generated "UML a Java
 	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Float getTotal() {
+	public Integer getCantidad() {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
@@ -115,89 +148,14 @@ public class TFactura {
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
-	 * @return
+	 * @param newCantidad
 	 * @generated "UML a Java
 	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Boolean getActivo() {
+	public void setCantidad(Integer newCantidad) {
 		// begin-user-code
 		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
 
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param idFactura
-	 * @return
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public Integer setIdFactura(Integer idFactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param idCliente
-	 * @return
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public Integer setIdCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param fecha
-	 * @return
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public Integer setFecha(Date fecha) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param total
-	 * @return
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public Integer setTotal(Float total) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param activo
-	 * @return
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public Integer setActivo(Boolean activo) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
 		// end-user-code
 	}
 }

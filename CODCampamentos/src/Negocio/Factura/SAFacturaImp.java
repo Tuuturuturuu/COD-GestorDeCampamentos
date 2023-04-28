@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class SAFacturaImp implements SAFactura {
 
-	public TFacturaConActividades abrirVenta(Integer idCliente) {
+	public TCarrito abrirVenta(Integer idCliente) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
@@ -27,7 +27,8 @@ public class SAFacturaImp implements SAFactura {
 		return null;
 		// end-user-code
 	}
-	public TFacturaConActividades mostarVenta(Integer idFactura) {
+
+	public TCarrito mostarVenta(Integer idFactura) {
 		// begin-user-code
 		// TODO Auto-generated method stub
 		return null;
@@ -61,6 +62,7 @@ public class SAFacturaImp implements SAFactura {
 		return null;
 		// end-user-code
 	}
+
 	public Set<TFactura> mostrarFacturasporCliente(Integer idCliente) {
 		// begin-user-code
 		// TODO Auto-generated method stub

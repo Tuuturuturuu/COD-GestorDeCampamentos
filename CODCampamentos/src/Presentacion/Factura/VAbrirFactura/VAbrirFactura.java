@@ -7,10 +7,13 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import Negocio.Factura.TFactura;
 import Presentacion.Evento;
@@ -18,19 +21,14 @@ import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
 public class VAbrirFactura extends JFrame {
-	private JButton CerrarFactura_Button;
-	private JButton AnadirActividadFactura_Button;
-	private JButton QuitarActividadDeFactura_Button;
-	private JButton backButton;
-
 	private JPanel j;
 	private TFactura tFactura;
 
 	public VAbrirFactura() {
 		super("Gestor de Campamentos");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-		int ancho = 1000;
-		int alto = 525;
+		int ancho = 500;
+		int alto = 250;
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);
@@ -43,71 +41,69 @@ public class VAbrirFactura extends JFrame {
 	}
 
 	public void initGUI() {
-		tFactura = new TFactura();
-		JLabel label = ComponentsBuilder.createLabel("Factura", 250, 30, 500, 50, Color.BLACK);
-		this.add(label);
 
-		// cerrarFactura
-		CerrarFactura_Button = ComponentsBuilder.createButton("Cerrar Factura", 100, 150, 185, 100);
-		CerrarFactura_Button.addActionListener(new ActionListener() {
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		this.setContentPane(mainPanel);
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VAbrirFactura.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tFactura, Evento.ECerrarFactura);
+		JLabel msgIntroIDCabecera = ComponentsBuilder
+				.createLabel("Introduzca el ID del cliente que va a realizar la compra", 1, 10, 80, 20, Color.BLACK);
+		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
+		mainPanel.add(msgIntroIDCabecera);
 
-			}
-		});
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
 
-		CerrarFactura_Button.setVisible(true);
-		this.add(CerrarFactura_Button);
+		JPanel panelID = new JPanel();
+		mainPanel.add(panelID);
 
-		// Añadir Actividad a Factura
-		AnadirActividadFactura_Button = ComponentsBuilder.createButton("Añadir Actividad a Factura", 400, 150, 185,
-				100);
-		AnadirActividadFactura_Button.addActionListener(new ActionListener() {
+		JLabel labelID = ComponentsBuilder.createLabel("ID Cliente: ", 10, 100, 80, 20, Color.BLACK);
+		panelID.add(labelID);
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VAbrirFactura.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tFactura, Evento.EAnadirActividadFactura);
-			}
-		});
+		JTextField id = new JTextField();
+		id.setPreferredSize(new Dimension(250, 30));
 
-		AnadirActividadFactura_Button.setVisible(true);
-		this.add(AnadirActividadFactura_Button);
+		id.setEditable(true);
+		panelID.add(id);
 
-		// Quitar Actividad De Factura
-		QuitarActividadDeFactura_Button = ComponentsBuilder.createButton("Quitar Actividad de Factura", 700, 150, 200,
-				100);
-		QuitarActividadDeFactura_Button.addActionListener(new ActionListener() {
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
+
+		JPanel panelBotones = new JPanel();
+		mainPanel.add(panelBotones);
+
+		JButton botonAceptar = new JButton("Aceptar");
+		botonAceptar.setBounds(75, 50, 100, 100);
+		botonAceptar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAbrirFactura.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tFactura, Evento.EQuitarActividadFactura);
+				try {
+					Controlador.obtenerInstancia().run(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,
+							Evento.EVistaCrearFacturaOK);
+				} catch (Exception ex) {
+					Controlador.obtenerInstancia().run(-38, Evento.EVistaCrearFacturaOK);
+				}
 
 			}
 		});
-		QuitarActividadDeFactura_Button.setVisible(true);
-		this.add(QuitarActividadDeFactura_Button);
+		panelBotones.add(botonAceptar);
 
-		backButton = ComponentsBuilder.createBackButton();
-		backButton.addActionListener(new ActionListener() {
+		JButton botonCancelar = new JButton("Cancelar");
+		botonCancelar.setBounds(200, 50, 100, 100);
+		botonCancelar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VAbrirFactura.this.setVisible(false);
-				Controlador.obtenerInstancia().run(null, Evento.EVistaGeneral);
+				Controlador.obtenerInstancia().run(null, Evento.EVistaFacturaGeneral);
 
 			}
 		});
+		panelBotones.add(botonCancelar);
 
-		backButton.setVisible(true);
-		this.add(backButton);
-
-		getContentPane().add(j);
-		// pack();
+		this.setVisible(true);
+		this.setResizable(true);
 
 	}
 

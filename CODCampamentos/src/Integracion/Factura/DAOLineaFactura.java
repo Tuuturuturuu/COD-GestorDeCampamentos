@@ -3,16 +3,23 @@
  */
 package Integracion.Factura;
 
-import Negocio.Factura.TGenera;
 import java.util.Set;
+
+import Negocio.Factura.TLineaFactura;
 
 public interface DAOLineaFactura {
 
-	public Integer generar(TGenera tgenera);
-	public Integer desgenerar(Integer idFactura, Integer idActividad);
-	public Integer modificarGenera(TGenera tgenera);
-	public TGenera mostrarGenera(Integer idActividad, Integer idFactura);
-	public Set<TGenera> mostrarAllGenera();
-	public TGenera mostrarGeneraPorActividad(Integer idActividad);
-	public TGenera mostrarGeneraPorFactura(Integer idFactura);
+	public Integer crearLineaFactura(TLineaFactura tLinea);
+
+	public Integer eliminarLineaFactura(Integer idFactura, Integer idActividad);
+
+	public Integer modificarLineaFactura(TLineaFactura tLinea);
+
+	public TLineaFactura mostrarLineaFactura(Integer idActividad, Integer idFactura);
+
+	public Set<TLineaFactura> mostrarAllLineaFacturas();
+
+	public TLineaFactura mostrarLineaFacturaPorActividad(Integer idActividad);
+
+	public TLineaFactura mostrarLineaFacturaPorFactura(Integer idFactura);
 }

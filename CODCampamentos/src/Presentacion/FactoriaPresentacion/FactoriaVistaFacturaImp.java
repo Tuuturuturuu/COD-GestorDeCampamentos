@@ -5,6 +5,7 @@ import java.util.Set;
 import Negocio.Factura.TFactura;
 import Presentacion.Factura.VistaGeneralFactura;
 import Presentacion.Factura.VAbrirFactura.VAbrirFactura;
+import Presentacion.Factura.VAbrirFactura.VAbrirFacturaOk;
 import Presentacion.Factura.VAniadirActividadAFactura.VAniadirActividadAFactura;
 import Presentacion.Factura.VCerrarFactura.VCerrarFactura;
 import Presentacion.Factura.VDevolverUnaActividadAFactura.VDevolverUnaActividadAFactura;
@@ -18,6 +19,11 @@ public class FactoriaVistaFacturaImp implements FactoriaVistaFactura {
 	@Override
 	public VAbrirFactura getVista_AbrirFactura() {
 		return new VAbrirFactura();
+	}
+
+	@Override
+	public VAbrirFacturaOk getVista_AbrirFacturaOk() {
+		return new VAbrirFacturaOk();
 	}
 
 	@Override
