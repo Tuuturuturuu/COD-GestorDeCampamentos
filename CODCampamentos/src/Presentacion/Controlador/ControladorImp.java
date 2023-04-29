@@ -387,7 +387,7 @@ public class ControladorImp extends Controlador {
 		case EVistaCrearFacturaOK:
 			auxCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura().abrirVenta((Integer) Obj);
 			if (auxCarrito.gettFactura().getIdCliente() < 0) {
-				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxCarrito.gettFactura().getIdFactura(), null);
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxCarrito.gettFactura().getIdCliente(), null);
 			} else
 				gui.getVistaFactura().getVista_AbrirFacturaOk(auxCarrito);
 			break;

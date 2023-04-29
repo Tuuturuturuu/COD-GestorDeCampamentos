@@ -3,6 +3,7 @@
  */
 package Negocio.Factura;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class SAFacturaImp implements SAFactura {
@@ -10,12 +11,14 @@ public class SAFacturaImp implements SAFactura {
 	public TCarrito abrirVenta(Integer idCliente) {
 		TFactura tFactura = new TFactura();
 		TCarrito tCarrito = new TCarrito();
+		Set<TLineaFactura> LineasFactura = new HashSet<TLineaFactura>();
 
-		if (idCliente >= 0) {
-			// Abrimos la factura y modificamos el id del cliente
+		if (idCliente == 0)
+			tFactura.setIdCliente(-37);
+		else // Abrimos la factura y modificamos el id del cliente
 			tFactura.setIdCliente(idCliente);
-			tCarrito.settFactura(tFactura);
-		}
+		tCarrito.settFactura(tFactura);
+		tCarrito.settLineaFactura(LineasFactura);
 		return tCarrito;
 	}
 
