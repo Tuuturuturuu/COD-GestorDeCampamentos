@@ -4,7 +4,6 @@
 package Integracion.Turno;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -79,7 +78,7 @@ public class DAOTurnoImp implements DAOTurno {
 					ConnectorBD.password);
 
 			PreparedStatement ps;
-			ps = conexion.prepareStatement("UPDATE Turno SET NombreTurno = ?, Fecha = ?, Hora = ?, WHERE IdTurno = ? ",
+			ps = conexion.prepareStatement("UPDATE Turno SET NombreTurno = ?, Fecha = ?, Hora = ? WHERE IdTurno = ? ",
 					Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, tTurno.getNombreTurno());
