@@ -106,18 +106,6 @@ public class SATurnoImp implements SATurno {
 				}
 			}
 
-			// Comprobar fecha
-			if (tTurno.getFecha() != null && tTurno.getIdTurno() > 0) {
-				// C�digo de fecha para comprobar formato
-			} else if (tTurno.getIdTurno() > 0)
-				tTurno.setFecha(tTurnoBBDD.getFecha());
-
-			// Comprobar hora
-			if (tTurno.getHora().equals("") && tTurno.getIdTurno() > 0) {
-				// C�digo de fecha para comprobar formato
-			} else if (tTurno.getIdTurno() > 0)
-				tTurno.setHora(tTurnoBBDD.getHora());
-
 			// No ha habido ning�n error, entonces procede a modificar
 			if (tTurno.getIdTurno() > 0) {
 				tTurno = daoTurno.ModificarTurno(tTurno);

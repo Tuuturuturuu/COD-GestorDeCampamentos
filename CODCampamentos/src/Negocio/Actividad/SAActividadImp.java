@@ -106,7 +106,10 @@ public class SAActividadImp implements SAActividad {
 
 			// Se comprueba que no mete un nombre y lugar repetidos
 			if (!tActividad.getNombre().equals("") && !tActividad.getLugar().equals("")) {
-				tActividadNombreLugarBBDD = daoActividad.buscarActividadNombreLugar(tActividad);
+				TActividad aux = new TActividad(tActividad.getIdActividad(), tActividad.getNombre(),
+						tActividad.getLugar(), tActividad.getNumplazas(), tActividad.getPrecio(),
+						tActividad.getIdPersonal(), tActividad.getActivo());
+				tActividadNombreLugarBBDD = daoActividad.buscarActividadNombreLugar(aux);
 				if (tActividadNombreLugarBBDD.getIdActividad() != -1)
 					tActividad.setIdActividad(-6); // Se envia error de que mete
 													// campos unicos y los

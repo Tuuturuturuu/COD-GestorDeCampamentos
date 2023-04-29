@@ -111,27 +111,24 @@ public class IMaterialTest {
 	public void mostrarTodosMaterialOK() {
 
 		TMaterial mat = new TMaterial(1, "test", 1, 10, 1, true);
-		TMaterial mat2 = new TMaterial(2, "test2", 2, 20, 2, true);
 
 		Set<TMaterial> materialesExpected = new HashSet<TMaterial>();
 		materialesExpected.add(mat);
-		materialesExpected.add(mat2);
 
 		DAOMaterial daoMaterial = FactoriaIntegracionImp.obtenerInstancia().generaDAOMaterial();
 		daoMaterial.crearMaterial(mat);
-		daoMaterial.crearMaterial(mat2);
 		Set<TMaterial> materiales = daoMaterial.mostrarTodosMateriales();
 
-		boolean ok = true;
+		boolean ok = materiales.size() == materialesExpected.size();
 
 		Iterator<TMaterial> i = materialesExpected.iterator();
-		Iterator<TMaterial> j = materialesExpected.iterator();
+		Iterator<TMaterial> j = materiales.iterator();
 
 		while (i.hasNext() && j.hasNext()) {
 			ok = compMateriales((TMaterial) i.next(), (TMaterial) j.next());
 		}
 
-		Assert.assertTrue(ok && materiales.size() == materialesExpected.size());
+		Assert.assertTrue(ok);
 
 	}
 

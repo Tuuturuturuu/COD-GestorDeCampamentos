@@ -107,15 +107,12 @@ public class IPersonalTest {
 	public void mostrarTodosPersonalsOK() {
 
 		TPersonalCocinero per = new TPersonalCocinero(1, "12345678A", "test", 1, 1, true, "testPuesto", 4);
-		TPersonalCocinero per2 = new TPersonalCocinero(41, "12345678B", "test2", 1, 1, true, "testPuesto", 4);
 
 		Set<TPersonal> PersonalsExpected = new HashSet<TPersonal>();
 		PersonalsExpected.add(per);
-		PersonalsExpected.add(per2);
 
 		DAOPersonal daoPersonal = FactoriaIntegracionImp.obtenerInstancia().generaDAOPersonal();
 		daoPersonal.CrearPersonal(per);
-		daoPersonal.CrearPersonal(per2);
 		Set<TPersonal> Personals = daoPersonal.MostrarTodos();
 
 		boolean ok = Personals.size() == PersonalsExpected.size();

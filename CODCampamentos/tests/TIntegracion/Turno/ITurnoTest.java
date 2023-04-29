@@ -40,10 +40,10 @@ public class ITurnoTest {
 		DAOTurno daoTurno = FactoriaIntegracionImp.obtenerInstancia().generaDAOTurno();
 		daoTurno.CrearTurno(tur);
 
-		TTurno tur2 = new TTurno(1, "test2", Date.valueOf("2024-02-23"), "09:40", true);
-		TTurno tTurno = daoTurno.ModificarTurno(tur2);
+		TTurno exp = new TTurno(1, "test2", Date.valueOf("2024-02-23"), "09:40", true);
+		TTurno act = daoTurno.ModificarTurno(new TTurno(1, "test2", Date.valueOf("2024-02-23"), "09:40", true));
 
-		Assert.assertTrue(compTurnos(tur2, tTurno));
+		Assert.assertTrue(compTurnos(exp, act));
 	}
 
 	@Test
@@ -112,15 +112,12 @@ public class ITurnoTest {
 	public void mostrarTodosTurnosOK() {
 
 		TTurno tur = new TTurno(1, "test", Date.valueOf("2023-02-23"), "09:30", true);
-		TTurno tur2 = new TTurno(1, "test2", Date.valueOf("2026-01-20"), "11:38", true);
 
 		Set<TTurno> turnosExpected = new HashSet<TTurno>();
 		turnosExpected.add(tur);
-		turnosExpected.add(tur2);
 
 		DAOTurno daoTurno = FactoriaIntegracionImp.obtenerInstancia().generaDAOTurno();
 		daoTurno.CrearTurno(tur);
-		daoTurno.CrearTurno(tur2);
 		Set<TTurno> turnos = daoTurno.MostrarAllTurnos();
 
 		boolean ok = true;

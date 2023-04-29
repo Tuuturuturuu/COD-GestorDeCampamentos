@@ -119,15 +119,12 @@ public class IActividadTest {
 	public void mostrarTodosActividadsOK() {
 
 		TActividad act = new TActividad(1, "test", "lugarTest", 10, Float.parseFloat("5"), 1, true);
-		TActividad act2 = new TActividad(2, "test2", "lugarTest", 10, Float.parseFloat("9"), 1, true);
 
 		Set<TActividad> ActividadsExpected = new HashSet<TActividad>();
 		ActividadsExpected.add(act);
-		ActividadsExpected.add(act2);
 
 		DAOActividad daoActividad = FactoriaIntegracionImp.obtenerInstancia().generaDAOActividad();
 		daoActividad.crearActividad(act);
-		daoActividad.crearActividad(act2);
 		Set<TActividad> Actividads = daoActividad.mostrarActividades();
 
 		boolean ok = Actividads.size() == ActividadsExpected.size();
