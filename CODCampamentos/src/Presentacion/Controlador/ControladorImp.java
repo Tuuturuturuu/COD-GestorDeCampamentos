@@ -427,7 +427,7 @@ public class ControladorImp extends Controlador {
 			break;
 		case EMostrarUnaFacturaOK:
 			auxCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura().mostarVenta((Integer) Obj);
-			if (auxCarrito.gettFactura().getIdFactura() <= 0) {
+			if (auxCarrito.gettFactura().getIdCliente() <= 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxCarrito.gettFactura().getIdCliente(), null);
 			} else {
 				// Importante implementar algo para que se vea la tabla de las

@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.Set;
 
 import Integracion.Connection.ConnectorBD;
@@ -83,10 +84,30 @@ public class DAOLineaFacturaImp implements DAOLineaFactura {
 		// end-user-code
 	}
 
-	public TLineaFactura mostrarLineaFacturaPorFactura(Integer idFactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public Set<TLineaFactura> mostrarLineaFacturaPorFactura(Integer idFactura) {
+
+		Set<TLineaFactura> LineasFacturas = new HashSet<TLineaFactura>();
+		TLineaFactura e;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("SELECT * FROM TLineaFactura WHERE idFactura = ?");
+			ps.setInt(1, idFactura);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				e = new TLineaFactura(rs.getInt("idActividad"), rs.getInt("idFactura"), rs.getFloat("precio"),
+						rs.getInt("Cantidad"));
+				LineasFacturas.add(e);
+			}
+			rs.close();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+
+		return LineasFacturas;
 	}
 }

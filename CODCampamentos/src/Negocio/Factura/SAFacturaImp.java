@@ -136,6 +136,7 @@ public class SAFacturaImp implements SAFactura {
 		TCarrito Venta = new TCarrito();
 		Set<TLineaFactura> LineasFactura = new HashSet<TLineaFactura>();
 		TFactura tFactura = new TFactura();
+		TFactura tFacturaBBDD = new TFactura();
 
 		// Comprobar que no hay fallo en el campo integer
 		if (idFactura >= 0) {
@@ -146,6 +147,25 @@ public class SAFacturaImp implements SAFactura {
 				Venta.settLineaFactura(LineasFactura);
 			} else {
 				// Comprobar que el idFactura existe
+				tFactura.setIdFactura(idFactura);
+				tFacturaBBDD = daoFactura.mostrarFactura(tFactura);
+
+				if (tFacturaBBDD.getIdFactura() != -1) {
+					// La factura existe, la agregamos al carrito
+					Venta.settFactura(tFacturaBBDD);
+
+					// Conseguimos todos los tLineaFactura que tengan el
+					// idFactura
+					LineasFactura = daoLineaFactura.mostrarLineaFacturaPorFactura(tFacturaBBDD.getIdFactura());
+
+					// Agregamos al carrito
+					Venta.settLineaFactura(LineasFactura);
+
+				} else {// Informamos del error de que no existe
+					tFactura.setIdCliente(-41);
+					Venta.settFactura(tFactura);
+					Venta.settLineaFactura(LineasFactura);
+				}
 
 			}
 
@@ -154,14 +174,7 @@ public class SAFacturaImp implements SAFactura {
 			Venta.settFactura(tFactura);
 			Venta.settLineaFactura(LineasFactura);
 		}
-
-		// Conseguir todas las lineaFactura que tienen ese idFactura
-
-		// Meter todo el set a Carrito
-
 		// Devolver el carrito
-		// Si no existe, enviar un error
-
 		return Venta;
 	}
 

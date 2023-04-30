@@ -5,6 +5,18 @@ package Negocio.Factura;
 
 public class TLineaFactura {
 
+	public TLineaFactura(Integer idActividad, Integer idFactura, Float precio, Integer cantidad) {
+		super();
+		this.idActividad = idActividad;
+		this.idFactura = idFactura;
+		this.precio = precio;
+		this.cantidad = cantidad;
+	}
+
+	public TLineaFactura() {
+		// TODO Auto-generated constructor stub
+	}
+
 	private Integer idActividad;
 
 	private Integer idFactura;
@@ -12,8 +24,6 @@ public class TLineaFactura {
 	private Float precio;
 
 	private Integer cantidad;
-
-	private TCarrito tFacturaConActividades;
 
 	public Integer getIdActividad() {
 		return idActividad;
@@ -45,14 +55,6 @@ public class TLineaFactura {
 
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
-	}
-
-	public TCarrito gettFacturaConActividades() {
-		return tFacturaConActividades;
-	}
-
-	public void settFacturaConActividades(TCarrito tFacturaConActividades) {
-		this.tFacturaConActividades = tFacturaConActividades;
 	}
 
 }

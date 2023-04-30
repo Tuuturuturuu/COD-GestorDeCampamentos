@@ -31,8 +31,8 @@ public class VMostrarFactura extends JFrame implements IGUI {
 	public VMostrarFactura() {
 		super("Mostrar Factura");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-		int ancho = 430;
-		int alto = 330;
+		int ancho = 630;
+		int alto = 430;
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);
@@ -137,14 +137,17 @@ public class VMostrarFactura extends JFrame implements IGUI {
 		});
 		panelBotones.add(botonCancelar);
 
-		String[] nombreColumnas = { "ID Factura", "ID Actividad", "Unidades", "Precio total" };
-		JTable tabla = ComponentsBuilder.createTable(listaCarritos.size(), 4, nombreColumnas);
+		String[] nombreColumnas = { "ID Factura", "ID Actividad", "Num Plazas", "Precio ", "Fecha Creada ",
+				"Id Cliente" };
+		JTable tabla = ComponentsBuilder.createTable(listaCarritos.size(), 6, nombreColumnas);
 		int i = 0;
 		for (TLineaFactura t : listaCarritos) {
 			tabla.setValueAt(t.getIdFactura(), i, 0);
 			tabla.setValueAt(t.getIdActividad(), i, 1);
 			tabla.setValueAt(t.getCantidad(), i, 2);
 			tabla.setValueAt(t.getPrecio(), i, 3);
+			tabla.setValueAt(aux.gettFactura().getFecha(), i, 4);
+			tabla.setValueAt(aux.gettFactura().getIdCliente(), i, 5);
 			i++;
 		}
 		JScrollPane scroll = new JScrollPane(tabla);

@@ -21,5 +21,5 @@ public interface DAOLineaFactura {
 
 	public TLineaFactura mostrarLineaFacturaPorActividad(Integer idActividad);
 
-	public TLineaFactura mostrarLineaFacturaPorFactura(Integer idFactura);
+	public Set<TLineaFactura> mostrarLineaFacturaPorFactura(Integer idFactura);
 }
