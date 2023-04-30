@@ -141,7 +141,6 @@ public class VAbrirFacturaOk extends JFrame {
 
 		JTextField idOut = new JTextField();
 		idOut.setPreferredSize(new Dimension(250, 30));
-
 		idOut.setEditable(true);
 		panelQuitar.add(idOut);
 
@@ -152,6 +151,31 @@ public class VAbrirFacturaOk extends JFrame {
 
 		JButton botonQuitarActividad = new JButton("Quitar");
 		botonQuitarActividad.setBounds(75, 50, 100, 100);
+		botonQuitarActividad.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VAbrirFacturaOk.this.setVisible(false);
+				try {
+					TActividad tActividad = new TActividad(
+							!idOut.getText().isEmpty() ? Integer.parseInt(idOut.getText()) : 0, null, null, 0,
+							(float) 0, null, true);
+					// Uso clase auxiliar para poder enviar al controlador dos
+					// objetos
+					ClaseContenedora contenedor = new ClaseContenedora(tActividad, tCarrito);
+					// Envio la clase auxiliar al controlador
+					Controlador.obtenerInstancia().run(contenedor, Evento.EQuitarActividadFactura);
+
+				} catch (Exception ex) {// Excepcion para campos Integer
+					TActividad tActividad = new TActividad(-38, null, null, 0, (float) 0, null, true);
+					ClaseContenedora contenedor = new ClaseContenedora(tActividad, tCarrito);
+					// Envio la clase auxiliar al controlador
+					Controlador.obtenerInstancia().run(contenedor, Evento.EQuitarActividadFactura);
+				}
+
+			}
+		});
+
 		panelQuitarButton.add(botonQuitarActividad);
 
 		// Panel para Tabla

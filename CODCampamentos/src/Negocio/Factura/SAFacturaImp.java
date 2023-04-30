@@ -72,7 +72,7 @@ public class SAFacturaImp implements SAFactura {
 
 			// Comprobar que los datos introducidos no son nulos
 			if (tActividad.getIdActividad() == 0 && tActividad.getNumplazas() == 0) {
-				//Guardo el id del cliente que creo la factura
+				// Guardo el id del cliente que creo la factura
 				tFactura.setIdFactura(tCarrito.gettFactura().getIdCliente());
 				tFactura.setIdCliente(-37);
 				tCarrito.settFactura(tFactura);
@@ -83,17 +83,52 @@ public class SAFacturaImp implements SAFactura {
 			} else { // Comprobar que la Actividad existe y se encuentra activa
 				actividadBBDD = daoActividad.buscarActividadID(tActividad);
 				if (actividadBBDD.getIdActividad() != -1) {// encontrado en bbdd
-					if (actividadBBDD.getActivo() == false) { // esta dada de baja
+					if (actividadBBDD.getActivo() == false) { // esta dada de
+																// baja
 						tFactura.setIdFactura(tCarrito.gettFactura().getIdCliente());
 						tFactura.setIdCliente(-25);
 						tCarrito.settFactura(tFactura);
-					} else { // Meter los datos en TLineaFactura
+					} else {
+
+						// Comprobar que no existe una lineaFactura con el mismo
+						// id ingresado
+						boolean encontrado = false;
+						for (TLineaFactura linea : LineasFactura) {
+							if (linea.getIdActividad() == tActividad.getIdActividad()) {
+								// Guardamos en una lineaFactura auxiliar para
+								// luego eliminarla
+								encontrado = true;
+								tLineaFactura = linea;
+							}
+						}
+
+						// Comprobar si lo ha encontrado o no
+						if (encontrado) {
+							// Si lo encuentra, modificamos la cantidad
+							Integer cantidadTotal = tLineaFactura.getCantidad() + tActividad.getNumplazas();
+
+							// Eliminamos el lineaFactura antiguo
+							LineasFactura.remove(tLineaFactura);
+
+							// Agregamos uno nuevo con cantidad actualizada
+							tLineaFactura.setCantidad(cantidadTotal);
+
+						} else // Si no lo encuentra, la cantidad será la
+								// ingresada por el usuario
+							tLineaFactura.setCantidad(tActividad.getNumplazas());
+
+						// Tanto para modificar como para aniadir, haremos lo
+						// mismo
+						// por lo tanto dejamos el resto de las operaciones
+						// fuera del if
+
+						// Meter los datos en TLineaFactura
 						// Conseguir el precio de la BBDD
 						tLineaFactura.setPrecio(actividadBBDD.getPrecio());
 
 						// Rellenar el resto de atributos
 						tLineaFactura.setIdActividad(tActividad.getIdActividad());
-						tLineaFactura.setCantidad(tActividad.getNumplazas());
+
 						tLineaFactura.setIdFactura(0);
 
 						// Agregar el TLineaFactura al Set
@@ -119,11 +154,53 @@ public class SAFacturaImp implements SAFactura {
 		return tCarrito;
 	}
 
-	public void quitarActividad(Integer idActividad) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+	public TCarrito quitarActividad(TActividad tActividad, TCarrito tCarrito) {
 
-		// end-user-code
+		// Objetos que usaremos como auxiliares
+		TFactura tFactura = tCarrito.gettFactura();
+		TActividad actividadBBDD = new TActividad();
+		TLineaFactura tLineaFactura = new TLineaFactura();
+		Set<TLineaFactura> LineasFactura = tCarrito.gettLineaFactura();
+
+		// Comprobar error del campo integer
+		if (tActividad.getIdActividad() >= 0) {
+			// Comprobar que el campo id Actividad no es nulo
+			if (tActividad.getIdActividad() == 0) {
+				// Guardo el id del cliente que creo la factura
+				tFactura.setIdFactura(tCarrito.gettFactura().getIdCliente());
+				tFactura.setIdCliente(-37);
+				tCarrito.settFactura(tFactura);
+			} else {
+
+				// Buscar el idActividad en el set de TLineasFactura
+				boolean encontrado = false;
+				for (TLineaFactura linea : LineasFactura) {
+					if (linea.getIdActividad() == tActividad.getIdActividad()) {
+						// Guardamos en una lineaFactura auxiliar para luego
+						// eliminarla
+						encontrado = true;
+						tLineaFactura = linea;
+					}
+				}
+
+				// Comprobar si lo ha encontrado o no
+				if (encontrado) {
+					// Si lo encuentra, eliminar
+					LineasFactura.remove(tLineaFactura);
+				} else {
+					// Si no lo encuentra enviar un error
+					tFactura.setIdFactura(tCarrito.gettFactura().getIdCliente());
+					tFactura.setIdCliente(-24);
+					tCarrito.settFactura(tFactura);
+				}
+			}
+		} else {
+			// Modifico el carrito para mostrar dicho error
+			tFactura.setIdFactura(tCarrito.gettFactura().getIdCliente());
+			tFactura.setIdCliente(tActividad.getIdActividad());
+			tCarrito.settFactura(tFactura);
+		}
+		return tCarrito;
 	}
 
 	public Float devolucionVenta(Integer idFactura) {

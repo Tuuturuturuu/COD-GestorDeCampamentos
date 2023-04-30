@@ -26,6 +26,9 @@ public class FailureDialogFactura extends JFrame implements IGUI {
 	private static final String error25 = "Error: La actividad esta dada de baja";
 	private static final String error23 = "Error: No existe actividad con dicho ID";
 
+	// Errores sobre el carrito
+	private static final String error24 = "Error: La actividad a eliminar no esta en el carrito";
+
 	private TCarrito tCarrito = new TCarrito();
 
 	public FailureDialogFactura(TCarrito tCarrito) {
@@ -58,6 +61,9 @@ public class FailureDialogFactura extends JFrame implements IGUI {
 			break;
 		case -23:
 			info = new JLabel(error23);
+			break;
+		case -24:
+			info = new JLabel(error24);
 			break;
 		case -25:
 			info = new JLabel(error25);

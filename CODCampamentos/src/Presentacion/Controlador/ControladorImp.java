@@ -404,7 +404,15 @@ public class ControladorImp extends Controlador {
 			} else
 				gui.getVistaFactura().getVista_AbrirFacturaOk(auxCarrito);
 			break;
-
+		case EQuitarActividadFactura:
+			ClaseContenedora contenedorOut = (ClaseContenedora) Obj;
+			auxCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura()
+					.quitarActividad(contenedorOut.gettActividad(), contenedorOut.gettCarrito());
+			if (auxCarrito.gettFactura().getIdCliente() < 0) {
+				gui.getVistaGeneralAux().getFailureDialgFactura(auxCarrito).actualizar(auxCarrito, null);
+			} else
+				gui.getVistaFactura().getVista_AbrirFacturaOk(auxCarrito);
+			break;
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();
 			break;

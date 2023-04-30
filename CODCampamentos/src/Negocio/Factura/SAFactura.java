@@ -21,16 +21,8 @@ public interface SAFactura {
 
 	public TCarrito aniadirActividad(TActividad tActividad, TCarrito tCarrito);
 
-	public void quitarActividad(Integer idActividad);
+	public TCarrito quitarActividad(TActividad tActividad, TCarrito tCarrito);
 
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param idFactura
-	 * @return
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 	public Float devolucionVenta(Integer idFactura);
 
 	/**
