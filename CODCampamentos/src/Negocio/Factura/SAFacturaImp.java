@@ -158,7 +158,7 @@ public class SAFacturaImp implements SAFactura {
 		if (tActividad.getIdActividad() >= 0) {
 
 			// Comprobar que los datos introducidos no son nulos
-			if (tActividad.getIdActividad() == 0 && tActividad.getNumplazas() == 0) {
+			if (tActividad.getIdActividad() == 0 || tActividad.getNumplazas() == 0) {
 				// Guardo el id del cliente que creo la factura
 				tFactura.setIdFactura(tCarrito.gettFactura().getIdCliente());
 				tFactura.setIdCliente(-37);

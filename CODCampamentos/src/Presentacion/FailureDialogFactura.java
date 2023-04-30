@@ -20,6 +20,7 @@ public class FailureDialogFactura extends JFrame implements IGUI {
 
 	// Errores Genericos
 	private static final String error37 = "Error: No se pueden dejar campos vacios";
+	private static final String error38 = "Error: Caracter introducido invalido";
 
 	// Errores sobre Actividad
 	private static final String error7 = "Error: Numero de plazas con longitud incorrecta";
@@ -81,6 +82,9 @@ public class FailureDialogFactura extends JFrame implements IGUI {
 			break;
 		case -37:
 			info = new JLabel(error37);
+			break;
+		case -38:
+			info = new JLabel(error38);
 			break;
 		default:
 			info = new JLabel("Error en la operacion");

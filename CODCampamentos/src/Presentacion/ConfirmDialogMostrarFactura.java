@@ -24,8 +24,8 @@ public class ConfirmDialogMostrarFactura extends JFrame implements IGUI {
 	public ConfirmDialogMostrarFactura() {
 		super("Mensaje de confirmacion de factura cerrada");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-		int ancho = 200;
-		int alto = 400;
+		int ancho = 400;
+		int alto = 550;
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);

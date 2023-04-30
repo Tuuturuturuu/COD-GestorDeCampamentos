@@ -78,9 +78,8 @@ public class TFactura {
 
 	@Override
 	public String toString() {
-		return "idFactura=" + idFactura + System.lineSeparator() + "idCliente=" + idCliente + System.lineSeparator()
-				+ "fecha=" + fecha + System.lineSeparator() + "total=" + total + System.lineSeparator() + "Devuelto="
-				+ activo;
+		return "idFactura=" + idFactura + ", \nidCliente=" + idCliente + ", \nfecha=" + fecha + ", \ntotal=" + total
+				+ ", Devuelto=" + activo;
 	}
 
 }

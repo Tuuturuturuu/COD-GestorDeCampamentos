@@ -12,17 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Negocio.Factura.TFactura;
-import Negocio.Material.TMaterial;
 import Presentacion.Evento;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
-import Presentacion.Material.VistaMaterialGeneral;
 
-public class VistaGeneralFactura extends JFrame{
+public class VistaGeneralFactura extends JFrame {
 	private JButton CrearFactura_Button;
-	private JButton CerrarFactura_Button;
-	private JButton AnadirActividadFactura_Button;
-	private JButton QuitarActividadDeFactura_Button;
 	private JButton devolverActividad_Button;
 	private JButton mostrarUnaFactura_Button;
 	private JButton mostrarTodasLasFacturas_Button;
@@ -59,8 +54,8 @@ public class VistaGeneralFactura extends JFrame{
 		tFactura = new TFactura();
 		JLabel label = ComponentsBuilder.createLabel("Factura", 250, 30, 500, 50, Color.BLACK);
 		this.add(label);
-		
-		//CrearFactura
+
+		// CrearFactura
 		CrearFactura_Button = ComponentsBuilder.createButton("Crear Factura", 390, 100, 220, 120);
 		CrearFactura_Button.addActionListener(new ActionListener() {
 
@@ -73,8 +68,8 @@ public class VistaGeneralFactura extends JFrame{
 		});
 		CrearFactura_Button.setVisible(true);
 		this.add(CrearFactura_Button);
-		
-		//Devolver Actividad 
+
+		// Devolver Actividad
 		devolverActividad_Button = ComponentsBuilder.createButton("Devolucion de Actividad", 85, 250, 200, 100);
 		devolverActividad_Button.addActionListener(new ActionListener() {
 
@@ -87,7 +82,7 @@ public class VistaGeneralFactura extends JFrame{
 		});
 		devolverActividad_Button.setVisible(true);
 		this.add(devolverActividad_Button);
-		
+
 		// Mostrar una Factura
 		mostrarUnaFactura_Button = ComponentsBuilder.createButton("Mostrar una Factura", 300, 250, 185, 100);
 		mostrarUnaFactura_Button.addActionListener(new ActionListener() {
@@ -101,9 +96,10 @@ public class VistaGeneralFactura extends JFrame{
 		});
 		mostrarUnaFactura_Button.setVisible(true);
 		this.add(mostrarUnaFactura_Button);
-		
-		//	Mostrar Todas las facturas
-		mostrarTodasLasFacturas_Button = ComponentsBuilder.createButton("Mostrar Todas Las Facturas", 500, 250, 185, 100);
+
+		// Mostrar Todas las facturas
+		mostrarTodasLasFacturas_Button = ComponentsBuilder.createButton("Mostrar Todas Las Facturas", 500, 250, 185,
+				100);
 		mostrarTodasLasFacturas_Button.addActionListener(new ActionListener() {
 
 			@Override
@@ -112,25 +108,24 @@ public class VistaGeneralFactura extends JFrame{
 				Controlador.obtenerInstancia().run(tFactura, Evento.EMostrarTodasLasFacturas);
 			}
 		});
-		
+
 		mostrarTodasLasFacturas_Button.setVisible(true);
 		this.add(mostrarTodasLasFacturas_Button);
-		
+
 		// Mostrar Factura por Actividad
-		mostrarFacturaPorActividad_Button = ComponentsBuilder.createButton("Mostrar Factura Por Actividad", 700, 250, 200, 100);
+		mostrarFacturaPorActividad_Button = ComponentsBuilder.createButton("Mostrar Factura Por Actividad", 700, 250,
+				200, 100);
 		mostrarFacturaPorActividad_Button.addActionListener(new ActionListener() {
 
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						VistaGeneralFactura.this.setVisible(false);
-						Controlador.obtenerInstancia().run(tFactura, Evento.EMostrarFacturaPorActividad);
-					}
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VistaGeneralFactura.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tFactura, Evento.EMostrarFacturaPorActividad);
+			}
 
-				});
+		});
 		mostrarFacturaPorActividad_Button.setVisible(true);
-				this.add(mostrarFacturaPorActividad_Button);
-				
-				
+		this.add(mostrarFacturaPorActividad_Button);
 
 		backButton = ComponentsBuilder.createBackButton();
 		backButton.addActionListener(new ActionListener() {
@@ -147,7 +142,7 @@ public class VistaGeneralFactura extends JFrame{
 		this.add(backButton);
 
 		getContentPane().add(j);
-		//pack();
+		// pack();
 
 	}
 }
