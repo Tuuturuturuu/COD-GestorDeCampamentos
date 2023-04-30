@@ -3,40 +3,50 @@
  */
 package Integracion.Factura;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Set;
 
-import Negocio.Factura.TCarrito;
+import Integracion.Connection.ConnectorBD;
 import Negocio.Factura.TFactura;
 
-/**
- * <!-- begin-UML-doc --> <!-- end-UML-doc -->
- * 
- * @author airam
- * @generated "UML a Java
- *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public class DAOFacturaImp implements DAOFactura {
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see DAOFactura#cerrarFactura(TFactura tFactura)
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public Integer cerrarFactura(TFactura tFactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+
+	public TFactura cerrarFactura(TFactura tFactura) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement(
+					"INSERT INTO Factura ( idCliente, fecha, total, Activo) VALUES (?,DATE_FORMAT(NOW(), '%Y-%m-%d'),?,?) ON DUPLICATE KEY UPDATE Activo = ?",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+
+			ps.setInt(1, tFactura.getIdCliente());
+			ps.setFloat(2, tFactura.getTotal());
+			ps.setBoolean(3, tFactura.getActivo());
+			ps.setBoolean(4, tFactura.getActivo());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+
+			if (rs.next())
+				tFactura.setIdFactura(rs.getInt(1));
+
+			rs.close();
+			ps.close();
+			conexion.close();
+			// cerrar conexion y tratar excepciones
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+
+		return tFactura;
 	}
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see DAOFactura#modificarFactura(TFactura tfactura)
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 	public Integer modificarFactura(TFactura tfactura) {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -44,27 +54,35 @@ public class DAOFacturaImp implements DAOFactura {
 		// end-user-code
 	}
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see DAOFactura#mostrarFactura(TFactura idFactura)
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public TCarrito mostrarFactura(TFactura idFactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public TFactura mostrarFactura(TFactura tfactura) {
+		TFactura tFactura = new TFactura();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("SELECT * FROM Factura WHERE idFactura = ?");
+			ps.setInt(1, tfactura.getIdFactura());
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				tFactura.setIdFactura(rs.getInt(1));
+				tFactura.setIdCliente(rs.getInt(2));
+				tFactura.setFecha(rs.getDate(3));
+				tFactura.setTotal(rs.getFloat(4));
+				tFactura.setActivo(rs.getBoolean(5));
+			} else {
+				tFactura.setIdFactura(-1);
+			}
+			rs.close();
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return tFactura;
 	}
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see DAOFactura#mostrarFacturas()
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 	public Set<TFactura> mostrarFacturas() {
 		// begin-user-code
 		// TODO Auto-generated method stub
@@ -72,13 +90,6 @@ public class DAOFacturaImp implements DAOFactura {
 		// end-user-code
 	}
 
-	/**
-	 * (non-Javadoc)
-	 * 
-	 * @see DAOFactura#mostrarFacturasporCliente(Integer idCliente)
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 	public Set<TFactura> mostrarFacturasporCliente(Integer idCliente) {
 		// begin-user-code
 		// TODO Auto-generated method stub

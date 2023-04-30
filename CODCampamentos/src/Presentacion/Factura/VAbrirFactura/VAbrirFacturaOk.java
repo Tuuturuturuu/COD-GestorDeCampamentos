@@ -131,8 +131,8 @@ public class VAbrirFacturaOk extends JFrame {
 		mainPanel.add(msg);
 
 		JPanel panelQuitar = new JPanel();
-		panelQuitar.setBorder(new EmptyBorder(10, 10, 10, 10)); // agregado
-		panelQuitar.setAlignmentX(CENTER_ALIGNMENT); // agregado
+		panelQuitar.setBorder(new EmptyBorder(10, 10, 10, 10));
+		panelQuitar.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(panelQuitar);
 
 		JLabel idActividadOut = new JLabel("Id Actividad");
@@ -145,8 +145,8 @@ public class VAbrirFacturaOk extends JFrame {
 		panelQuitar.add(idOut);
 
 		JPanel panelQuitarButton = new JPanel();
-		panelQuitarButton.setBorder(new EmptyBorder(10, 10, 10, 10)); // agregado
-		panelQuitarButton.setAlignmentX(CENTER_ALIGNMENT); // agregado
+		panelQuitarButton.setBorder(new EmptyBorder(10, 10, 10, 10));
+		panelQuitarButton.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(panelQuitarButton);
 
 		JButton botonQuitarActividad = new JButton("Quitar");
@@ -213,6 +213,14 @@ public class VAbrirFacturaOk extends JFrame {
 
 		JButton botonCerrar = new JButton("Cerrar Factura");
 		botonCerrar.setBounds(75, 50, 100, 100);
+		botonCerrar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VAbrirFacturaOk.this.setVisible(false);
+				Controlador.obtenerInstancia().run(tCarrito, Evento.ECerrarFactura);
+			}
+		});
 		panelBotones.add(botonCerrar);
 		this.setVisible(true);
 		this.setResizable(true);

@@ -3,6 +3,7 @@ package Presentacion.FactoriaPresentacion;
 import Negocio.Factura.TCarrito;
 import Presentacion.ConfirmDialog;
 import Presentacion.ConfirmDialogActivar;
+import Presentacion.ConfirmDialogMostrarFactura;
 import Presentacion.ConfirmDialogMostrarUna;
 import Presentacion.FailureDialog;
 import Presentacion.FailureDialogFactura;
@@ -40,6 +41,12 @@ public class FactoriaVistaGeneralAuxImp implements FactoriaVistaGeneralAux {
 	public FailureDialogFactura getFailureDialgFactura(TCarrito tCarrito) {
 		// TODO Auto-generated method stub
 		return new FailureDialogFactura(tCarrito);
+	}
+
+	@Override
+	public ConfirmDialogMostrarFactura getConfirmDialogMostrarFactura() {
+		// TODO Auto-generated method stub
+		return new ConfirmDialogMostrarFactura();
 	}
 
 }

@@ -3,6 +3,7 @@ package Presentacion.FactoriaPresentacion;
 import Negocio.Factura.TCarrito;
 import Presentacion.ConfirmDialog;
 import Presentacion.ConfirmDialogActivar;
+import Presentacion.ConfirmDialogMostrarFactura;
 import Presentacion.ConfirmDialogMostrarUna;
 import Presentacion.FailureDialog;
 import Presentacion.FailureDialogFactura;
@@ -21,5 +22,7 @@ public interface FactoriaVistaGeneralAux {
 	public abstract ConfirmDialogActivar getConfirmDialogActivar();
 
 	public abstract ConfirmDialogMostrarUna getConfirmDialogMostrarUna();
+
+	public abstract ConfirmDialogMostrarFactura getConfirmDialogMostrarFactura();
 
 }

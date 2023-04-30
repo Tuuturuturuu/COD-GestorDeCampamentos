@@ -13,7 +13,7 @@ public interface SAFactura {
 
 	public Set<TFactura> mostrarFacturas();
 
-	public Integer cerrarVenta(Integer idFactura);
+	public TCarrito cerrarVenta(TCarrito tCarrito);
 
 	public TCarrito mostarVenta(Integer idFactura);
 
@@ -25,12 +25,4 @@ public interface SAFactura {
 
 	public Float devolucionVenta(Integer idFactura);
 
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param idCliente
-	 * @return
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 }

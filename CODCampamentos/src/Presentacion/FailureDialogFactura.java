@@ -28,6 +28,11 @@ public class FailureDialogFactura extends JFrame implements IGUI {
 
 	// Errores sobre el carrito
 	private static final String error24 = "Error: La actividad a eliminar no esta en el carrito";
+	private static final String error26 = "Error: No hay Stock en alguna de las actividades seleccionadas";
+	private static final String error27 = "Error: fallo a la hora de actualizar BBDD TLineaFactura";
+
+	// Errores sobre Factura
+	private static final String error1 = "Error: no se encuentra la factura especificada";
 
 	private TCarrito tCarrito = new TCarrito();
 
@@ -56,6 +61,9 @@ public class FailureDialogFactura extends JFrame implements IGUI {
 		panel.add(aux);
 		JLabel info;
 		switch (id) {
+		case -1:
+			info = new JLabel(error1);
+			break;
 		case -7:
 			info = new JLabel(error7);
 			break;
@@ -67,6 +75,9 @@ public class FailureDialogFactura extends JFrame implements IGUI {
 			break;
 		case -25:
 			info = new JLabel(error25);
+			break;
+		case -26:
+			info = new JLabel(error26);
 			break;
 		case -37:
 			info = new JLabel(error37);

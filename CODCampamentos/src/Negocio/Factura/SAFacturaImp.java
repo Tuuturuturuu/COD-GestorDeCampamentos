@@ -8,12 +8,17 @@ import java.util.Set;
 
 import Integracion.Actividad.DAOActividad;
 import Integracion.FactoriaIntegracion.FactoriaIntegracionImp;
+import Integracion.Factura.DAOFactura;
+import Integracion.Factura.DAOLineaFactura;
 import Negocio.Actividad.TActividad;
 import Negocio.ComprobacionesRequisitosBBDD.ComprobacionesRequisitosBBDD_IMP;
 
 public class SAFacturaImp implements SAFactura {
 
 	private DAOActividad daoActividad = FactoriaIntegracionImp.obtenerInstancia().generaDAOActividad();
+	private DAOFactura daoFactura = FactoriaIntegracionImp.obtenerInstancia().generaDAOFactura();
+	private DAOLineaFactura daoLineaFactura = FactoriaIntegracionImp.obtenerInstancia().generaDAOLineaFactura();
+
 	private ComprobacionesRequisitosBBDD_IMP compr = (ComprobacionesRequisitosBBDD_IMP) ComprobacionesRequisitosBBDD_IMP
 			.getComprobacionesRequisitosBBDD();
 
@@ -38,11 +43,93 @@ public class SAFacturaImp implements SAFactura {
 		// end-user-code
 	}
 
-	public Integer cerrarVenta(Integer idFactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public TCarrito cerrarVenta(TCarrito tCarrito) {
+
+		// Factura con la que trabajaremos
+		TFactura tFactura = new TFactura();
+		TFactura tFacturaBBDD = new TFactura();
+
+		// Objetos auxiliares
+		TFactura tFacturaCarrito = tCarrito.gettFactura();
+		Set<TLineaFactura> LineasFactura = tCarrito.gettLineaFactura();
+		TActividad tActividadBBDD = new TActividad();
+		TActividad tActividadFinal = new TActividad();
+
+		// Comprobar Stock de la Actividad de cada LineaFactura
+		boolean correct = true;
+		for (TLineaFactura linea : LineasFactura) {
+			// Obtenemos el idActividad de esa linea y miramos stock
+			tActividadBBDD.setIdActividad(linea.getIdActividad());
+			tActividadBBDD = daoActividad.buscarActividadID(tActividadBBDD);
+
+			// Comprobamos stock en cada Actividad
+			if (tActividadBBDD.getNumplazas() < linea.getCantidad()) {
+				// Si no hay stock, paramos de recorrer el LineasFactura
+				correct = false;
+				break;
+
+			} // Si hay stock, seguimos comprobando stock en siguiente linea
+		}
+
+		if (!correct) { // Si no hay stock, enviamos error de no hay Stock
+			tFacturaCarrito.setIdFactura(tCarrito.gettFactura().getIdCliente());
+			tFacturaCarrito.setIdCliente(-26);
+			tCarrito.settFactura(tFacturaCarrito);
+		} else {
+			// Si no hubo errores de stock modificamos cada Actividad su numero
+			// de plazas
+			float PrecioTotalFactura = 0;
+			for (TLineaFactura linea : LineasFactura) {
+				// Obtenemos el idActividad de esa linea para conseguir todos
+				// sus datos
+				tActividadBBDD.setIdActividad(linea.getIdActividad());
+				tActividadBBDD = daoActividad.buscarActividadID(tActividadBBDD);
+
+				// Modificamos numPlazas
+				int numPlazasNew = tActividadBBDD.getNumplazas() - linea.getCantidad();
+				tActividadBBDD.setNumplazas(numPlazasNew);
+				tActividadFinal = daoActividad.modificarActividad(tActividadBBDD);
+
+				// Acumulo el precio total
+				PrecioTotalFactura += linea.getPrecio();
+			}
+
+			// Si no ha habido errores, crear TFactura
+
+			// Agrego los valores de idCliente y total y
+			// activo ponemos a false, porque no es devuelta
+			tFactura.setIdCliente(tCarrito.gettFactura().getIdCliente());
+			tFactura.setTotal(PrecioTotalFactura);
+			tFactura.setActivo(false);
+
+			// Agregar la TFactura a la base de datos
+			tFacturaBBDD = daoFactura.cerrarFactura(tFactura);
+
+			// Obtenemos todos los valores de la factura creada, conseguimos la
+			// fecha
+			tFacturaBBDD = daoFactura.mostrarFactura(tFacturaBBDD);
+
+			// Recorremos LineasFactura para modificar el idFactura
+			for (TLineaFactura linea : LineasFactura) {
+				// Modificamos el idFactura
+				linea.setIdFactura(tFacturaBBDD.getIdFactura());
+				// Metemos cada lineaFactura a la Base de datos
+				daoLineaFactura.crearLineaFactura(linea);
+			}
+
+			/*
+			 * // Si ha habido un error a la hora de agregar las lineaFactura,
+			 * informamos del error if (!CorrectLineaFactura){
+			 * tFacturaCarrito.setIdFactura(tCarrito.gettFactura().getIdCliente(
+			 * )); tFacturaCarrito.setIdCliente(-26);
+			 * tCarrito.settFactura(tFacturaCarrito); }
+			 */
+
+			// Metemos la nueva Factura al carrito
+			tCarrito.settFactura(tFacturaBBDD);
+		}
+
+		return tCarrito;
 	}
 
 	public TCarrito mostarVenta(Integer idFactura) {
@@ -93,47 +180,34 @@ public class SAFacturaImp implements SAFactura {
 						// Comprobar que no existe una lineaFactura con el mismo
 						// id ingresado
 						boolean encontrado = false;
+						Integer cantidadTotal = 0;
+						float PrecioTotal = 0;
 						for (TLineaFactura linea : LineasFactura) {
 							if (linea.getIdActividad() == tActividad.getIdActividad()) {
-								// Guardamos en una lineaFactura auxiliar para
-								// luego eliminarla
+								// Si lo encuentra, modificamos la cantidad
 								encontrado = true;
-								tLineaFactura = linea;
+								cantidadTotal = linea.getCantidad() + tActividad.getNumplazas();
+								linea.setCantidad(cantidadTotal);
+
+								// Modificamos el precio
+								PrecioTotal = actividadBBDD.getPrecio() * cantidadTotal;
+								linea.setPrecio(PrecioTotal);
 							}
 						}
 
-						// Comprobar si lo ha encontrado o no
-						if (encontrado) {
-							// Si lo encuentra, modificamos la cantidad
-							Integer cantidadTotal = tLineaFactura.getCantidad() + tActividad.getNumplazas();
-
-							// Eliminamos el lineaFactura antiguo
-							LineasFactura.remove(tLineaFactura);
-
-							// Agregamos uno nuevo con cantidad actualizada
-							tLineaFactura.setCantidad(cantidadTotal);
-
-						} else // Si no lo encuentra, la cantidad será la
-								// ingresada por el usuario
+						// Si no se encuentra, agrega una nueva LineaFactua
+						if (!encontrado) {
+							cantidadTotal = tActividad.getNumplazas();
 							tLineaFactura.setCantidad(tActividad.getNumplazas());
-
-						// Tanto para modificar como para aniadir, haremos lo
-						// mismo
-						// por lo tanto dejamos el resto de las operaciones
-						// fuera del if
-
-						// Meter los datos en TLineaFactura
-						// Conseguir el precio de la BBDD
-						tLineaFactura.setPrecio(actividadBBDD.getPrecio());
-
-						// Rellenar el resto de atributos
-						tLineaFactura.setIdActividad(tActividad.getIdActividad());
-
-						tLineaFactura.setIdFactura(0);
-
-						// Agregar el TLineaFactura al Set
-						LineasFactura.add(tLineaFactura);
-
+							// Conseguir el precio de la BBDD
+							PrecioTotal = actividadBBDD.getPrecio() * cantidadTotal;
+							tLineaFactura.setPrecio(PrecioTotal);
+							// Rellenar el resto de atributos
+							tLineaFactura.setIdActividad(tActividad.getIdActividad());
+							tLineaFactura.setIdFactura(0);
+							// Agregar el TLineaFactura al Set
+							LineasFactura.add(tLineaFactura);
+						}
 						// Modificar el set de Linea Factura en carrito
 						tCarrito.settLineaFactura(LineasFactura);
 
