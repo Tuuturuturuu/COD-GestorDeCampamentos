@@ -152,6 +152,9 @@ public class IActividadTest {
 	@AfterClass
 	public static void borrarBD() {
 		TestsBorrarDatos.borrarDatosTabla("Actividad");
+		TestsBorrarDatos.borrarDatosTabla("ActividadMaterial");
+		TestsBorrarDatos.borrarDatosTabla("Factura");
+		TestsBorrarDatos.borrarDatosTabla("TLineaFactura");
 		TestsBorrarDatos.borrarDatosTabla("Monitores");
 		TestsBorrarDatos.borrarDatosTabla("Cocineros");
 		TestsBorrarDatos.borrarDatosTabla("Personal");

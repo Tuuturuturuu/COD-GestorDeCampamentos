@@ -56,7 +56,6 @@ public class SAMaterialImp implements SAMaterial {
 	}
 
 	public TMaterial modificarMaterial(TMaterial tMaterial) {
-
 		if (tMaterial.getId() >= 0) {
 			TMaterial tMaterialBBDD = new TMaterial();
 			TActividad tActividad = new TActividad();
@@ -81,7 +80,7 @@ public class SAMaterialImp implements SAMaterial {
 			}
 
 			// se quiere cambiar el nombre
-			if (tMaterial.getNombre().equals("") && tMaterial.getId() > 0) {
+			if (tMaterial.getNombre().equals(tMaterialBBDD.getNombre()) && tMaterial.getId() > 0) {
 				tMaterial.setNombre(tMaterialBBDD.getNombre());
 			} else if (tMaterial.getId() > 0) {
 				if (!compr.nombreValido(tMaterial.getNombre()))
@@ -116,22 +115,25 @@ public class SAMaterialImp implements SAMaterial {
 			// se quiere cambiar idActividad Y DEBERIAMOS COMPROBAR QUE ID DE
 			// actividad EXISTA EN LA BASE DE DATOS
 			if (tMaterial.getIdActividad() != 0 && tMaterial.getId() > 0) {
-				if (daoActividad.mostrarActividad(tActividad).getIdActividad() == -1) // Comprobar
-																						// que
-																						// el
-																						// id
-																						// de
-																						// Personal
-																						// existe
+				if (daoActividad.mostrarActividad(tActividad).getIdActividad() == -1) {
 					tMaterial.setId(-9);
+				}
 			} else if (tMaterial.getId() > 0) {
 				tMaterial.setIdActividad(tMaterialBBDD.getIdActividad());
 			}
 
 			// si no ha habido ningun codigo de error puede modificarse.
 			if (tMaterial.getId() > 0) {
-
 				tMaterial = daoMaterial.modificarMaterial(tMaterial);
+				if (tMaterial.getIdActividad() != null) {
+					int ok = daoActividadMaterial.desvincularIDMaterial(tMaterial.getId());
+					if (ok == 1) {
+						daoActividadMaterial
+								.vincular(new TActividadMaterial(tMaterial.getIdActividad(), tMaterial.getId()));
+					} else {
+						tMaterial.setId(-41);
+					}
+				}
 			}
 		}
 		return tMaterial;

@@ -63,6 +63,30 @@ public class DAOActividadMaterialImp implements DAOActividadMaterial {
 		// end-user-code
 	}
 
+	public Integer desvincularIDMaterial(Integer idMaterial) {
+		Integer correct = 0;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("DELETE FROM ActividadMaterial WHERE idMaterial = ?;",
+					Statement.RETURN_GENERATED_KEYS);
+
+			ps.setInt(1, idMaterial);
+			int result = ps.executeUpdate();
+			if (result == 1)
+				correct = 1;
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return correct;
+		// end-user-code
+	}
+
 	public Set<TActividadMaterial> BuscarporActividad(Integer idActividad) {
 		Set<TActividadMaterial> ActividadesMaterial = new HashSet<TActividadMaterial>();
 		TActividadMaterial e;

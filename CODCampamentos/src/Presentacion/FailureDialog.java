@@ -58,6 +58,7 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error13 = "Error: No hay ningun material para ese id de Actividad";
 	private static final String error26 = "Error: Ya hay material con este nombre";
 	private static final String error27 = "Error: No hay material con dicho id";
+	private static final String error41 = "Error: Error al desvincular el material";
 
 	// Errores Turno
 	private static final String error29 = "Error: El nombre del turno ya existe ";
@@ -209,6 +210,9 @@ public class FailureDialog extends JFrame implements IGUI {
 			break;
 		case -40:
 			info = new JLabel(error40);
+			break;
+		case -41:
+			info = new JLabel(error41);
 			break;
 		default:
 			info = new JLabel("Error en la operacion");
