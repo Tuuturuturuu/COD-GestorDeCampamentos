@@ -6,6 +6,7 @@ import java.util.Set;
 import Negocio.Actividad.TActividad;
 import Negocio.FactoriaNegocio.FactoriaSAImp;
 import Negocio.Factura.TCarrito;
+import Negocio.Factura.TFactura;
 import Negocio.Material.TMaterial;
 import Negocio.Personal.TPersonal;
 import Negocio.Personal.TPersonalCocinero;
@@ -421,6 +422,25 @@ public class ControladorImp extends Controlador {
 				gui.getVistaGeneralAux().getConfirmDialogMostrarFactura()
 						.actualizar(auxCarrito.gettFactura().toString(), null);
 			break;
+		case EMostrarUnaFactura:
+			gui.getVistaFactura().getVista_MostrarUnaFactura();
+			break;
+		case EMostrarUnaFacturaOK:
+			auxCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura().mostarVenta((Integer) Obj);
+			if (auxCarrito.gettFactura().getIdFactura() <= 0) {
+				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxCarrito.gettFactura().getIdCliente(), null);
+			} else {
+				// Importante implementar algo para que se vea la tabla de las
+				// actividades en la factura
+				gui.getVistaFactura().getVista_MostrarUnaFactura().actualizar(auxCarrito, null);
+			}
+			;
+			break;
+		case EMostrarTodasLasFacturas:
+			Set<TFactura> listaCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura().mostrarFacturas();
+			gui.getVistaFactura().getVista_MostrarTodasFacturas(listaCarrito);
+			break;
+
 		default:
 			gui.getVistaGeneralAux().getVistaGeneral();
 			break;

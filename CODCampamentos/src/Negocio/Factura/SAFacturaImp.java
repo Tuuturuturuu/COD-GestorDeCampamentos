@@ -37,9 +37,7 @@ public class SAFacturaImp implements SAFactura {
 	}
 
 	public Set<TFactura> mostrarFacturas() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
+		return daoFactura.mostrarFacturas();
 		// end-user-code
 	}
 
@@ -133,10 +131,38 @@ public class SAFacturaImp implements SAFactura {
 	}
 
 	public TCarrito mostarVenta(Integer idFactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+
+		// Vars Auxiliares
+		TCarrito Venta = new TCarrito();
+		Set<TLineaFactura> LineasFactura = new HashSet<TLineaFactura>();
+		TFactura tFactura = new TFactura();
+
+		// Comprobar que no hay fallo en el campo integer
+		if (idFactura >= 0) {
+			// Comprobar que no es un campo vacío
+			if (idFactura == 0) {
+				tFactura.setIdCliente(-37);
+				Venta.settFactura(tFactura);
+				Venta.settLineaFactura(LineasFactura);
+			} else {
+				// Comprobar que el idFactura existe
+
+			}
+
+		} else {
+			tFactura.setIdCliente(idFactura);
+			Venta.settFactura(tFactura);
+			Venta.settLineaFactura(LineasFactura);
+		}
+
+		// Conseguir todas las lineaFactura que tienen ese idFactura
+
+		// Meter todo el set a Carrito
+
+		// Devolver el carrito
+		// Si no existe, enviar un error
+
+		return Venta;
 	}
 
 	public void modificarVenta(Integer idActividad, Integer newCantidad, Integer idFactura) {

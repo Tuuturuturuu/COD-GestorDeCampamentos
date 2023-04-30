@@ -6,15 +6,13 @@ package Negocio.Factura;
 import java.util.Date;
 
 public class TFactura {
-	public TFactura(Integer idFactura, Integer idCliente, Date fecha, Float total, Boolean activo,
-			TCarrito tFacturaConActividades) {
+	public TFactura(Integer idFactura, Integer idCliente, Date fecha, Float total, Boolean activo) {
 		super();
 		this.idFactura = idFactura;
 		this.idCliente = idCliente;
 		this.fecha = fecha;
 		this.total = total;
 		this.activo = activo;
-		this.tFacturaConActividades = tFacturaConActividades;
 	}
 
 	public TFactura() {
@@ -26,7 +24,6 @@ public class TFactura {
 	private Date fecha;
 	private Float total;
 	private Boolean activo;
-	private TCarrito tFacturaConActividades;
 
 	public Integer getIdFactura() {
 		return idFactura;
@@ -66,14 +63,6 @@ public class TFactura {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
-	}
-
-	public TCarrito gettFacturaConActividades() {
-		return tFacturaConActividades;
-	}
-
-	public void settFacturaConActividades(TCarrito tFacturaConActividades) {
-		this.tFacturaConActividades = tFacturaConActividades;
 	}
 
 	@Override

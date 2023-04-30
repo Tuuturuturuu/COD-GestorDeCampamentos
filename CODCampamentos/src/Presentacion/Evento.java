@@ -50,6 +50,7 @@ public enum Evento {
 	EQuitarActividadFactura,
 	EDelvolverUnaActividad,
 	EMostrarUnaFactura,
+	EMostrarUnaFacturaOK,
 	EMostrarTodasLasFacturas,
 	EMostrarFacturaPorActividad,
 	

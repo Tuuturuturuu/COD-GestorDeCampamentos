@@ -39,7 +39,7 @@ public class FactoriaVistaFacturaImp implements FactoriaVistaFactura {
 
 	@Override
 	public VMostrarTodasFacturas getVista_MostrarTodasFacturas(Set<TFactura> listaFacturas) {
-		return new VMostrarTodasFacturas();
+		return new VMostrarTodasFacturas(listaFacturas);
 	}
 
 	@Override
