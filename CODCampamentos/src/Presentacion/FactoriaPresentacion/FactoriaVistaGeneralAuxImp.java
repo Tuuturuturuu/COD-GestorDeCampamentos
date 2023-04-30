@@ -1,9 +1,11 @@
 package Presentacion.FactoriaPresentacion;
 
+import Negocio.Factura.TCarrito;
 import Presentacion.ConfirmDialog;
 import Presentacion.ConfirmDialogActivar;
 import Presentacion.ConfirmDialogMostrarUna;
 import Presentacion.FailureDialog;
+import Presentacion.FailureDialogFactura;
 import Presentacion.VistaGeneral;
 
 public class FactoriaVistaGeneralAuxImp implements FactoriaVistaGeneralAux {
@@ -32,6 +34,12 @@ public class FactoriaVistaGeneralAuxImp implements FactoriaVistaGeneralAux {
 	public ConfirmDialogActivar getConfirmDialogActivar() {
 		// TODO Auto-generated method stub
 		return new ConfirmDialogActivar();
+	}
+
+	@Override
+	public FailureDialogFactura getFailureDialgFactura(TCarrito tCarrito) {
+		// TODO Auto-generated method stub
+		return new FailureDialogFactura(tCarrito);
 	}
 
 }

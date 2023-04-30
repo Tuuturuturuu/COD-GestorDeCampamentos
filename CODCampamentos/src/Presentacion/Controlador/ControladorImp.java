@@ -11,6 +11,7 @@ import Negocio.Personal.TPersonal;
 import Negocio.Personal.TPersonalCocinero;
 import Negocio.Personal.TPersonalMonitor;
 import Negocio.Turno.TTurno;
+import Presentacion.ClaseContenedora;
 import Presentacion.Evento;
 import Presentacion.FactoriaPresentacion.FactoriaVistas;
 
@@ -388,6 +389,18 @@ public class ControladorImp extends Controlador {
 			auxCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura().abrirVenta((Integer) Obj);
 			if (auxCarrito.gettFactura().getIdCliente() < 0) {
 				gui.getVistaGeneralAux().getFailureDialg().actualizar(auxCarrito.gettFactura().getIdCliente(), null);
+			} else
+				gui.getVistaFactura().getVista_AbrirFacturaOk(auxCarrito);
+			break;
+		case EVistaCrearFacturaFailure:
+			gui.getVistaFactura().getVista_AbrirFacturaOk((TCarrito) Obj);
+			break;
+		case EAnadirActividadFactura:
+			ClaseContenedora contenedor = (ClaseContenedora) Obj;
+			auxCarrito = FactoriaSAImp.obtenerInstancia().generarSAFactura()
+					.aniadirActividad(contenedor.gettActividad(), contenedor.gettCarrito());
+			if (auxCarrito.gettFactura().getIdCliente() < 0) {
+				gui.getVistaGeneralAux().getFailureDialgFactura(auxCarrito).actualizar(auxCarrito, null);
 			} else
 				gui.getVistaFactura().getVista_AbrirFacturaOk(auxCarrito);
 			break;

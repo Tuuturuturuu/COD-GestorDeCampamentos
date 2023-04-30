@@ -44,6 +44,7 @@ public enum Evento {
 	EVistaFacturaGeneral,
 	EVistaCrearFactura,
 	EVistaCrearFacturaOK,
+	EVistaCrearFacturaFailure,
 	ECerrarFactura,
 	EAnadirActividadFactura,
 	EQuitarActividadFactura,

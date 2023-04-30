@@ -5,17 +5,12 @@ package Negocio.Factura;
 
 import java.util.Set;
 
+import Negocio.Actividad.TActividad;
+
 public interface SAFactura {
 
 	public TCarrito abrirVenta(Integer idCliente);
 
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @return
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 	public Set<TFactura> mostrarFacturas();
 
 	public Integer cerrarVenta(Integer idFactura);
@@ -24,23 +19,8 @@ public interface SAFactura {
 
 	public void modificarVenta(Integer idActividad, Integer newCantidad, Integer idFactura);
 
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param idActividad
-	 * @param cantidad
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void aniadirActividad(Integer idActividad, Integer cantidad);
+	public TCarrito aniadirActividad(TActividad tActividad, TCarrito tCarrito);
 
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param idActividad
-	 * @generated "UML a Java
-	 *            (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 	public void quitarActividad(Integer idActividad);
 
 	/**

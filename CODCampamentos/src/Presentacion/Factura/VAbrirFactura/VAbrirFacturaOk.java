@@ -17,9 +17,11 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Negocio.Actividad.TActividad;
 import Negocio.Factura.TCarrito;
 import Negocio.Factura.TFactura;
 import Negocio.Factura.TLineaFactura;
+import Presentacion.ClaseContenedora;
 import Presentacion.Evento;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
@@ -50,6 +52,7 @@ public class VAbrirFacturaOk extends JFrame {
 	}
 
 	public void initGUI(TCarrito tCarrito) {
+		System.out.print(tCarrito.gettFactura().getIdCliente());
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		this.setContentPane(mainPanel);
@@ -95,6 +98,30 @@ public class VAbrirFacturaOk extends JFrame {
 
 		JButton botonAniadirActividad = new JButton("Aniadir");
 		botonAniadirActividad.setBounds(75, 50, 100, 100);
+		botonAniadirActividad.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VAbrirFacturaOk.this.setVisible(false);
+				try {
+					TActividad tActividad = new TActividad(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,
+							null, null, !nPlazas.getText().isEmpty() ? Integer.parseInt(nPlazas.getText()) : 0,
+							(float) 0, null, true);
+					// Uso clase auxiliar para poder enviar al controlador dos
+					// objetos
+					ClaseContenedora contenedor = new ClaseContenedora(tActividad, tCarrito);
+					// Envio la clase auxiliar al controlador
+					Controlador.obtenerInstancia().run(contenedor, Evento.EAnadirActividadFactura);
+
+				} catch (Exception ex) {// Excepcion para campos Integer
+					TActividad tActividad = new TActividad(-38, null, null, 0, (float) 0, null, true);
+					ClaseContenedora contenedor = new ClaseContenedora(tActividad, tCarrito);
+					// Envio la clase auxiliar al controlador
+					Controlador.obtenerInstancia().run(contenedor, Evento.EAnadirActividadFactura);
+				}
+
+			}
+		});
 		panelAniadirButton.add(botonAniadirActividad);
 
 		// Panel Quitar Actividad
@@ -146,24 +173,6 @@ public class VAbrirFacturaOk extends JFrame {
 		// Panel de botones
 		JPanel panelBotones = new JPanel();
 		mainPanel.add(panelBotones);
-
-		JButton botonAceptar = new JButton("Aceptar");
-		botonAceptar.setBounds(75, 50, 100, 100);
-		botonAceptar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VAbrirFacturaOk.this.setVisible(false);
-				try {
-					Controlador.obtenerInstancia().run(!id.getText().isEmpty() ? Integer.parseInt(id.getText()) : 0,
-							Evento.EMostrarTodosLosActividadporMaterialOK);
-				} catch (Exception ex) {
-					Controlador.obtenerInstancia().run(-38, Evento.EMostrarTodosLosActividadporMaterialOK);
-				}
-
-			}
-		});
-		panelBotones.add(botonAceptar);
 
 		JButton botonCancelar = new JButton("Cancelar");
 		botonCancelar.setBounds(200, 50, 100, 100);
