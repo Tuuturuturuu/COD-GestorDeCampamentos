@@ -72,27 +72,6 @@ public class DAOLineaFacturaImp implements DAOLineaFactura {
 		return correct;
 	}
 
-	public Integer modificarLineaFactura(TLineaFactura tLinea) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	public TLineaFactura mostrarLineaFactura(Integer idActividad, Integer idFactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
-	public Set<TLineaFactura> mostrarAllLineaFacturas() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
-
 	public Set<TLineaFactura> mostrarLineaFacturaPorActividad(Integer idActividad) {
 		Set<TLineaFactura> LineasFacturas = new HashSet<TLineaFactura>();
 		TLineaFactura e;

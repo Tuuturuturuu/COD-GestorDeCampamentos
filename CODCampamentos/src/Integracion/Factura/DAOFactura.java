@@ -16,6 +16,4 @@ public interface DAOFactura {
 	public TFactura mostrarFactura(TFactura tfactura);
 
 	public Set<TFactura> mostrarFacturas();
-
-	public Set<TFactura> mostrarFacturasporCliente(Integer idCliente);
 }

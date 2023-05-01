@@ -19,8 +19,6 @@ public interface SAFactura {
 
 	public TCarrito mostarVentaporActividad(Integer idActividad);
 
-	public void modificarVenta(Integer idActividad, Integer newCantidad, Integer idFactura);
-
 	public TCarrito aniadirActividad(TActividad tActividad, TCarrito tCarrito);
 
 	public TCarrito quitarActividad(TActividad tActividad, TCarrito tCarrito);

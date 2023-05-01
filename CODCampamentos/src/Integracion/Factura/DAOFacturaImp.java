@@ -127,10 +127,4 @@ public class DAOFacturaImp implements DAOFactura {
 		return Facturas;
 	}
 
-	public Set<TFactura> mostrarFacturasporCliente(Integer idCliente) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
 }

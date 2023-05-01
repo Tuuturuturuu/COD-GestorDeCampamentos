@@ -178,13 +178,6 @@ public class SAFacturaImp implements SAFactura {
 		return Venta;
 	}
 
-	public void modificarVenta(Integer idActividad, Integer newCantidad, Integer idFactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
-	}
-
 	public TCarrito aniadirActividad(TActividad tActividad, TCarrito tCarrito) {
 
 		// Objetos que usaremos como auxiliares

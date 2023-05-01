@@ -7,34 +7,16 @@ import Negocio.Factura.TFactura;
 import Presentacion.Factura.VistaGeneralFactura;
 import Presentacion.Factura.VAbrirFactura.VAbrirFactura;
 import Presentacion.Factura.VAbrirFactura.VAbrirFacturaOk;
-import Presentacion.Factura.VAniadirActividadAFactura.VAniadirActividadAFactura;
-import Presentacion.Factura.VCerrarFactura.VCerrarFactura;
 import Presentacion.Factura.VDevolverFactura.VDevolverFactura;
 import Presentacion.Factura.VMostrarFactura.VMostrarFactura;
 import Presentacion.Factura.VMostrarFacturaPorActividad.VMostrarFacturaPorActividad;
 import Presentacion.Factura.VMostrarTodasFacturas.VMostrarTodasFacturas;
-import Presentacion.Factura.VQuitarActividadAFactura.VQuitarActividadAFactura;
 
 public class FactoriaVistaFacturaImp implements FactoriaVistaFactura {
 
 	@Override
 	public VAbrirFactura getVista_AbrirFactura() {
 		return new VAbrirFactura();
-	}
-
-	@Override
-	public VCerrarFactura getVista_CerrarFactura() {
-		return new VCerrarFactura();
-	}
-
-	@Override
-	public VAniadirActividadAFactura getVista_AniadirActividadFactura() {
-		return new VAniadirActividadAFactura();
-	}
-
-	@Override
-	public VQuitarActividadAFactura getVista_QuitarActividadFactura() {
-		return new VQuitarActividadAFactura();
 	}
 
 	@Override

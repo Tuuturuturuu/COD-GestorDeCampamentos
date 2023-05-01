@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 
 import Negocio.Actividad.TActividad;
 import Negocio.Factura.TCarrito;
-import Negocio.Factura.TFactura;
 import Negocio.Factura.TLineaFactura;
 import Presentacion.ClaseContenedora;
 import Presentacion.Evento;
@@ -27,13 +26,6 @@ import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
 public class VAbrirFacturaOk extends JFrame {
-
-	private JButton CerrarFactura_Button;
-	private JButton AnadirActividadFactura_Button;
-	private JButton QuitarActividadDeFactura_Button;
-	private JButton backButton;
-
-	private TFactura tFactura;
 
 	public VAbrirFacturaOk(TCarrito tCarrito) {
 		super("Gestor de Campamentos");
