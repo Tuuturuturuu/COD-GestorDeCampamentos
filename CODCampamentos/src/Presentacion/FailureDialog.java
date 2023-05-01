@@ -25,7 +25,7 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error15 = "Error: Fallo a la hora de borrar en la BD";
 	private static final String error32 = "Error: El DNI introducido es incorrecto";
 	private static final String error33 = "Error: El DNI introducido ya corresponde a un Personal";
-	private static final String error37 = "Error: No se pueden dejar campos vacios en ALTA";
+	private static final String error37 = "Error: No se pueden dejar campos vacios";
 	private static final String error38 = "Error: Caracter introducido invalido";
 
 	// Errores Actividad
@@ -66,6 +66,9 @@ public class FailureDialog extends JFrame implements IGUI {
 	private static final String error31 = "Error: El Turno tiene personal activo asignado";
 	private static final String error34 = "Error: El Turno esta dado de baja";
 	private static final String error40 = "Error: El Id del Turno no existe en la BBDD";
+
+	// Errores Factura
+	private static final String error41 = "Error: El Id de la Factura no existe en la BBDD";
 
 	private int id;
 

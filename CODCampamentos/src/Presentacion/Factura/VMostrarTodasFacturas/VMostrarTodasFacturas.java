@@ -3,82 +3,92 @@
  */
 package Presentacion.Factura.VMostrarTodasFacturas;
 
-import Presentacion.Evento;
-import Presentacion.IGUI;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Set;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
-public class VMostrarTodasFacturas implements IGUI {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JDialog> jDialog;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JFrame> jFrame;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JLabel> jLabel;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JPanel> jPanel;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JButton> jButton;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JTextField> jTextField;
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	private Set<JTable> jTable;
+import Negocio.Factura.TFactura;
+import Presentacion.Evento;
+import Presentacion.IGUI;
+import Presentacion.ComponentsBuilder.ComponentsBuilder;
+import Presentacion.Controlador.Controlador;
 
-	/** 
-	* (non-Javadoc)
-	* @see IGUI#actualizar()
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void actualizar() {
-		// begin-user-code
-		// TODO Auto-generated method stub
+public class VMostrarTodasFacturas extends JFrame implements IGUI {
 
-		// end-user-code
+	public VMostrarTodasFacturas(Set<TFactura> listaCarritos) {
+		super("Mostrar totas las Facturas");
+		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+		int ancho = 630;
+		int alto = 330;
+		int x = (pantalla.width - ancho) / 2;
+		int y = (pantalla.height - alto) / 2;
+		this.setBounds(x, y, ancho, alto);
+		this.setLayout(null);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		initGUI((Set<TFactura>) listaCarritos);
+	}
+
+	private void initGUI(Set<TFactura> listaCarritos) {
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		this.setContentPane(mainPanel);
+
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
+
+		JPanel panelID = new JPanel();
+		mainPanel.add(panelID);
+
+		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
+
+		JPanel panelBotones = new JPanel();
+		mainPanel.add(panelBotones);
+
+		JButton botonCancelar = new JButton("Cancelar");
+		botonCancelar.setBounds(200, 50, 100, 100);
+		botonCancelar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VMostrarTodasFacturas.this.setVisible(false);
+				Controlador.obtenerInstancia().run(null, Evento.EVistaFacturaGeneral);
+
+			}
+		});
+		panelBotones.add(botonCancelar);
+
+		String[] nombreColumnas = { "ID Factura", "ID Cliente", "Fecha", "Precio total", "Devuelta" };
+		JTable tabla = ComponentsBuilder.createTable(listaCarritos.size(), 5, nombreColumnas);
+		int i = 0;
+		for (TFactura t : listaCarritos) {
+			tabla.setValueAt(t.getIdFactura(), i, 0);
+			tabla.setValueAt(t.getIdCliente(), i, 1);
+			tabla.setValueAt(t.getFecha(), i, 2);
+			tabla.setValueAt(t.getTotal(), i, 3);
+			tabla.setValueAt(t.getActivo(), i, 4);
+			i++;
+		}
+		JScrollPane scroll = new JScrollPane(tabla);
+		scroll.setBounds(50, 115, 900, 288);
+		this.add(scroll);
+
+		this.setVisible(true);
+		this.setResizable(true);
 	}
 
 	@Override
 	public void actualizar(Object object, Evento event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

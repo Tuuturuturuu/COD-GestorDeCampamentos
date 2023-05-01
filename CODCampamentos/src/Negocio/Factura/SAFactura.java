@@ -5,90 +5,26 @@ package Negocio.Factura;
 
 import java.util.Set;
 
-/** 
-* <!-- begin-UML-doc -->
-* <!-- end-UML-doc -->
-* @author airam
-* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-*/
-public interface SAFactura {
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param idCliente
-	* @return
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public TFacturaConActividades abrirVenta(Integer idCliente);
+import Negocio.Actividad.TActividad;
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @return
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+public interface SAFactura {
+
+	public TCarrito abrirVenta(Integer idCliente);
+
 	public Set<TFactura> mostrarFacturas();
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param idFactura
-	* @return
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Integer cerrarVenta(Integer idFactura);
+	public TCarrito cerrarVenta(TCarrito tCarrito);
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param idFactura
-	* @return
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public TFacturaConActividades mostarVenta(Integer idFactura);
+	public TCarrito mostarVenta(Integer idFactura);
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param idActividad
-	* @param newCantidad
-	* @param idFactura
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
+	public TCarrito mostarVentaporActividad(Integer idActividad);
+
 	public void modificarVenta(Integer idActividad, Integer newCantidad, Integer idFactura);
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param idActividad
-	* @param cantidad
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void aniadirActividad(Integer idActividad, Integer cantidad);
+	public TCarrito aniadirActividad(TActividad tActividad, TCarrito tCarrito);
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param idActividad
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public void quitarActividad(Integer idActividad);
+	public TCarrito quitarActividad(TActividad tActividad, TCarrito tCarrito);
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param idFactura
-	* @return
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Float devolucionVenta(Integer idFactura);
+	public TFactura devolucionVenta(Integer idFactura);
 
-	/** 
-	* <!-- begin-UML-doc -->
-	* <!-- end-UML-doc -->
-	* @param idCliente
-	* @return
-	* @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	*/
-	public Set<TFactura> mostrarFacturasporCliente(Integer idCliente);
 }
