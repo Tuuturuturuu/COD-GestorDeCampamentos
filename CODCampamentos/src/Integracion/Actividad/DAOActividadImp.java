@@ -44,6 +44,7 @@ public class DAOActividadImp implements DAOActividad {
 			ps.close();
 			conexion.close();
 			// cerrar conexion y tratar excepciones
+
 		} catch (SQLException | ClassNotFoundException ex) {
 			ex.printStackTrace();
 		}
