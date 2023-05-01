@@ -316,11 +316,96 @@ public class SAFacturaImp implements SAFactura {
 		return tCarrito;
 	}
 
-	public Float devolucionVenta(Integer idFactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public TFactura devolucionVenta(Integer idFactura) {
+
+		// Vars Auxiliares
+		Set<TLineaFactura> LineasFactura = new HashSet<TLineaFactura>();
+		TFactura tFactura = new TFactura();
+		TFactura tFacturaBBDD = new TFactura();
+		Integer correct;
+
+		// Comprobar que no hay fallo en el campo integer
+		if (idFactura >= 0) {
+			// Comprobar que no es un campo vacío
+			if (idFactura == 0) {
+				tFactura.setIdCliente(-37);
+			} else {
+				// Comprobar que el idFactura existe
+				tFactura.setIdFactura(idFactura);
+				tFacturaBBDD = daoFactura.mostrarFactura(tFactura);
+
+				if (tFacturaBBDD.getIdFactura() != -1) {
+					// La factura existe, procedemos a indicar que esta devuelta
+					tFactura = daoFactura.devolverFactura(tFacturaBBDD);
+
+					// Eliminamos todos los tLineaFactura que tengan el
+					// idFactura
+					correct = daoLineaFactura.eliminarLineaFactura(tFacturaBBDD.getIdFactura());
+
+					// Comprobamos si ha habido un error al eliminar
+					if (correct == 0) {
+						tFactura.setIdCliente(-15);
+					} // Si no hay errores, devolvemos la factura modificada
+
+				} else {// Informamos del error de que no existe
+					tFactura.setIdCliente(-41);
+				}
+			}
+		} else {
+			tFactura.setIdCliente(idFactura);
+		}
+		// Devolver el carrito
+		return tFactura;
+	}
+
+	@Override
+	public TCarrito mostarVentaporActividad(Integer idActividad) {
+		// Vars Auxiliares
+		TCarrito Venta = new TCarrito();
+		Set<TLineaFactura> LineasFactura = new HashSet<TLineaFactura>();
+		TActividad tActividad = new TActividad();
+		TActividad tActividadBBDD = new TActividad();
+		TFactura tFactura = new TFactura();
+
+		// Comprobar que no hay fallo en el campo integer
+		if (idActividad >= 0) {
+			// Comprobar que no es un campo vacío
+			if (idActividad == 0) {
+				tFactura.setIdCliente(-37);
+				Venta.settFactura(tFactura);
+				Venta.settLineaFactura(LineasFactura);
+			} else {
+				// Comprobar que el idActividad existe
+				tActividad.setIdActividad(idActividad);
+				tActividadBBDD = daoActividad.buscarActividadID(tActividad);
+
+				if (tActividadBBDD.getIdActividad() != -1) {
+					// La actividad existe
+
+					// Conseguimos todos los tLineaFactura que tengan el
+					// idActividad
+					LineasFactura = daoLineaFactura.mostrarLineaFacturaPorActividad(tActividadBBDD.getIdActividad());
+
+					// Agregamos al carrito
+					Venta.settLineaFactura(LineasFactura);
+
+					tFactura.setIdCliente(1);
+					Venta.settFactura(tFactura);
+
+				} else {// Informamos del error de que no existe
+					tFactura.setIdCliente(-23);
+					Venta.settFactura(tFactura);
+					Venta.settLineaFactura(LineasFactura);
+				}
+			}
+
+		} else {
+			tFactura.setIdCliente(idActividad);
+			Venta.settFactura(tFactura);
+			Venta.settLineaFactura(LineasFactura);
+		}
+
+		return Venta;
 	}
 
 }

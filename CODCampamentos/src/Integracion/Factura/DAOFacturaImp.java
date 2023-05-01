@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,11 +49,28 @@ public class DAOFacturaImp implements DAOFactura {
 		return tFactura;
 	}
 
-	public Integer modificarFactura(TFactura tfactura) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public TFactura devolverFactura(TFactura tfactura) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection(ConnectorBD.urlBD, ConnectorBD.user,
+					ConnectorBD.password);
+
+			PreparedStatement ps;
+			ps = conexion.prepareStatement("UPDATE Factura SET activo = ? WHERE idFactura = ?",
+					Statement.RETURN_GENERATED_KEYS);
+			tfactura.setActivo(true);
+
+			ps.setBoolean(1, tfactura.getActivo());
+			ps.setInt(2, tfactura.getIdFactura());
+			int result = ps.executeUpdate();
+			if (result < 1)
+				tfactura.setIdFactura(-15);
+			ps.close();
+			conexion.close();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return tfactura;
 	}
 
 	public TFactura mostrarFactura(TFactura tfactura) {

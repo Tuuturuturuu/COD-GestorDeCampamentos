@@ -9,7 +9,7 @@ import Presentacion.Factura.VAbrirFactura.VAbrirFactura;
 import Presentacion.Factura.VAbrirFactura.VAbrirFacturaOk;
 import Presentacion.Factura.VAniadirActividadAFactura.VAniadirActividadAFactura;
 import Presentacion.Factura.VCerrarFactura.VCerrarFactura;
-import Presentacion.Factura.VDevolverUnaActividadAFactura.VDevolverUnaActividadAFactura;
+import Presentacion.Factura.VDevolverFactura.VDevolverFactura;
 import Presentacion.Factura.VMostrarFactura.VMostrarFactura;
 import Presentacion.Factura.VMostrarFacturaPorActividad.VMostrarFacturaPorActividad;
 import Presentacion.Factura.VMostrarTodasFacturas.VMostrarTodasFacturas;
@@ -53,11 +53,6 @@ public class FactoriaVistaFacturaImp implements FactoriaVistaFactura {
 	}
 
 	@Override
-	public VDevolverUnaActividadAFactura getVista_DevolverUnaActividadAFactura() {
-		return new VDevolverUnaActividadAFactura();
-	}
-
-	@Override
 	public VistaGeneralFactura getVista_VistaFacturaGeneral() {
 		return new VistaGeneralFactura();
 	}
@@ -66,6 +61,12 @@ public class FactoriaVistaFacturaImp implements FactoriaVistaFactura {
 	public VAbrirFacturaOk getVista_AbrirFacturaOk(TCarrito tCarrito) {
 		// TODO Auto-generated method stub
 		return new VAbrirFacturaOk(tCarrito);
+	}
+
+	@Override
+	public VDevolverFactura getVista_DevolverFactura() {
+		// TODO Auto-generated method stub
+		return new VDevolverFactura();
 	}
 
 }

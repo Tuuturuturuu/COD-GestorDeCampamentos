@@ -11,7 +11,7 @@ public interface DAOLineaFactura {
 
 	public Integer crearLineaFactura(TLineaFactura tLinea);
 
-	public Integer eliminarLineaFactura(Integer idFactura, Integer idActividad);
+	public Integer eliminarLineaFactura(Integer idFactura);
 
 	public Integer modificarLineaFactura(TLineaFactura tLinea);
 
@@ -19,7 +19,7 @@ public interface DAOLineaFactura {
 
 	public Set<TLineaFactura> mostrarAllLineaFacturas();
 
-	public TLineaFactura mostrarLineaFacturaPorActividad(Integer idActividad);
+	public Set<TLineaFactura> mostrarLineaFacturaPorActividad(Integer idActividad);
 
 	public Set<TLineaFactura> mostrarLineaFacturaPorFactura(Integer idFactura);
 }

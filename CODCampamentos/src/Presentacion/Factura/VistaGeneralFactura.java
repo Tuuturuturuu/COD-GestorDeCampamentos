@@ -70,13 +70,13 @@ public class VistaGeneralFactura extends JFrame {
 		this.add(CrearFactura_Button);
 
 		// Devolver Actividad
-		devolverActividad_Button = ComponentsBuilder.createButton("Devolucion de Actividad", 85, 250, 200, 100);
+		devolverActividad_Button = ComponentsBuilder.createButton("Devolucion de Factura", 85, 250, 200, 100);
 		devolverActividad_Button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VistaGeneralFactura.this.setVisible(false);
-				Controlador.obtenerInstancia().run(tFactura, Evento.EDelvolverUnaActividad);
+				Controlador.obtenerInstancia().run(tFactura, Evento.EDelvolverFactura);
 
 			}
 		});

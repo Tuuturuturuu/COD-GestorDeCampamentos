@@ -11,7 +11,7 @@ public interface DAOFactura {
 
 	public TFactura cerrarFactura(TFactura tFactura);
 
-	public Integer modificarFactura(TFactura tfactura);
+	public TFactura devolverFactura(TFactura tfactura);
 
 	public TFactura mostrarFactura(TFactura tfactura);
 

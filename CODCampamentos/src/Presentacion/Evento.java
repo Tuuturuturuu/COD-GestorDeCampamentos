@@ -48,11 +48,13 @@ public enum Evento {
 	ECerrarFactura,
 	EAnadirActividadFactura,
 	EQuitarActividadFactura,
-	EDelvolverUnaActividad,
+	EDelvolverFactura,
+	EDelvolverFacturaOK,
 	EMostrarUnaFactura,
 	EMostrarUnaFacturaOK,
 	EMostrarTodasLasFacturas,
 	EMostrarFacturaPorActividad,
+	EMostrarFacturaPorActividadOK,
 	
 	//Material
 	EVistaMaterialGeneral,

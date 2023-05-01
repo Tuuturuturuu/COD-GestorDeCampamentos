@@ -9,7 +9,7 @@ import Presentacion.Factura.VAbrirFactura.VAbrirFactura;
 import Presentacion.Factura.VAbrirFactura.VAbrirFacturaOk;
 import Presentacion.Factura.VAniadirActividadAFactura.VAniadirActividadAFactura;
 import Presentacion.Factura.VCerrarFactura.VCerrarFactura;
-import Presentacion.Factura.VDevolverUnaActividadAFactura.VDevolverUnaActividadAFactura;
+import Presentacion.Factura.VDevolverFactura.VDevolverFactura;
 import Presentacion.Factura.VMostrarFactura.VMostrarFactura;
 import Presentacion.Factura.VMostrarFacturaPorActividad.VMostrarFacturaPorActividad;
 import Presentacion.Factura.VMostrarTodasFacturas.VMostrarTodasFacturas;
@@ -32,7 +32,7 @@ public interface FactoriaVistaFactura {
 
 	public VMostrarFacturaPorActividad getVista_MostrarFacturaPorActividad();
 
-	public VDevolverUnaActividadAFactura getVista_DevolverUnaActividadAFactura();
+	public VDevolverFactura getVista_DevolverFactura();
 
 	public VistaGeneralFactura getVista_VistaFacturaGeneral();
 }

@@ -1,14 +1,10 @@
-/**
- * 
- */
-package Presentacion.Factura.VMostrarFacturaPorActividad;
+package Presentacion.Factura.VDevolverFactura;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,23 +12,21 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import Negocio.Factura.TCarrito;
-import Negocio.Factura.TLineaFactura;
+import Negocio.Factura.TFactura;
 import Presentacion.Evento;
 import Presentacion.IGUI;
 import Presentacion.ComponentsBuilder.ComponentsBuilder;
 import Presentacion.Controlador.Controlador;
 
-public class VMostrarFacturaPorActividad extends JFrame implements IGUI {
-	public VMostrarFacturaPorActividad() {
-		super("Mostrar Factura por Actividad");
+public class VDevolverFactura extends JFrame implements IGUI {
+
+	public VDevolverFactura() {
+		super("Devolver una Factura");
 		Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-		int ancho = 630;
-		int alto = 430;
+		int ancho = 430;
+		int alto = 250;
 		int x = (pantalla.width - ancho) / 2;
 		int y = (pantalla.height - alto) / 2;
 		this.setBounds(x, y, ancho, alto);
@@ -48,8 +42,8 @@ public class VMostrarFacturaPorActividad extends JFrame implements IGUI {
 		this.setContentPane(mainPanel);
 		mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
-		JLabel msgIntroIDCabecera = ComponentsBuilder
-				.createLabel("Introduzca el ID de la actividad que quiere consultar ", 1, 10, 80, 20, Color.BLACK);
+		JLabel msgIntroIDCabecera = ComponentsBuilder.createLabel("Introduzca el ID de la factura que quiere devolver ",
+				1, 10, 80, 20, Color.BLACK);
 		msgIntroIDCabecera.setAlignmentX(CENTER_ALIGNMENT);
 		mainPanel.add(msgIntroIDCabecera);
 
@@ -58,7 +52,7 @@ public class VMostrarFacturaPorActividad extends JFrame implements IGUI {
 		JPanel panelID = new JPanel();
 		mainPanel.add(panelID);
 
-		JLabel labelID = ComponentsBuilder.createLabel("ID Actividad: ", 10, 100, 80, 20, Color.BLACK);
+		JLabel labelID = ComponentsBuilder.createLabel("ID Factura: ", 10, 100, 80, 20, Color.BLACK);
 		panelID.add(labelID);
 
 		JTextField id = new JTextField();
@@ -78,12 +72,11 @@ public class VMostrarFacturaPorActividad extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VMostrarFacturaPorActividad.this.setVisible(false);
+				VDevolverFactura.this.setVisible(false);
 				try {
-					Controlador.obtenerInstancia().run(Integer.parseInt(id.getText()),
-							Evento.EMostrarFacturaPorActividadOK);
+					Controlador.obtenerInstancia().run(Integer.parseInt(id.getText()), Evento.EDelvolverFacturaOK);
 				} catch (Exception ex) {
-					Controlador.obtenerInstancia().run(-38, Evento.EMostrarFacturaPorActividadOK);
+					Controlador.obtenerInstancia().run(-38, Evento.EDelvolverFacturaOK);
 				}
 
 			}
@@ -96,7 +89,7 @@ public class VMostrarFacturaPorActividad extends JFrame implements IGUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VMostrarFacturaPorActividad.this.setVisible(false);
+				VDevolverFactura.this.setVisible(false);
 				Controlador.obtenerInstancia().run(null, Evento.EVistaFacturaGeneral);
 
 			}
@@ -109,50 +102,39 @@ public class VMostrarFacturaPorActividad extends JFrame implements IGUI {
 
 	@Override
 	public void actualizar(Object object, Evento event) {
-		TCarrito aux = (TCarrito) object;
-		Set<TLineaFactura> listaCarritos = aux.gettLineaFactura();
-		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-		this.setContentPane(mainPanel);
+		TFactura auxFactura = (TFactura) object;
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		this.setContentPane(panel);
 
-		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
+		JPanel aux = new JPanel();
+		panel.add(aux);
+		JLabel info = new JLabel("Operacion exitosa");
+		aux.add(info);
 
-		JPanel panelID = new JPanel();
-		mainPanel.add(panelID);
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-		mainPanel.add(Box.createRigidArea(new Dimension(0, 40)));
+		if (auxFactura.getIdFactura() != -1) {
+			JPanel nuevoID = new JPanel();
+			panel.add(nuevoID);
+			JLabel idConf = new JLabel("Dinero Devuelto: " + auxFactura.getTotal());
+			nuevoID.add(idConf);
+		}
 
-		JPanel panelBotones = new JPanel();
-		mainPanel.add(panelBotones);
+		panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-		JButton botonCancelar = new JButton("Cancelar");
-		botonCancelar.setBounds(200, 50, 100, 100);
-		botonCancelar.addActionListener(new ActionListener() {
+		JPanel botonPanel = new JPanel();
+		panel.add(botonPanel);
+		JButton confirmar = new JButton("OK");
+		confirmar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VMostrarFacturaPorActividad.this.setVisible(false);
+				VDevolverFactura.this.setVisible(false);
 				Controlador.obtenerInstancia().run(null, Evento.EVistaFacturaGeneral);
-
 			}
+
 		});
-		panelBotones.add(botonCancelar);
-
-		String[] nombreColumnas = { "ID Factura", "ID Actividad", "Num Plazas", "Precio " };
-		JTable tabla = ComponentsBuilder.createTable(listaCarritos.size(), 4, nombreColumnas);
-		int i = 0;
-		for (TLineaFactura t : listaCarritos) {
-			tabla.setValueAt(t.getIdFactura(), i, 0);
-			tabla.setValueAt(t.getIdActividad(), i, 1);
-			tabla.setValueAt(t.getCantidad(), i, 2);
-			tabla.setValueAt(t.getPrecio(), i, 3);
-			i++;
-		}
-		JScrollPane scroll = new JScrollPane(tabla);
-		scroll.setBounds(50, 115, 900, 288);
-		this.add(scroll);
-
-		this.setVisible(true);
-		this.setResizable(true);
+		botonPanel.add(confirmar);
 	}
 }
