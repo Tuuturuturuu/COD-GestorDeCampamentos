@@ -236,7 +236,7 @@ public class SAFacturaImp implements SAFactura {
 							tLineaFactura.setPrecio(PrecioTotal);
 							// Rellenar el resto de atributos
 							tLineaFactura.setIdActividad(tActividad.getIdActividad());
-							tLineaFactura.setIdFactura(0);
+							tLineaFactura.setIdFactura(tFactura.getIdFactura()); // 0
 							// Agregar el TLineaFactura al Set
 							LineasFactura.add(tLineaFactura);
 						}
