@@ -1,6 +1,3 @@
-/**
- * 
- */
 package Integracion.Factura;
 
 import java.sql.Connection;
