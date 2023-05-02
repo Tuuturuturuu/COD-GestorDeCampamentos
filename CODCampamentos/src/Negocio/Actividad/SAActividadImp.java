@@ -47,7 +47,10 @@ public class SAActividadImp implements SAActividad {
 																								// Personal
 																								// existe
 				tActividad.setIdActividad(-9);
-			else {
+			else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIsActivo() == false) {
+				// Comprobar que el personal no este inactivo
+				tActividad.setIdActividad(-28);
+			} else {
 				actividadBBDD = daoActividad.buscarActividadNombreLugar(tActividad);
 				if (actividadBBDD.getIdActividad() != -1) {// encontrado en bbdd
 					if (actividadBBDD.getActivo() == true)
@@ -141,6 +144,9 @@ public class SAActividadImp implements SAActividad {
 																								// Personal
 																								// existe
 					tActividad.setIdActividad(-9);
+				else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIsActivo() == false)
+					// Comprobar que no este inactivo el personal
+					tActividad.setIdActividad(-28);
 			} else if (tActividad.getIdActividad() > 0)
 				tActividad.setIdPersonal(tActividadBBDD.getIdPersonal());
 

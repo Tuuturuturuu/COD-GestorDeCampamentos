@@ -315,11 +315,12 @@ public class SAFacturaImp implements SAFactura {
 		Set<TLineaFactura> LineasFactura = new HashSet<TLineaFactura>();
 		TFactura tFactura = new TFactura();
 		TFactura tFacturaBBDD = new TFactura();
+		TActividad tActividadBBDD = new TActividad();
 		Integer correct;
 
 		// Comprobar que no hay fallo en el campo integer
 		if (idFactura >= 0) {
-			// Comprobar que no es un campo vac�o
+			// Comprobar que no es un campo vacio
 			if (idFactura == 0) {
 				tFactura.setIdCliente(-37);
 			} else {
@@ -330,6 +331,29 @@ public class SAFacturaImp implements SAFactura {
 				if (tFacturaBBDD.getIdFactura() != -1) {
 					// La factura existe, procedemos a indicar que esta devuelta
 					tFactura = daoFactura.devolverFactura(tFacturaBBDD);
+
+					// Conseguimos todos los tLineaFactura que tengan ese id
+					// Factura
+					LineasFactura = daoLineaFactura.mostrarLineaFacturaPorFactura(tFactura.getIdFactura());
+
+					// Recorremos cada LineaFactura para conseguir el
+					// idActividad
+					// y de esta manera volvemos a actualizar el numPlazas con
+					// las devoluciones
+
+					for (TLineaFactura linea : LineasFactura) {
+
+						tActividadBBDD.setIdActividad(linea.getIdActividad());
+						// Conseguimos todos los datos de la Actividad buscando
+						// en la base de datos
+						tActividadBBDD = daoActividad.buscarActividadID(tActividadBBDD);
+
+						// Actualizamos el numPlazas de cada Actividad
+						Integer newNumPlazas = tActividadBBDD.getNumplazas() + linea.getCantidad();
+						tActividadBBDD.setNumplazas(newNumPlazas);
+						tActividadBBDD = daoActividad.modificarActividad(tActividadBBDD);
+
+					}
 
 					// Eliminamos todos los tLineaFactura que tengan el
 					// idFactura

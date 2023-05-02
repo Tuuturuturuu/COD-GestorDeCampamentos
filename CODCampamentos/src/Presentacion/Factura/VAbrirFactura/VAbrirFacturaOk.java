@@ -44,7 +44,6 @@ public class VAbrirFacturaOk extends JFrame {
 	}
 
 	public void initGUI(TCarrito tCarrito) {
-		System.out.print(tCarrito.gettFactura().getIdCliente());
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		this.setContentPane(mainPanel);
