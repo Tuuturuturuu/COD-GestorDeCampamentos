@@ -70,8 +70,10 @@ public class SAActividadImp implements SAActividad {
 	public TActividad modificarActividad(TActividad tActividad) {
 		TActividad tActividadBBDD = new TActividad();
 		TActividad tActividadNombreLugarBBDD = new TActividad();
-		// Buscar que existe la actividad con dicho id en la BBDD
+
 		if (tActividad.getIdActividad() >= 0) {
+
+			// Buscar que existe la actividad con dicho id en la BBDD
 			tActividadBBDD = daoActividad.buscarActividadID(tActividad);
 
 			// si no ha encontrado la Actividad a modificar no se le puede

@@ -43,6 +43,7 @@ public class SAPersonalImp implements SAPersonal {
 				if (!compr.checkString(tPersonal.getNombre()))
 					tPersonal.setIdPersonal(-38);
 
+				// Comprobamos que no ha habido un error en los anteriores if
 				if (tPersonal.getIdPersonal() == 0) {
 					if (tPersonal.getTipo() == 0) {// Monitor
 						if (((TPersonalMonitor) tPersonal).getEspecialidad().isEmpty()
@@ -169,7 +170,11 @@ public class SAPersonalImp implements SAPersonal {
 				// los campos modificables que vengan en nulo los rellenamos
 				// con los valores de bbdd
 				tPersonal.setIdTurno(tPersonalBBDD.getIdTurno());
-			} else if (tPersonal.getIdPersonal() > 0) { // En caso de ingresar el id de turno hacemos sus respectivas comprobaciones
+			} else if (tPersonal.getIdPersonal() > 0) { // En caso de ingresar
+														// el id de turno
+														// hacemos sus
+														// respectivas
+														// comprobaciones
 				TTurno tTurno = daoTurno.MostrarTurno(tPersonal.getIdTurno());
 				// Si turno no existe enviamos el error
 				if ((tTurno.getIdTurno() < 0))
