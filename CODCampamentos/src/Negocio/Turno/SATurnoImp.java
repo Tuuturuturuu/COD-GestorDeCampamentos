@@ -40,33 +40,9 @@ public class SATurnoImp implements SATurno {
 					}
 				} else {
 					tTurno = daoTurno.CrearTurno(tTurno);
-
-					if (tTurno.getNombreTurno().isEmpty())
-						tTurno.setIdTurno(-37);
-					else if (!compr.nombreValido(tTurno.getNombreTurno()))
-						tTurno.setIdTurno(-2); // Faltan comprobaciones
-					else if (!compr.checkString(tTurno.getNombreTurno()))
-						tTurno.setIdTurno(-38);
-
-					else {
-						// Comprobar que el nombre no esta repetido
-						tTurnoBBDD = daoTurno.BuscarTurnoPorNombre(tTurno.getNombreTurno());
-						if (tTurnoBBDD.getIdTurno() != -1) {// encontrado en
-															// bbdd
-							if (tTurnoBBDD.getActivo() == true)
-								tTurnoBBDD.setIdTurno(-30); // ERROR: ya esta
-															// activo
-							else
-								tTurnoBBDD.setIdTurno(daoTurno.activar(tTurnoBBDD.getIdTurno()));
-						} else {
-							tTurno = daoTurno.CrearTurno(tTurno);
-						}
-
-					}
 				}
 			}
 		}
-
 		return tTurno;
 	}
 
@@ -85,18 +61,28 @@ public class SATurnoImp implements SATurno {
 					tTurno.setIdTurno(-5);
 			}
 
-			// Cambiar el nombre del turno
-			if (tTurno.getNombreTurno().equals("") && tTurno.getIdTurno() > 0) {
+			// Comprobamos que el campo hora no esta vacio
+			// En caso de estarlo le ponemos el de la base de datos
+			if (tTurno.getHora().equals("") && tTurno.getIdTurno() > 0) {
+				// los campos modificables que vengan en nulo los rellenamos con
+				// los
+				// valores de bbdd
+				tTurno.setHora(tTurnoBBDD.getHora());
+			} else if (tTurno.getNombreTurno().equals("") && tTurno.getIdTurno() > 0) {
+				// Cambiar el nombre del turno
 				// los campos modificables que vengan en nulo los rellenamos con
 				// los
 				// valores de bbdd
 				tTurno.setNombreTurno(tTurnoBBDD.getNombreTurno());
 			} else if (tTurno.getIdTurno() > 0) {
+				// Comprobar que el nombre ha sido escrito correctamente
 				if (!compr.nombreValido(tTurno.getNombreTurno()))
 					tTurno.setIdTurno(-52);
 				if (!compr.checkString(tTurno.getNombreTurno()))
 					tTurno.setIdTurno(-38);
-				else {// Comprobar que el nombre no es repetido
+				else
+
+				{// Comprobar que el nombre no es repetido
 					tTurnoBBDDNombre = daoTurno.BuscarTurnoPorNombre(tTurno.getNombreTurno());
 					if (tTurnoBBDDNombre.getIdTurno() != -1) // encontrado en
 																// bbdd un turno
@@ -106,7 +92,7 @@ public class SATurnoImp implements SATurno {
 				}
 			}
 
-			// No ha habido ning�n error, entonces procede a modificar
+			// No ha habido ningun error, entonces procede a modificar
 			if (tTurno.getIdTurno() > 0) {
 				tTurno = daoTurno.ModificarTurno(tTurno);
 			}
@@ -120,26 +106,36 @@ public class SATurnoImp implements SATurno {
 		TTurno tTurnoBBDD = new TTurno();
 		Set<TPersonal> PersonalTurno = new HashSet<TPersonal>();
 		tTurnoBBDD = daoTurno.MostrarTurno(idTurno);
-		// Comprobar que el id Turno existe
-		if (tTurnoBBDD.getIdTurno() != -1) {
-			// Comprobar que no este desactivado
-			if (tTurnoBBDD.getActivo() == true) {
-				// Comprobar que no haya personales con ese turno
-				PersonalTurno = daoPersonal.MostrarPersonalActivoPorTurno(idTurno);
-				if (PersonalTurno.isEmpty()) {
-					// Si no hay personal con el turno, entonces puedo dar de
-					// baja
-					tTurnoBBDD.setIdTurno(idTurno);
-					tTurnoBBDD = daoTurno.EliminarTurno(tTurnoBBDD);
-				} else // Si hay personal con ese turno, envio error indicando
-						// que no puede eliminarlo
-					tTurnoBBDD.setIdTurno(-31);
-			} else {
-				tTurnoBBDD.setIdTurno(-5);
+
+		// Comprobamos para el caso de que ingresen datos incorrectos en el
+		// integer
+		if (tTurno.getIdTurno() >= 0) {
+			if (tTurno.getIdTurno() == 0)
+				tTurnoBBDD.setIdTurno(-37);
+			else {
+				// Comprobar que el id Turno existe
+				if (tTurnoBBDD.getIdTurno() != -1) {
+					// Comprobar que no este desactivado
+					if (tTurnoBBDD.getActivo() == true) {
+						// Comprobar que no haya personales con ese turno
+						PersonalTurno = daoPersonal.MostrarPersonalActivoPorTurno(idTurno);
+						if (PersonalTurno.isEmpty()) {
+							// Si no hay personal con el turno, entonces puedo
+							// dar de
+							// baja
+							tTurnoBBDD.setIdTurno(idTurno);
+							tTurnoBBDD = daoTurno.EliminarTurno(tTurnoBBDD);
+						} else // Si hay personal con ese turno, envio error
+								// indicando
+								// que no puede eliminarlo
+							tTurnoBBDD.setIdTurno(-31);
+					} else {
+						tTurnoBBDD.setIdTurno(-5);
+					}
+				}
 			}
-		} else {
-			tTurnoBBDD.setIdTurno(-1);
 		}
+
 		return tTurnoBBDD;
 	}
 

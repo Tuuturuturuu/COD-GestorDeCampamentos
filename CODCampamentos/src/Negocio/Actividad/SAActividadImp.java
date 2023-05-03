@@ -40,12 +40,8 @@ public class SAActividadImp implements SAActividad {
 				tActividad.setIdActividad(-7);
 			else if (!compr.precio(tActividad.getPrecio()))
 				tActividad.setIdActividad(-8);
-			else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1) // Comprobar
-																								// que
-																								// el
-																								// id
-																								// Personal
-																								// existe
+			else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1)
+				// Comprobar que el id Personal existe
 				tActividad.setIdActividad(-9);
 			else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIsActivo() == false) {
 				// Comprobar que el personal no este inactivo
@@ -70,8 +66,10 @@ public class SAActividadImp implements SAActividad {
 	public TActividad modificarActividad(TActividad tActividad) {
 		TActividad tActividadBBDD = new TActividad();
 		TActividad tActividadNombreLugarBBDD = new TActividad();
-		// Buscar que existe la actividad con dicho id en la BBDD
+
 		if (tActividad.getIdActividad() >= 0) {
+
+			// Buscar que existe la actividad con dicho id en la BBDD
 			tActividadBBDD = daoActividad.buscarActividadID(tActividad);
 
 			// si no ha encontrado la Actividad a modificar no se le puede
@@ -180,14 +178,11 @@ public class SAActividadImp implements SAActividad {
 					if (correct == 1)
 						i++;
 				}
-				if (ActividadesMaterial.size() == i) // Si hemos desvinculado
-														// todos los elementos
-														// correctamente,
-														// entonces damos de
-														// baja a dicha
-														// actividad, caso
-														// contrario enviamos un
-														// error
+				if (ActividadesMaterial.size() == i)
+					// Si hemos desvinculado todos los elementos correctamente,
+					// entonces damos de baja a dicha actividad, caso contrario
+					// enviamos un
+					// error
 					tActividad = daoActividad.borrarActividad(tActividad);
 				else
 					tActividad.setIdActividad(-22);
