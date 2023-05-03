@@ -1,7 +1,12 @@
 package TIntegracion.Factura;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -77,50 +82,47 @@ public class IFacturaTest {
 		Assert.assertTrue(compFacturas(exp, act));
 	}
 
-	// @Test
-	// public void mostrarFacturaOK() {
-	// DAOFactura daoFactura =
-	// FactoriaIntegracionImp.obtenerInstancia().generaDAOFactura();
-	//
-	// TFactura exp = new TFactura(1, 1, Date.valueOf("2023-05-02"),
-	// Float.parseFloat("5"), false);
-	//
-	// TFactura act = new TFactura(1, 1, Date.valueOf("2023-05-02"),
-	// Float.parseFloat("5"), false);
-	// act = daoFactura.cerrarFactura(act);
-	// act = daoFactura.mostrarFactura(act);
-	//
-	// Assert.assertTrue(compFacturas(exp, act));
-	// }
+	@Test
+	public void mostrarFacturaOK() throws NumberFormatException, ParseException {
 
-	// @Test
-	// public void mostrarTodasFacturaOK() {
-	// DAOFactura daoFactura =
-	// FactoriaIntegracionImp.obtenerInstancia().generaDAOFactura();
-	//
-	// TFactura aux = new TFactura(1, 1, Date.valueOf("2023-05-02"),
-	// Float.parseFloat("5"), false);
-	// Set<TFactura> exp = new HashSet<TFactura>();
-	// exp.add(aux);
-	//
-	// TFactura aux2 = new TFactura(1, 1, Date.valueOf("2023-05-02"),
-	// Float.parseFloat("5"), false);
-	// aux2 = daoFactura.cerrarFactura(aux2);
-	// Set<TFactura> act = new HashSet<TFactura>();
-	// act = daoFactura.mostrarFacturas();
-	//
-	// boolean ok = exp.size() == act.size();
-	//
-	// Iterator<TFactura> i = exp.iterator();
-	// Iterator<TFactura> j = act.iterator();
-	//
-	// while (ok && i.hasNext() && j.hasNext()) {
-	// ok = ok && compFacturas((TFactura) i.next(), (TFactura) j.next());
-	// }
-	//
-	// Assert.assertTrue(ok);
-	//
-	// }
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DAOFactura daoFactura = FactoriaIntegracionImp.obtenerInstancia().generaDAOFactura();
+
+		TFactura exp = new TFactura(1, 1, format.parse(Instant.now().toString()), Float.parseFloat("5"), false);
+
+		TFactura act = new TFactura(1, 1, format.parse(Instant.now().toString()), Float.parseFloat("5"), false);
+		act = daoFactura.cerrarFactura(act);
+		act = daoFactura.mostrarFactura(act);
+
+		Assert.assertTrue(compFacturas(exp, act));
+	}
+
+	@Test
+	public void mostrarTodasFacturaOK() throws NumberFormatException, ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		DAOFactura daoFactura = FactoriaIntegracionImp.obtenerInstancia().generaDAOFactura();
+
+		TFactura aux = new TFactura(1, 1, format.parse(Instant.now().toString()), Float.parseFloat("5"), false);
+		Set<TFactura> exp = new HashSet<TFactura>();
+		exp.add(aux);
+
+		TFactura aux2 = new TFactura(1, 1, format.parse(Instant.now().toString()), Float.parseFloat("5"), false);
+		aux2 = daoFactura.cerrarFactura(aux2);
+		Set<TFactura> act = new HashSet<TFactura>();
+		act = daoFactura.mostrarFacturas();
+
+		boolean ok = exp.size() == act.size();
+
+		Iterator<TFactura> i = exp.iterator();
+		Iterator<TFactura> j = act.iterator();
+
+		while (ok && i.hasNext() && j.hasNext()) {
+			ok = ok && compFacturas((TFactura) i.next(), (TFactura) j.next());
+		}
+
+		Assert.assertTrue(ok);
+
+	}
 
 	@Before
 	public void populateBBDD() {
