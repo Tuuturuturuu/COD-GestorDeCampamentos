@@ -40,12 +40,8 @@ public class SAActividadImp implements SAActividad {
 				tActividad.setIdActividad(-7);
 			else if (!compr.precio(tActividad.getPrecio()))
 				tActividad.setIdActividad(-8);
-			else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1) // Comprobar
-																								// que
-																								// el
-																								// id
-																								// Personal
-																								// existe
+			else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIdPersonal() == -1)
+				// Comprobar que el id Personal existe
 				tActividad.setIdActividad(-9);
 			else if (daoPersonal.MostrarUno(tActividad.getIdPersonal()).getIsActivo() == false) {
 				// Comprobar que el personal no este inactivo
