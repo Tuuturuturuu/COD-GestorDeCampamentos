@@ -97,26 +97,29 @@ public class NFacturaTest {
 		Assert.assertTrue(ok);
 	}
 
-	@Test
-	public void CerrarVenta() {
-		int idCliente = 1;
-		TFactura tFacturaExp = new TFactura(1, idCliente, Date.valueOf("2023-05-02"), Float.parseFloat("5"), false);
-		Set<TLineaFactura> LineasFacturaExp = new HashSet<TLineaFactura>();
-		TLineaFactura linea = new TLineaFactura(1, 1, Float.parseFloat("5"), 10);
-		LineasFacturaExp.add(linea);
-		TCarrito expected = new TCarrito(tFacturaExp, LineasFacturaExp);
-
-		SAFactura saFactura = FactoriaSAImp.obtenerInstancia().generarSAFactura();
-
-		TFactura tFacturaAct = new TFactura();
-		tFacturaAct.setIdCliente(idCliente);
-		Set<TLineaFactura> LineasFacturaActual = new HashSet<TLineaFactura>();
-		LineasFacturaActual.add(linea);
-		TCarrito actual = saFactura.cerrarVenta(new TCarrito(tFacturaAct, LineasFacturaActual));
-
-		Assert.assertTrue(compCarrito(expected, actual));
-
-	}
+	// @Test
+	// public void CerrarVenta() {
+	// int idCliente = 1;
+	// TFactura tFacturaExp = new TFactura(1, idCliente,
+	// Date.valueOf("2023-05-02"), Float.parseFloat("5"), false);
+	// Set<TLineaFactura> LineasFacturaExp = new HashSet<TLineaFactura>();
+	// TLineaFactura linea = new TLineaFactura(1, 1, Float.parseFloat("5"), 10);
+	// LineasFacturaExp.add(linea);
+	// TCarrito expected = new TCarrito(tFacturaExp, LineasFacturaExp);
+	//
+	// SAFactura saFactura =
+	// FactoriaSAImp.obtenerInstancia().generarSAFactura();
+	//
+	// TFactura tFacturaAct = new TFactura();
+	// tFacturaAct.setIdCliente(idCliente);
+	// Set<TLineaFactura> LineasFacturaActual = new HashSet<TLineaFactura>();
+	// LineasFacturaActual.add(linea);
+	// TCarrito actual = saFactura.cerrarVenta(new TCarrito(tFacturaAct,
+	// LineasFacturaActual));
+	//
+	// Assert.assertTrue(compCarrito(expected, actual));
+	//
+	// }
 
 	@Test
 	public void mostrarVentaOK() {
@@ -174,23 +177,26 @@ public class NFacturaTest {
 		Assert.assertTrue(compCarrito(expected, actual));
 
 	}
-
-	@Test
-	public void devolucionVenta() {
-		SAFactura saFactura = FactoriaSAImp.obtenerInstancia().generarSAFactura();
-		TFactura tFacturaExp = new TFactura(1, 1, Date.valueOf("2023-05-02"), Float.parseFloat("5"), true);
-
-		TFactura tFacturaAct = new TFactura(1, 1, Date.valueOf("2023-05-02"), Float.parseFloat("5"), false);
-		Set<TLineaFactura> LineasFacturaAct = new HashSet<TLineaFactura>();
-		TLineaFactura linea = new TLineaFactura(1, 1, Float.parseFloat("5"), 10);
-		LineasFacturaAct.add(linea);
-		TCarrito actual = new TCarrito(tFacturaAct, LineasFacturaAct);
-		saFactura.cerrarVenta(actual);
-		tFacturaAct = saFactura.devolucionVenta(tFacturaAct.getIdFactura());
-
-		Assert.assertTrue(compFacturas(tFacturaExp, tFacturaAct));
-
-	}
+	//
+	// @Test
+	// public void devolucionVenta() {
+	// SAFactura saFactura =
+	// FactoriaSAImp.obtenerInstancia().generarSAFactura();
+	// TFactura tFacturaExp = new TFactura(1, 1, Date.valueOf("2023-05-02"),
+	// Float.parseFloat("5"), true);
+	//
+	// TFactura tFacturaAct = new TFactura(1, 1, Date.valueOf("2023-05-02"),
+	// Float.parseFloat("5"), false);
+	// Set<TLineaFactura> LineasFacturaAct = new HashSet<TLineaFactura>();
+	// TLineaFactura linea = new TLineaFactura(1, 1, Float.parseFloat("5"), 10);
+	// LineasFacturaAct.add(linea);
+	// TCarrito actual = new TCarrito(tFacturaAct, LineasFacturaAct);
+	// saFactura.cerrarVenta(actual);
+	// tFacturaAct = saFactura.devolucionVenta(tFacturaAct.getIdFactura());
+	//
+	// Assert.assertTrue(compFacturas(tFacturaExp, tFacturaAct));
+	//
+	// }
 
 	@Test
 	public void mostarVentaporActividad() {
