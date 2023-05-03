@@ -178,14 +178,11 @@ public class SAActividadImp implements SAActividad {
 					if (correct == 1)
 						i++;
 				}
-				if (ActividadesMaterial.size() == i) // Si hemos desvinculado
-														// todos los elementos
-														// correctamente,
-														// entonces damos de
-														// baja a dicha
-														// actividad, caso
-														// contrario enviamos un
-														// error
+				if (ActividadesMaterial.size() == i)
+					// Si hemos desvinculado todos los elementos correctamente,
+					// entonces damos de baja a dicha actividad, caso contrario
+					// enviamos un
+					// error
 					tActividad = daoActividad.borrarActividad(tActividad);
 				else
 					tActividad.setIdActividad(-22);
